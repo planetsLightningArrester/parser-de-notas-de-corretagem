@@ -2,6 +2,7 @@ node_modules
 dist
 out
 coverage
+runner
 *.pdf
 *.csv
 !src/tests/notes/**/*
