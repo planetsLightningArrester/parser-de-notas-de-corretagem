@@ -1,6 +1,6 @@
 {
   "name": "parser-de-notas-de-corretagem",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Parse Brazilian brokerage notes PDFs (Inter and Clear holders available)",
   "main": "notes-parser.js",
   "types": "notes-parser.d.ts",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem.git"
+    "url": "git+https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem.git"
   },
   "keywords": [],
   "author": "Planet's Lightning Arrester",
