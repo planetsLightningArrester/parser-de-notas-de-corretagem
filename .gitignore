@@ -1,0 +1,7 @@
+node_modules
+dist
+out
+coverage
+*.pdf
+*.csv
+!src/tests/notes/**/*
