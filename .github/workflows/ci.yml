@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run:  npm cache verify && npm ci
+        run:  npm cache clean --force && npm ci
       
       - name: Run test
         run:  npm run test rico
@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run:  npm cache verify && npm ci
+        run:  npm cache clean --force && npm ci
       
       - name: Run test
         run:  npm run test rico
@@ -53,7 +53,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run:  npm cache verify && npm ci
+        run:  npm cache clean --force && npm ci
       
       - name: Run test
         run:  npm run test crawler
@@ -65,7 +65,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install dependencies
-        run:  npm cache verify && npm ci
+        run:  npm cache clean --force && npm ci
 
       - name: Typescript Build
         run:  npm run build
