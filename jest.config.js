@@ -4,5 +4,5 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx)$": ['ts-jest', { tsconfig: 'tsconfig.json' }]
   },
-  modulePathIgnorePatterns: ['<rootDir>/dist']
+  modulePathIgnorePatterns: ['<rootDir>/dist', '<rootDir>/runner', '<rootDir>/out']
 }

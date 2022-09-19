@@ -73,6 +73,7 @@
     "src/tests",
     "dist",
     "out",
+    "runner",
     "coverage",
     "webpack*"
   ]
