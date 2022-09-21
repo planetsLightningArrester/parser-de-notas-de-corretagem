@@ -27,7 +27,8 @@ const config: webpack.Configuration = {
         use: {
           loader: 'ts-loader'
         },
-        exclude: [/test/, /scripts/, /sandbox/, /runner/, /out/],
+        include: __dirname,
+        exclude: [/test/, /scripts/, /sandbox/, /runner/],
       },
     ],
   },
