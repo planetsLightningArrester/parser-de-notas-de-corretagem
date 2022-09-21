@@ -71,7 +71,7 @@ jobs:
         run:  npm run build
 
       - name: Generate production bundle
-        run:  npx webpack --mode production --env.NODE_ENV=production --config ./webpack.config.ts
+        run:  npm run pack --env.NODE_ENV=production -- --config ./webpack.config.ts
       
       - name: Run test
         run:  npm run test webpack
