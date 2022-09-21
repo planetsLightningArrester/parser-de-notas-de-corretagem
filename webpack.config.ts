@@ -24,7 +24,9 @@ const config: webpack.Configuration = {
     rules: [
       {
         test: /\.ts$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'ts-loader'
+        },
         exclude: [/test/, /scripts/, /sandbox/, /runner/, /out/],
       },
     ],
