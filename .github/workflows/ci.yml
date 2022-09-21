@@ -16,6 +16,9 @@ on:
   push:
     branches: ['main']
 
+  # Any pull request update
+  pull_request:
+
   # Allow manual trigger
   workflow_dispatch:
 
