@@ -24,11 +24,11 @@ const config: webpack.Configuration = {
     rules: [
       {
         test: /\.ts$/,
-        use: {
+        use: [{
           loader: 'ts-loader'
-        },
+        }],
         include: __dirname,
-        exclude: [/test/, /scripts/, /sandbox/, /runner/],
+        exclude: /node_modules/,
       },
     ],
   },
