@@ -71,7 +71,7 @@ jobs:
         run:  npm run build
 
       - name: Generate production bundle
-        run:  npm ci && npm run build && npm run pack
+        run:  node -v && which node && npm -v && which npm && npm ci && npm run build && npm run pack
       
       - name: Run test
         run:  npm run test webpack
