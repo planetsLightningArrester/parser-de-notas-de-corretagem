@@ -88,8 +88,8 @@ async function main() {
 
     // Get all negotiation notes inside a PDF, even with password
     const possiblePDFpasswords: string[] = ['123', '456'];
-    let pdfPassword = path.join(__dirname, 'note.pdf');
-    let parseResult = await assets.parseNote(pdfPassword, possiblePDFpasswords);
+    let pdfPath = path.join(__dirname, 'note.pdf');
+    let parseResult = await assets.parseNote(pdfPath, possiblePDFpasswords);
     
     // Merge all negotiation notes
     let allDeals: Deal[][] = [];
