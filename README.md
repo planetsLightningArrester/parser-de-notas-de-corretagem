@@ -2,7 +2,7 @@
 
 Easing the PITA of making IRRF
 
-> Note: This is a JS/TS package. If you want the final-user solution, check the [Leitor de notas de corretagem](https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem)
+> Note: This is a JS/TS package. If you want the end-user solution, check the [Leitor de notas de corretagem](https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem)
 
 ## Example result
 > The `price` and `average` fields already include the fees paid
