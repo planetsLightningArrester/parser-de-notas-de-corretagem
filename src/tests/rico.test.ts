@@ -69,6 +69,7 @@ describe('single page', () => {
     const filePath: string = path.join(__dirname, 'notes', 'rico_single_page_pwd.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
+    assets.setDateFormat('dd/MM/yyyy');
     let parseResult = await assets.parseNote(filePath, possiblePasswords);
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
@@ -76,14 +77,32 @@ describe('single page', () => {
     const filePath: string = path.join(__dirname, 'notes', 'rico_single_page.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
+    assets.setDateFormat('dd/MM/yyyy');
     let parseResult = await assets.parseNote(filePath, []); // Empty pass for PDFs without pass should work
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
+  test('format date as yyyy-MM-dd', async () => {
+    const filePath: string = path.join(__dirname, 'notes', 'rico_single_page_pwd.pdf');
+    if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+    
+    assets.setDateFormat('yyyy-MM-dd');
+    let parseResult = await assets.parseNote(filePath, possiblePasswords);
+    let _expected = expected.map(e => e);
+    _expected.forEach(note => {
+      note.date = note.date.split('/').reverse().join('-');
+      note.deals.forEach(deal => {
+        deal.date = deal.date.split('/').reverse().join('-');
+      });
+    });
+    expect<NegotiationNote[]>(parseResult).toEqual(_expected);
+  });
+
 });
 test('multi page', async () => {
   const filePath: string = path.join(__dirname, 'notes', 'rico_multi_page.pdf');
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
   
+  assets.setDateFormat('dd/MM/yyyy');
   let parseResult = await assets.parseNote(filePath, []);
   expect<NegotiationNote[]>(parseResult).toEqual([
     {

@@ -80,6 +80,11 @@ export class NegotiationNote {
 }
 
 /**
+ * Possible date formats to be used
+ */
+export type DateFormat = "dd/MM/yyyy" | "yyyy-MM-dd";
+
+/**
  * Brokerage notes parser
  */
 export class NoteParser {
@@ -88,6 +93,10 @@ export class NoteParser {
    * Path to the JSON data file
    */
   private stockParser: AssetCrawler;
+  /**
+   * The date format used. Default is "dd/MM/yyyy"
+   */
+  private dateFormat: DateFormat = "dd/MM/yyyy";
 
   /**
    * Instantiate a new `NoteParser`
@@ -110,6 +119,14 @@ export class NoteParser {
     this.defineStock('MDIA4', 'M.DIASBRANCO PN');
     this.defineStock('BIDI3', 'BANCO INTER ON');
     this.defineStock('BIDI11', 'BANCO INTER UNT');
+  }
+
+  /**
+   * Set the date format
+   * @param format a `DateFormat`
+   */
+  setDateFormat(format: DateFormat) {
+    this.dateFormat = format;
   }
 
   /**
@@ -213,7 +230,7 @@ export class NoteParser {
           // Get the date
           let date: string | undefined;
           match = pageContent.match(datePattern);
-          if (match && match[1]) date = formatDateToShow(match[1]);
+          if (match && match[1]) date = this.formatDate(match[1]);
           else throw new Error(`No date found for the negotiation note '${noteName}'`);
           parseResult.date = date;
 
@@ -380,21 +397,19 @@ export class NoteParser {
     };
   }
 
-}
-
-/**
- * Convert a date to be displayed by local
- * @param date the date formatted as yyyy-MM-dd
- * @returns the formatted date
- */
-function formatDateToShow (date: string | Date) {
-  if (typeof date === 'string') {
-    if (!date.match(/\d{4}-\d{2}-\d{2}/)) {
-      return date;
+  /**
+   * Convert a date according to `dateFormat`
+   * @param date the date to be formatted
+   * @returns the formatted date
+   */
+  private formatDate (date: string) {
+    if (date.match(/\d{4}-\d{2}-\d{2}/)) {
+      if (this.dateFormat === 'yyyy-MM-dd') return date;
+      else return date.split('-').reverse().join('/');
     } else {
-      return date.split('-').reverse().join('/');
+      if (this.dateFormat === 'dd/MM/yyyy') return date;
+      else return date.split('/').reverse().join('-');
     }
-  } else {
-    return '';
   }
+
 }
