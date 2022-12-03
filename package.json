@@ -9,7 +9,7 @@
     "build": "tsc --declaration",
     "pack": "webpack --mode production",
     "pub": "npm publish ./dist --access=public",
-    "update-assets": "npm run build && node dist/scripts/update.js"
+    "update-assets": "npm run build && node out/src/scripts/update.js"
   },
   "repository": {
     "type": "git",
