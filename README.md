@@ -9,13 +9,13 @@ Easing the PITA of making IRRF
 ```JSON
 [
   {
-    "number": "11111",
+    "number": "11111",    // Brokerage note number
     "buyTotal": "4054.58",
     "sellTotal": "0.00",
     "buyFees": "1.24",
     "sellFees": "0.00",
     "fees": "1.24",
-    "date": "02/02/2022",
+    "date": "02/02/2022", // Can also output in yyyy-MM-dd format
     "holder": "rico",
     "deals": [
       {
@@ -34,7 +34,7 @@ Easing the PITA of making IRRF
         "average": "112.80",
         "price": "564.02",
         "date": "02/02/2022",
-        "cnpj": "00.000.000/0000-00"
+        "cnpj": "00.000.000/0000-00"   // FIIs' CNPJs aren't supported yet
       },
       {
         "type": "buy",
@@ -147,6 +147,6 @@ Consider thanking me: send a "Thanks!" 👋 by [PIX](https://www.bcb.gov.br/en/f
 > a09e5878-2355-45f7-9f36-6df4ccf383cf
 
 ## License
-As license, this software is provided as is, free of charge, without any warranty whatsoever. Its author is not responsible for its usage. Use it by your own risk.
+As license, this software is provided as is, free of charge, **without any warranty whatsoever**. Its author is not responsible for its usage. Use it by your own risk.
 
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
