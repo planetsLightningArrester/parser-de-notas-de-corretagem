@@ -9,10 +9,14 @@ on:
 
 jobs:
 
-  # TODO add an npm publish
+  # Call CI
+  ci-check:
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
 
   create-release:
     runs-on: [ self-hosted ]
+    needs: ci-check
 
     steps:
       - name: Checkout code
@@ -30,5 +34,22 @@ jobs:
           tag_name: v${{ env.RELEASE_VERSION }}
           release_name: Parser v${{ env.RELEASE_VERSION }}
           body_path: ./CHANGELOG.md
+
+  # Release on NPM
+  npm-release:
+    runs-on: [ self-hosted ]
+    needs: create-release
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install dependencies and build 🔧
+      run: npm ci && npm run build && npm run pack
+
+    - name: Publish package on NPM 📦
+      run: npm run pub
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 # EOF
