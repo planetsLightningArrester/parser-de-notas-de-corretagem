@@ -1,5 +1,7 @@
 # Parse Brazilian brokerage notes PDFs (Inter and Clear holders available)
 
+[![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml)
+
 Easing the PITA of making IRRF
 
 > Note: This is a JS/TS package. If you want the end-user solution, check the [Leitor de notas de corretagem](https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem)
