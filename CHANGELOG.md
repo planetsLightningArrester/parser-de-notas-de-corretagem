@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add `setDateFormat` method to set dates either "dd/MM/yyyy" or "yyyy-MM-dd"
 
 ### Fixed
-- Fix var name in README.md example
+- Fix var name in `README.md` example
 
-### Changted
-- Update README.md
+### Changed
+- Update `README.md`
 - Update dependencies
 
 ## [0.0.2] - 2022-09-18
