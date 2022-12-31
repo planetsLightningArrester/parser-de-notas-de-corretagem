@@ -7,7 +7,7 @@ const httpsAgent = new https.Agent({ rejectUnauthorized: false });
  * B3 request object constructor
  */
 class ListedStocksRequest {
-  language: string = 'pt-br';
+  language = 'pt-br';
   pageNumber: number;
   pageSize: 20|40|60|120 = 120;
   
@@ -116,7 +116,7 @@ export class AssetCrawler {
   /**
    * Auto-update flag
    */
-  autoUpdate: boolean = false;
+  autoUpdate = false;
   /**
    * Auto-update timeout
    */
@@ -181,13 +181,12 @@ export class AssetCrawler {
     if (!('data' in firstResult)) throw new Error(`Unexpected response: ${firstResult}`);
 
     let data: CrawlerRequestResult = firstResult.data;
-    let results: StockInfos[] = data.results;
+    const results: StockInfos[] = data.results;
     
     while(data.page.totalPages > data.page.pageNumber) {
       const getResult = await axios.get(this.getUrlByPage(data.page.pageNumber + 1), { httpsAgent });
       if (!('data' in getResult)) throw new Error(`Unexpected response: ${getResult}`);
       data = getResult.data;
-      data.page = data.page;
       results.push(...data.results);
     }
     
@@ -202,11 +201,11 @@ export class AssetCrawler {
    */
   getCodeFromTitle(name: string): Asset {
     // If the stock was manually set
-    let customDefined: Asset | undefined = this.customAssets.find(c => name.includes(c.name));
+    const customDefined: Asset | undefined = this.customAssets.find(c => name.includes(c.name));
     if (customDefined) return customDefined
 
     // If it's a FII, the code is in the name
-    let match = name.match(/FII\s.*?\s([^\s]+?)\sCI/i);
+    const match = name.match(/FII\s.*?\s([^\s]+?)\sCI/i);
     if (match && match[1]) return {code: match[1], name};
 
     // Else, parse it
@@ -216,7 +215,7 @@ export class AssetCrawler {
     else if (name.indexOf(' PN') !== -1) { indexOf = name.indexOf(' PN'); type = '4'}
     else if (name.indexOf(' UNT') !== -1) { indexOf = name.indexOf(' UNT'); type = '11'}
     else indexOf = name.length;
-    let justTheName = name.slice(0, indexOf);
+    const justTheName = name.slice(0, indexOf);
     const stock = this.assets.find(el => el.tradingName === justTheName);
     if (!stock) throw new Error(`No stock found for ${name}`);
 

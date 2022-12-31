@@ -12,8 +12,8 @@
         "--inspect-brk",
         "${workspaceRoot}/node_modules/jest/bin/jest.js",
         "--runInBand",
-        "rico.test.ts",
-        "--t='multi page'"
+        "crawler.test.ts",
+        "--t='listed assets'"
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",

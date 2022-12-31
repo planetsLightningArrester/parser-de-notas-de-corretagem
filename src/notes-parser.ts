@@ -44,35 +44,35 @@ export class NegotiationNote {
   /**
    * Negotiation note number
    */
-  number: string = '';
+  number = '';
   /**
    * The total amount bought with fees applied
    */
-  buyTotal: string = '0'
+  buyTotal = '0'
   /**
    * The total amount sold with fees applied
    */
-  sellTotal: string = '0'
+  sellTotal = '0'
   /**
    * The total amount of buy fees
    */
-  buyFees: string = '0'
+  buyFees = '0'
   /**
    * The total amount of sell fees
    */
-  sellFees: string = '0'
+  sellFees = '0'
   /**
    * The total amount of fees
    */
-  fees: string = '0'
+  fees = '0'
   /**
    * Negotiation note date in format yyyy-MM-dd
    */
-  date: string = ''
+  date = ''
   /**
    * Negotiation note holder
    */
-  holder: string = ''
+  holder = ''
   /**
    * Array of deals with buys and sells
    */
@@ -140,9 +140,9 @@ export class NoteParser {
     if (!fs.existsSync(noteFullPath)) throw new Error(`Couldn't find the file ${noteFullPath}`);
     
     // Try to open the PDF using the provided passwords, if any
-    let parseResults: NegotiationNote[] = []
+    const parseResults: NegotiationNote[] = []
     const noteName: string = path.basename(noteFullPath);
-    let invalidPassword: boolean = false;
+    let invalidPassword = false;
     let pdf: PDFDocument | undefined;
     if (!possiblePasswords || !possiblePasswords.length) {
       pdf = await openPDF({url: noteFullPath}).promise;
@@ -151,7 +151,7 @@ export class NoteParser {
         try {
           pdf = await openPDF({url: noteFullPath, password: pass}).promise;
           break;
-        } catch (error: any) {
+        } catch (error: unknown) {
           /** Prevent the  failure and try again with another password */
           if (error instanceof Error) {
             if (!error.message.includes('No password given') && !error.message.includes('Incorrect Password')) throw error;
@@ -172,11 +172,11 @@ export class NoteParser {
     // Parse the PDF content
     try {
       // Patterns
-      let holderPattern: RegExp = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
-      let noteNumberPattern: RegExp = /Nr\. nota\s+(\d+)/i;
-      let datePattern: RegExp = /data.*\s+(\d{2}\/\d{2}\/\d{4})/i;
-      let buysAndSellsPattern: RegExp = /\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s*Resumo dos Negócios/;
-      let feesPattern: RegExp[] = [
+      const holderPattern = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
+      const noteNumberPattern = /Nr\. nota\s+(\d+)/i;
+      const datePattern = /data.*\s+(\d{2}\/\d{2}\/\d{4})/i;
+      const buysAndSellsPattern = /\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s*Resumo dos Negócios/;
+      const feesPattern: RegExp[] = [
         /(\d[\d,.]*)\nTaxa de liquidação/,
         /(\d[\d,.]*)\nTaxa de Registro/,
         /(\d[\d,.]*)\nTaxa de termo\/opções/,
@@ -189,15 +189,15 @@ export class NoteParser {
         /(\d[\d,.]*)\nI\.R\.R\.F\. s\/ operações, base/,
         /(\d[\d,.]*)\nOutros/
       ];
-      let stockPattern: RegExp = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w\/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
+      const stockPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
       let match: RegExpMatchArray | null;
 
       // Iterate over the pages
-      let pageContent: string = '';
+      let pageContent = '';
       for await (const index of Array(pdf.numPages).keys()) {
-        let i = index + 1;
-        let page = await pdf.getPage(i);
-        let data = await page.getTextContent();
+        const i = index + 1;
+        const page = await pdf.getPage(i);
+        const data = await page.getTextContent();
         // Get page content
         for (let j = 0; j < data.items.length; j++) {
           const item = data.items[j];
@@ -235,8 +235,8 @@ export class NoteParser {
           parseResult.date = date;
 
           // Note total
-          let buyTotal: number = 0;
-          let sellTotal: number = 0;
+          let buyTotal = 0;
+          let sellTotal = 0;
           if ((match = pageContent.match(buysAndSellsPattern)) !== null) {
             sellTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
             buyTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
@@ -245,9 +245,9 @@ export class NoteParser {
           }
 
           // Get the fees
-          let fees: number = 0;
+          let fees = 0;
           feesPattern.forEach(fee => {
-            let match = pageContent.match(fee);
+            const match = pageContent.match(fee);
             if (match && match[1]) {
               fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
             }
@@ -267,12 +267,12 @@ export class NoteParser {
           }
 
           while ((match = stockPattern.exec(pageContent)) != null) {
-            let op: string = match[1];
+            const op: string = match[1];
             // let market: string = match[2];
-            let stock: Asset = this.stockParser.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
-            let quantity: number = parseInt(match[4]);
+            const stock: Asset = this.stockParser.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
+            const quantity: number = parseInt(match[4]);
             // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
-            let transactionValue: number = parseFloat(match[6].replace('.', '').replace(',', '.'));
+            const transactionValue: number = parseFloat(match[6].replace('.', '').replace(',', '.'));
 
             if (!stock) console.log(`Can't find ${match[3]}`);
 
@@ -321,7 +321,7 @@ export class NoteParser {
         }
       }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         console.log(error.message);
         console.log(error);
@@ -355,7 +355,7 @@ export class NoteParser {
           note.sellTotal = (sellTotal - sellFees).toFixed(2);
         }
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         console.log(error.message);
         console.log(error);
@@ -394,7 +394,7 @@ export class NoteParser {
     // Skip duplicates
     if (!this.stockParser.customAssets.find(a => a.code === code)) {
       this.stockParser.customAssets.push({code, name, cnpj});
-    };
+    }
   }
 
   /**
