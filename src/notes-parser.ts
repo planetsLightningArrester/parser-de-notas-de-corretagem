@@ -1,85 +1,47 @@
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
 import { Asset, AssetCrawler } from "./asset-crawler";
 
-/**
- * Deal made in a `NegotiationNote` type
- */
+/** Deal made in a `NegotiationNote` type */
 export interface Deal {
-  /**
-   * Deal type
-   */
+  /** Deal type */
   type: 'buy' | 'sell'
-  /**
-   * Stock/FII code
-   */
+  /** Stock/FII code */
   code: string
-  /**
-   * Amount bought/sold
-   */
+  /** Amount bought/sold */
   quantity: number
-  /**
-   * Average value bought/sold with fees applied
-   */
+  /** Average value bought/sold with fees applied */
   average: string
-  /**
-   * Total amount bought/sold with fees applied
-   */
+  /** Total amount bought/sold with fees applied */
   price: string
-  /**
-   * Deal date in format yyyy-MM-dd
-   */
+  /** Deal date in format yyyy-MM-dd */
   date: string
-  /**
-   * Asset's CNPJ
-   */
+  /** Asset's CNPJ */
   cnpj: string
 }
 
-/**
- * A parsed Negotiation Note type
- */
+/** A parsed Negotiation Note type */
 export class NegotiationNote {
-  /**
-   * Negotiation note number
-   */
+  /** Negotiation note number */
   number = '';
-  /**
-   * The total amount bought with fees applied
-   */
+  /** The total amount bought with fees applied */
   buyTotal = '0'
-  /**
-   * The total amount sold with fees applied
-   */
+  /** The total amount sold with fees applied */
   sellTotal = '0'
-  /**
-   * The total amount of buy fees
-   */
+  /** The total amount of buy fees */
   buyFees = '0'
-  /**
-   * The total amount of sell fees
-   */
+  /** The total amount of sell fees */
   sellFees = '0'
-  /**
-   * The total amount of fees
-   */
+  /** The total amount of fees */
   fees = '0'
-  /**
-   * Negotiation note date in format yyyy-MM-dd
-   */
+  /** Negotiation note date in format yyyy-MM-dd */
   date = ''
-  /**
-   * Negotiation note holder
-   */
+  /** Negotiation note holder */
   holder = ''
-  /**
-   * Array of deals with buys and sells
-   */
+  /** Array of deals with buys and sells */
   deals: Deal[] = []
 }
 
-/**
- * Possible date formats to be used
- */
+/** Possible date formats to be used */
 export type DateFormat = "dd/MM/yyyy" | "yyyy-MM-dd";
 
 /**
@@ -87,13 +49,9 @@ export type DateFormat = "dd/MM/yyyy" | "yyyy-MM-dd";
  */
 export class NoteParser {
 
-  /**
-   * Path to the JSON data file
-   */
+  /** Path to the JSON data file */
   private stockParser: AssetCrawler;
-  /**
-   * The date format used. Default is "dd/MM/yyyy"
-   */
+  /** The date format used. Default is `dd/MM/yyyy` */
   private dateFormat: DateFormat = "dd/MM/yyyy";
 
   /**

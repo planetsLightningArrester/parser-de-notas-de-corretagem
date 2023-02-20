@@ -1,9 +1,7 @@
 import axios from "axios";
 import assets from '../assets.json';
 
-/**
- * B3 request object constructor
- */
+/** B3 request object constructor */
 class ListedStocksRequest {
   language = 'pt-br';
   pageNumber: number;
@@ -16,29 +14,17 @@ class ListedStocksRequest {
 
 }
 
-/**
- * Infos about the stock
- */
+/** Infos about the stock */
 interface StockInfos {
-  /**
-   * CVM code
-   */
+  /** CVM code */
   codeCVM: string;
-  /**
-   * Issuing Company (B3 Code)
-   */
+  /** Issuing Company (B3 Code) */
   issuingCompany: string;
-  /**
-   * Company name
-   */
+  /** Company name */
   companyName: string;
-  /**
-   * Trading name (same name as in the brokerage note)
-   */
+  /** Trading name (same name as in the brokerage note) */
   tradingName: string;
-  /**
-   * Company's CNPJ
-   */
+  /** Company's CNPJ */
   cnpj: string;
   marketIndicator: string;
   typeBDR: string;
@@ -50,84 +36,51 @@ interface StockInfos {
   market: string;
 }
 
-/**
- * Infos about the page and the total amount of records
- */
+/** Infos about the page and the total amount of records */
 interface PageInfo {
-  /**
-   * Current page number
-   */
+  /** Current page number */
   pageNumber: number;
-  /**
-   * Number of results in the page (can be less if it's the last page)
-   */
+  /** Number of results in the page (can be less if it's the last page) */
   pageSize: number;
-  /**
-   * Number of total records
-   */
+  /** Number of total records */
   totalRecords: number;
-  /**
-   * Number of total pages
-   */
+  /** Number of total pages */
   totalPages: number;
 }
 
-/**
- * Crawler result
- */
+/** Crawler result */
 interface CrawlerRequestResult {
   "page": PageInfo;
   "results": StockInfos[];
 }
 
-/**
- * Assets main infos
- */
+/** Assets main infos */
 export interface Asset {
-  /**
-   * Asset's code
-   */
+  /** Asset's code */
   code: string;
-  /**
-   * Asset's name
-   */
+  /** Asset's name */
   name: string;
-  /**
-   * Asset's cnpj
-   */
+  /** Asset's cnpj */
   cnpj?: string;
 }
 
-/**
- * Assets crawler manager
- */
+/** Assets crawler manager */
 export class AssetCrawler {
 
-  /**
-   * Assets cached
-   */
+  /** Assets cached */
   protected assets: StockInfos[];
-  /**
-   * Assets defined on runtime
-   */
+  /** Assets defined on runtime */
   customAssets: Asset[] = [];
-  /**
-   * Auto-update flag
-   */
+  /** Auto-update flag */
   autoUpdate = false;
-  /**
-   * Auto-update timeout
-   */
+  /** Auto-update timeout */
   private updaterTimeout = 7*24*3600*1000;
-  /**
-   * Auto-update timeout when any failure happens
-   */
+  /** Auto-update timeout when any failure happens */
   private updaterTimeoutIfFailed = 24*3600*1000;
 
-  /**
-   * Crawler URLs
-   */
+  /** Crawler URLs */
   private urls = {
+    // Using deprecated `atob` because Buffer isn't supported out-of-the-box in browsers
     listedStocks: atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9saXN0ZWRDb21wYW5pZXNQcm94eS9Db21wYW55Q2FsbC9HZXRJbml0aWFsQ29tcGFuaWVz')
   }
 
@@ -171,9 +124,7 @@ export class AssetCrawler {
     return `${this.urls.listedStocks}/${Buffer.from(JSON.stringify(new ListedStocksRequest(page))).toString('base64')}`
   }
 
-  /**
-   * Update the current listed assets
-   */
+  /** Update the current listed assets */
   async getListedAssets(): Promise<void> {
     const firstResult = await axios.get(this.getUrlByPage(1));
     if (!('data' in firstResult)) throw new Error(`Unexpected response: ${firstResult}`);
