@@ -109,7 +109,7 @@ export class NoteParser {
    * @param content PDF content
    * @returns an `Array` of `NegotiationNote`
    */
-  async parseNote(noteName: string, content: Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
+  async parseNote(noteName: string, content: string | Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
 
     // Try to open the PDF using the provided passwords, if any
     const parseResults: NegotiationNote[] = []
