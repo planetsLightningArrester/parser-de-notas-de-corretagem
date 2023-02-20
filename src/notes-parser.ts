@@ -44,9 +44,22 @@ export class NegotiationNote {
 /** Possible date formats to be used */
 export type DateFormat = "dd/MM/yyyy" | "yyyy-MM-dd";
 
-/**
- * Brokerage notes parser
- */
+/** Wrong password error */
+export class WrongPassword extends Error {}
+/** Empty document error */
+export class EmptyDocument extends Error {}
+/** Document without note number error */
+export class MissingNoteNumber extends Error {}
+/** Document without holder error */
+export class MissingHolder extends Error {}
+/** Document without date error */
+export class MissingDate extends Error {}
+/** Missing Buy or Sell sums */
+export class MissingBuyOrSellSums extends Error {}
+/** Unknown Asset error error */
+export class UnknownAsset extends Error {}
+
+/** Brokerage notes parser */
 export class NoteParser {
 
   /** Path to the JSON data file */
@@ -124,204 +137,171 @@ export class NoteParser {
     }
 
     // Check if the open result
-    if (!pdf && invalidPassword) throw new Error(`None of the provided passwords could open the note ${noteName}`);
-    else if (!pdf) throw new Error(`Can't open note ${noteName}. The document returned no content`);
+    if (!pdf && invalidPassword) throw new WrongPassword(`None of the provided passwords could open the note ${noteName}`);
+    else if (!pdf) throw new EmptyDocument(`Can't open note ${noteName}. The document returned no content`);
 
     // Parse the PDF content
-    try {
-      // Patterns
-      const holderPattern = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
-      const noteNumberPattern = /Nr\. nota\s+(\d+)/i;
-      const datePattern = /data.*\s+(\d{2}\/\d{2}\/\d{4})/i;
-      const buysAndSellsPattern = /\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s*Resumo dos Negócios/;
-      const feesPattern: RegExp[] = [
-        /(\d[\d,.]*)\nTaxa de liquidação/,
-        /(\d[\d,.]*)\nTaxa de Registro/,
-        /(\d[\d,.]*)\nTaxa de termo\/opções/,
-        /(\d[\d,.]*)\nTaxa A.N.A./,
-        /(\d[\d,.]*)\nEmolumentos/,
-        /(\d[\d,.]*)\nTaxa Operacional/,
-        /(\d[\d,.]*)\nExecução/,
-        /(\d[\d,.]*)\nTaxa de Custódia/,
-        /(\d[\d,.]*)\nImpostos/,
-        /(\d[\d,.]*)\nI\.R\.R\.F\. s\/ operações, base/,
-        /(\d[\d,.]*)\nOutros/
-      ];
-      const stockPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
-      let match: RegExpMatchArray | null;
+    const holderPattern = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
+    const noteNumberPattern = /Nr\. nota\s+(\d+)/i;
+    const datePattern = /data.*\s+(\d{2}\/\d{2}\/\d{4})/i;
+    const buysAndSellsPattern = /\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s*Resumo dos Negócios/;
+    const feesPattern: RegExp[] = [
+      /(\d[\d,.]*)\nTaxa de liquidação/,
+      /(\d[\d,.]*)\nTaxa de Registro/,
+      /(\d[\d,.]*)\nTaxa de termo\/opções/,
+      /(\d[\d,.]*)\nTaxa A.N.A./,
+      /(\d[\d,.]*)\nEmolumentos/,
+      /(\d[\d,.]*)\nTaxa Operacional/,
+      /(\d[\d,.]*)\nExecução/,
+      /(\d[\d,.]*)\nTaxa de Custódia/,
+      /(\d[\d,.]*)\nImpostos/,
+      /(\d[\d,.]*)\nI\.R\.R\.F\. s\/ operações, base/,
+      /(\d[\d,.]*)\nOutros/
+    ];
+    const stockPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
+    let match: RegExpMatchArray | null;
 
-      // Iterate over the pages
-      let pageContent = '';
-      for await (const index of Array(pdf.numPages).keys()) {
-        const i = index + 1;
-        const page = await pdf.getPage(i);
-        const data = await page.getTextContent();
-        // Get page content
-        for (let j = 0; j < data.items.length; j++) {
-          const item = data.items[j];
-          if ('str' in item) {
-            pageContent += `${item.str}\n`;
-          }
+    // Iterate over the pages
+    let pageContent = '';
+    for await (const index of Array(pdf.numPages).keys()) {
+      const i = index + 1;
+      const page = await pdf.getPage(i);
+      const data = await page.getTextContent();
+      // Get page content
+      for (let j = 0; j < data.items.length; j++) {
+        const item = data.items[j];
+        if ('str' in item) pageContent += `${item.str}\n`;
+      }
+      if (pageContent.match(buysAndSellsPattern) && pageContent.match(noteNumberPattern)) {
+
+        // Get note's number
+        let noteNumber: string | undefined
+        match = pageContent.match(noteNumberPattern);
+        if (match && match[1]) noteNumber = match[1];
+        else throw new MissingNoteNumber(`No note number found for the negotiation note '${noteName}'`);
+        let parseResult = parseResults.find(el => el.number === noteNumber);
+        if (!parseResult) {
+          parseResult = new NegotiationNote();
+          parseResults.push(parseResult);
         }
-        if (pageContent.match(buysAndSellsPattern) && pageContent.match(noteNumberPattern)) {
-          // fs.writeFileSync(path.join(__dirname, 'content.txt'), pageContent, {encoding: 'utf-8', flag: 'a+'});
+        parseResult.number = noteNumber;
 
-          // Get note's number
-          let noteNumber: string | undefined
-          match = pageContent.match(noteNumberPattern);
-          if (match && match[1]) noteNumber = match[1];
-          else throw new Error(`No note number found for the negotiation note '${noteName}'`);
-          let parseResult = parseResults.find(el => el.number === noteNumber);
-          if (!parseResult) {
-            parseResult = new NegotiationNote();
-            parseResults.push(parseResult);
+        // Get the holder
+        let holder: string | undefined;
+        match = pageContent.match(holderPattern);
+        if (match && match[1]) holder = match[1][0].toUpperCase() + match[1].slice(1).toLowerCase();
+        else throw new MissingHolder(`No holder found for the negotiation note '${noteName}'`);
+        parseResult.holder = holder.toLocaleLowerCase();
+
+        // Get the date
+        let date: string | undefined;
+        match = pageContent.match(datePattern);
+        if (match && match[1]) date = this.formatDate(match[1]);
+        else throw new MissingDate(`No date found for the negotiation note '${noteName}'`);
+        parseResult.date = date;
+
+        // Note total
+        let buyTotal = 0;
+        let sellTotal = 0;
+        if ((match = pageContent.match(buysAndSellsPattern)) !== null) {
+          sellTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
+          buyTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
+        } else throw new MissingBuyOrSellSums(`Error parsing note '${noteName}'. Couldn't get note buys and sells values`);
+
+        // Get the fees
+        let fees = 0;
+        feesPattern.forEach(fee => {
+          const match = pageContent.match(fee);
+          if (match && match[1]) {
+            fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
           }
-          parseResult.number = noteNumber;
+        });
+        if (fees) parseResult.fees = (parseFloat(parseResult.fees) + fees).toFixed(2);
 
-          // Get the holder
-          let holder: string | undefined;
-          match = pageContent.match(holderPattern);
-          if (match && match[1]) holder = match[1][0].toUpperCase() + match[1].slice(1).toLowerCase();
-          else throw new Error(`No holder found for the negotiation note '${noteName}'`);
-          parseResult.holder = holder.toLocaleLowerCase();
+        // Generate the Checkout for the value bought
+        if (buyTotal) parseResult.buyTotal = buyTotal.toFixed(2);
+        
+        // Generate the Check in for the value sold
+        if (sellTotal) parseResult.sellTotal = sellTotal.toFixed(2);
 
-          // Get the date
-          let date: string | undefined;
-          match = pageContent.match(datePattern);
-          if (match && match[1]) date = this.formatDate(match[1]);
-          else throw new Error(`No date found for the negotiation note '${noteName}'`);
-          parseResult.date = date;
+        while ((match = stockPattern.exec(pageContent)) != null) {
+          const op: string = match[1];
+          // let market: string = match[2];
+          const stock: Asset = this.stockParser.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
+          const quantity: number = parseInt(match[4]);
+          // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
+          const transactionValue: number = parseFloat(match[6].replace('.', '').replace(',', '.'));
 
-          // Note total
-          let buyTotal = 0;
-          let sellTotal = 0;
-          if ((match = pageContent.match(buysAndSellsPattern)) !== null) {
-            sellTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
-            buyTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
-          } else {
-            console.log(`Error parsing note '${noteName}'. Couldn't get note buys and sells values`);
-          }
+          if (!stock) throw new UnknownAsset(`Can't find ${match[3]}`);
 
-          // Get the fees
-          let fees = 0;
-          feesPattern.forEach(fee => {
-            const match = pageContent.match(fee);
-            if (match && match[1]) {
-              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
-            }
-          });
-          if (fees) {
-            parseResult.fees = (parseFloat(parseResult.fees) + fees).toFixed(2);
-          }
-
-          // Generate the CheckOut for the value bought
-          if (buyTotal) {
-            parseResult.buyTotal = buyTotal.toFixed(2);
-          } 
+          // if (market === 'FRACIONARIO') stock += 'F';
           
-          // Generate the CheckIn for the value sold
-          if (sellTotal) {
-            parseResult.sellTotal = sellTotal.toFixed(2);
-          }
-
-          while ((match = stockPattern.exec(pageContent)) != null) {
-            const op: string = match[1];
-            // let market: string = match[2];
-            const stock: Asset = this.stockParser.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
-            const quantity: number = parseInt(match[4]);
-            // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
-            const transactionValue: number = parseFloat(match[6].replace('.', '').replace(',', '.'));
-
-            if (!stock) console.log(`Can't find ${match[3]}`);
-
-            // if (market === 'FRACIONARIO') stock += 'F';
-            
-            // Set 'buy' or 'sell'
-            if (op === 'C') {
-              let deal = parseResult.deals.find(el => el.code === stock.code && el.type === 'buy');
-              if (!deal) {
-                deal = {
-                  type: 'buy',
-                  code: stock.code,
-                  quantity: quantity,
-                  average: '0',
-                  price: transactionValue.toFixed(2),
-                  date: parseResult.date,
-                  cnpj: stock.cnpj?stock.cnpj:''
-                };
-                parseResult.deals.push(deal);
-              } else {
-                deal.price = (parseFloat(deal.price) + transactionValue).toString();
-                deal.quantity = deal.quantity + quantity;
-              }
+          // Set 'buy' or 'sell'
+          if (op === 'C') {
+            let deal = parseResult.deals.find(el => el.code === stock.code && el.type === 'buy');
+            if (!deal) {
+              deal = {
+                type: 'buy',
+                code: stock.code,
+                quantity: quantity,
+                average: '0',
+                price: transactionValue.toFixed(2),
+                date: parseResult.date,
+                cnpj: stock.cnpj?stock.cnpj:''
+              };
+              parseResult.deals.push(deal);
             } else {
-              let deal = parseResult.deals.find(el => el.code === stock.code && el.type === 'sell');
-              if (!deal) {
-                deal = {
-                  type: 'sell',
-                  code: stock.code,
-                  quantity: quantity,
-                  average: '0',
-                  price: transactionValue.toFixed(2),
-                  date: parseResult.date,
-                  cnpj: stock.cnpj?stock.cnpj:''
-                };
-                parseResult.deals.push(deal);
-              } else {
-                deal.price = (parseFloat(deal.price) + transactionValue).toString();
-                deal.quantity = deal.quantity - quantity
-              }
+              deal.price = (parseFloat(deal.price) + transactionValue).toString();
+              deal.quantity = deal.quantity + quantity;
             }
-
+          } else {
+            let deal = parseResult.deals.find(el => el.code === stock.code && el.type === 'sell');
+            if (!deal) {
+              deal = {
+                type: 'sell',
+                code: stock.code,
+                quantity: quantity,
+                average: '0',
+                price: transactionValue.toFixed(2),
+                date: parseResult.date,
+                cnpj: stock.cnpj?stock.cnpj:''
+              };
+              parseResult.deals.push(deal);
+            } else {
+              deal.price = (parseFloat(deal.price) + transactionValue).toString();
+              deal.quantity = deal.quantity - quantity
+            }
           }
 
-          pageContent = '';
         }
-      }
 
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.log(error.message);
-        console.log(error);
-      } else {
-        console.log(`An error occurred during the notes parse`);
-        console.log(error);
+        pageContent = '';
       }
     }
 
-    try {
-      // Process the fees
-      parseResults.forEach(note => {
-        const fees: number = parseFloat(note.fees);
-        if (fees) {
-          const buyTotal: number = parseFloat(note.buyTotal);
-          const sellTotal: number = parseFloat(note.sellTotal);
-          const buyFees: number = fees*buyTotal/(buyTotal+sellTotal);
-          const sellFees: number = fees*sellTotal/(buyTotal+sellTotal);
-          note.deals.forEach(deal => {
-            const price: number = parseFloat(deal.price);
-            if (deal.type === 'buy') {
-              deal.price = (Math.fround(10*(price + buyFees*price/buyTotal))/10).toFixed(2);
-            } else {
-              deal.price = (Math.fround(10*(price - sellFees*price/sellTotal))/10).toFixed(2);
-            }
-            deal.average = (parseFloat(deal.price)/Math.abs(deal.quantity)).toFixed(2);
-          });
-          note.buyFees = buyFees.toFixed(2);
-          note.sellFees = sellFees.toFixed(2);
-          note.buyTotal = (buyTotal + buyFees).toFixed(2);
-          note.sellTotal = (sellTotal - sellFees).toFixed(2);
-        }
-      });
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.log(error.message);
-        console.log(error);
-      } else {
-        console.log(`An error occurred while processing the notes`);
-        console.log(error);
+    // Process the fees
+    parseResults.forEach(note => {
+      const fees: number = parseFloat(note.fees);
+      if (fees) {
+        const buyTotal: number = parseFloat(note.buyTotal);
+        const sellTotal: number = parseFloat(note.sellTotal);
+        const buyFees: number = fees*buyTotal/(buyTotal+sellTotal);
+        const sellFees: number = fees*sellTotal/(buyTotal+sellTotal);
+        note.deals.forEach(deal => {
+          const price: number = parseFloat(deal.price);
+          if (deal.type === 'buy') {
+            deal.price = (Math.fround(10*(price + buyFees*price/buyTotal))/10).toFixed(2);
+          } else {
+            deal.price = (Math.fround(10*(price - sellFees*price/sellTotal))/10).toFixed(2);
+          }
+          deal.average = (parseFloat(deal.price)/Math.abs(deal.quantity)).toFixed(2);
+        });
+        note.buyFees = buyFees.toFixed(2);
+        note.sellFees = sellFees.toFixed(2);
+        note.buyTotal = (buyTotal + buyFees).toFixed(2);
+        note.sellTotal = (sellTotal - sellFees).toFixed(2);
       }
-    }
+    });
 
     // Format the CNPJs
     parseResults.forEach(el => {
@@ -329,16 +309,10 @@ export class NoteParser {
         // For some reason, CNPJs starting wit zeros have them suppressed, even thought it's a string and not a number ¯\_(ツ)_/¯
         if (deal.cnpj.length < 14) deal.cnpj = new Array(14 - deal.cnpj.length).fill('0').join('') + deal.cnpj;
 
-        deal.cnpj = deal.cnpj.split('').map((c, index) => {
-          if (index === 2 || index === 5) return '.' + c;
-          else if (index === 8) return '/' + c;
-          else if (index === 12) return '-' + c;
-          else return c;
-        }).join('');
+        deal.cnpj = deal.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
       })
     });
 
-    // console.log(noteResults);
     return parseResults;
   }
 
