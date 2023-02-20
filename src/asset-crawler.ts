@@ -1,7 +1,5 @@
 import axios from "axios";
-import https from 'https';
 import assets from '../assets.json';
-const httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 /**
  * B3 request object constructor
@@ -130,7 +128,7 @@ export class AssetCrawler {
    * Crawler URLs
    */
   private urls = {
-    listedStocks: Buffer.from('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9saXN0ZWRDb21wYW5pZXNQcm94eS9Db21wYW55Q2FsbC9HZXRJbml0aWFsQ29tcGFuaWVz', 'base64').toString('utf-8')
+    listedStocks: atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9saXN0ZWRDb21wYW5pZXNQcm94eS9Db21wYW55Q2FsbC9HZXRJbml0aWFsQ29tcGFuaWVz')
   }
 
   /**
@@ -177,14 +175,14 @@ export class AssetCrawler {
    * Update the current listed assets
    */
   async getListedAssets(): Promise<void> {
-    const firstResult = await axios.get(this.getUrlByPage(1), { httpsAgent });
+    const firstResult = await axios.get(this.getUrlByPage(1));
     if (!('data' in firstResult)) throw new Error(`Unexpected response: ${firstResult}`);
 
     let data: CrawlerRequestResult = firstResult.data;
     const results: StockInfos[] = data.results;
     
     while(data.page.totalPages > data.page.pageNumber) {
-      const getResult = await axios.get(this.getUrlByPage(data.page.pageNumber + 1), { httpsAgent });
+      const getResult = await axios.get(this.getUrlByPage(data.page.pageNumber + 1));
       if (!('data' in getResult)) throw new Error(`Unexpected response: ${getResult}`);
       data = getResult.data;
       results.push(...data.results);

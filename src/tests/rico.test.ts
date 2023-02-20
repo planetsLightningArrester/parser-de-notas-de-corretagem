@@ -70,7 +70,7 @@ describe('single page', () => {
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
     assets.setDateFormat('dd/MM/yyyy');
-    const parseResult = await assets.parseNote(filePath, possiblePasswords);
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
   test('without password', async () => {
@@ -78,7 +78,7 @@ describe('single page', () => {
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
     assets.setDateFormat('dd/MM/yyyy');
-    const parseResult = await assets.parseNote(filePath, []); // Empty pass for PDFs without pass should work
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), []); // Empty pass for PDFs without pass should work
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
   test('format date as yyyy-MM-dd', async () => {
@@ -86,7 +86,7 @@ describe('single page', () => {
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
     assets.setDateFormat('yyyy-MM-dd');
-    const parseResult = await assets.parseNote(filePath, possiblePasswords);
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
     const _expected = expected.map(e => e);
     _expected.forEach(note => {
       note.date = note.date.split('/').reverse().join('-');
@@ -103,7 +103,7 @@ test('multi page', async () => {
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
   
   assets.setDateFormat('dd/MM/yyyy');
-  const parseResult = await assets.parseNote(filePath, []);
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), []);
   expect<NegotiationNote[]>(parseResult).toEqual([
     {
       "number": "22222",

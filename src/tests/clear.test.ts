@@ -65,14 +65,14 @@ describe('single page with buy and sell', () => {
     const filePath: string = path.join(__dirname, 'notes', 'clear_single_page_sell_pwd.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
-    const parseResult = await assets.parseNote(filePath, possiblePasswords);
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
   test('without password', async () => {
     const filePath: string = path.join(__dirname, 'notes', 'clear_single_page_sell.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
-    const parseResult = await assets.parseNote(filePath);
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath));
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
 });
@@ -80,7 +80,7 @@ test('multi page', async () => {
   const filePath: string = path.join(__dirname, 'notes', 'clear_multi_page.pdf');
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
   
-  const parseResult = await assets.parseNote(filePath);
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath));
   expect<NegotiationNote[]>(parseResult).toEqual([
     {
       "number": "33333",

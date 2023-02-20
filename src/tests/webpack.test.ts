@@ -70,14 +70,14 @@ describe('same as "rico" tests, but using dist version', () => {
       const filePath: string = path.join(__dirname, 'notes', 'rico_single_page_pwd.pdf');
       if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
       
-      const parseResult = await assets.parseNote(filePath, possiblePasswords);
+      const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
       expect<NegotiationNote[]>(parseResult).toEqual(expected);
     });
     test('without password', async () => {
       const filePath: string = path.join(__dirname, 'notes', 'rico_single_page.pdf');
       if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
       
-      const parseResult = await assets.parseNote(filePath, []); // Empty pass for PDFs without pass should work
+      const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), []); // Empty pass for PDFs without pass should work
       expect<NegotiationNote[]>(parseResult).toEqual(expected);
     });
   });
@@ -85,7 +85,7 @@ describe('same as "rico" tests, but using dist version', () => {
     const filePath: string = path.join(__dirname, 'notes', 'rico_multi_page.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
-    const parseResult = await assets.parseNote(filePath, []);
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), []);
     expect<NegotiationNote[]>(parseResult).toEqual([
       {
         "number": "22222",

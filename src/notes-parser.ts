@@ -1,6 +1,4 @@
-import fs from 'fs';
-import path from "path";
-import { getDocument as openPDF, PDFDocumentProxy as PDFDocument } from 'pdfjs-dist';
+import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
 import { Asset, AssetCrawler } from "./asset-crawler";
 
 /**
@@ -105,6 +103,11 @@ export class NoteParser {
    * Updating this package to the latest version also gets the latest infos
    */
   constructor(autoUpdateLookUpList?: boolean) {
+
+    // ?Required for the browser
+    // https://github.com/mozilla/pdf.js/issues/12066#issuecomment-659054172
+    if (typeof window !== 'undefined') GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.js`;
+    
     this.stockParser = new AssetCrawler(autoUpdateLookUpList);
 
     // Some manually defined stocks
@@ -131,25 +134,22 @@ export class NoteParser {
 
   /**
    * Read and parse a given PDF negotiation note by its full path
-   * @param noteFullPath the full path to the PDF note to be parsed
+   * @param name PDF name
+   * @param content PDF content
    * @returns an `Array` of `NegotiationNote`
    */
-  async parseNote(noteFullPath: string, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
+  async parseNote(noteName: string, content: Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
 
-    // Check PDF path
-    if (!fs.existsSync(noteFullPath)) throw new Error(`Couldn't find the file ${noteFullPath}`);
-    
     // Try to open the PDF using the provided passwords, if any
     const parseResults: NegotiationNote[] = []
-    const noteName: string = path.basename(noteFullPath);
     let invalidPassword = false;
     let pdf: PDFDocument | undefined;
     if (!possiblePasswords || !possiblePasswords.length) {
-      pdf = await openPDF({url: noteFullPath}).promise;
+      pdf = await openPDF(content).promise;
     } else {
       for await (const pass of possiblePasswords) {
         try {
-          pdf = await openPDF({url: noteFullPath, password: pass}).promise;
+          pdf = await openPDF({data: content, password: pass}).promise;
           break;
         } catch (error: unknown) {
           /** Prevent the  failure and try again with another password */
@@ -166,8 +166,8 @@ export class NoteParser {
     }
 
     // Check if the open result
-    if (!pdf && invalidPassword) throw new Error(`None of the provided passwords could open the note ${noteFullPath}`);
-    else if (!pdf) throw new Error(`Can't open note ${noteFullPath}. The document returned no content`);
+    if (!pdf && invalidPassword) throw new Error(`None of the provided passwords could open the note ${noteName}`);
+    else if (!pdf) throw new Error(`Can't open note ${noteName}. The document returned no content`);
 
     // Parse the PDF content
     try {

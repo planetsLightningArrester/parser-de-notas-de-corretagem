@@ -75,7 +75,7 @@ Easing the PITA of making IRRF
 
 ## Usage
 
-### Full example
+### Full NodeJS example
 ```Typescript
 import fs from 'fs';
 import path from 'path';
@@ -91,7 +91,7 @@ async function main() {
     // Get all negotiation notes inside a PDF, even with password
     const possiblePDFpasswords: string[] = ['123', '456'];
     let pdfPath = path.join(__dirname, 'note.pdf');
-    let parseResult = await assets.parseNote(pdfPath, possiblePDFpasswords);
+    let parseResult = await assets.parseNote(path.basename(pdfPath), fs.readFileSync(pdfPath), possiblePDFpasswords);
     
     // Merge all negotiation notes
     let allDeals: Deal[][] = [];
