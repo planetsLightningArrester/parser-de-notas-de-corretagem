@@ -25,7 +25,7 @@ describe('single page with buy and sell', () => {
           "average": "16.57",
           "price": "2335.73",
           "date": "29/09/2020",
-          "cnpj": "00.000.000/0000-00"
+          "cnpj": "00.416.968/0001-01"
         },
         {
           "type": "sell",
@@ -34,7 +34,7 @@ describe('single page with buy and sell', () => {
           "average": "51.92",
           "price": "2336.53",
           "date": "29/09/2020",
-          "cnpj": "00.000.000/0000-00"
+          "cnpj": "00.416.968/0001-01"
         },
         {
           "type": "sell",
@@ -171,7 +171,7 @@ test('multi page', async () => {
           "average": "26.67",
           "price": "506.69",
           "date": "18/05/2021",
-          "cnpj": "00.000.000/0000-00"
+          "cnpj": "07.206.816/0001-15"
         },
         {
           "type": "buy",

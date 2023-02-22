@@ -82,17 +82,17 @@ export class NoteParser {
     this.stockParser = new AssetCrawler(autoUpdateLookUpList);
 
     // Some manually defined stocks
-    this.defineStock('TIET11', 'AES TIETE E UNT');
-    this.defineStock('AESB3', 'AES TIETE E ON');
-    this.defineStock('AESB4', 'AES TIETE E PN');
-    this.defineStock('CSAN11', 'COSAN LOG UNT');
-    this.defineStock('CSAN3', 'COSAN LOG ON');
-    this.defineStock('CSAN4', 'COSAN LOG PN');
-    this.defineStock('MDIA11', 'M.DIASBRANCO UNT');
-    this.defineStock('MDIA3', 'M.DIASBRANCO ON');
-    this.defineStock('MDIA4', 'M.DIASBRANCO PN');
-    this.defineStock('BIDI3', 'BANCO INTER ON');
-    this.defineStock('BIDI11', 'BANCO INTER UNT');
+    this.defineStock('TIET11', 'AES TIETE E UNT', '37.663.076/0001-07');
+    this.defineStock('AESB3', 'AES TIETE E ON', '37.663.076/0001-07');
+    this.defineStock('AESB4', 'AES TIETE E PN', '37.663.076/0001-07');
+    this.defineStock('CSAN11', 'COSAN LOG UNT', '50.746.577/0001-15');
+    this.defineStock('CSAN3', 'COSAN LOG ON', '50.746.577/0001-15');
+    this.defineStock('CSAN4', 'COSAN LOG PN', '50.746.577/0001-15');
+    this.defineStock('MDIA11', 'M.DIASBRANCO UNT', '07.206.816/0001-15');
+    this.defineStock('MDIA3', 'M.DIASBRANCO ON', '07.206.816/0001-15');
+    this.defineStock('MDIA4', 'M.DIASBRANCO PN', '07.206.816/0001-15');
+    this.defineStock('BIDI3', 'BANCO INTER ON', '00.416.968/0001-01');
+    this.defineStock('BIDI11', 'BANCO INTER UNT', '00.416.968/0001-01');
   }
 
   /**
