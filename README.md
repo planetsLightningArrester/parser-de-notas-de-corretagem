@@ -17,7 +17,7 @@ Easing the PITA of making IRRF
     "buyFees": "1.24",
     "sellFees": "0.00",
     "fees": "1.24",
-    "date": "02/02/2022", // Can also output in yyyy-MM-dd format
+    "date": "02/02/2022", // Can also output in yyyy-MM-dd format changing `NoteParser.dateFormat`
     "holder": "rico",
     "deals": [
       {
@@ -36,7 +36,7 @@ Easing the PITA of making IRRF
         "average": "112.80",
         "price": "564.02",
         "date": "02/02/2022",
-        "cnpj": "00.000.000/0000-00"   // FIIs' CNPJs aren't supported yet
+        "cnpj": "28.737.771/0001-85"
       },
       {
         "type": "buy",
@@ -45,7 +45,7 @@ Easing the PITA of making IRRF
         "average": "112.03",
         "price": "560.17",
         "date": "02/02/2022",
-        "cnpj": "00.000.000/0000-00"
+        "cnpj": "29.641.226/0001-53"
       },
       {
         "type": "buy",
@@ -54,7 +54,7 @@ Easing the PITA of making IRRF
         "average": "97.38",
         "price": "1460.69",
         "date": "02/02/2022",
-        "cnpj": "00.000.000/0000-00"
+        "cnpj": "17.554.274/0001-25"
       },
       {
         "type": "buy",
@@ -63,7 +63,7 @@ Easing the PITA of making IRRF
         "average": "91.76",
         "price": "458.79",
         "date": "02/02/2022",
-        "cnpj": "00.000.000/0000-00"
+        "cnpj": "28.757.546/0001-00"
       }
     ]
   }
@@ -139,7 +139,6 @@ assets.defineStock('BIDI11', 'BANCO INTER UNT');
 ## P.S.
 * Total values include fees
 * The values can deviate from cents. It's always a good call to double-check if the result is as expected. Check the [License](#license)
-* FIIs and custom stocks doesn't provide a valid CNPJ field
 
 ## Contributors
 Thanks to whom sent me notes for the tests ❤️. Personal data is not stored neither used on tests, only the notes content.

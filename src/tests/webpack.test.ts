@@ -34,7 +34,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "112.80",
             "price": "564.02",
             "date": "28/03/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "28.737.771/0001-85"
           },
           {
             "type": "buy",
@@ -43,7 +43,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "112.03",
             "price": "560.17",
             "date": "28/03/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "29.641.226/0001-53"
           },
           {
             "type": "buy",
@@ -52,7 +52,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "97.38",
             "price": "1460.69",
             "date": "28/03/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "17.554.274/0001-25"
           },
           {
             "type": "buy",
@@ -61,7 +61,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "91.76",
             "price": "458.79",
             "date": "28/03/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "28.757.546/0001-00"
           }
         ]
       }
@@ -176,7 +176,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "112.94",
             "price": "112.94",
             "date": "26/07/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "28.737.771/0001-85"
           },
           {
             "type": "buy",
@@ -185,7 +185,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "167.28",
             "price": "501.85",
             "date": "26/07/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "11.728.688/0001-47"
           },
           {
             "type": "buy",
@@ -194,7 +194,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "119.49",
             "price": "238.98",
             "date": "26/07/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "29.641.226/0001-53"
           },
           {
             "type": "buy",
@@ -203,7 +203,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "127.04",
             "price": "508.16",
             "date": "26/07/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "09.072.017/0001-29"
           },
           {
             "type": "buy",
@@ -212,7 +212,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "94.74",
             "price": "284.22",
             "date": "26/07/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "26.502.794/0001-85"
           },
           {
             "type": "buy",
@@ -221,7 +221,7 @@ describe('same as "rico" tests, but using dist version', () => {
             "average": "96.03",
             "price": "96.03",
             "date": "26/07/2022",
-            "cnpj": "00.000.000/0000-00"
+            "cnpj": "28.757.546/0001-00"
           }
         ]
       }
