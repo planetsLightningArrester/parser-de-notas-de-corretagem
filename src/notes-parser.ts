@@ -1,4 +1,4 @@
-import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
+import { getDocument as openPDF, PDFDocumentProxy as PDFDocument } from 'pdfjs-dist/legacy/build/pdf';
 import { Asset, AssetCrawler } from "./asset-crawler";
 
 /** Deal made in a `NegotiationNote` type */
@@ -75,10 +75,6 @@ export class NoteParser {
    */
   constructor(autoUpdateLookUpList?: boolean) {
 
-    // ?Required for the browser
-    // https://github.com/mozilla/pdf.js/issues/12066#issuecomment-659054172
-    if (typeof window !== 'undefined') GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.js`;
-    
     this.stockParser = new AssetCrawler(autoUpdateLookUpList);
 
     // Some manually defined stocks
