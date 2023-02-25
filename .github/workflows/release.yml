@@ -41,7 +41,7 @@ jobs:
 
   # Release on NPM
   npm-release:
-    runs-on: [ self-hosted ]
+    runs-on: [ self-hosted, X64 ]
     needs: create-release
     
     steps:
