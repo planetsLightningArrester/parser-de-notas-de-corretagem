@@ -6,8 +6,8 @@
   "types": "notes-parser.d.ts",
   "scripts": {
     "test": "jest --forceExit --runInBand --detectOpenHandles",
-    "build": "tsc --declaration",
-    "pack": "webpack --mode production",
+    "build": "rm -rf build; tsc --declaration",
+    "pack": "rm -rf dist; webpack --mode production",
     "pub": "npm publish ./dist --access=public",
     "update-assets": "npm run build && node out/src/scripts/update.js"
   },
