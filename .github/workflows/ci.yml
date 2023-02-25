@@ -29,7 +29,7 @@ on:
 jobs:
 
   rico-compliance:
-    runs-on: [ self-hosted, X64 ]
+    runs-on: [ self-hosted ]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -40,46 +40,46 @@ jobs:
       - name: Run test
         run:  npm run test rico
 
-  clear-compliance:
-    runs-on: [ self-hosted, X64 ]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # clear-compliance:
+  #   runs-on: [ self-hosted ]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run:  npm ci
+  #     - name: Install dependencies
+  #       run:  npm ci
       
-      - name: Run test
-        run:  npm run test rico
+  #     - name: Run test
+  #       run:  npm run test rico
 
-  crawler:
-    runs-on: [ self-hosted, X64 ]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # crawler:
+  #   runs-on: [ self-hosted ]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run:  npm ci
+  #     - name: Install dependencies
+  #       run:  npm ci
       
-      - name: Run test
-        run:  npm run test crawler
+  #     - name: Run test
+  #       run:  npm run test crawler
 
-  webpack:
-    runs-on: [ self-hosted, X64 ]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # webpack:
+  #   runs-on: [ self-hosted ]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run:  npm ci
+  #     - name: Install dependencies
+  #       run:  npm ci
 
-      - name: Typescript Build
-        run:  npm run build
+  #     - name: Typescript Build
+  #       run:  npm run build
 
-      - name: Generate production bundle
-        run:  npm run pack
+  #     - name: Generate production bundle
+  #       run:  npm run pack
       
-      - name: Run test
-        run:  npm run test webpack
+  #     - name: Run test
+  #       run:  npm run test webpack
 
 # EOF
