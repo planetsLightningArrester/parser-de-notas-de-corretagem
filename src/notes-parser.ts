@@ -18,6 +18,8 @@ export interface Deal {
   date: string
   /** Asset's CNPJ */
   cnpj: string
+  /** Whether the asset is a FII (real estate) */
+  isFII: boolean
 }
 
 /** A parsed Negotiation Note type */
@@ -81,6 +83,7 @@ export class NoteParser {
     // ? That causes an error saying that the "worker 'https://cndjs...' isn't available"
     // Copied from https://github.com/mozilla/pdf.js/blob/af64149885482cbbe577ef90abf06272f34327bb/src/shared/is_node.js#L21
     const isNodeJS =
+      // @ts-expect-error: An expression of type 'void' cannot be tested for truthiness.
       (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) &&
       typeof process === "object" &&
       process + "" === "[object process]" &&
@@ -260,7 +263,8 @@ export class NoteParser {
                 average: '0',
                 price: transactionValue.toFixed(2),
                 date: parseResult.date,
-                cnpj: stock.cnpj?stock.cnpj:''
+                cnpj: stock.cnpj?stock.cnpj:'',
+                isFII: stock.isFII
               };
               parseResult.deals.push(deal);
             } else {
@@ -277,7 +281,8 @@ export class NoteParser {
                 average: '0',
                 price: transactionValue.toFixed(2),
                 date: parseResult.date,
-                cnpj: stock.cnpj?stock.cnpj:''
+                cnpj: stock.cnpj?stock.cnpj:'',
+                isFII: stock.isFII
               };
               parseResult.deals.push(deal);
             } else {
@@ -335,10 +340,10 @@ export class NoteParser {
    * @param name stock name
    * @param cnpj stock CNPJ
    */
-  defineStock(code: string, name: string, cnpj?: string): void {
+  defineStock(code: string, name: string, cnpj?: string, isFII?: boolean): void {
     // Skip duplicates
     if (!this.stockParser.customAssets.find(a => a.code === code)) {
-      this.stockParser.customAssets.push({code, name, cnpj});
+      this.stockParser.customAssets.push({code, name, cnpj, isFII: !!isFII});
     }
   }
 

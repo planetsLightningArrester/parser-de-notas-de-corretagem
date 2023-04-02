@@ -185,8 +185,10 @@ export interface Asset {
   code: string;
   /** Asset's name */
   name: string;
-  /** Asset's cnpj */
+  /** Asset's cnpj (registration number) */
   cnpj?: string;
+  /** Whether the asset is a FII (real estate) */
+  isFII: boolean
 }
 
 /** Assets crawler manager */
@@ -297,7 +299,7 @@ export class AssetCrawler {
       const tradingName = match[1].trim();
       for (const fii of this.assets) {
         if ('tradingCode' in fii && fii.tradingName === tradingName) {
-          return {code: fii.tradingCode, name, cnpj: fii.cnpj};
+          return {code: fii.tradingCode, name, cnpj: fii.cnpj, isFII: true};
         }
       }
     }
@@ -312,7 +314,7 @@ export class AssetCrawler {
       const justTheName = name.slice(0, indexOf);
       for (const stock of this.assets) {
         if (!('tradingCode' in stock) && stock.tradingName === justTheName) {
-          return {code: stock.issuingCompany + type, name, cnpj: stock.cnpj};
+          return {code: stock.issuingCompany + type, name, cnpj: stock.cnpj, isFII: false};
         }
       }
     }

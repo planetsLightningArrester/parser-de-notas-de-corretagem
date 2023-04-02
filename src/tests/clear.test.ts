@@ -25,7 +25,8 @@ describe('single page with buy and sell', () => {
           "average": "16.57",
           "price": "2335.73",
           "date": "29/09/2020",
-          "cnpj": "00.416.968/0001-01"
+          "cnpj": "00.416.968/0001-01",
+          "isFII": false
         },
         {
           "type": "sell",
@@ -34,7 +35,8 @@ describe('single page with buy and sell', () => {
           "average": "51.92",
           "price": "2336.53",
           "date": "29/09/2020",
-          "cnpj": "00.416.968/0001-01"
+          "cnpj": "00.416.968/0001-01",
+          "isFII": false
         },
         {
           "type": "sell",
@@ -43,7 +45,8 @@ describe('single page with buy and sell', () => {
           "average": "14.53",
           "price": "799.22",
           "date": "29/09/2020",
-          "cnpj": "61.532.644/0001-15"
+          "cnpj": "61.532.644/0001-15",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -52,7 +55,8 @@ describe('single page with buy and sell', () => {
           "average": "8.83",
           "price": "812.63",
           "date": "29/09/2020",
-          "cnpj": "61.532.644/0001-15"
+          "cnpj": "61.532.644/0001-15",
+          "isFII": false
         }
       ]
     }
@@ -99,7 +103,8 @@ test('multi page', async () => {
           "average": "14.46",
           "price": "505.94",
           "date": "18/05/2021",
-          "cnpj": "37.663.076/0001-07"
+          "cnpj": "37.663.076/0001-07",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -108,7 +113,8 @@ test('multi page', async () => {
           "average": "17.42",
           "price": "505.04",
           "date": "18/05/2021",
-          "cnpj": "07.526.557/0001-00"
+          "cnpj": "07.526.557/0001-00",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -117,7 +123,8 @@ test('multi page', async () => {
           "average": "17.47",
           "price": "506.49",
           "date": "18/05/2021",
-          "cnpj": "09.346.601/0001-25"
+          "cnpj": "09.346.601/0001-25",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -126,7 +133,8 @@ test('multi page', async () => {
           "average": "22.60",
           "price": "497.13",
           "date": "18/05/2021",
-          "cnpj": "50.746.577/0001-15"
+          "cnpj": "50.746.577/0001-15",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -135,7 +143,8 @@ test('multi page', async () => {
           "average": "40.04",
           "price": "520.55",
           "date": "18/05/2021",
-          "cnpj": "02.474.103/0001-19"
+          "cnpj": "02.474.103/0001-19",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -144,7 +153,8 @@ test('multi page', async () => {
           "average": "26.45",
           "price": "502.51",
           "date": "18/05/2021",
-          "cnpj": "60.840.055/0001-31"
+          "cnpj": "60.840.055/0001-31",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -153,7 +163,8 @@ test('multi page', async () => {
           "average": "10.68",
           "price": "502.11",
           "date": "18/05/2021",
-          "cnpj": "61.532.644/0001-15"
+          "cnpj": "61.532.644/0001-15",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -162,7 +173,8 @@ test('multi page', async () => {
           "average": "5.28",
           "price": "496.47",
           "date": "18/05/2021",
-          "cnpj": "89.637.490/0001-45"
+          "cnpj": "89.637.490/0001-45",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -171,7 +183,8 @@ test('multi page', async () => {
           "average": "26.67",
           "price": "506.69",
           "date": "18/05/2021",
-          "cnpj": "07.206.816/0001-15"
+          "cnpj": "07.206.816/0001-15",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -180,7 +193,8 @@ test('multi page', async () => {
           "average": "26.26",
           "price": "498.90",
           "date": "18/05/2021",
-          "cnpj": "61.585.865/0001-51"
+          "cnpj": "61.585.865/0001-51",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -189,7 +203,8 @@ test('multi page', async () => {
           "average": "4.13",
           "price": "499.88",
           "date": "18/05/2021",
-          "cnpj": "76.484.013/0001-45"
+          "cnpj": "76.484.013/0001-45",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -198,7 +213,8 @@ test('multi page', async () => {
           "average": "26.11",
           "price": "522.16",
           "date": "18/05/2021",
-          "cnpj": "02.998.611/0001-04"
+          "cnpj": "02.998.611/0001-04",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -207,7 +223,8 @@ test('multi page', async () => {
           "average": "32.19",
           "price": "515.03",
           "date": "18/05/2021",
-          "cnpj": "84.429.695/0001-11"
+          "cnpj": "84.429.695/0001-11",
+          "isFII": false
         },
         {
           "type": "buy",
@@ -216,7 +233,8 @@ test('multi page', async () => {
           "average": "126.44",
           "price": "505.78",
           "date": "18/05/2021",
-          "cnpj": "28.737.771/0001-85"
+          "cnpj": "28.737.771/0001-85",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -225,7 +243,8 @@ test('multi page', async () => {
           "average": "170.90",
           "price": "512.70",
           "date": "18/05/2021",
-          "cnpj": "11.728.688/0001-47"
+          "cnpj": "11.728.688/0001-47",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -234,7 +253,8 @@ test('multi page', async () => {
           "average": "118.29",
           "price": "591.47",
           "date": "18/05/2021",
-          "cnpj": "29.641.226/0001-53"
+          "cnpj": "29.641.226/0001-53",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -243,7 +263,8 @@ test('multi page', async () => {
           "average": "202.69",
           "price": "608.06",
           "date": "18/05/2021",
-          "cnpj": "08.431.747/0001-06"
+          "cnpj": "08.431.747/0001-06",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -252,7 +273,8 @@ test('multi page', async () => {
           "average": "130.62",
           "price": "522.46",
           "date": "18/05/2021",
-          "cnpj": "09.072.017/0001-29"
+          "cnpj": "09.072.017/0001-29",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -261,7 +283,8 @@ test('multi page', async () => {
           "average": "148.69",
           "price": "148.69",
           "date": "18/05/2021",
-          "cnpj": "12.005.956/0001-65"
+          "cnpj": "12.005.956/0001-65",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -270,7 +293,8 @@ test('multi page', async () => {
           "average": "109.40",
           "price": "109.40",
           "date": "18/05/2021",
-          "cnpj": "17.554.274/0001-25"
+          "cnpj": "17.554.274/0001-25",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -279,7 +303,8 @@ test('multi page', async () => {
           "average": "114.98",
           "price": "114.98",
           "date": "18/05/2021",
-          "cnpj": "26.502.794/0001-85"
+          "cnpj": "26.502.794/0001-85",
+          "isFII": true
         },
         {
           "type": "buy",
@@ -288,7 +313,8 @@ test('multi page', async () => {
           "average": "104.52",
           "price": "209.03",
           "date": "18/05/2021",
-          "cnpj": "28.757.546/0001-00"
+          "cnpj": "28.757.546/0001-00",
+          "isFII": true
         }
       ]
     }
