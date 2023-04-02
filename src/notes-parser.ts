@@ -119,7 +119,10 @@ export class NoteParser {
    * @param content PDF content
    * @returns an `Array` of `NegotiationNote`
    */
-  async parseNote(noteName: string, content: string | Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
+  async parseNote(noteName: string, content: Buffer | Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
+    
+    // Prevent warning "Deprecated API usage: Please provide binary data as `Uint8Array`, rather than `Buffer`"
+    if (content instanceof Buffer) content = Uint8Array.from(content);
 
     // Try to open the PDF using the provided passwords, if any
     const parseResults: NegotiationNote[] = []
