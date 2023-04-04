@@ -19,7 +19,7 @@ class ListedStocksRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(page?: number): string {
-    return `${this.listedStocksUrl}/${Buffer.from(JSON.stringify({language: this.language, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize})).toString('base64')}`
+    return `${this.listedStocksUrl}/${btoa(JSON.stringify({language: this.language, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`
   }
 
 }
@@ -42,7 +42,7 @@ class ListedFIIsRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(page?: number): string {
-    return `${this.listedFIIsUrl}/${Buffer.from(JSON.stringify({typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize})).toString('base64')}`
+    return `${this.listedFIIsUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`
   }
 
 }
@@ -62,7 +62,7 @@ class GetFIIsRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.getFiiUrl}/${Buffer.from(JSON.stringify({typeFund: this.typeFund, identifierFund: this.identifierFund})).toString('base64')}`
+    return `${this.getFiiUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, identifierFund: this.identifierFund}))}`
   }
 
 }
