@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.2] - 2023-04-04
+### Fixed
+- Downgrade pdfjs to fix issues with not-well-formatted PDFs
+
 ## [0.4.1] - 2023-04-04
 ### Fixed
 - Accepted typing of `content` now can only be `Uint8Array` (`Buffer` doesn't exist in web)
