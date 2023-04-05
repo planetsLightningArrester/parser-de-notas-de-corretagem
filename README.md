@@ -133,6 +133,13 @@ async function main() {
 main();
 ```
 
+### Browser
+Since only `Uint8Array` is accepted, use the following code to convert a string using the browser
+```JavaScript
+if (typeof fileContent === 'string') fileContent = Uint8Array.from(fileContent, x => x.charCodeAt(0));
+assetsParser.parseNote(filePath, fileContent, filePasswords);
+```
+
 ### Add a custom stock
 ```Typescript
 const assets = new NoteParser();
