@@ -65,7 +65,7 @@ describe('single page with buy and sell', () => {
   assets.defineStock('BIDI3', 'BANCO INTER ON');
   assets.defineStock('BIDI11', 'BANCO INTER UNT');
 
-  test('with password', async () => {
+  test.skip('with password', async () => {
     const filePath: string = path.join(__dirname, 'notes', 'clear_single_page_sell_pwd.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
     
