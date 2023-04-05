@@ -136,7 +136,10 @@ export class NoteParser {
     } else {
       for await (const pass of possiblePasswords) {
         try {
-          pdf = await openPDF({data: content, password: pass}).promise;
+          // ? pdf.js caches the data in the first attempt and tries to get from it
+          // ? even passing different PDFs. So, creating a new array is required
+          // ? to prevent "Unable to deserialize cloned data"
+          pdf = await openPDF({data: Uint8Array.from(content), password: pass}).promise;
           break;
         } catch (error: unknown) {
           /** Prevent the  failure and try again with another password */
