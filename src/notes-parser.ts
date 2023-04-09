@@ -1,6 +1,7 @@
 // Using legacy provides support for NodeJS versions lower than 18 and the React testing library
+import { Asset } from './types/common';
+import { AssetCrawler } from "./asset-crawler";
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf';
-import { Asset, AssetCrawler } from "./asset-crawler";
 
 /** Deal made in a `NegotiationNote` type */
 export interface Deal {

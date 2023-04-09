@@ -1,195 +1,9 @@
 import axios from "axios";
 import assets from '../assets.json';
-
-/** B3 request object constructor for stocks */
-class ListedStocksRequest {
-  language = 'pt-br';
-  pageNumber: number;
-  pageSize: 20|40|60|120 = 120;
-  //? Using deprecated `atob` because Buffer isn't supported out-of-the-box in browsers
-  private listedStocksUrl = atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9saXN0ZWRDb21wYW5pZXNQcm94eS9Db21wYW55Q2FsbC9HZXRJbml0aWFsQ29tcGFuaWVz');
-  
-  constructor(pageNumber: number) {
-    this.pageNumber = pageNumber;
-  }
-
-  /**
-   * Generate a URL page to get the information from. Input is the page number.
-   * @param page page number
-   * @returns the URL to retrieve the information
-   */
-  base64Url(page?: number): string {
-    return `${this.listedStocksUrl}/${btoa(JSON.stringify({language: this.language, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`
-  }
-
-}
-
-/** B3 request object constructor for FIIs */
-class ListedFIIsRequest {
-  typeFund = 7;
-  pageNumber: number;
-  pageSize: 20|40|60 = 60;
-  //? Using deprecated `atob` because Buffer isn't supported out-of-the-box in browsers
-  private listedFIIsUrl = atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9mdW5kc1Byb3h5L2Z1bmRzQ2FsbC9HZXRMaXN0ZWRGdW5kc1NJRw');
-  
-  constructor(pageNumber: number) {
-    this.pageNumber = pageNumber;
-  }
-
-  /**
-   * Generate a URL page to get the information from. Input is the page number.
-   * @param page page number
-   * @returns the URL to retrieve the information
-   */
-  base64Url(page?: number): string {
-    return `${this.listedFIIsUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`
-  }
-
-}
-
-/** B3 request object constructor for detailed info of FIIs */
-class GetFIIsRequest {
-  typeFund = 7;
-  identifierFund:string;
-  private getFiiUrl = atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9mdW5kc1Byb3h5L2Z1bmRzQ2FsbC9HZXREZXRhaWxGdW5kU0lH');
-
-  constructor(code: string) {
-    this.identifierFund = code;
-  }
-
-  /**
-   * Generate a URL page to get the information from. Input is the page number.
-   * @returns the URL to retrieve the information
-   */
-  base64Url(): string {
-    return `${this.getFiiUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, identifierFund: this.identifierFund}))}`
-  }
-
-}
-
-/** Infos about the stock */
-interface StockInfos {
-  /** CVM code */
-  codeCVM: string;
-  /** Issuing Company (B3 Code) */
-  issuingCompany: string;
-  /** Company name */
-  companyName: string;
-  /** Trading name (same name as in the brokerage note) */
-  tradingName: string;
-  /** Company's CNPJ */
-  cnpj: string;
-  marketIndicator: string;
-  typeBDR: string;
-  dateListing: string;
-  status: string;
-  segment: string;
-  segmentEng: string;
-  type: string;
-  market: string;
-}
-
-/** Different of Stock Crawler infos, CNPJ isn't available on the search results */
-interface FiiCrawlerInfos {
-  segment: string;
-  /** Fund code without numbers */
-  acronym: string;
-  fundName:string;
-  companyName:string;
-  /** Always null */
-  cnpj: null
-}
-
-interface FiiRawInfos {
-  detailFund:{
-    /** Fund code without numbers */
-    acronym: string;
-    /** Fund name in the brokerage note */
-    tradingName: string;
-    /** Fund code in the brokerage note */
-    tradingCode: string;
-    tradingCodeOthers: string;
-    /** Numbers only */
-    cnpj: string;
-    classification: string;
-    webSite: string;
-    fundAddress: string;
-    fundPhoneNumberDDD: string;
-    fundPhoneNumber: string;
-    fundPhoneNumberFax: string;
-    positionManager: string;
-    managerName: string;
-    companyAddress: string;
-    companyPhoneNumberDDD: string;
-    companyPhoneNumber: string;
-    companyPhoneNumberFax: string;
-    companyEmail: string;
-    companyName: string;
-    quotaCount: string;
-    quotaDateApproved: string;
-    typeFNET:null,
-    codes:null,
-    codesOther:null,
-    segment:null
-  },
-  shareHolder: {
-    shareHolderName: string;
-    shareHolderAddress: string;
-    shareHolderPhoneNumberDDD: string;
-    shareHolderPhoneNumber: string;
-    shareHolderFaxNumber: string;
-    shareHolderEmail: string;
-  }
-}
-
-class FiiInfos {
-  tradingName: string;
-  tradingCode: string;
-  cnpj: string;
-
-  constructor (tradingName: string, tradingCode: string, cnpj: string) {
-    this.tradingName = tradingName;
-    this.tradingCode = tradingCode;
-    this.cnpj = cnpj;
-  }
-
-}
-
-/** Infos about the page and the total amount of records */
-interface PageInfo {
-  /** Current page number */
-  pageNumber: number;
-  /** Number of results in the page (can be less if it's the last page) */
-  pageSize: number;
-  /** Number of total records */
-  totalRecords: number;
-  /** Number of total pages */
-  totalPages: number;
-}
-
-/** Crawler result */
-interface StockCrawlerRequestResult {
-  "page": PageInfo;
-  "results": Array<StockInfos>;
-}
-
-/** Crawler result */
-interface FIICrawlerRequestResult {
-  "page": PageInfo;
-  "results": Array<FiiCrawlerInfos>;
-}
-
-/** Assets main infos */
-export interface Asset {
-  /** Asset's code */
-  code: string;
-  /** Asset's name */
-  name: string;
-  /** Asset's cnpj (registration number) */
-  cnpj?: string;
-  /** Whether the asset is a FII (real estate) */
-  isFII: boolean
-}
+import { Asset } from "./types/common";
+import { ListedStocksRequest, StockCrawlerRequestResult, StockInfos } from "./types/listed-stocks";
+import { FIICrawlerRequestResult, FiiCrawlerInfos, FiiInfos, FiiRawInfos, GetFIIsRequest, ListedFIIsRequest } from "./types/listed-real-estates";
+import { CashDividendShortVersion, RealEstateCorporativeEventRequest, StockCorporativeEventRequest, StockCorporativeEventResponse, StockDividendShortVersion } from "./types/corporative-events";
 
 /** Assets crawler manager */
 export class AssetCrawler {
@@ -204,18 +18,22 @@ export class AssetCrawler {
   private updaterTimeout = 7*24*3600*1000;
   /** Auto-update timeout when any failure happens */
   private updaterTimeoutIfFailed = 24*3600*1000;
+  /** Enable verbose calls */
+  verbose: boolean;
 
   /**
    * Instantiate a new `AssetCrawler`
    * @param autoUpdate whether the application should auto-update
    * the list of assets for new changes. Default is `false`. Require internet connection
+   * @param verbose enable verbose calls
    */
-  constructor(autoUpdate?: boolean) {
+  constructor(autoUpdate?: boolean, verbose?: boolean) {
     this.assets = assets;
     this.autoUpdate = autoUpdate || false;
     if (this.autoUpdate) {
       this.updater(0);
     }
+    this.verbose = !!verbose;
   }
 
   /**
@@ -226,7 +44,7 @@ export class AssetCrawler {
     setTimeout(() => {
       this.getListedAssets()
       .catch(err => {
-        console.log(`Error getting listed assets. Trying again in 1 day`);
+        console.log(`[AC] Error getting listed assets. Trying again in 1 day`);
         if (err instanceof Error) console.log(err.message);
         this.updater(this.updaterTimeoutIfFailed);
       })
@@ -242,41 +60,152 @@ export class AssetCrawler {
     this.assets = [];
     
     // Get listed stocks
+    if (this.verbose) console.log(`[AC] Getting listed stocks: page 1`);
     let getStockResult = await axios.get(new ListedStocksRequest(1).base64Url());
-    if (!('data' in getStockResult)) throw new Error(`Unexpected response: ${getStockResult}`);
+    if (!('data' in getStockResult)) throw new Error(`[AC] Unexpected response: ${getStockResult}`);
 
     let stockData: StockCrawlerRequestResult = getStockResult.data;
     
     while(stockData.page.totalPages >= stockData.page.pageNumber) {
-      if (!('data' in getStockResult)) throw new Error(`Unexpected response: ${getStockResult}`);
+      if (!('data' in getStockResult)) throw new Error(`[AC] Unexpected response: ${getStockResult}`);
       stockData = getStockResult.data;
-      this.assets.push(...stockData.results);
+      stockData.results.forEach(r => {
+        r.retry = 0;
+      });
+      
+      // Get stock's corporative events
+      let _company: StockInfos | undefined;
+      while ((_company = stockData.results.shift()) !== undefined) {
+        const company = _company;
+        // ? Company types other than 1 do not have much info. Not sure what this is about tho
+        if (company.type === '1') {
+          if (this.verbose) console.log(`[AC] Getting corporative events for ${company.issuingCompany}`);
+          
+          // ? Not all companies have corporative events fields
+          try {
+            const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url());
+            if (!('status' in getCorporativeEventsResult) || getCorporativeEventsResult.status !== 200) throw new Error(`[AC] Error requesting ${company.issuingCompany}: code ${getCorporativeEventsResult.status ?? '[no code]'}`);
+            // ? Stocks return as an Array with a single result. Real estate are just the element
+            if (!('data' in getCorporativeEventsResult) || typeof getCorporativeEventsResult.data === 'undefined') throw new Error(`[AC] No data in response: ${getCorporativeEventsResult}`);
+            if (typeof getCorporativeEventsResult.data === 'string' && getCorporativeEventsResult.data === '') throw new Error(`[AC] Empty data from response: ${getCorporativeEventsResult.data}`);
+            const corporativeEvents: StockCorporativeEventResponse = getCorporativeEventsResult.data[0];
+            if (!corporativeEvents) {
+              company.stockDividends = [];
+              company.cashDividends = [];
+              if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany}`)                
+            } else {
+              if (corporativeEvents.stockDividends) {
+                company.stockDividends = corporativeEvents.stockDividends.map(s => StockDividendShortVersion.fromStockDividend(s))
+              } else company.stockDividends = [];
+              
+              if (corporativeEvents.cashDividends) {
+                company.cashDividends = corporativeEvents.cashDividends.map(s => CashDividendShortVersion.fromCashDividend(s))
+              } else company.cashDividends = [];
+
+              if (this.verbose) console.log(`[AC] ${company.issuingCompany} done`);
+            }
+
+            delete company.retry;
+            this.assets.push(company);
+
+          } catch (e) {
+            company.stockDividends = [];
+            company.cashDividends = [];
+            if (e instanceof Error) {
+              if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
+            } else if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
+            
+            // Try again
+            if (this.verbose) console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
+            company.retry = company.retry?company.retry+1:1;
+            if (company.retry !== 3) stockData.results.unshift(company);
+            else throw new Error(`[AC] Max retries reached for ${company.issuingCompany}`);
+
+          }  
+        }
+        
+      }
+
+      if (this.verbose) console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
       if (stockData.page.totalPages === stockData.page.pageNumber) break;
       else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url());
     }
 
     // Get listed FIIs
+    if (this.verbose) console.log(`[AC] Getting listed real estates: page 1`);
     let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url());
-    if (!('data' in getFiiResult)) throw new Error(`Unexpected response: ${getFiiResult}`);
+    if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
 
     let fiiData: FIICrawlerRequestResult = getFiiResult.data;
     
     while(fiiData.page.totalPages >= fiiData.page.pageNumber) {
-      if (!('data' in getFiiResult)) throw new Error(`Unexpected response: ${getFiiResult}`);
+      if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
       fiiData = getFiiResult.data;
-      for await (const fii of fiiData.results) {
+      fiiData.results.forEach(r => {
+        r.retry = 0;
+      })
+
+      let _fii: FiiCrawlerInfos | undefined;
+      while ((_fii = fiiData.results.shift()) !== undefined) {
+        const fii = _fii;
+        if (this.verbose) console.log(`[AC] Getting corporative events for ${fii.acronym}`);
+        
         const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
-        if (!('data' in getFiiResult)) throw new Error(`Unexpected response: ${getFiiResult}`);
+        if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
         const fiiInfo: FiiRawInfos = getFiiResult.data;
         let tradingCode = fiiInfo.detailFund.tradingCode.trim()
         // ? Some funds don't have the trading code
         if (!tradingCode) tradingCode = `${fiiInfo.detailFund.acronym.trim()}11`;
-        this.assets.push(new FiiInfos(
+
+        // Get real estate's corporative events
+        const fiiElement = new FiiInfos(
           fiiInfo.detailFund.tradingName.trim(),
           tradingCode,
           fiiInfo.detailFund.cnpj.trim()
-          ));
+        );
+
+        // Get stock's corporative events
+        // ? Not all companies have corporative events fields
+
+        try {
+          const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, tradingCode.slice(0, -2)).base64Url());
+          if (!('data' in getCorporativeEventsResult)) throw new Error(`[AC] Unexpected response: ${getCorporativeEventsResult}`);
+          const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
+
+          if (!corporativeEvents.code) {
+            fiiElement.stockDividends = [];
+            fiiElement.cashDividends = [];
+            if (this.verbose) console.log(`[AC] No data for ${fii.acronym}`);
+          } else {
+            if (corporativeEvents.stockDividends) {
+              fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => StockDividendShortVersion.fromStockDividend(s));
+            } else fiiElement.stockDividends = [];
+
+            if (corporativeEvents.cashDividends) {
+              fiiElement.cashDividends = corporativeEvents.cashDividends.map(s => CashDividendShortVersion.fromCashDividend(s));
+            } else fiiElement.cashDividends = [];
+            if (this.verbose) console.log(`[AC] ${fii.acronym} done`)
+          }
+
+          this.assets.push(fiiElement);
+
+        } catch (e) {
+          fiiElement.stockDividends = [];
+          fiiElement.cashDividends = [];
+          if (e instanceof Error) {
+            if (this.verbose) console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
+          } else if (this.verbose) console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
+
+          // Try again
+          if (this.verbose) console.log(`[AC] Retrying request for company ${fii.acronym}`);
+          fii.retry = fii.retry?fii.retry+1:1;
+          if (fii.retry !== 3) fiiData.results.unshift(fii);
+          else throw new Error(`[AC] Max retries reached for ${fii.acronym}`);
+
+        }
       }
+
+      if (this.verbose) console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
       if (fiiData.page.totalPages === fiiData.page.pageNumber) break;
       else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url());
     }
@@ -319,7 +248,7 @@ export class AssetCrawler {
       }
     }
     
-    throw new Error(`No stock found for ${name}`);
+    throw new Error(`[AC] No stock found for ${name}`);
 
   }
 

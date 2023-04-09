@@ -9,4 +9,4 @@ test('simple parses', async () => {
 
 test('listed assets', async () => {
   await assetCrawler.getListedAssets();
-}, 5000*1000);
+}, 10*60*1000);
