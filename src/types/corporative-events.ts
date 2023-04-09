@@ -212,6 +212,7 @@ export interface StockDividend {
    * The label for this dividend
    * @example
    * "DESDOBRAMENTO"
+   * "GRUPAMENTO"
    * "BONIFICACAO"
    */
   label: string;
@@ -287,6 +288,7 @@ export class StockDividendShortVersion {
    * The label for this dividend
    * @example
    * "DESDOBRAMENTO"
+   * "GRUPAMENTO"
    * "BONIFICACAO"
    */
   label: string;
