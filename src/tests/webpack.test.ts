@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { NoteParser, NegotiationNote } from '../../dist/';
+import { NoteParser, NegotiationNote, AssetCrawler, StockDividendShortVersion } from '../../dist/notes-parser';
 
 const assets = new NoteParser();
 const possiblePasswords: string[] = ['123', '456'];
@@ -246,5 +246,19 @@ describe('same as "rico" tests, but using dist version', () => {
       }
     ]);
     
+  });
+})
+
+describe('asset crawler', () => {
+  describe('same as simple parses, but using dist version', () => {
+    test('direct instance', () => {
+      const assetCrawler = new AssetCrawler(false, 'all');
+      expect(assetCrawler.getCodeFromTitle('FII CSHG URB HGRU11 CI ER').code).toBe('HGRU11');
+      expect(assetCrawler.getCodeFromTitle('ITAUSA PN N1').code).toBe('ITSA4');
+    });
+    test('from note parser instance', () => {
+      expect(assets.assetCrawler.getCodeFromTitle('FII CSHG URB HGRU11 CI ER').code).toBe('HGRU11');
+      expect(assets.assetCrawler.getCodeFromTitle('ITAUSA PN N1').code).toBe('ITSA4');
+    });
   });
 })

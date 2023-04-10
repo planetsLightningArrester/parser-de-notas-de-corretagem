@@ -12,7 +12,12 @@ const config: webpack.Configuration = {
       patterns: [
         { from: 'package.json' },
         { from: 'README.md' },
-        { from: 'out/src/notes-parser.d.ts' }
+        { from: 'out/src/notes-parser.d.ts' },
+        { from: 'out/src/asset-crawler.d.ts' },
+        { from: 'out/src/types/common.d.ts', to: 'types' },
+        { from: 'out/src/types/listed-stocks.d.ts', to: 'types' },
+        { from: 'out/src/types/corporative-events.d.ts', to: 'types' },
+        { from: 'out/src/types/listed-real-estates.d.ts', to: 'types' },
       ]
     })
   ],

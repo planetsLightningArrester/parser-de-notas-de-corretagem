@@ -4,6 +4,17 @@ import { AssetCrawler, AssetVerbosity } from "./asset-crawler";
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf';
 import { CashDividendShortVersion, StockDividendShortVersion } from './types/corporative-events';
 
+// Make crawler available available 
+export {
+  AssetCrawler,
+  CashDividendShortVersion,
+  StockDividendShortVersion
+}
+
+export type {
+  AssetVerbosity
+}
+
 /** Deal made in a `NegotiationNote` type */
 export interface Deal {
   /** Deal type */
