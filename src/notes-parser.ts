@@ -2,6 +2,7 @@
 import { Asset } from './types/common';
 import { AssetCrawler } from "./asset-crawler";
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf';
+import { CashDividendShortVersion, StockDividendShortVersion } from './types/corporative-events';
 
 /** Deal made in a `NegotiationNote` type */
 export interface Deal {
@@ -351,6 +352,16 @@ export class NoteParser {
     }
   }
 
+  /**
+   * Get the stock dividends and the cash dividends of a given asset, if any
+   * @param code the asset code (letter only)
+   * @returns and `Array` where the first position is the list of stock dividends
+   * and the second position is a list of the cash dividends
+   */
+  getDividends(code: string): [StockDividendShortVersion[], CashDividendShortVersion[]] {
+    return this.stockParser.getDividends(code);
+  }
+  
   /**
    * Convert a date according to `dateFormat`
    * @param date the date to be formatted

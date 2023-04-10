@@ -100,16 +100,24 @@ export interface FiiRawInfos {
 }
 
 export class FiiInfos {
+  /** Issuing Company (B3 Code - only letters) */
+  issuingCompany: string;
+  /** Company name */
   tradingName: string;
+  /** Issuing Company (B3 Code) */
   tradingCode: string;
+  /** Registration number (numbers only) */
   cnpj: string;
-  stockDividends: StockDividendShortVersion[] = []
-  cashDividends: CashDividendShortVersion[] = []
+  /** Represents a stock dividend paid out by a company to its shareholders. (Short version) */
+  stockDividends: StockDividendShortVersion[] = [];
+  /** Represents a cash dividend paid out by a company to its shareholders. (Short version) */
+  cashDividends: CashDividendShortVersion[] = [];
 
   constructor (tradingName: string, tradingCode: string, cnpj: string) {
     this.tradingName = tradingName;
     this.tradingCode = tradingCode;
     this.cnpj = cnpj;
+    this.issuingCompany = this.tradingCode.slice(0, 4);
   }
 
 }

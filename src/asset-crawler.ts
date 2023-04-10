@@ -281,4 +281,17 @@ export class AssetCrawler {
 
   }
 
+  /**
+   * Get the stock dividends and the cash dividends of a given asset, if any
+   * @param code the asset code (letter only)
+   * @returns and `Array` where the first position is the list of stock dividends
+   * and the second position is a list of the cash dividends
+   */
+  getDividends(code: string): [StockDividendShortVersion[], CashDividendShortVersion[]] {
+    code = code.slice(0, 4);
+    const asset = this.assets.find(a => a.issuingCompany === code);
+    if (!asset) throw new Error(`[AC] No asset defined with code ${code}`);
+    else return [asset.stockDividends, asset.cashDividends];
+  }
+
 }
