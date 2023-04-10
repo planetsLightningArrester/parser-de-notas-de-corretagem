@@ -84,10 +84,10 @@ export class AssetCrawler {
           // ? Not all companies have corporative events fields
           try {
             const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url());
-            if (!('status' in getCorporativeEventsResult) || getCorporativeEventsResult.status !== 200) throw new Error(`[AC] Error requesting ${company.issuingCompany}: code ${getCorporativeEventsResult.status ?? '[no code]'}`);
+            if (!('status' in getCorporativeEventsResult) || getCorporativeEventsResult.status !== 200) throw new Error(`Error requesting ${company.issuingCompany}: code ${getCorporativeEventsResult.status ?? '[no code]'}`);
             // ? Stocks return as an Array with a single result. Real estate are just the element
-            if (!('data' in getCorporativeEventsResult) || typeof getCorporativeEventsResult.data === 'undefined') throw new Error(`[AC] No data in response: ${getCorporativeEventsResult}`);
-            if (typeof getCorporativeEventsResult.data === 'string' && getCorporativeEventsResult.data === '') throw new Error(`[AC] Empty data from response: ${getCorporativeEventsResult.data}`);
+            if (!('data' in getCorporativeEventsResult) || typeof getCorporativeEventsResult.data === 'undefined') throw new Error(`No data in response: ${getCorporativeEventsResult}`);
+            if (typeof getCorporativeEventsResult.data === 'string' && getCorporativeEventsResult.data === '') throw new Error(`Empty data from response: ${getCorporativeEventsResult.data}`);
             const corporativeEvents: StockCorporativeEventResponse = getCorporativeEventsResult.data[0];
             if (!corporativeEvents) {
               company.stockDividends = [];
@@ -185,7 +185,7 @@ export class AssetCrawler {
 
         try {
           const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, tradingCode.slice(0, -2)).base64Url());
-          if (!('data' in getCorporativeEventsResult)) throw new Error(`[AC] Unexpected response: ${getCorporativeEventsResult}`);
+          if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
           const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
 
           if (!corporativeEvents.code) {
