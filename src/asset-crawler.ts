@@ -125,8 +125,6 @@ export class AssetCrawler {
             } else this.assets.push(company);
 
           } catch (e) {
-            company.stockDividends = [];
-            company.cashDividends = [];
             if (e instanceof Error) {
               if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
             } else if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
@@ -166,24 +164,24 @@ export class AssetCrawler {
         const fii = _fii;
         if (this.verbose) console.log(`[AC] Getting corporative events for ${fii.acronym}`);
         
-        const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
-        if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
-        const fiiInfo: FiiRawInfos = getFiiResult.data;
-        let tradingCode = fiiInfo.detailFund.tradingCode.trim()
-        // ? Some funds don't have the trading code
-        if (!tradingCode) tradingCode = `${fiiInfo.detailFund.acronym.trim()}11`;
-
-        // Get real estate's corporative events
-        const fiiElement = new FiiInfos(
-          fiiInfo.detailFund.tradingName.trim(),
-          tradingCode,
-          fiiInfo.detailFund.cnpj.trim()
-        );
-
-        // Get stock's corporative events
-        // ? Not all companies have corporative events fields
-
         try {
+          const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
+          if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
+          const fiiInfo: FiiRawInfos = getFiiResult.data;
+          let tradingCode = fiiInfo.detailFund.tradingCode.trim()
+          // ? Some funds don't have the trading code
+          if (!tradingCode) tradingCode = `${fiiInfo.detailFund.acronym.trim()}11`;
+
+          // Get real estate's corporative events
+          const fiiElement = new FiiInfos(
+            fiiInfo.detailFund.tradingName.trim(),
+            tradingCode,
+            fiiInfo.detailFund.cnpj.trim()
+          );
+
+          // Get stock's corporative events
+          // ? Not all companies have corporative events fields
+
           const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, tradingCode.slice(0, -2)).base64Url());
           if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
           const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
@@ -220,8 +218,6 @@ export class AssetCrawler {
           } else this.assets.push(fiiElement);
 
         } catch (e) {
-          fiiElement.stockDividends = [];
-          fiiElement.cashDividends = [];
           if (e instanceof Error) {
             if (this.verbose) console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
           } else if (this.verbose) console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
