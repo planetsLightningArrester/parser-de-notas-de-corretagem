@@ -2,7 +2,7 @@ import { NoteParser } from '../notes-parser';
 
 const assets = new NoteParser();
 
-describe('stock dividends', () => {
+describe('cash dividends', () => {
   test('real estate', async () => {
 
     // Both ways should work
@@ -10,8 +10,8 @@ describe('stock dividends', () => {
     assets.getDividends('BTCI11');
 
     // Get the dividends
-    const [events, ] = assets.getDividends('BTCI11');
-    expect(events.length).toBeGreaterThan(0);
+    const [, cash] = assets.getDividends('BTCI11');
+    expect(cash.length).toBeGreaterThan(0);
 
   });
 
@@ -22,8 +22,8 @@ describe('stock dividends', () => {
     assets.getDividends('B3SA3');
 
     // Get the dividends
-    const [events, ] = assets.getDividends('B3SA3');
-    expect(events.length).toBeGreaterThan(0);
+    const [, cash] = assets.getDividends('B3SA3');
+    expect(cash.length).toBeGreaterThan(0);
 
   })
   
