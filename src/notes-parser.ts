@@ -1,6 +1,6 @@
 // Using legacy provides support for NodeJS versions lower than 18 and the React testing library
 import { Asset } from './types/common';
-import { AssetCrawler } from "./asset-crawler";
+import { AssetCrawler, AssetVerbosity } from "./asset-crawler";
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf';
 import { CashDividendShortVersion, StockDividendShortVersion } from './types/corporative-events';
 
@@ -67,10 +67,22 @@ export class UnknownAsset extends Error {}
 /** Brokerage notes parser */
 export class NoteParser {
 
-  /** Path to the JSON data file */
-  private stockParser: AssetCrawler;
+  /** Info about the assets */
+  assetCrawler: AssetCrawler;
   /** The date format used. Default is `dd/MM/yyyy` */
   private dateFormat: DateFormat = "dd/MM/yyyy";
+  /** Set the verbosity level. Actually it's the same as the crawler */
+  private _verbosity: AssetVerbosity;
+
+  /** Set the verbosity level */
+  public set verbosity(v : AssetVerbosity) {
+    this._verbosity = v;
+    this.assetCrawler.verbosity = this._verbosity;
+  }
+
+  public get verbosity() : AssetVerbosity {
+    return this._verbosity;
+  }
 
   /**
    * Instantiate a new `NoteParser`
@@ -78,7 +90,7 @@ export class NoteParser {
    * the list of assets for new changes every week. Default is `false`. Require internet connection.
    * Updating this package to the latest version also gets the latest infos
    */
-  constructor(autoUpdateLookUpList?: boolean) {
+  constructor(autoUpdateLookUpList?: boolean, verbosity?: AssetVerbosity) {
     
     // ? This is the same way as PDF JS knows if this is running in Web or Node
     // ? The whole check shouldn't be tricky if the react testing library wasn't recognized as NodeJS, but it's
@@ -93,8 +105,8 @@ export class NoteParser {
       !(process.versions.electron && process.type && process.type !== "browser");
 
     if (!isNodeJS) GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsVersion}/pdf.worker.min.js`;
-
-    this.stockParser = new AssetCrawler(autoUpdateLookUpList);
+    this.assetCrawler = new AssetCrawler(autoUpdateLookUpList, verbosity);
+    this._verbosity = this.assetCrawler.verbosity;
 
     // Some manually defined stocks
     this.defineStock('TIET11', 'AES TIETE E UNT', '37.663.076/0001-07');
@@ -248,7 +260,7 @@ export class NoteParser {
         while ((match = stockPattern.exec(pageContent)) != null) {
           const op: string = match[1];
           // let market: string = match[2];
-          const stock: Asset = this.stockParser.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
+          const stock: Asset = this.assetCrawler.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
           const quantity: number = parseInt(match[4]);
           // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
           const transactionValue: number = parseFloat(match[6].replace('.', '').replace(',', '.'));
@@ -347,8 +359,8 @@ export class NoteParser {
    */
   defineStock(code: string, name: string, cnpj?: string, isFII?: boolean): void {
     // Skip duplicates
-    if (!this.stockParser.customAssets.find(a => a.code === code)) {
-      this.stockParser.customAssets.push({code, name, cnpj, isFII: !!isFII});
+    if (!this.assetCrawler.customAssets.find(a => a.code === code)) {
+      this.assetCrawler.customAssets.push({code, name, cnpj, isFII: !!isFII});
     }
   }
 
@@ -359,7 +371,7 @@ export class NoteParser {
    * and the second position is a list of the cash dividends
    */
   getDividends(code: string): [StockDividendShortVersion[], CashDividendShortVersion[]] {
-    return this.stockParser.getDividends(code);
+    return this.assetCrawler.getDividends(code);
   }
   
   /**

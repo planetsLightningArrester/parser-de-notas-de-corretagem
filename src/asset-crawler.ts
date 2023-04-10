@@ -5,6 +5,22 @@ import { ListedStocksRequest, StockCrawlerRequestResult, StockInfos } from "./ty
 import { FIICrawlerRequestResult, FiiCrawlerInfos, FiiInfos, FiiRawInfos, GetFIIsRequest, ListedFIIsRequest } from "./types/listed-real-estates";
 import { CashDividendShortVersion, RealEstateCorporativeEventRequest, StockCorporativeEventRequest, StockCorporativeEventResponse, StockDividendShortVersion } from "./types/corporative-events";
 
+/** Holds info about a listener event */
+class UpdateListener {
+  /** The unique listener key */
+  key: number
+  /** The listener callback */
+  callback: (assets: Array<StockInfos | FiiInfos>) => void
+  
+  constructor(key: number, callback: (assets: Array<StockInfos | FiiInfos>) => void) {
+    this.key = key;
+    this.callback = callback;
+  }
+}
+
+/** Types of asset verbosity */
+export type AssetVerbosity = 'off' | 'all' | 'minimal';
+
 /** Assets crawler manager */
 export class AssetCrawler {
 
@@ -13,54 +29,76 @@ export class AssetCrawler {
   /** Assets defined on runtime */
   customAssets: Asset[] = [];
   /** Auto-update flag */
-  autoUpdate = false;
+  private _autoUpdate = false;
+
+  /** Auto-update flag */
+  public set autoUpdate(v : boolean) {
+    const previousValue = this._autoUpdate;
+    this._autoUpdate = v;
+
+    if (previousValue === false && v === true) this.updater(0);
+    else if (v === false && this.autoUpdateTimer) clearTimeout(this.autoUpdateTimer);
+  }
+
+  public get autoUpdate(): boolean {
+    return this._autoUpdate;
+  }
+  
+  private autoUpdateTimer: NodeJS.Timeout | undefined;
   /** Auto-update timeout */
   private updaterTimeout = 7*24*3600*1000;
   /** Auto-update timeout when any failure happens */
   private updaterTimeoutIfFailed = 24*3600*1000;
-  /** Enable verbose calls */
-  verbose: boolean;
-  /** Max number of retries when fetching data */
+  /** Set the verbosity level */
+  verbosity: AssetVerbosity;
+  /** Max number of retries when fetching data. Default is 20 */
   maxRetries = 20;
+  /** Manage the keys being listened to */
+  private listenerKey = 0;
+  /** Keys generated on update */
+  private listeners: UpdateListener[] = [];
 
   /**
    * Instantiate a new `AssetCrawler`
    * @param autoUpdate whether the application should auto-update
    * the list of assets for new changes. Default is `false`. Require internet connection
-   * @param verbose enable verbose calls
+   * @param verbose set the verbosity level. Default is `off`
    */
-  constructor(autoUpdate?: boolean, verbose?: boolean) {
+  constructor(autoUpdate?: boolean, verbose?: AssetVerbosity) {
     this.assets = assets;
+    this.verbosity = verbose || 'off';
     this.autoUpdate = autoUpdate || false;
-    if (this.autoUpdate) {
-      this.updater(0);
-    }
-    this.verbose = !!verbose;
   }
 
   /**
    * Update the listed assets after a timeout
    * @param timeout update after `timeout` milliseconds
    */
-  updater(timeout: number = this.updaterTimeout) {
-    setTimeout(() => {
-      this.getListedAssets()
+  private updater(timeout: number = this.updaterTimeout) {
+    this.autoUpdateTimer = setTimeout(() => {
+      if (this.verbosity !== 'off') console.log(`[AC] Fetching asset data`);
+      this.fetchListedAssets()
       .catch(err => {
         console.log(`[AC] Error getting listed assets. Trying again in 1 day`);
         if (err instanceof Error) console.log(err.message);
-        this.updater(this.updaterTimeoutIfFailed);
+        if (this.autoUpdate) this.updater(this.updaterTimeoutIfFailed);
       })
       .then(() => {
-        this.updater();
+        if (this.verbosity !== 'off') console.log(`[AC] Asset data successfully fetched`);
+        if (this.autoUpdate) this.updater();
       })
     }, timeout);
   }
 
-  /** Update the current listed assets */
-  async getListedAssets(): Promise<void> {
+  /**
+   * Update the current listed assets. May take several minutes.
+   * If `maxRetires` is reached, an Error is thrown and the fetch
+   * process is interrupted
+   */
+  async fetchListedAssets(): Promise<void> {
     
     // Get listed stocks
-    if (this.verbose) console.log(`[AC] Getting listed stocks: page 1`);
+    if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page 1`);
     let getStockResult = await axios.get(new ListedStocksRequest(1).base64Url());
     if (!('data' in getStockResult)) throw new Error(`[AC] Unexpected response: ${getStockResult}`);
 
@@ -79,7 +117,7 @@ export class AssetCrawler {
         const company = _company;
         // ? Company types other than 1 do not have much info. Not sure what this is about tho
         if (company.type === '1') {
-          if (this.verbose) console.log(`[AC] Getting corporative events for ${company.issuingCompany}`);
+          if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${company.issuingCompany}`);
           
           // ? Not all companies have corporative events fields
           try {
@@ -92,7 +130,7 @@ export class AssetCrawler {
             if (!corporativeEvents) {
               company.stockDividends = [];
               company.cashDividends = [];
-              if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany}`)                
+              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`)                
             } else {
               if (corporativeEvents.stockDividends) {
                 company.stockDividends = corporativeEvents.stockDividends.map(s => StockDividendShortVersion.fromStockDividend(s))
@@ -102,7 +140,7 @@ export class AssetCrawler {
                 company.cashDividends = corporativeEvents.cashDividends.map(s => CashDividendShortVersion.fromCashDividend(s))
               } else company.cashDividends = [];
 
-              if (this.verbose) console.log(`[AC] ${company.issuingCompany} done`);
+              if (this.verbosity === 'all') console.log(`[AC] ${company.issuingCompany} done`);
             }
 
             // Remove the retry field from the JSON
@@ -126,11 +164,11 @@ export class AssetCrawler {
 
           } catch (e) {
             if (e instanceof Error) {
-              if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
-            } else if (this.verbose) console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
+              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
+            } else if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
             
             // Try again
-            if (this.verbose) console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
+            if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
             company.retry = company.retry?company.retry+1:1;
             if (company.retry !== this.maxRetries) stockData.results.unshift(company);
             else throw new Error(`[AC] Max retries reached for ${company.issuingCompany}`);
@@ -140,13 +178,13 @@ export class AssetCrawler {
         
       }
 
-      if (this.verbose) console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
+      if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
       if (stockData.page.totalPages === stockData.page.pageNumber) break;
       else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url());
     }
 
     // Get listed FIIs
-    if (this.verbose) console.log(`[AC] Getting listed real estates: page 1`);
+    if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page 1`);
     let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url());
     if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
 
@@ -162,7 +200,7 @@ export class AssetCrawler {
       let _fii: FiiCrawlerInfos | undefined;
       while ((_fii = fiiData.results.shift()) !== undefined) {
         const fii = _fii;
-        if (this.verbose) console.log(`[AC] Getting corporative events for ${fii.acronym}`);
+        if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${fii.acronym}`);
         
         try {
           const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
@@ -189,7 +227,7 @@ export class AssetCrawler {
           if (!corporativeEvents.code) {
             fiiElement.stockDividends = [];
             fiiElement.cashDividends = [];
-            if (this.verbose) console.log(`[AC] No data for ${fii.acronym}`);
+            if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym}`);
           } else {
             if (corporativeEvents.stockDividends) {
               fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => StockDividendShortVersion.fromStockDividend(s));
@@ -198,7 +236,7 @@ export class AssetCrawler {
             if (corporativeEvents.cashDividends) {
               fiiElement.cashDividends = corporativeEvents.cashDividends.map(s => CashDividendShortVersion.fromCashDividend(s));
             } else fiiElement.cashDividends = [];
-            if (this.verbose) console.log(`[AC] ${fii.acronym} done`)
+            if (this.verbosity === 'all') console.log(`[AC] ${fii.acronym} done`)
           }
 
           // Merge with previous results
@@ -219,11 +257,11 @@ export class AssetCrawler {
 
         } catch (e) {
           if (e instanceof Error) {
-            if (this.verbose) console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
-          } else if (this.verbose) console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
+            if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
+          } else if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
 
           // Try again
-          if (this.verbose) console.log(`[AC] Retrying request for company ${fii.acronym}`);
+          if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${fii.acronym}`);
           fii.retry = fii.retry?fii.retry+1:1;
           if (fii.retry !== this.maxRetries) fiiData.results.unshift(fii);
           else throw new Error(`[AC] Max retries reached for ${fii.acronym}`);
@@ -231,10 +269,15 @@ export class AssetCrawler {
         }
       }
 
-      if (this.verbose) console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
+      if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
       if (fiiData.page.totalPages === fiiData.page.pageNumber) break;
       else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url());
     }
+
+    // Push updates to listeners
+    this.listeners.forEach(sub => {
+      sub.callback(this.assets);
+    })
     
   }
 
@@ -289,6 +332,28 @@ export class AssetCrawler {
     const asset = this.assets.find(a => a.issuingCompany === code);
     if (!asset) throw new Error(`[AC] No asset defined with code ${code}`);
     else return [asset.stockDividends, asset.cashDividends];
+  }
+
+  /**
+   * Subscribe to updates when `autoUpdate` is `on` or
+   * when `fetchListedAssets` is manually called
+   * @param callback function to be called when the data is updated
+   * @returns the key number referring to the listener. Can be used to `unsubscribeToUpdates`
+   */
+  subscribeToUpdates(callback: (assets: Array<StockInfos | FiiInfos>) => void): number {
+    const subscriber = new UpdateListener(this.listenerKey++, callback);
+    this.listeners.push(subscriber);
+    return subscriber.key;
+  }
+
+  /**
+   * Unsubscribe to updates when `autoUpdate` is `on` or
+   * when `fetchListedAssets` is manually called
+   * @param key the subscription key returned by `subscribeToUpdates`
+   */
+  unsubscribeToUpdates(key: number): void {
+    const index = this.listeners.findIndex(l => l.key === key);
+    if (index !== -1) this.listeners.splice(index, 1);
   }
 
 }
