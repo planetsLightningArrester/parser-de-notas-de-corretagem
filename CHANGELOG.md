@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2023-04-10
+### Added
+- Add fields `stockDividends` and `cashDividends`. It delays a lot the assets update
+- Add `getDividends` to get dividends by asset
+
+### Changed
+- Increase `npm run update-assets` verbosity
+
 ## [0.4.4] - 2023-04-04
 ### Fixed
 - Fix password not working if the first password is wrong
