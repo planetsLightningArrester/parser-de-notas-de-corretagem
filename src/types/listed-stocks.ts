@@ -28,7 +28,7 @@ export class ListedStocksRequest {
 export interface StockInfos {
   /** CVM code */
   codeCVM: string;
-  /** Issuing Company (B3 Code) */
+  /** Issuing Company (B3 Code - only letters) */
   issuingCompany: string;
   /** Company name */
   companyName: string;

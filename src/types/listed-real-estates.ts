@@ -66,7 +66,7 @@ export interface FiiRawInfos {
     /** Fund code in the brokerage note */
     tradingCode: string;
     tradingCodeOthers: string;
-    /** Numbers only */
+    /** Registration number (numbers only) */
     cnpj: string;
     classification: string;
     webSite: string;

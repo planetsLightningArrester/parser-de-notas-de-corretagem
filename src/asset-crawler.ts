@@ -1,4 +1,3 @@
-import _ from "lodash";
 import axios from "axios";
 import assets from '../assets.json';
 import { Asset } from "./types/common";
@@ -112,14 +111,14 @@ export class AssetCrawler {
             if (index !== -1) {
               const companyPreviousData = this.assets[index];
               // Merge removing duplicates. It's required to create an object to remove duplicates
-              company.stockDividends = _.uniqWith([
+              company.stockDividends = uniqueDividends([
                 ...company.stockDividends,
                 ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.factor, d.label, d.lastDatePrior))
-              ], _.isEqual);
-              company.cashDividends = _.uniqWith([
+              ]);
+              company.cashDividends = uniqueDividends([
                 ...company.cashDividends,
                 ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.paymentDate, c.rate, c.label, c.lastDatePrior))
-              ], _.isEqual);
+              ]);
               this.assets.splice(index, 1, company);
             } else this.assets.push(company);
 
@@ -207,14 +206,14 @@ export class AssetCrawler {
           if (index !== -1) {
             const companyPreviousData = this.assets[index];
             // Merge removing duplicates. It's required to create an object to remove duplicates
-            fiiElement.stockDividends = _.uniqWith([
+            fiiElement.stockDividends = uniqueDividends([
               ...fiiElement.stockDividends,
               ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.factor, d.label, d.lastDatePrior))
-            ], _.isEqual);
-            fiiElement.cashDividends = _.uniqWith([
+            ]);
+            fiiElement.cashDividends = uniqueDividends([
               ...fiiElement.cashDividends,
               ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.paymentDate, c.rate, c.label, c.lastDatePrior))
-            ], _.isEqual);
+            ]);
             this.assets.splice(index, 1, fiiElement);
           } else this.assets.push(fiiElement);
 
@@ -294,4 +293,33 @@ export class AssetCrawler {
     else return [asset.stockDividends, asset.cashDividends];
   }
 
+}
+
+/** Types of dividend */
+type Dividend = StockDividendShortVersion | CashDividendShortVersion;
+
+/**
+ * Remove duplicated dividends
+ * @param dividends an `Array` of `Dividend`
+ * @returns the incoming array without the duplicates
+ */
+function uniqueDividends<T extends Dividend>(dividends: T[]): T[] {
+  const result: T[] = [];
+  for (let i = 0; i < dividends.length; i++) {
+    const reference = dividends[i];
+    let elementExist = false;
+    for (let j = 0; j < result.length; j++) {
+      const element = result[j];
+      let numberOfEqualKeys = 0;
+      Object.keys(reference).forEach(key => {
+        if (reference[key] === element[key]) numberOfEqualKeys++; 
+      });
+      if (numberOfEqualKeys === Object.keys(reference).length) {
+        elementExist = true;
+        break;
+      }
+    }
+    if (!elementExist) result.push(reference);
+  }
+  return result;
 }

@@ -194,7 +194,7 @@ export interface StockDividend {
    */
   assetIssued: string;
   /**
-   * The factor by which the shares were split
+   * The factor by which the shares were split/multiplied, depending on `label`
    * @example "100,00000000000"
    */
   factor: string;
@@ -280,7 +280,7 @@ export interface CashDividend {
  */
 export class StockDividendShortVersion {
   /**
-   * The factor by which the shares were split
+   * The factor by which the shares were split/multiplied, depending on label
    * @example "100,00000000000"
    */
   factor: string;
@@ -297,6 +297,8 @@ export class StockDividendShortVersion {
    * @example "27/04/2021"
    */
   lastDatePrior: string;
+  // Allow key mapping
+  [key: string]: string;
 
   constructor(factor: string, label: string, lastDatePrior: string) {
     this.factor = factor;
@@ -341,6 +343,8 @@ export class CashDividendShortVersion {
    * @example "17/03/2023"
    */
   lastDatePrior: string;
+  // Allow key mapping
+  [key: string]: string;
 
   constructor(paymentDate: string, rate: string, label: string, lastDatePrior: string) {
     this.paymentDate = paymentDate;
