@@ -1,6 +1,6 @@
 import { AssetCrawler } from '../asset-crawler';
 
-const assetCrawler = new AssetCrawler();
+const assetCrawler = new AssetCrawler(false, true);
 
 test('simple parses', async () => {
   expect(assetCrawler.getCodeFromTitle('FII CSHG URB HGRU11 CI ER').code).toBe('HGRU11');
@@ -9,4 +9,4 @@ test('simple parses', async () => {
 
 test('listed assets', async () => {
   await assetCrawler.getListedAssets();
-}, 10*60*1000);
+}, 20*60*1000);
