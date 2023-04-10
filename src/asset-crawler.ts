@@ -20,6 +20,8 @@ export class AssetCrawler {
   private updaterTimeoutIfFailed = 24*3600*1000;
   /** Enable verbose calls */
   verbose: boolean;
+  /** Max number of retries when fetching data */
+  maxRetries = 20;
 
   /**
    * Instantiate a new `AssetCrawler`
@@ -132,7 +134,7 @@ export class AssetCrawler {
             // Try again
             if (this.verbose) console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
             company.retry = company.retry?company.retry+1:1;
-            if (company.retry !== 3) stockData.results.unshift(company);
+            if (company.retry !== this.maxRetries) stockData.results.unshift(company);
             else throw new Error(`[AC] Max retries reached for ${company.issuingCompany}`);
 
           }  
@@ -227,7 +229,7 @@ export class AssetCrawler {
           // Try again
           if (this.verbose) console.log(`[AC] Retrying request for company ${fii.acronym}`);
           fii.retry = fii.retry?fii.retry+1:1;
-          if (fii.retry !== 3) fiiData.results.unshift(fii);
+          if (fii.retry !== this.maxRetries) fiiData.results.unshift(fii);
           else throw new Error(`[AC] Max retries reached for ${fii.acronym}`);
 
         }
