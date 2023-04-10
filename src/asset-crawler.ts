@@ -1,3 +1,4 @@
+import _ from "lodash";
 import axios from "axios";
 import assets from '../assets.json';
 import { Asset } from "./types/common";
@@ -56,8 +57,6 @@ export class AssetCrawler {
 
   /** Update the current listed assets */
   async getListedAssets(): Promise<void> {
-
-    this.assets = [];
     
     // Get listed stocks
     if (this.verbose) console.log(`[AC] Getting listed stocks: page 1`);
@@ -105,8 +104,24 @@ export class AssetCrawler {
               if (this.verbose) console.log(`[AC] ${company.issuingCompany} done`);
             }
 
+            // Remove the retry field from the JSON
             delete company.retry;
-            this.assets.push(company);
+
+            // Merge with previous results
+            const index = this.assets.findIndex(a => a.tradingName === company.tradingName);
+            if (index !== -1) {
+              const companyPreviousData = this.assets[index];
+              // Merge removing duplicates. It's required to create an object to remove duplicates
+              company.stockDividends = _.uniqWith([
+                ...company.stockDividends,
+                ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.factor, d.label, d.lastDatePrior))
+              ], _.isEqual);
+              company.cashDividends = _.uniqWith([
+                ...company.cashDividends,
+                ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.paymentDate, c.rate, c.label, c.lastDatePrior))
+              ], _.isEqual);
+              this.assets.splice(index, 1, company);
+            } else this.assets.push(company);
 
           } catch (e) {
             company.stockDividends = [];
@@ -187,7 +202,21 @@ export class AssetCrawler {
             if (this.verbose) console.log(`[AC] ${fii.acronym} done`)
           }
 
-          this.assets.push(fiiElement);
+          // Merge with previous results
+          const index = this.assets.findIndex(a => a.tradingName === fiiElement.tradingName);
+          if (index !== -1) {
+            const companyPreviousData = this.assets[index];
+            // Merge removing duplicates. It's required to create an object to remove duplicates
+            fiiElement.stockDividends = _.uniqWith([
+              ...fiiElement.stockDividends,
+              ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.factor, d.label, d.lastDatePrior))
+            ], _.isEqual);
+            fiiElement.cashDividends = _.uniqWith([
+              ...fiiElement.cashDividends,
+              ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.paymentDate, c.rate, c.label, c.lastDatePrior))
+            ], _.isEqual);
+            this.assets.splice(index, 1, fiiElement);
+          } else this.assets.push(fiiElement);
 
         } catch (e) {
           fiiElement.stockDividends = [];
