@@ -384,7 +384,21 @@ function uniqueDividends<T extends Dividend>(dividends: T[]): T[] {
         break;
       }
     }
-    if (!elementExist) result.push(reference);
+    if (!elementExist) {
+      // Insert ordered
+      const incomingDate = reference.lastDatePrior.split('/').reverse().join('-');
+      let inserted = false;
+      for (let j = 0; j < result.length; j++) {
+        const element = result[j];
+        const currentDate = element.lastDatePrior.split('/').reverse().join('-');
+        if (currentDate < incomingDate) {
+          result.splice(j, 0, reference);
+          inserted = true;
+          break;
+        }
+      }
+      if (!inserted) result.push(reference);
+    }
   }
   return result;
 }
