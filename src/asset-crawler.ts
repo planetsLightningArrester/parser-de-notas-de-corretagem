@@ -206,21 +206,21 @@ export class AssetCrawler {
           const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
           if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
           const fiiInfo: FiiRawInfos = getFiiResult.data;
-          let tradingCode = fiiInfo.detailFund.tradingCode.trim()
+          let tradingCodes = fiiInfo.detailFund.tradingCode.trim();
           // ? Some funds don't have the trading code
-          if (!tradingCode) tradingCode = `${fiiInfo.detailFund.acronym.trim()}11`;
+          if (!tradingCodes) tradingCodes = `${fii.acronym}11`;
 
           // Get real estate's corporative events
           const fiiElement = new FiiInfos(
             fiiInfo.detailFund.tradingName.trim(),
-            tradingCode,
-            fiiInfo.detailFund.cnpj.trim()
+            tradingCodes,
+            fiiInfo.detailFund.cnpj.trim(),
+            fii.acronym,
           );
 
           // Get stock's corporative events
           // ? Not all companies have corporative events fields
-
-          const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, tradingCode.slice(0, -2)).base64Url());
+          const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, fii.acronym).base64Url());
           if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
           const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
 
@@ -297,7 +297,9 @@ export class AssetCrawler {
       const tradingName = match[1].trim();
       for (const fii of this.assets) {
         if ('tradingCode' in fii && fii.tradingName === tradingName) {
-          return {code: fii.tradingCode, name, cnpj: fii.cnpj, isFII: true};
+          const mainTradingCode = fii.tradingCode.split(/\s/).shift();
+          if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
+          return {code: mainTradingCode, name, cnpj: fii.cnpj, isFII: true};
         }
       }
     }

@@ -104,7 +104,7 @@ export class FiiInfos {
   issuingCompany: string;
   /** Company name */
   tradingName: string;
-  /** Issuing Company (B3 Code) */
+  /** Issuing Company (B3 Code - maybe one or more in case of IPOs) */
   tradingCode: string;
   /** Registration number (numbers only) */
   cnpj: string;
@@ -113,11 +113,18 @@ export class FiiInfos {
   /** Represents a cash dividend paid out by a company to its shareholders. (Short version) */
   cashDividends: CashDividendShortVersion[] = [];
 
-  constructor (tradingName: string, tradingCode: string, cnpj: string) {
+  /**
+   * Real estate info
+   * @param tradingName Company name
+   * @param tradingCode Issuing Company (B3 Code - maybe one or more in case of IPOs)
+   * @param cnpj Registration number (numbers only)
+   * @param issuingCompany Company (B3 Code - only letters)
+   */
+  constructor (tradingName: string, tradingCodes: string, cnpj: string, issuingCompany: string) {
     this.tradingName = tradingName;
-    this.tradingCode = tradingCode;
+    this.tradingCode = tradingCodes;
     this.cnpj = cnpj;
-    this.issuingCompany = this.tradingCode.slice(0, 4);
+    this.issuingCompany = issuingCompany;
   }
 
 }
