@@ -26,10 +26,14 @@ on:
 jobs:
 
   dividends:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run:  npm ci
@@ -38,10 +42,14 @@ jobs:
         run:  npm run test dividends
 
   rico-compliance:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run:  npm ci
@@ -50,10 +58,14 @@ jobs:
         run:  npm run test rico
 
   clear-compliance:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run:  npm ci
@@ -62,10 +74,14 @@ jobs:
         run:  npm run test rico
 
   crawler:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run:  npm ci
@@ -74,10 +90,14 @@ jobs:
         run:  npm run test crawler
 
   webpack:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run:  npm ci

@@ -19,7 +19,7 @@ jobs:
     secrets: inherit
 
   create-release:
-    runs-on: [ self-hosted ]
+    runs-on: ubuntu-22.04
     needs: ci-check
 
     steps:
@@ -41,12 +41,16 @@ jobs:
 
   # Release on NPM
   npm-release:
-    runs-on: [ self-hosted, X64 ]
+    runs-on: ubuntu-22.04
     needs: create-release
     
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
 
     - name: Install dependencies and build 🔧
       run: npm ci && npm run build && npm run pack

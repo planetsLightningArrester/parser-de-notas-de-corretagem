@@ -8,7 +8,7 @@ defaults:
 
 # Controls when the workflow will run
 on:
-  # Nightly - running at noon - Sao Paulo TMZ
+  # Nightly - running at noon UTC
   schedule:
     - cron: '0 12 * * *'
 
@@ -17,14 +17,17 @@ on:
 
 # Jobs
 jobs:
-
-  assets-auto-update:
-    runs-on: [ self-hosted ]
+  assets_auto_update:
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci
