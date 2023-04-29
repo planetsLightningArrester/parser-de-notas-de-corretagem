@@ -3,5 +3,8 @@
     "corretagem",
     "notas"
   ],
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "cSpell.enableFiletypes": [
+    "github-actions-workflow"
+  ]
 }
