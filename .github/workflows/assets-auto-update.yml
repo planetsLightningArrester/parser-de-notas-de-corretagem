@@ -1,0 +1,84 @@
+# Cron job to auto update listed assets
+
+name: Assets auto update
+
+defaults:
+  run:
+    shell: bash -ieo pipefail {0}
+
+# Controls when the workflow will run
+on:
+  # Nightly - running at noon - Sao Paulo TMZ
+  schedule:
+    - cron: '0 12 * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Jobs
+jobs:
+
+  assets-auto-update:
+    runs-on: [ self-hosted ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Fetch assets updates
+        run: npm run update-assets
+
+      - name: Update remote with changes
+        shell: bash
+        run: |
+
+          # Set bot
+          echo "[$(date +"%T")] [DEBUG] Setting bot";
+          git config --local user.email "github-actions[bot]@users.noreply.github.com";
+          git config --local user.name "github-actions[bot]";
+          
+          # Check for changes
+          echo "[$(date +"%T")] [DEBUG] Checking for changes";
+          git add assets.json;
+          status=$(git status);
+
+          if [[ $status =~ "Changes to be committed" ]]; then
+            echo "[$(date +"%T")] [DEBUG] New changes detected";
+            
+            # Calculate new tag version
+            echo "[$(date +"%T")] [DEBUG] Calculating new version from the tag $(git describe --tags)";
+            last_version=$(git describe --tags | sed -r -n 's/v([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*/\1/p');
+            minor="${last_version##*.}";
+            major="${last_version%.*}";
+            new_version="$major.$((minor + 1))";
+            echo "[$(date +"%T")] [DEBUG] New version - v$new_version";
+            
+            # Update package.json
+            echo "[$(date +"%T")] [DEBUG] Updating package.json";
+            package_json_content=$(sed -r "s/$last_version/$new_version/" < package.json);
+            echo "$package_json_content" > package.json;
+            git diff package.json;
+            
+            # Update CHANGELOG.md
+            echo "[$(date +"%T")] [DEBUG] Updating CHANGELOG.md";
+            changelog_content=$(sed -r "s/## \[$last_version\](.*)/## \[$new_version\] - $(date '+%Y-%m-%d')\n### Changed\n- Update assets list\n\n## \[$last_version\]\1/" < CHANGELOG.md);
+            echo "$changelog_content" > CHANGELOG.md;
+            git diff CHANGELOG.md;
+
+            # Submit the changes creating a new tag
+            echo "[$(date +"%T")] [DEBUG] Submitting changes";
+            git add package.json CHANGELOG.md;
+            git commit -m "Update assets list";
+            git tag "v$new_version";
+            git push -u origin main --tags;
+          else
+            echo "[$(date +"%T")] [DEBUG] No changes detected";
+          fi
+
+          echo "[$(date +"%T")] [DEBUG] Done";
+
+# EOF
