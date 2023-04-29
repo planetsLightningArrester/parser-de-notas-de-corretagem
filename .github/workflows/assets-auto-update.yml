@@ -19,9 +19,10 @@ on:
 jobs:
   assets_auto_update:
     runs-on: ubuntu-22.04
+    outputs:
+      RELEASE_VERSION: ${{ steps.push.outputs.RELEASE_VERSION }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
@@ -37,6 +38,7 @@ jobs:
 
       - name: Update remote with changes
         shell: bash
+        id: push
         run: |
 
           # Set bot
@@ -78,10 +80,21 @@ jobs:
             git commit -m "Update assets list";
             git tag "v$new_version";
             git push -u origin main --tags;
+
+            # Set flag to trigger the release
+            echo "RELEASE_VERSION=$new_version" >> $GITHUB_OUTPUT
           else
             echo "[$(date +"%T")] [DEBUG] No changes detected";
           fi
 
           echo "[$(date +"%T")] [DEBUG] Done";
+      
+  make_release:
+    needs: assets_auto_update
+    if: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
+    uses: ./.github/workflows/release.yml
+    secrets: inherit
+    with:
+      release_version: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
 
 # EOF
