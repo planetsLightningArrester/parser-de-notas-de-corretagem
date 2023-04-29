@@ -14,6 +14,7 @@ on:
 
   # Any pull request update
   pull_request:
+    branches: ['main']
 
   # Can be triggered by other workflows
   workflow_call:
