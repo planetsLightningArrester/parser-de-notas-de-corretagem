@@ -74,6 +74,8 @@ jobs:
         run:  npm run test rico
 
   crawler:
+    # Skip check if this CI was triggered by another workflow
+    if: ${{ github.event_name != 'workflow_call' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
