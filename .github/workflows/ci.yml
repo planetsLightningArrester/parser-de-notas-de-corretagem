@@ -26,7 +26,7 @@ on:
 jobs:
 
   dividends:
-    runs-on: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -42,7 +42,7 @@ jobs:
         run:  npm run test dividends
 
   rico-compliance:
-    runs-on: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
         run:  npm run test rico
 
   clear-compliance:
-    runs-on: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -74,7 +74,7 @@ jobs:
         run:  npm run test rico
 
   crawler:
-    runs-on: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -90,7 +90,7 @@ jobs:
         run:  npm run test crawler
 
   webpack:
-    runs-on: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
