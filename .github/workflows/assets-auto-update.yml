@@ -18,7 +18,7 @@ on:
 # Jobs
 jobs:
   assets_auto_update:
-    runs-on: ubuntu-22.04
+    runs-on: [ubuntu-18.04, ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
     outputs:
       RELEASE_VERSION: ${{ steps.push.outputs.RELEASE_VERSION }}
     steps:
