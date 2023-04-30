@@ -81,7 +81,7 @@ jobs:
 
   crawler:
     # Skip check if this CI was triggered by another workflow
-    if: ${{ inputs.skip_crawler_test != false }}
+    if: ${{ ! inputs.skip_crawler_test }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
