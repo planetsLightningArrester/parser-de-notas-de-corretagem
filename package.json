@@ -6,10 +6,10 @@
   "types": "notes-parser.d.ts",
   "scripts": {
     "test": "jest --forceExit --runInBand --detectOpenHandles",
-    "build": "rm -rf build; tsc --declaration",
+    "build": "rm -rf out; tsc --declaration",
     "pack": "rm -rf dist; webpack --mode production",
     "pub": "npm publish ./dist --access=public",
-    "update-assets": "npm run build && node out/src/scripts/update.js"
+    "update-assets": "npm run build && node out/scripts/update.js"
   },
   "repository": {
     "type": "git",
