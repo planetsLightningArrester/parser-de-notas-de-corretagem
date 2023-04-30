@@ -22,21 +22,23 @@ jobs:
     outputs:
       RELEASE_VERSION: ${{ steps.push.outputs.RELEASE_VERSION }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code 📥
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install dependencies 🔧
         run: npm ci
       
-      - name: Fetch assets updates
+      - name: Fetch assets updates 📡
         run: npm run update-assets
 
-      - name: Update remote with changes
+      - name: Update remote with changes 🤖
         shell: bash
         id: push
         run: |
@@ -88,9 +90,20 @@ jobs:
           fi
 
           echo "[$(date +"%T")] [DEBUG] Done";
-      
-  make_release:
+
+  # Call CI, if a new release version was set
+  ci-check:
     needs: assets_auto_update
+    if: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
+    uses: ./.github/workflows/ci.yml
+    secrets: inherit
+    with:
+      # Skip crawler tests, since the crawler just ran
+      skip_crawler_test: true
+
+  # Create a release, if a new release version was set and the CI passed
+  make_release:
+    needs: [ assets_auto_update, ci-check ]
     if: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
     uses: ./.github/workflows/release.yml
     secrets: inherit

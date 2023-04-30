@@ -46,49 +46,52 @@ jobs:
   dividends:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code 📥
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v3
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install dependencies 🔧
         run:  npm ci
       
-      - name: Run test
+      - name: Run test 🧪
         run:  npm run test dividends
 
   rico-compliance:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code 📥
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v3
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install dependencies 🔧
         run:  npm ci
       
-      - name: Run test
+      - name: Run test 🧪
         run:  npm run test rico
 
   clear-compliance:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code 📥
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v3
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install dependencies 🔧
         run:  npm ci
       
-      - name: Run test
+      - name: Run test 🧪
         run:  npm run test rico
 
   crawler:
@@ -96,39 +99,44 @@ jobs:
     if: ${{ ! inputs.skip_crawler_test }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code 📥
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v3
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
+      - name: Install dependencies 🔧
         run:  npm ci
       
-      - name: Run test
+      - name: Run test 🧪
         run:  npm run test crawler
 
   webpack:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout code 📥
         uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v3
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run:  npm ci
-
-      - name: Typescript Build
-        run:  npm run build
-
-      - name: Generate production bundle
-        run:  npm run pack
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build && npm run pack
       
-      - name: Run test
+      - name: Run test 🧪
         run:  npm run test webpack
+
+  # Trigger the release if a version tag was submitted
+  make_release:
+    needs: [ dividends, rico-compliance, clear-compliance, crawler, webpack ]
+    if: contains('refs/tags/v', ${{ github.event.ref }})
+    uses: ./.github/workflows/release.yml
+    secrets: inherit
+    with:
+      release_version: ${{ github.ref_name }}
 
 # EOF
