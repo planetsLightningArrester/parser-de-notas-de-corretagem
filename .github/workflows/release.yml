@@ -26,6 +26,7 @@ jobs:
     uses: ./.github/workflows/ci.yml
     secrets: inherit
     with:
+      # Crawler tests are skipped if the workflow was triggered by another workflow
       skip_crawler_test: ${{ inputs.release_version != '' && true ||  false  }}
 
   create-release:
