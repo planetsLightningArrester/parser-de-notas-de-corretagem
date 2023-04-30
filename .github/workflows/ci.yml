@@ -11,10 +11,22 @@ on:
   # Main push
   push:
     branches: ['main']
-
+    paths-ignore:
+      - README.md
+      - CHANGELOG.md
+      - LICENSE
+      - .github/workflows/release.yml
+      - .github/workflows/assets-auto-update.yml
+      
   # Any pull request update
   pull_request:
     branches: ['main']
+    paths-ignore:
+      - README.md
+      - CHANGELOG.md
+      - LICENSE
+      - .github/workflows/release.yml
+      - .github/workflows/assets-auto-update.yml
 
   # Can be triggered by other workflows
   workflow_call:
