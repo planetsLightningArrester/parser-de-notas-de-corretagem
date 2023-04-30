@@ -1,6 +1,6 @@
 # Parse Brazilian brokerage notes PDFs (Inter and Clear holders available)
 
-[![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml)
+![npm](https://img.shields.io/npm/v/parser-de-notas-de-corretagem) [![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml) [![Assets auto update](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml)
 
 Easing the PITA of making IRPF
 
