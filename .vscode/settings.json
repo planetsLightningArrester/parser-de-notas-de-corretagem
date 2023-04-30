@@ -2,7 +2,9 @@
   "cSpell.words": [
     "autoupdate",
     "corretagem",
-    "notas"
+    "noreply",
+    "notas",
+    "pipefail"
   ],
   "cmake.configureOnOpen": false,
   "cSpell.enableFiletypes": [
