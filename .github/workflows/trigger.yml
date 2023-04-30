@@ -25,5 +25,7 @@ jobs:
   ci-check:
     uses: ./.github/workflows/ci.yml
     secrets: inherit
+    with:
+      skip_crawler_test: true
 
 # EOF

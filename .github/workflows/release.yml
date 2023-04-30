@@ -25,6 +25,8 @@ jobs:
   ci-check:
     uses: ./.github/workflows/ci.yml
     secrets: inherit
+    with:
+      skip_crawler_test: ${{ github.event.inputs.release_version != '' && true ||  false  }}
 
   create-release:
     runs-on: ubuntu-latest

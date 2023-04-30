@@ -18,12 +18,28 @@ on:
 
   # Can be triggered by other workflows
   workflow_call:
+    inputs:
+      skip_crawler_test:
+        type: boolean
+        description: 'Whether the crawler test should run'
+        required: true
+        default: false
 
   # Allow manual trigger
   workflow_dispatch:
 
 # Jobs
 jobs:
+
+  run-on-push:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.skip_crawler_test == false }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check event name
+        run: echo "Trigger? - ${{ github.event.inputs.skip_crawler_test }}"
 
   dividends:
     runs-on: ubuntu-latest
@@ -32,7 +48,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Check event name
-        run: echo "Event name - ${{ github.event_name }}"
+        run: echo "Trigger? - ${{ github.event.inputs.skip_crawler_test }}"
 
       # - uses: actions/setup-node@v3
       #   with:
@@ -78,7 +94,7 @@ jobs:
 
   # crawler:
   #   # Skip check if this CI was triggered by another workflow
-  #   if: ${{ github.event_name != 'workflow_call' }}
+  #   if: ${{ github.event.inputs.skip_crawler_test == false }}
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout code
