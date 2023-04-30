@@ -20,10 +20,10 @@ on:
   workflow_call:
     inputs:
       skip_crawler_test:
-        type: boolean
+        type: string
         description: 'Whether the crawler test should run'
         required: true
-        default: false
+        default: 'false'
 
   # Allow manual trigger
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
 
   run-on-push:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.skip_crawler_test == false }}
+    if: ${{ github.event.inputs.skip_crawler_test == 'false' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -94,7 +94,7 @@ jobs:
 
   # crawler:
   #   # Skip check if this CI was triggered by another workflow
-  #   if: ${{ github.event.inputs.skip_crawler_test == false }}
+  #   if: ${{ github.event.inputs.skip_crawler_test == 'false' }}
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Checkout code
