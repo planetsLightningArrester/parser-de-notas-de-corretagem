@@ -1,6 +1,6 @@
 {
   "name": "parser-de-notas-de-corretagem",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Parse Brazilian brokerage notes PDFs (Inter and Clear holders available)",
   "main": "notes-parser.js",
   "types": "notes-parser.d.ts",
