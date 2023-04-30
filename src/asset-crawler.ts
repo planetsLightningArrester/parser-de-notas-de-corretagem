@@ -104,7 +104,7 @@ export class AssetCrawler {
 
     let stockData: StockCrawlerRequestResult = getStockResult.data;
     
-    while(stockData.page.totalPages >= stockData.page.pageNumber) {
+    while (stockData.page.totalPages >= stockData.page.pageNumber) {
       if (!('data' in getStockResult)) throw new Error(`[AC] Unexpected response: ${getStockResult}`);
       stockData = getStockResult.data;
       stockData.results.forEach(r => {
@@ -153,11 +153,11 @@ export class AssetCrawler {
               // Merge removing duplicates. It's required to create an object to remove duplicates
               company.stockDividends = uniqueDividends([
                 ...company.stockDividends,
-                ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.factor, d.label, d.lastDatePrior))
+                ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.approvedOn, d.factor, d.label, d.lastDatePrior))
               ]);
               company.cashDividends = uniqueDividends([
                 ...company.cashDividends,
-                ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.paymentDate, c.rate, c.label, c.lastDatePrior))
+                ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.approvedOn, c.paymentDate, c.rate, c.label, c.lastDatePrior))
               ]);
               this.assets.splice(index, 1, company);
             } else this.assets.push(company);
@@ -190,7 +190,7 @@ export class AssetCrawler {
 
     let fiiData: FIICrawlerRequestResult = getFiiResult.data;
     
-    while(fiiData.page.totalPages >= fiiData.page.pageNumber) {
+    while (fiiData.page.totalPages >= fiiData.page.pageNumber) {
       if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
       fiiData = getFiiResult.data;
       fiiData.results.forEach(r => {
@@ -246,11 +246,11 @@ export class AssetCrawler {
             // Merge removing duplicates. It's required to create an object to remove duplicates
             fiiElement.stockDividends = uniqueDividends([
               ...fiiElement.stockDividends,
-              ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.factor, d.label, d.lastDatePrior))
+              ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.approvedOn, d.factor, d.label, d.lastDatePrior))
             ]);
             fiiElement.cashDividends = uniqueDividends([
               ...fiiElement.cashDividends,
-              ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.paymentDate, c.rate, c.label, c.lastDatePrior))
+              ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.approvedOn, c.paymentDate, c.rate, c.label, c.lastDatePrior))
             ]);
             this.assets.splice(index, 1, fiiElement);
           } else this.assets.push(fiiElement);

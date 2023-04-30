@@ -280,6 +280,11 @@ export interface CashDividend {
  */
 export class StockDividendShortVersion {
   /**
+   * The date on which the dividend was approved
+   * @example "27/04/2021"
+   */
+  approvedOn: string;
+  /**
    * The factor by which the shares were split/multiplied, depending on label
    * @example "100,00000000000"
    */
@@ -300,7 +305,8 @@ export class StockDividendShortVersion {
   // Allow key mapping
   [key: string]: string;
 
-  constructor(factor: string, label: string, lastDatePrior: string) {
+  constructor(approvedOn: string, factor: string, label: string, lastDatePrior: string) {
+    this.approvedOn = approvedOn;
     this.factor = factor;
     this.label = label;
     this.lastDatePrior = lastDatePrior;
@@ -312,7 +318,7 @@ export class StockDividendShortVersion {
    * @returns the short version of `StockDividendShortVersion` with only the relevant fields
    */
   static fromStockDividend(stockDividend: StockDividend): StockDividendShortVersion {
-    return new StockDividendShortVersion(stockDividend.factor, stockDividend.label, stockDividend.lastDatePrior);
+    return new StockDividendShortVersion(stockDividend.approvedOn, stockDividend.factor, stockDividend.label, stockDividend.lastDatePrior);
   }
 
 }
@@ -321,6 +327,11 @@ export class StockDividendShortVersion {
  * Represents a cash dividend paid out by a company to its shareholders. (Short version)
  */
 export class CashDividendShortVersion {
+  /**
+   * The date on which the dividend was approved
+   * @example "27/04/2021"
+   */
+  approvedOn: string;
   /**
    * The date on which the dividend was paid out
    * @example "16/08/2023"
@@ -346,7 +357,8 @@ export class CashDividendShortVersion {
   // Allow key mapping
   [key: string]: string;
 
-  constructor(paymentDate: string, rate: string, label: string, lastDatePrior: string) {
+  constructor(approvedOn: string, paymentDate: string, rate: string, label: string, lastDatePrior: string) {
+    this.approvedOn = approvedOn;
     this.paymentDate = paymentDate;
     this.rate = rate;
     this.label = label;
@@ -359,7 +371,7 @@ export class CashDividendShortVersion {
    * @returns the short version of `CashDividendShortVersion` with only the relevant fields
    */
   static fromCashDividend(cashDividend: CashDividend): CashDividendShortVersion {
-    return new CashDividendShortVersion(cashDividend.paymentDate, cashDividend.rate, cashDividend.label, cashDividend.lastDatePrior);
+    return new CashDividendShortVersion(cashDividend.approvedOn, cashDividend.paymentDate, cashDividend.rate, cashDividend.label, cashDividend.lastDatePrior);
   }
 
 }
