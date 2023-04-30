@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { NoteParser, NegotiationNote, AssetCrawler, StockDividendShortVersion } from '../../dist/notes-parser';
+import { NoteParser, NegotiationNote, AssetCrawler } from '../../dist/notes-parser';
 
 const assets = new NoteParser();
 const possiblePasswords: string[] = ['123', '456'];
