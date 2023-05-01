@@ -132,11 +132,16 @@ jobs:
 
   # Trigger the release if a version tag was submitted
   make_release:
+    # needs: [ dividends, rico-compliance, clear-compliance, crawler, webpack ]
+    # if: contains(${{ github.event.ref }}, 'refs/tags/v')
+    # uses: ./.github/workflows/release.yml
+    # secrets: inherit
+    # with:
+    #   release_version: ${{ github.ref_name }}
     needs: [ dividends, rico-compliance, clear-compliance, crawler, webpack ]
-    if: contains('refs/tags/v', ${{ github.event.ref }})
-    uses: ./.github/workflows/release.yml
-    secrets: inherit
-    with:
-      release_version: ${{ github.ref_name }}
+    if: contains(${{ github.event.ref }}, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event.ref }}
 
 # EOF
