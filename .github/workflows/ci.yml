@@ -139,7 +139,7 @@ jobs:
     # with:
     #   release_version: ${{ github.ref_name }}
     needs: [ dividends, rico-compliance, clear-compliance, webpack ]
-    if: contains(${{ github.event.ref }}, 'refs/tags/v')
+    if: contains(github.event.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.event.ref }}
