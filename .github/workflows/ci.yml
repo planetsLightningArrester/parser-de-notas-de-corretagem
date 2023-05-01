@@ -142,7 +142,7 @@ jobs:
         id: result
         shell: bash
         run: |
-          last_commit_message=${{github.event.commits[0].message}}
+          last_commit_message="${{github.event.commits[0].message}}"
           if [[ -n "$last_commit_message" ]] && [[ "$last_commit_message" =~ v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+ ]]; then
             echo "RELEASE_VERSION=$last_commit_message" >> $GITHUB_OUTPUT;
           fi
