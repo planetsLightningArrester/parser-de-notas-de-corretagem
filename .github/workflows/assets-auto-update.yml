@@ -32,8 +32,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies 🔧
-        run: npm ci
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build
       
       - name: Fetch assets updates 📡
         run: npm run update-assets
