@@ -108,6 +108,6 @@ jobs:
     uses: ./.github/workflows/release.yml
     secrets: inherit
     with:
-      release_version: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
+      release_version: "v${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}"
 
 # EOF
