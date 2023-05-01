@@ -43,96 +43,96 @@ on:
 # Jobs
 jobs:
 
-  # dividends:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code 📥
-  #       uses: actions/checkout@v3
+  dividends:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code 📥
+        uses: actions/checkout@v3
 
-  #     - name: NodeJS setup 🛠️
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-  #     - name: Install dependencies 🔧
-  #       run:  npm ci
+      - name: Install dependencies 🔧
+        run:  npm ci
       
-  #     - name: Run test 🧪
-  #       run:  npm run test dividends
+      - name: Run test 🧪
+        run:  npm run test dividends
 
-  # rico-compliance:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code 📥
-  #       uses: actions/checkout@v3
+  rico-compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code 📥
+        uses: actions/checkout@v3
 
-  #     - name: NodeJS setup 🛠️
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-  #     - name: Install dependencies 🔧
-  #       run:  npm ci
+      - name: Install dependencies 🔧
+        run:  npm ci
       
-  #     - name: Run test 🧪
-  #       run:  npm run test rico
+      - name: Run test 🧪
+        run:  npm run test rico
 
-  # clear-compliance:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code 📥
-  #       uses: actions/checkout@v3
+  clear-compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code 📥
+        uses: actions/checkout@v3
 
-  #     - name: NodeJS setup 🛠️
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-  #     - name: Install dependencies 🔧
-  #       run:  npm ci
+      - name: Install dependencies 🔧
+        run:  npm ci
       
-  #     - name: Run test 🧪
-  #       run:  npm run test rico
+      - name: Run test 🧪
+        run:  npm run test rico
 
-  # crawler:
-  #   # Skip check if this CI was triggered by another workflow
-  #   if: ${{ ! inputs.skip_crawler_test }}
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code 📥
-  #       uses: actions/checkout@v3
+  crawler:
+    # Skip check if this CI was triggered by another workflow
+    if: ${{ ! inputs.skip_crawler_test }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code 📥
+        uses: actions/checkout@v3
 
-  #     - name: NodeJS setup 🛠️
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-  #     - name: Install dependencies 🔧
-  #       run:  npm ci
+      - name: Install dependencies 🔧
+        run:  npm ci
       
-  #     - name: Run test 🧪
-  #       run:  npm run test crawler
+      - name: Run test 🧪
+        run:  npm run test crawler
 
-  # webpack:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code 📥
-  #       uses: actions/checkout@v3
+  webpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code 📥
+        uses: actions/checkout@v3
 
-  #     - name: NodeJS setup 🛠️
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 18
+      - name: NodeJS setup 🛠️
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-  #     - name: Install dependencies and build 🔧
-  #       run: npm ci && npm run build && npm run pack
+      - name: Install dependencies and build 🔧
+        run: npm ci && npm run build && npm run pack
       
-  #     - name: Run test 🧪
-  #       run:  npm run test webpack
+      - name: Run test 🧪
+        run:  npm run test webpack
 
   check_if_release_is_required:
     runs-on: ubuntu-latest
-    # needs: [ dividends, rico-compliance, clear-compliance, crawler, webpack ]
+    needs: [ dividends, rico-compliance, clear-compliance, crawler, webpack ]
     # Skip check if this CI was triggered by another workflow
     if: ${{ ! inputs.skip_crawler_test }}
     outputs:
@@ -148,12 +148,12 @@ jobs:
           fi
 
   # Trigger the release if a version tag was submitted
-  # make_release:
-  #   needs: check_if_release_is_required
-  #   if: ${{ needs.check_if_release_is_required.outputs.RELEASE_VERSION }}
-  #   uses: ./.github/workflows/release.yml
-  #   secrets: inherit
-  #   with:
-  #     release_version: ${{ needs.check_if_release_is_required.outputs.RELEASE_VERSION }}
+  make_release:
+    needs: check_if_release_is_required
+    if: ${{ needs.check_if_release_is_required.outputs.RELEASE_VERSION }}
+    uses: ./.github/workflows/release.yml
+    secrets: inherit
+    with:
+      release_version: ${{ needs.check_if_release_is_required.outputs.RELEASE_VERSION }}
 
 # EOF
