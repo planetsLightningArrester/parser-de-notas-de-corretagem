@@ -15,7 +15,20 @@
     "type": "git",
     "url": "git+https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem.git"
   },
-  "keywords": [],
+  "keywords": [
+    "parser",
+    "conversor",
+    "notas",
+    "corretagem",
+    "notes",
+    "brokerage",
+    "assets",
+    "auctions",
+    "real estate",
+    "brazilian",
+    "ações",
+    "fii"
+  ],
   "author": "Planet's Lightning Arrester",
   "license": "GNU GPLv3",
   "bugs": {
