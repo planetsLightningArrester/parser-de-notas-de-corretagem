@@ -130,6 +130,7 @@ export class AssetCrawler {
             if (!corporativeEvents) {
               company.stockDividends = [];
               company.cashDividends = [];
+              company.subscriptions = [];
               if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`)                
             } else {
               if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s)
@@ -229,6 +230,7 @@ export class AssetCrawler {
           if (!corporativeEvents.code) {
             fiiElement.stockDividends = [];
             fiiElement.cashDividends = [];
+            fiiElement.subscriptions = [];
             if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym}`);
           } else {
             if (corporativeEvents.stockDividends) fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => s);
