@@ -2,13 +2,13 @@
 import { Asset } from './types/common';
 import { AssetCrawler, AssetVerbosity } from "./asset-crawler";
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf';
-import { CashDividendShortVersion, StockDividendShortVersion } from './types/corporative-events';
+import { CashDividend, StockDividend } from './types/corporative-events';
 
 // Make crawler available available 
 export {
   AssetCrawler,
-  CashDividendShortVersion,
-  StockDividendShortVersion
+  CashDividend,
+  StockDividend
 }
 
 export type {
@@ -381,7 +381,7 @@ export class NoteParser {
    * @returns and `Array` where the first position is the list of stock dividends
    * and the second position is a list of the cash dividends
    */
-  getDividends(code: string): [StockDividendShortVersion[], CashDividendShortVersion[]] {
+  getDividends(code: string): [StockDividend[], CashDividend[]] {
     return this.assetCrawler.getDividends(code);
   }
   

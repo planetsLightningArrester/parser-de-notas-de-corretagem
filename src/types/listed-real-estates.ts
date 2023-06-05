@@ -1,5 +1,5 @@
 import { PageInfo } from "./common";
-import { CashDividendShortVersion, StockDividendShortVersion } from "./corporative-events";
+import { CashDividend, StockDividend, Subscription } from "./corporative-events";
 
 /** B3 request object constructor for FIIs */
 export class ListedFIIsRequest {
@@ -108,10 +108,12 @@ export class FiiInfos {
   tradingCode: string;
   /** Registration number (numbers only) */
   cnpj: string;
-  /** Represents a stock dividend paid out by a company to its shareholders. (Short version) */
-  stockDividends: StockDividendShortVersion[] = [];
-  /** Represents a cash dividend paid out by a company to its shareholders. (Short version) */
-  cashDividends: CashDividendShortVersion[] = [];
+  /** Represents a stock dividend paid out by a company to its shareholders. */
+  stockDividends: StockDividend[] = [];
+  /** Represents a cash dividend paid out by a company to its shareholders. */
+  cashDividends: CashDividend[] = [];
+  /** The subscriptions for the stock */
+  subscriptions: Subscription[] = [];
 
   /**
    * Real estate info

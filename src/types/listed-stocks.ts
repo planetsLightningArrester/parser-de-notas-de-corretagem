@@ -1,5 +1,5 @@
 import { PageInfo } from "./common";
-import { CashDividendShortVersion, StockDividendShortVersion } from "./corporative-events";
+import { CashDividend, StockDividend, Subscription } from "./corporative-events";
 
 /** B3 request object constructor for stocks */
 export class ListedStocksRequest {
@@ -45,9 +45,11 @@ export interface StockInfos {
   type: string;
   market: string;
   /** Represents a stock dividend paid out by a company to its shareholders. (Short version) */
-  stockDividends: StockDividendShortVersion[];
+  stockDividends: StockDividend[];
   /** Represents a cash dividend paid out by a company to its shareholders. (Short version) */
-  cashDividends: CashDividendShortVersion[];
+  cashDividends: CashDividend[];
+  /** The subscriptions for the stock */
+  subscriptions: Subscription[];
   /** Retries attempts to get the data */
   retry?: number;
 }

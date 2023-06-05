@@ -223,6 +223,8 @@ export interface StockDividend {
   lastDatePrior: string;
   /** Any additional remarks about the dividend */
   remarks: string;
+  // Allow key mapping
+  [key: string]: string;
 }
 
 /**
@@ -273,113 +275,14 @@ export interface CashDividend {
   lastDatePrior: string;
   /** Any additional remarks about the dividend */
   remarks: string;
-}
-
-/**
- * Represents a stock dividend paid out by a company to its shareholders. (Short version)
- */
-export class StockDividendShortVersion {
-  /**
-   * The date on which the dividend was approved
-   * @example "27/04/2021"
-   */
-  approvedOn: string;
-  /**
-   * The factor by which the shares were split/multiplied, depending on label
-   * @example "100,00000000000"
-   */
-  factor: string;
-  /**
-   * The label for this dividend
-   * @example
-   * "DESDOBRAMENTO"
-   * "GRUPAMENTO"
-   * "BONIFICACAO"
-   */
-  label: string;
-  /**
-   * The last date prior to which the shareholder must own the shares in order to receive the dividend
-   * @example "27/04/2021"
-   */
-  lastDatePrior: string;
   // Allow key mapping
   [key: string]: string;
-
-  constructor(approvedOn: string, factor: string, label: string, lastDatePrior: string) {
-    this.approvedOn = approvedOn;
-    this.factor = factor;
-    this.label = label;
-    this.lastDatePrior = lastDatePrior;
-  }
-
-  /**
-   * Create a `StockDividendShortVersion` from a `StockDividend`
-   * @param stockDividend the `StockDividend`
-   * @returns the short version of `StockDividendShortVersion` with only the relevant fields
-   */
-  static fromStockDividend(stockDividend: StockDividend): StockDividendShortVersion {
-    return new StockDividendShortVersion(stockDividend.approvedOn, stockDividend.factor, stockDividend.label, stockDividend.lastDatePrior);
-  }
-
-}
-
-/**
- * Represents a cash dividend paid out by a company to its shareholders. (Short version)
- */
-export class CashDividendShortVersion {
-  /**
-   * The date on which the dividend was approved
-   * @example "27/04/2021"
-   */
-  approvedOn: string;
-  /**
-   * The date on which the dividend was paid out
-   * @example "16/08/2023"
-   */
-  paymentDate: string;
-  /**
-   * The rate of the dividend, as a decimal
-   * @example "0,05323529400"
-   */
-  rate: string;
-  /**
-   * The label for this dividend
-   * @example
-   * "JRS CAP PROPRIO"
-   * "DIVIDENDO"
-   */
-  label: string;
-  /**
-   * The last date prior to which the shareholder must own the shares in order to receive the dividend
-   * @example "17/03/2023"
-   */
-  lastDatePrior: string;
-  // Allow key mapping
-  [key: string]: string;
-
-  constructor(approvedOn: string, paymentDate: string, rate: string, label: string, lastDatePrior: string) {
-    this.approvedOn = approvedOn;
-    this.paymentDate = paymentDate;
-    this.rate = rate;
-    this.label = label;
-    this.lastDatePrior = lastDatePrior;
-  }
-
-  /**
-   * Create a `CashDividendShortVersion` from a `CashDividend`
-   * @param cashDividend the `CashDividend`
-   * @returns the short version of `CashDividendShortVersion` with only the relevant fields
-   */
-  static fromCashDividend(cashDividend: CashDividend): CashDividendShortVersion {
-    return new CashDividendShortVersion(cashDividend.approvedOn, cashDividend.paymentDate, cashDividend.rate, cashDividend.label, cashDividend.lastDatePrior);
-  }
-
 }
 
 /**
  * Represents a subscription to a stock.
  */
-interface Subscription {
+export interface Subscription {
   /**
    * The asset issued for the subscription.
    * @example "BRALZRCTF006"
@@ -397,7 +300,7 @@ interface Subscription {
   priceUnit: string;
   /**
    * The trading period of the subscription.
-   * @example "31/12/9999 a 25/07/2022"
+   * @example "10/05/2023 a 18/05/2023"
    */
   tradingPeriod: string;
   /**
@@ -427,4 +330,6 @@ interface Subscription {
   lastDatePrior: string;
   /** Any additional remarks for the subscription. */
   remarks: string;
+  // Allow key mapping
+  [key: string]: string;
 }

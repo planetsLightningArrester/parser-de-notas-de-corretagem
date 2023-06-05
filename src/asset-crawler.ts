@@ -3,7 +3,7 @@ import assets from '../assets.json';
 import { Asset } from "./types/common";
 import { ListedStocksRequest, StockCrawlerRequestResult, StockInfos } from "./types/listed-stocks";
 import { FIICrawlerRequestResult, FiiCrawlerInfos, FiiInfos, FiiRawInfos, GetFIIsRequest, ListedFIIsRequest } from "./types/listed-real-estates";
-import { CashDividendShortVersion, RealEstateCorporativeEventRequest, StockCorporativeEventRequest, StockCorporativeEventResponse, StockDividendShortVersion } from "./types/corporative-events";
+import { CashDividend, RealEstateCorporativeEventRequest, StockCorporativeEventRequest, StockCorporativeEventResponse, StockDividend, Subscription } from "./types/corporative-events";
 
 /** Holds info about a listener event */
 class UpdateListener {
@@ -65,7 +65,7 @@ export class AssetCrawler {
    * @param verbose set the verbosity level. Default is `off`
    */
   constructor(autoUpdate?: boolean, verbose?: AssetVerbosity) {
-    this.assets = assets;
+    this.assets = assets as Array<StockInfos | FiiInfos>;
     this.verbosity = verbose || 'off';
     this.autoUpdate = autoUpdate || false;
   }
@@ -132,14 +132,12 @@ export class AssetCrawler {
               company.cashDividends = [];
               if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`)                
             } else {
-              if (corporativeEvents.stockDividends) {
-                company.stockDividends = corporativeEvents.stockDividends.map(s => StockDividendShortVersion.fromStockDividend(s))
-              } else company.stockDividends = [];
-              
-              if (corporativeEvents.cashDividends) {
-                company.cashDividends = corporativeEvents.cashDividends.map(s => CashDividendShortVersion.fromCashDividend(s))
-              } else company.cashDividends = [];
-
+              if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s)
+              else company.stockDividends = [];
+              if (corporativeEvents.cashDividends) company.cashDividends = corporativeEvents.cashDividends.map(c => c)
+              else company.cashDividends = [];
+              if (corporativeEvents.subscriptions) company.subscriptions = corporativeEvents.subscriptions.map(s => s)
+              else company.subscriptions = [];
               if (this.verbosity === 'all') console.log(`[AC] ${company.issuingCompany} done`);
             }
 
@@ -151,13 +149,17 @@ export class AssetCrawler {
             if (index !== -1) {
               const companyPreviousData = this.assets[index];
               // Merge removing duplicates. It's required to create an object to remove duplicates
-              company.stockDividends = uniqueDividends([
+              company.stockDividends = uniqueCorporativeEvent([
                 ...company.stockDividends,
-                ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.approvedOn, d.factor, d.label, d.lastDatePrior))
+                ...companyPreviousData.stockDividends.map(d => d)
               ]);
-              company.cashDividends = uniqueDividends([
+              company.cashDividends = uniqueCorporativeEvent([
                 ...company.cashDividends,
-                ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.approvedOn, c.paymentDate, c.rate, c.label, c.lastDatePrior))
+                ...companyPreviousData.cashDividends.map(c => c)
+              ]);
+              company.subscriptions = uniqueCorporativeEvent([
+                ...company.subscriptions,
+                ...companyPreviousData.subscriptions.map(s => s)
               ]);
               this.assets.splice(index, 1, company);
             } else this.assets.push(company);
@@ -229,13 +231,12 @@ export class AssetCrawler {
             fiiElement.cashDividends = [];
             if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym}`);
           } else {
-            if (corporativeEvents.stockDividends) {
-              fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => StockDividendShortVersion.fromStockDividend(s));
-            } else fiiElement.stockDividends = [];
-
-            if (corporativeEvents.cashDividends) {
-              fiiElement.cashDividends = corporativeEvents.cashDividends.map(s => CashDividendShortVersion.fromCashDividend(s));
-            } else fiiElement.cashDividends = [];
+            if (corporativeEvents.stockDividends) fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => s);
+            else fiiElement.stockDividends = [];
+            if (corporativeEvents.cashDividends) fiiElement.cashDividends = corporativeEvents.cashDividends.map(c => c);
+            else fiiElement.cashDividends = [];
+            if (corporativeEvents.subscriptions) fiiElement.subscriptions = corporativeEvents.subscriptions.map(s => s);
+            else fiiElement.subscriptions = [];
             if (this.verbosity === 'all') console.log(`[AC] ${fii.acronym} done`)
           }
 
@@ -244,13 +245,17 @@ export class AssetCrawler {
           if (index !== -1) {
             const companyPreviousData = this.assets[index];
             // Merge removing duplicates. It's required to create an object to remove duplicates
-            fiiElement.stockDividends = uniqueDividends([
+            fiiElement.stockDividends = uniqueCorporativeEvent([
               ...fiiElement.stockDividends,
-              ...companyPreviousData.stockDividends.map(d => new StockDividendShortVersion(d.approvedOn, d.factor, d.label, d.lastDatePrior))
+              ...companyPreviousData.stockDividends.map(d =>d)
             ]);
-            fiiElement.cashDividends = uniqueDividends([
+            fiiElement.cashDividends = uniqueCorporativeEvent([
               ...fiiElement.cashDividends,
-              ...companyPreviousData.cashDividends.map(c => new CashDividendShortVersion(c.approvedOn, c.paymentDate, c.rate, c.label, c.lastDatePrior))
+              ...companyPreviousData.cashDividends.map(c =>c)
+            ]);
+            fiiElement.subscriptions = uniqueCorporativeEvent([
+              ...fiiElement.subscriptions,
+              ...companyPreviousData.subscriptions.map(s =>s)
             ]);
             this.assets.splice(index, 1, fiiElement);
           } else this.assets.push(fiiElement);
@@ -332,7 +337,7 @@ export class AssetCrawler {
    * @returns and `Array` where the first position is the list of stock dividends
    * and the second position is a list of the cash dividends
    */
-  getDividends(code: string): [StockDividendShortVersion[], CashDividendShortVersion[]] {
+  getDividends(code: string): [StockDividend[], CashDividend[]] {
     code = code.slice(0, 4);
     const asset = this.assets.find(a => a.issuingCompany === code);
     if (!asset) throw new Error(`[AC] No asset defined with code ${code}`);
@@ -363,15 +368,15 @@ export class AssetCrawler {
 
 }
 
-/** Types of dividend */
-type Dividend = StockDividendShortVersion | CashDividendShortVersion;
+/** Types of corporative events */
+type CorporativeEvent = StockDividend | CashDividend | Subscription;
 
 /**
  * Remove duplicated dividends
  * @param dividends an `Array` of `Dividend`
  * @returns the incoming array without the duplicates
  */
-function uniqueDividends<T extends Dividend>(dividends: T[]): T[] {
+function uniqueCorporativeEvent<T extends CorporativeEvent>(dividends: T[]): T[] {
   const result: T[] = [];
   for (let i = 0; i < dividends.length; i++) {
     const reference = dividends[i];
