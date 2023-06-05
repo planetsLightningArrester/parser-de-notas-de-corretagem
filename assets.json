@@ -10548,28 +10548,6 @@
         "remarks": ""
       },
       {
-        "assetIssued": "BRCLSCACNOR6",
-        "paymentDate": "31/12/9999",
-        "rate": "0,56113432800",
-        "relatedTo": "1º Trimestre/2023",
-        "approvedOn": "16/03/2023",
-        "isinCode": "BRCLSCACNOR6",
-        "label": "JRS CAP PROPRIO",
-        "lastDatePrior": "31/03/2023",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRCLSCACNPR3",
-        "paymentDate": "31/12/9999",
-        "rate": "0,61724776100",
-        "relatedTo": "1º Trimestre/2023",
-        "approvedOn": "16/03/2023",
-        "isinCode": "BRCLSCACNPR3",
-        "label": "JRS CAP PROPRIO",
-        "lastDatePrior": "31/03/2023",
-        "remarks": ""
-      },
-      {
         "assetIssued": "BRCLSCACNPR3",
         "paymentDate": "31/12/9999",
         "rate": "0,61724776100",
@@ -17171,6 +17149,28 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BREMAEACNOR4",
+        "paymentDate": "30/06/2023",
+        "rate": "0,46762715600",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "30/05/2023",
+        "isinCode": "BREMAEACNOR4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREMAEACNPR1",
+        "paymentDate": "30/06/2023",
+        "rate": "0,51438987200",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "30/05/2023",
+        "isinCode": "BREMAEACNPR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BREMAEACNOR4",
         "paymentDate": "30/06/2023",
@@ -40375,7 +40375,85 @@
     "tradingCode": "HOFC11",
     "cnpj": "31894369000119",
     "stockDividends": [],
-    "cashDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "15/06/2023",
+        "rate": "0,20000000000",
+        "relatedTo": "Maio/2023",
+        "approvedOn": "31/05/2023",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "31/05/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "15/05/2023",
+        "rate": "0,20000000000",
+        "relatedTo": "Abril/2023",
+        "approvedOn": "28/04/2023",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "28/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "17/04/2023",
+        "rate": "0,20000000000",
+        "relatedTo": "Março/2023",
+        "approvedOn": "31/03/2023",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "31/03/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "14/03/2023",
+        "rate": "0,11000000000",
+        "relatedTo": "Fevereiro/2023",
+        "approvedOn": "28/02/2023",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "28/02/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "14/02/2023",
+        "rate": "0,11000000000",
+        "relatedTo": "Janeiro/2023",
+        "approvedOn": "31/01/2023",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "31/01/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "13/01/2023",
+        "rate": "0,07000000000",
+        "relatedTo": "Dezembro/2022",
+        "approvedOn": "29/12/2022",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "29/12/2022",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOFCCTF009",
+        "paymentDate": "16/11/2022",
+        "rate": "0,20000000000",
+        "relatedTo": "Outubro/2022",
+        "approvedOn": "31/10/2022",
+        "isinCode": "BRHOFCCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "31/10/2022",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -63788,8 +63866,107 @@
     "tradingName": "FII SC 401",
     "tradingCode": "FISC11",
     "cnpj": "12804013000100",
-    "stockDividends": [],
-    "cashDividends": [],
+    "stockDividends": [
+      {
+        "assetIssued": "BRFISCCTF008",
+        "factor": "900,00000000000",
+        "approvedOn": "03/12/2020",
+        "isinCode": "BRFISCCTF008",
+        "label": "DESDOBRAMENTO",
+        "lastDatePrior": "10/12/2020",
+        "remarks": ""
+      }
+    ],
+    "cashDividends": [
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "15/05/2023",
+        "rate": "0,40000000000",
+        "relatedTo": "ABRIL/2023/2023",
+        "approvedOn": "05/05/2023",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "05/05/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "17/04/2023",
+        "rate": "0,40000000000",
+        "relatedTo": "MARÇO/2023/2023",
+        "approvedOn": "06/04/2023",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "06/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "14/03/2023",
+        "rate": "0,38000000000",
+        "relatedTo": "FEVEREIRO/2023/2023",
+        "approvedOn": "06/03/2023",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "06/03/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "14/02/2023",
+        "rate": "0,34000000000",
+        "relatedTo": "JANEIRO/2023/2023",
+        "approvedOn": "06/02/2023",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "06/02/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "13/01/2023",
+        "rate": "0,37000000000",
+        "relatedTo": "DEZEMBRO/2022/2023",
+        "approvedOn": "05/01/2023",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "05/01/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "14/12/2022",
+        "rate": "0,24000000000",
+        "relatedTo": "NOVEMBRO/2022/2022",
+        "approvedOn": "06/12/2022",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "06/12/2022",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "16/11/2022",
+        "rate": "0,24000000000",
+        "relatedTo": "OUTUBRO/2022/2022",
+        "approvedOn": "07/11/2022",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "07/11/2022",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFISCCTF008",
+        "paymentDate": "17/10/2022",
+        "rate": "0,24000000000",
+        "relatedTo": "SETEMBRO/2022/2022",
+        "approvedOn": "06/10/2022",
+        "isinCode": "BRFISCCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "06/10/2022",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -96486,17 +96663,6 @@
       },
       {
         "assetIssued": "BRTCNOACNOR5",
-        "paymentDate": "31/08/2015",
-        "rate": "0,00088112500",
-        "relatedTo": "2014",
-        "approvedOn": "30/04/2015",
-        "isinCode": "BRTCNOACNOR5",
-        "label": "DIVIDENDO",
-        "lastDatePrior": "05/05/2015",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRTCNOACNOR5",
         "paymentDate": "30/09/2015",
         "rate": "0,00088112500",
         "relatedTo": "2014",
@@ -96540,39 +96706,6 @@
         "remarks": ""
       },
       {
-        "assetIssued": "BRTCNOACNOR5",
-        "paymentDate": "30/12/2015",
-        "rate": "0,00088112500",
-        "relatedTo": "2014",
-        "approvedOn": "30/04/2015",
-        "isinCode": "BRTCNOACNOR5",
-        "label": "DIVIDENDO",
-        "lastDatePrior": "05/05/2015",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRTCNOACNOR5",
-        "paymentDate": "30/12/2015",
-        "rate": "0,00088112500",
-        "relatedTo": "2014",
-        "approvedOn": "30/04/2015",
-        "isinCode": "BRTCNOACNOR5",
-        "label": "DIVIDENDO",
-        "lastDatePrior": "05/05/2015",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRTCNOACNPR2",
-        "paymentDate": "31/08/2015",
-        "rate": "0,00088112500",
-        "relatedTo": "2014",
-        "approvedOn": "30/04/2015",
-        "isinCode": "BRTCNOACNPR2",
-        "label": "DIVIDENDO",
-        "lastDatePrior": "05/05/2015",
-        "remarks": ""
-      },
-      {
         "assetIssued": "BRTCNOACNPR2",
         "paymentDate": "31/08/2015",
         "rate": "0,00088112500",
@@ -96608,28 +96741,6 @@
       {
         "assetIssued": "BRTCNOACNPR2",
         "paymentDate": "15/12/2015",
-        "rate": "0,00088112500",
-        "relatedTo": "2014",
-        "approvedOn": "30/04/2015",
-        "isinCode": "BRTCNOACNPR2",
-        "label": "DIVIDENDO",
-        "lastDatePrior": "05/05/2015",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRTCNOACNPR2",
-        "paymentDate": "30/12/2015",
-        "rate": "0,00088112500",
-        "relatedTo": "2014",
-        "approvedOn": "30/04/2015",
-        "isinCode": "BRTCNOACNPR2",
-        "label": "DIVIDENDO",
-        "lastDatePrior": "05/05/2015",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRTCNOACNPR2",
-        "paymentDate": "30/12/2015",
         "rate": "0,00088112500",
         "relatedTo": "2014",
         "approvedOn": "30/04/2015",
