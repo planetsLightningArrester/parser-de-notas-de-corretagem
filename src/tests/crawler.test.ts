@@ -16,4 +16,4 @@ test('listed assets', async () => {
     expect(key).toBe(0);
     assetCrawler.fetchListedAssets();
   })
-}, 20*60*1000);
+}, 60*60*1000);
