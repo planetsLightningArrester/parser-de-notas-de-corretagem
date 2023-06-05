@@ -12,8 +12,7 @@
         "--inspect-brk",
         "${workspaceRoot}/node_modules/jest/bin/jest.js",
         "--runInBand",
-        "clear.test.ts",
-        "--t='with password'"
+        "crawler.test.ts",
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",

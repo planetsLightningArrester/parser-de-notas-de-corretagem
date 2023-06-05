@@ -4,9 +4,10 @@ import path from 'path';
 import _ from 'lodash';
 
 async function main() {
-  const crawler = new AssetCrawler(false, 'all');
+  const pathToWrite = path.join(__dirname, '..', '..', '..', 'assets.json');
+  const crawler = new AssetCrawler(false, 'minimal');
   await crawler.fetchListedAssets();
-  fs.writeFileSync(path.join(__dirname, '..', '..', 'assets.json'), JSON.stringify(_.sortBy(crawler['assets'], 'tradingName')));
+  fs.writeFileSync(pathToWrite, JSON.stringify(_.sortBy(crawler['assets'], 'tradingName'), null, 2));
 }
 
 main();
