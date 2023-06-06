@@ -13192,6 +13192,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCALIACNOR1",
+        "paymentDate": "13/06/2023",
+        "rate": "0,44678956500",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "24/04/2023",
+        "isinCode": "BRCALIACNOR1",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "24/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCALIACNOR1",
         "paymentDate": "30/06/2023",
         "rate": "0,44678956500",
         "relatedTo": "Anual/2022",
@@ -15364,6 +15375,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRDXCOACNOR8",
+        "paymentDate": "20/06/2023",
+        "rate": "0,33901833680",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "08/12/2022",
+        "isinCode": "BRDXCOACNOR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "14/12/2022",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRDXCOACNOR8",
         "paymentDate": "30/06/2023",
@@ -35246,6 +35268,15 @@
         "remarks": ""
       }
     ]
+  },
+  {
+    "issuingCompany": "FLFL",
+    "tradingName": "FII FL4440",
+    "tradingCode": "FLFL11",
+    "cnpj": "50808042000121",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
   },
   {
     "issuingCompany": "FLRP",
@@ -55849,6 +55880,17 @@
     "cnpj": "30048651000112",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRPATCCTF002",
+        "paymentDate": "23/06/2023",
+        "rate": "1,33137029775",
+        "relatedTo": "JUNHO/2023",
+        "approvedOn": "05/06/2023",
+        "isinCode": "BRPATCCTF002",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "05/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRPATCCTF002",
         "paymentDate": "09/06/2023",
