@@ -12,7 +12,7 @@ on:
     inputs:
       release_version:
         type: string
-        description: 'Release version formatted as "vMM.mm.pp"'     
+        description: 'Release version formatted as "vMM.mm.pp"'
         required: true
 
 jobs:
@@ -23,6 +23,9 @@ jobs:
     steps:
       - name: Checkout code 📥
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.release_version }}
 
       - name: Set Release version 🏷️
         shell: bash
@@ -55,7 +58,8 @@ jobs:
     - name: Checkout code 📥
       uses: actions/checkout@v3
       with:
-        ref: ${{ github.ref }}
+        fetch-depth: 0
+        ref: ${{ inputs.release_version }}
       
     - name: NodeJS setup 🛠️
       uses: actions/setup-node@v3
