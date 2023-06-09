@@ -66420,6 +66420,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRSPXSCTF002",
+        "paymentDate": "15/06/2023",
+        "rate": "1,15000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "07/06/2023",
+        "isinCode": "BRSPXSCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "07/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRSPXSCTF002",
         "paymentDate": "15/05/2023",
         "rate": "1,05000000000",
         "relatedTo": "Abril-2023/2023",
