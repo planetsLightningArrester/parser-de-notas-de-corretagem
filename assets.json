@@ -24487,6 +24487,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRBLCACTF009",
+        "paymentDate": "16/06/2023",
+        "rate": "0,57000000000",
+        "relatedTo": "Abril-2023/2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRBLCACTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBLCACTF009",
         "paymentDate": "16/05/2023",
         "rate": "0,57000000000",
         "relatedTo": "Março-2023/2023",
@@ -29110,6 +29121,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCCMECTF007",
+        "paymentDate": "16/06/2023",
+        "rate": "0,90000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRCCMECTF007",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCCMECTF007",
         "paymentDate": "16/05/2023",
         "rate": "0,90000000000",
         "relatedTo": "Abril-2023/2023",
@@ -29402,6 +29424,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRCPFFCTF000",
+        "paymentDate": "19/06/2023",
+        "rate": "0,45000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRCPFFCTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCPFFCTF000",
         "paymentDate": "17/05/2023",
@@ -48367,6 +48400,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRLOFTCTF013",
+        "paymentDate": "14/06/2023",
+        "rate": "1,16630162000",
+        "relatedTo": "2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRLOFTCTF013",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRLOFTCTF013",
         "paymentDate": "27/04/2023",
@@ -71186,6 +71230,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCVBICTF001",
+        "paymentDate": "16/06/2023",
+        "rate": "1,10000000000",
+        "relatedTo": "Maio/2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRCVBICTF001",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCVBICTF001",
         "paymentDate": "16/05/2023",
         "rate": "1,05000000000",
         "relatedTo": "Abril/2023",
@@ -71737,6 +71792,17 @@
     "cnpj": "35507457000171",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRRVBICTF009",
+        "paymentDate": "16/06/2023",
+        "rate": "0,75000000000",
+        "relatedTo": "Maio/2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRRVBICTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRRVBICTF009",
         "paymentDate": "16/05/2023",
@@ -74448,6 +74514,17 @@
     "cnpj": "43440579000116",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRWSECCTF010",
+        "paymentDate": "15/06/2023",
+        "rate": "1,10000000000",
+        "relatedTo": "Maio/2023",
+        "approvedOn": "09/06/2023",
+        "isinCode": "BRWSECCTF010",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRWSECCTF010",
         "paymentDate": "15/05/2023",
@@ -101118,6 +101195,15 @@
     "type": "1",
     "market": "NM",
     "stockDividends": [
+      {
+        "assetIssued": "BRVIVRACNOR4",
+        "factor": "0,10000000000",
+        "approvedOn": "10/05/2023",
+        "isinCode": "BRVIVRACNOR4",
+        "label": "GRUPAMENTO",
+        "lastDatePrior": "09/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRVIVRACNOR4",
         "factor": "0,10000000000",
