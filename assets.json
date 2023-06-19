@@ -29253,6 +29253,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRFCFLCTF009",
+        "paymentDate": "23/06/2023",
+        "rate": "0,80000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "16/06/2023",
+        "isinCode": "BRFCFLCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "16/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFCFLCTF009",
         "paymentDate": "25/05/2023",
         "rate": "0,80000000000",
         "relatedTo": "Abril-2023/2023",
@@ -82254,6 +82265,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRITUBACNOR4",
+        "paymentDate": "25/08/2023",
+        "rate": "0,26630000000",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "07/06/2023",
+        "isinCode": "BRITUBACNOR4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "19/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRITUBACNPR1",
+        "paymentDate": "25/08/2023",
+        "rate": "0,26630000000",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "07/06/2023",
+        "isinCode": "BRITUBACNPR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "19/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRITUBACNOR4",
         "paymentDate": "03/07/2023",
         "rate": "0,01765000000",
         "relatedTo": "Mensal/2023",
@@ -82765,6 +82798,17 @@
     "market": "NM",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRJHSFACNOR2",
+        "paymentDate": "28/06/2023",
+        "rate": "0,04794072360",
+        "relatedTo": "Anual/2022",
+        "approvedOn": "13/04/2023",
+        "isinCode": "BRJHSFACNOR2",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "19/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRJHSFACNOR2",
         "paymentDate": "29/05/2023",
