@@ -15156,6 +15156,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCTCAACNOR7",
+        "paymentDate": "31/07/2023",
+        "rate": "0,06770483200",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRCTCAACNOR7",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCTCAACNOR7",
         "paymentDate": "29/07/2022",
         "rate": "0,09922334900",
         "relatedTo": "2021",
@@ -27562,6 +27573,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRBTALCTF003",
+        "paymentDate": "27/06/2023",
+        "rate": "0,76000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRBTALCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBTALCTF003",
         "paymentDate": "25/05/2023",
         "rate": "0,80000000000",
         "relatedTo": "Abril-2023/2023",
@@ -31737,6 +31759,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRCVPRCTF002",
+        "paymentDate": "27/06/2023",
+        "rate": "1,05000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRCVPRCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCVPRR02M14",
+        "paymentDate": "27/06/2023",
+        "rate": "1,05000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRCVPRR02M14",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCVPRCTF002",
         "paymentDate": "25/05/2023",
         "rate": "1,05000000000",
         "relatedTo": "Abril-2023/2023",
@@ -34647,6 +34691,17 @@
     "cashDividends": [
       {
         "assetIssued": "BREQIRCTF003",
+        "paymentDate": "27/06/2023",
+        "rate": "0,11000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BREQIRCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREQIRCTF003",
         "paymentDate": "25/05/2023",
         "rate": "0,11000000000",
         "relatedTo": "Abril-2023/2023",
@@ -35413,6 +35468,17 @@
     "cnpj": "41076851000103",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BREXESCTF006",
+        "paymentDate": "27/06/2023",
+        "rate": "0,93000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BREXESCTF006",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BREXESCTF006",
         "paymentDate": "25/05/2023",
@@ -53183,6 +53249,17 @@
     "cnpj": "40102474000169",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRMORCCTF004",
+        "paymentDate": "27/06/2023",
+        "rate": "1,10000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRMORCCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRMORCCTF004",
         "paymentDate": "25/05/2023",
@@ -93585,6 +93662,17 @@
     "cnpj": "40011268000143",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRCCRFCTF003",
+        "paymentDate": "27/06/2023",
+        "rate": "0,66739829500",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRCCRFCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "20/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCCRFCTF003",
         "paymentDate": "25/05/2023",
