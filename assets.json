@@ -14980,6 +14980,17 @@
       {
         "assetIssued": "BRCSEDACNOR9",
         "paymentDate": "27/06/2023",
+        "rate": "0,06880679797",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "28/04/2023",
+        "isinCode": "BRCSEDACNOR9",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "28/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSEDACNOR9",
+        "paymentDate": "27/06/2023",
         "rate": "0,06880421222",
         "relatedTo": "Anual/2022",
         "approvedOn": "28/04/2023",
@@ -30367,6 +30378,17 @@
     "cnpj": "13551286000145",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRCNESCTF001",
+        "paymentDate": "29/06/2023",
+        "rate": "0,08188176500",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRCNESCTF001",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "22/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCNESCTF001",
         "paymentDate": "30/05/2023",
@@ -90134,6 +90156,49 @@
     "stockDividends": [],
     "cashDividends": [],
     "subscriptions": []
+  },
+  {
+    "codeCVM": "18406",
+    "issuingCompany": "RBRA",
+    "companyName": "OPEA SECURITIZADORA S.A.",
+    "tradingName": "OPEA",
+    "cnpj": "2773542000122",
+    "marketIndicator": "7",
+    "typeBDR": "",
+    "dateListing": "22/03/2004",
+    "status": "A",
+    "segment": "Securitizadoras de Recebíveis",
+    "segmentEng": "Asset-backed Securitization",
+    "type": "1",
+    "market": "MB",
+    "stockDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRRBRAACNOR1",
+        "paymentDate": "31/12/9999",
+        "rate": "0,05000000000",
+        "relatedTo": "2010",
+        "approvedOn": "04/04/2011",
+        "isinCode": "BRRBRAACNOR1",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "05/04/2011",
+        "remarks": ""
+      }
+    ],
+    "subscriptions": [
+      {
+        "assetIssued": "BRRBRAACNOR1",
+        "percentage": "88,46130155300",
+        "priceUnit": "2,97220000000",
+        "tradingPeriod": "12/07/2005 a 03/08/2005",
+        "subscriptionDate": "10/08/2005",
+        "approvedOn": "11/07/2005",
+        "isinCode": "BRRBRAACNOR1",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "11/07/2005",
+        "remarks": ""
+      }
+    ]
   },
   {
     "codeCVM": "25550",
