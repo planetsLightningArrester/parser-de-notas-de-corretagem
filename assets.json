@@ -6805,6 +6805,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRBBDCACNOR1",
+        "paymentDate": "06/07/2023",
+        "rate": "0,17899723800",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "15/06/2023",
+        "isinCode": "BRBBDCACNOR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBBDCACNPR8",
+        "paymentDate": "06/07/2023",
+        "rate": "0,19689696100",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "15/06/2023",
+        "isinCode": "BRBBDCACNPR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBBDCACNOR1",
         "paymentDate": "03/07/2023",
         "rate": "0,01724982600",
         "relatedTo": "Mensal/2023",
@@ -34369,6 +34391,17 @@
     "cnpj": "13022994000199",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRELDOCTF002",
+        "paymentDate": "05/07/2023",
+        "rate": "0,96000000000",
+        "relatedTo": "junho/2023",
+        "approvedOn": "26/06/2023",
+        "isinCode": "BRELDOCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "26/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRELDOCTF002",
         "paymentDate": "22/06/2023",
@@ -87373,6 +87406,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRMILSACNOR2",
+        "paymentDate": "14/07/2023",
+        "rate": "0,07600854000",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "21/06/2023",
+        "isinCode": "BRMILSACNOR2",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMILSACNOR2",
         "paymentDate": "12/05/2023",
         "rate": "0,00500349500",
         "relatedTo": "ANUAL/2022",
@@ -96986,6 +97030,28 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRSHULACNOR7",
+        "paymentDate": "02/10/2023",
+        "rate": "0,03748663000",
+        "relatedTo": "Complementar/2023",
+        "approvedOn": "21/06/2023",
+        "isinCode": "BRSHULACNOR7",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRSHULACNPR4",
+        "paymentDate": "02/10/2023",
+        "rate": "0,04123529300",
+        "relatedTo": "Complementar/2023",
+        "approvedOn": "21/06/2023",
+        "isinCode": "BRSHULACNPR4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRSHULACNOR7",
         "paymentDate": "09/05/2023",
