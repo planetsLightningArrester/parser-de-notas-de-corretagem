@@ -3917,6 +3917,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRB3SAACNOR6",
+        "paymentDate": "07/07/2023",
+        "rate": "0,05374173000",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRB3SAACNOR6",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRB3SAACNOR6",
+        "paymentDate": "07/07/2023",
+        "rate": "0,06161193000",
+        "relatedTo": "2º TRIMESTRE/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRB3SAACNOR6",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRB3SAACNOR6",
         "paymentDate": "10/04/2023",
         "rate": "0,06022960000",
         "relatedTo": "1º TRIMESTRE/2023",
@@ -5938,6 +5960,28 @@
     "market": "NM",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRBLAUACNOR8",
+        "paymentDate": "14/07/2023",
+        "rate": "0,06943957300",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRBLAUACNOR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBLAUACNOR8",
+        "paymentDate": "28/12/2023",
+        "rate": "0,11751905100",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRBLAUACNOR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRBLAUACNOR8",
         "paymentDate": "28/12/2023",
@@ -51386,6 +51430,18 @@
     "subscriptions": [
       {
         "assetIssued": "BRMXRFCTF008",
+        "percentage": "21,98808356921",
+        "priceUnit": "10,36000000000",
+        "tradingPeriod": "29/06/2023 a 07/07/2023",
+        "subscriptionDate": "12/07/2023",
+        "approvedOn": "05/05/2023",
+        "isinCode": "BRMXRFCTF008",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMXRFCTF008",
         "percentage": "25,13675695200",
         "priceUnit": "10,15000000000",
         "tradingPeriod": "31/12/9999 a 22/03/2021",
@@ -85452,6 +85508,17 @@
       {
         "assetIssued": "BRLRENACNOR1",
         "paymentDate": "31/12/9999",
+        "rate": "0,18017700000",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRLRENACNOR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRLRENACNOR1",
+        "paymentDate": "31/12/9999",
         "rate": "0,18232700000",
         "relatedTo": "1º Trimestre/2023",
         "approvedOn": "16/03/2023",
@@ -100728,6 +100795,17 @@
     "market": "N2",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRTFCOACNPR8",
+        "paymentDate": "30/04/2024",
+        "rate": "0,03523786221",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "22/06/2023",
+        "isinCode": "BRTFCOACNPR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "27/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRTFCOACNPR8",
         "paymentDate": "10/05/2023",
