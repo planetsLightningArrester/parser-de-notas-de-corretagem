@@ -51269,7 +51269,7 @@
   {
     "issuingCompany": "MXRF",
     "tradingName": "FII MAXI REN",
-    "tradingCode": "MXRF11",
+    "tradingCode": "MXRF11 MXRF12",
     "cnpj": "97521225000125",
     "stockDividends": [
       {
@@ -103945,14 +103945,14 @@
     "companyName": "YBYRÁ CAPITAL S.A.",
     "tradingName": "YBYRA S/A",
     "cnpj": "2217319000107",
-    "marketIndicator": "7",
+    "marketIndicator": "1",
     "typeBDR": "",
     "dateListing": "11/09/1998",
     "status": "A",
     "segment": "Outros",
     "segmentEng": "Others",
     "type": "1",
-    "market": "MB",
+    "market": "",
     "stockDividends": [
       {
         "assetIssued": "BRYBRAACNPR4",
