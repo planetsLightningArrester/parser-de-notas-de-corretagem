@@ -88438,6 +88438,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRMULTACNOR5",
+        "paymentDate": "28/06/2024",
+        "rate": "0,24816784526",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "26/06/2023",
+        "isinCode": "BRMULTACNOR5",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "29/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMULTACNOR5",
         "paymentDate": "31/03/2024",
         "rate": "0,12814336091",
         "relatedTo": "1º Trimestre/2023",
@@ -90294,6 +90305,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRODPVACNOR4",
+        "paymentDate": "19/12/2023",
+        "rate": "0,03820991200",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "26/06/2023",
+        "isinCode": "BRODPVACNOR4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "29/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRODPVACNOR4",
         "paymentDate": "12/07/2023",
@@ -93149,6 +93171,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRPSSAACNOR7",
+        "paymentDate": "31/12/9999",
+        "rate": "0,58940881104",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "26/06/2023",
+        "isinCode": "BRPSSAACNOR7",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "29/06/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRPSSAACNOR7",
         "paymentDate": "31/12/2023",
