@@ -10726,6 +10726,28 @@
       },
       {
         "assetIssued": "BRCLSCACNOR6",
+        "paymentDate": "30/12/2024",
+        "rate": "0,56113432800",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "16/03/2023",
+        "isinCode": "BRCLSCACNOR6",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "31/03/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCLSCACNPR3",
+        "paymentDate": "30/12/2024",
+        "rate": "0,61724776100",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "16/03/2023",
+        "isinCode": "BRCLSCACNPR3",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "31/03/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCLSCACNOR6",
         "paymentDate": "31/12/9999",
         "rate": "0,56113432800",
         "relatedTo": "1º Trimestre/2023",
@@ -71496,6 +71518,27 @@
     ]
   },
   {
+    "issuingCompany": "VVCR",
+    "tradingName": "FII V2 RECE",
+    "tradingCode": "VVCR11",
+    "cnpj": "23120027000113",
+    "stockDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRVVCRCTF000",
+        "paymentDate": "26/06/2023",
+        "rate": "0,31000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "19/06/2023",
+        "isinCode": "BRVVCRCTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/06/2023",
+        "remarks": ""
+      }
+    ],
+    "subscriptions": []
+  },
+  {
     "issuingCompany": "VVRI",
     "tradingName": "FII V2 RENDA",
     "tradingCode": "VVRI11",
@@ -87920,14 +87963,14 @@
     "companyName": "BANCO MODAL S.A",
     "tradingName": "MODALMAIS",
     "cnpj": "30723886000162",
-    "marketIndicator": "18",
+    "marketIndicator": "1",
     "typeBDR": "",
     "dateListing": "28/04/2021",
     "status": "A",
     "segment": "Bancos",
     "segmentEng": "Banks",
     "type": "1",
-    "market": "NM",
+    "market": "",
     "stockDividends": [],
     "cashDividends": [
       {
