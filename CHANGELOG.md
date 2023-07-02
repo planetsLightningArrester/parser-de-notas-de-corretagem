@@ -4,6 +4,78 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.23] - 2023-07-02
+### Changed
+- Update assets list
+
+## [0.7.22] - 2023-07-01
+### Changed
+- Update assets list
+
+## [0.7.21] - 2023-06-30
+### Changed
+- Update assets list
+
+## [0.7.20] - 2023-06-29
+### Changed
+- Update assets list
+
+## [0.7.19] - 2023-06-28
+### Changed
+- Update assets list
+
+## [0.7.18] - 2023-06-27
+### Changed
+- Update assets list
+
+## [0.7.17] - 2023-06-25
+### Changed
+- Update assets list
+
+## [0.7.16] - 2023-06-23
+### Changed
+- Update assets list
+
+## [0.7.15] - 2023-06-22
+### Changed
+- Update assets list
+
+## [0.7.14] - 2023-06-21
+### Changed
+- Update assets list
+
+## [0.7.13] - 2023-06-20
+### Changed
+- Update assets list
+
+## [0.7.12] - 2023-06-19
+### Changed
+- Update assets list
+
+## [0.7.11] - 2023-06-18
+### Changed
+- Update assets list
+
+## [0.7.10] - 2023-06-16
+### Changed
+- Update assets list
+
+## [0.7.9] - 2023-06-15
+### Changed
+- Update assets list
+
+## [0.7.8] - 2023-06-14
+### Changed
+- Update assets list
+
+## [0.7.7] - 2023-06-13
+### Changed
+- Update assets list
+
+## [0.7.6] - 2023-06-11
+### Changed
+- Update assets list
+
 ## [0.7.5] - 2023-06-09
 ### Changed
 - Update assets list
