@@ -25,6 +25,6 @@ describe('cash dividends', () => {
     const [, cash] = assets.getDividends('B3SA3');
     expect(cash.length).toBeGreaterThan(0);
 
-  })
+  });
   
 });

@@ -15,5 +15,5 @@ test('listed assets', async () => {
     });
     expect(key).toBe(0);
     assetCrawler.fetchListedAssets();
-  })
+  });
 }, 60*60*1000);

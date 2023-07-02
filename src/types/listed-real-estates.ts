@@ -19,7 +19,7 @@ export class ListedFIIsRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(page?: number): string {
-    return `${this.listedFIIsUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`
+    return `${this.listedFIIsUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`;
   }
 
 }
@@ -39,7 +39,7 @@ export class GetFIIsRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.getFiiUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, identifierFund: this.identifierFund}))}`
+    return `${this.getFiiUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, identifierFund: this.identifierFund}))}`;
   }
 
 }

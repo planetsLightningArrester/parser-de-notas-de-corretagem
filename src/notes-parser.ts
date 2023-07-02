@@ -4,16 +4,15 @@ import { AssetCrawler, AssetVerbosity } from "./asset-crawler";
 import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf';
 import { CashDividend, StockDividend } from './types/corporative-events';
 
-// Make crawler available available 
 export {
   AssetCrawler,
   CashDividend,
   StockDividend
-}
+};
 
 export type {
   AssetVerbosity
-}
+};
 
 /** Deal made in a `NegotiationNote` type */
 export interface Deal {
@@ -40,21 +39,21 @@ export class NegotiationNote {
   /** Negotiation note number */
   number = '';
   /** The total amount bought with fees applied */
-  buyTotal = '0'
+  buyTotal = '0';
   /** The total amount sold with fees applied */
-  sellTotal = '0'
+  sellTotal = '0';
   /** The total amount of buy fees */
-  buyFees = '0'
+  buyFees = '0';
   /** The total amount of sell fees */
-  sellFees = '0'
+  sellFees = '0';
   /** The total amount of fees */
-  fees = '0'
+  fees = '0';
   /** Negotiation note date in format yyyy-MM-dd */
-  date = ''
+  date = '';
   /** Negotiation note holder */
-  holder = ''
+  holder = '';
   /** Array of deals with buys and sells */
-  deals: Deal[] = []
+  deals: Deal[] = [];
 }
 
 /** Possible date formats to be used */
@@ -153,7 +152,7 @@ export class NoteParser {
     if (typeof Buffer !== "undefined" && content instanceof Buffer) content = Uint8Array.from(content);
 
     // Try to open the PDF using the provided passwords, if any
-    const parseResults: NegotiationNote[] = []
+    const parseResults: NegotiationNote[] = [];
     let invalidPassword = false;
     let pdf: PDFDocument | undefined;
     if (!possiblePasswords || !possiblePasswords.length) {
@@ -164,7 +163,7 @@ export class NoteParser {
           // ? pdf.js caches the data in the first attempt and tries to get from it
           // ? even passing different PDFs. So, creating a new array is required
           // ? to prevent "Unable to deserialize cloned data"
-          pdf = await openPDF({data: Uint8Array.from(content), password: pass}).promise;
+          pdf = await openPDF({data: Uint8Array.from(content), password: pass, useSystemFonts: true}).promise;
           break;
         } catch (error: unknown) {
           /** Prevent the  failure and try again with another password */
@@ -174,8 +173,7 @@ export class NoteParser {
           } else if (typeof error === 'string') {
             if (!error.includes('No password given') && !error.includes('Incorrect Password')) throw error;
             else invalidPassword = true;
-          }
-          else throw error;
+          } else throw error;
         }
       }
     }
@@ -219,7 +217,7 @@ export class NoteParser {
       if (pageContent.match(buysAndSellsPattern) && pageContent.match(noteNumberPattern)) {
 
         // Get note's number
-        let noteNumber: string | undefined
+        let noteNumber: string | undefined;
         match = pageContent.match(noteNumberPattern);
         if (match && match[1]) noteNumber = match[1];
         else throw new MissingNoteNumber(`No note number found for the negotiation note '${noteName}'`);
@@ -315,7 +313,7 @@ export class NoteParser {
               parseResult.deals.push(deal);
             } else {
               deal.price = (parseFloat(deal.price) + transactionValue).toString();
-              deal.quantity = deal.quantity - quantity
+              deal.quantity = deal.quantity - quantity;
             }
           }
 
@@ -356,7 +354,7 @@ export class NoteParser {
         if (deal.cnpj.length < 14) deal.cnpj = new Array(14 - deal.cnpj.length).fill('0').join('') + deal.cnpj;
 
         deal.cnpj = deal.cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1.$2.$3/$4-$5");
-      })
+      });
     });
 
     return parseResults;

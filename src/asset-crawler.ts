@@ -8,9 +8,9 @@ import { CashDividend, RealEstateCorporativeEventRequest, StockCorporativeEventR
 /** Holds info about a listener event */
 class UpdateListener {
   /** The unique listener key */
-  key: number
+  key: number;
   /** The listener callback */
-  callback: (assets: Array<StockInfos | FiiInfos>) => void
+  callback: (assets: Array<StockInfos | FiiInfos>) => void;
   
   constructor(key: number, callback: (assets: Array<StockInfos | FiiInfos>) => void) {
     this.key = key;
@@ -86,7 +86,7 @@ export class AssetCrawler {
       .then(() => {
         if (this.verbosity !== 'off') console.log(`[AC] Asset data successfully fetched`);
         if (this.autoUpdate) this.updater();
-      })
+      });
     }, timeout);
   }
 
@@ -131,13 +131,13 @@ export class AssetCrawler {
               company.stockDividends = [];
               company.cashDividends = [];
               company.subscriptions = [];
-              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`)                
+              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`);                
             } else {
-              if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s)
+              if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s);
               else company.stockDividends = [];
-              if (corporativeEvents.cashDividends) company.cashDividends = corporativeEvents.cashDividends.map(c => c)
+              if (corporativeEvents.cashDividends) company.cashDividends = corporativeEvents.cashDividends.map(c => c);
               else company.cashDividends = [];
-              if (corporativeEvents.subscriptions) company.subscriptions = corporativeEvents.subscriptions.map(s => s)
+              if (corporativeEvents.subscriptions) company.subscriptions = corporativeEvents.subscriptions.map(s => s);
               else company.subscriptions = [];
               if (this.verbosity === 'all') console.log(`[AC] ${company.issuingCompany} done`);
             }
@@ -198,7 +198,7 @@ export class AssetCrawler {
       fiiData = getFiiResult.data;
       fiiData.results.forEach(r => {
         r.retry = 0;
-      })
+      });
 
       let _fii: FiiCrawlerInfos | undefined;
       while ((_fii = fiiData.results.shift()) !== undefined) {
@@ -239,7 +239,7 @@ export class AssetCrawler {
             else fiiElement.cashDividends = [];
             if (corporativeEvents.subscriptions) fiiElement.subscriptions = corporativeEvents.subscriptions.map(s => s);
             else fiiElement.subscriptions = [];
-            if (this.verbosity === 'all') console.log(`[AC] ${fii.acronym} done`)
+            if (this.verbosity === 'all') console.log(`[AC] ${fii.acronym} done`);
           }
 
           // Merge with previous results
@@ -284,7 +284,7 @@ export class AssetCrawler {
     // Push updates to listeners
     this.listeners.forEach(sub => {
       sub.callback(this.assets);
-    })
+    });
     
   }
 

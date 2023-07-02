@@ -19,7 +19,7 @@ export class ListedStocksRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(page?: number): string {
-    return `${this.listedStocksUrl}/${btoa(JSON.stringify({language: this.language, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`
+    return `${this.listedStocksUrl}/${btoa(JSON.stringify({language: this.language, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`;
   }
 
 }

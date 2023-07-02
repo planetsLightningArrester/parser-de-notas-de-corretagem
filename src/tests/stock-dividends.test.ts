@@ -25,6 +25,6 @@ describe('stock dividends', () => {
     const [events, ] = assets.getDividends('B3SA3');
     expect(events.length).toBeGreaterThan(0);
 
-  })
+  });
   
 });

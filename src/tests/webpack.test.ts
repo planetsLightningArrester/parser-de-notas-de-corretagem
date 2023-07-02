@@ -261,4 +261,4 @@ describe('asset crawler', () => {
       expect(assets.assetCrawler.getCodeFromTitle('ITAUSA PN N1').code).toBe('ITSA4');
     });
   });
-})
+});

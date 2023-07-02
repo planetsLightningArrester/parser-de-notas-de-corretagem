@@ -16,7 +16,7 @@ export class StockCorporativeEventRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.corporativeEvents}/${btoa(JSON.stringify({issuingCompany: this.issuingCompany, language: this.language}))}`
+    return `${this.corporativeEvents}/${btoa(JSON.stringify({issuingCompany: this.issuingCompany, language: this.language}))}`;
   }
 
 }
@@ -40,7 +40,7 @@ export class RealEstateCorporativeEventRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.corporativeEvents}/${btoa(JSON.stringify({cnpj:this.cnpj, identifierFund: this.identifierFund, typeFund: this.typeFund}))}`
+    return `${this.corporativeEvents}/${btoa(JSON.stringify({cnpj:this.cnpj, identifierFund: this.identifierFund, typeFund: this.typeFund}))}`;
   }
 
 }
