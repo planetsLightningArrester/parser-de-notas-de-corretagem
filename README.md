@@ -1,10 +1,12 @@
-# Parse Brazilian brokerage notes PDFs (Rico and Clear holders available)
+# Parse Brazilian brokerage notes PDFs (Rico, Clear, and Inter holders available)
 
 ![npm](https://img.shields.io/npm/v/parser-de-notas-de-corretagem) [![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml) [![Assets auto update](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml)
 
 Easing the PITA of making IRPF
 
 > Note: This is a JS/TS package. If you want the end-user solution, check the [Leitor de notas de corretagem](https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem)
+
+> Note: Inter support only v0.8.0 onwards
 
 ## Example result
 > The `price` and `average` fields already include the fees paid
@@ -143,17 +145,24 @@ assetsParser.parseNote(filePath, fileContent, filePasswords);
 ### Add a custom stock
 ```Typescript
 const assets = new NoteParser();
-// Old stocks aren't available by default, but you can add them
+// Old stocks aren't available by default, but you can add them.
+// CNPJ as the third argument is optional
 assets.defineStock('BIDI3', 'BANCO INTER ON');
 assets.defineStock('BIDI11', 'BANCO INTER UNT');
+// If the same asset can have multiple codes, add a "_2", "_3", etc. with the names
+this.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
+this.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
 ```
 
 ## P.S.
 * Total values include fees
 * The values can deviate from cents. It's always a good call to double-check if the result is as expected. Check the [License](#license)
+* Inter broker has only a few tests, so please open [Issues](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/issues) if you find something wrong
+* Local auto-update isn't persistent. New releases are done everyday with persistent updates
+* Other brokers may work with the internal PDF architecture is the same as the supported brokers
 
 ## Contributors
-Thanks to whom sent me notes for the tests ❤️. Personal data is not stored neither used on tests, only the notes' content.
+Thanks to whom sent the notes for the tests ❤️. Personal data is not stored neither used on tests, only the notes' content.
 
 ## Thanks? U welcome
 Consider thanking me: send a "Thanks!" 👋 by [PIX](https://www.bcb.gov.br/en/financialstability/pix_en) 😊

@@ -1,7 +1,7 @@
 {
   "name": "parser-de-notas-de-corretagem",
-  "version": "0.7.23",
-  "description": "Parse Brazilian brokerage notes PDFs (Rico and Clear holders available)",
+  "version": "0.8.0",
+  "description": "Parse Brazilian brokerage notes PDFs (Rico, Clear, and Inter holders available)",
   "main": "notes-parser.js",
   "types": "notes-parser.d.ts",
   "scripts": {
