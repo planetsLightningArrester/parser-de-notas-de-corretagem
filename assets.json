@@ -9742,6 +9742,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCACRCTF004",
+        "paymentDate": "10/07/2023",
+        "rate": "1,61000000000",
+        "relatedTo": "JUNHO/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRCACRCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "30/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCACRCTF004",
         "paymentDate": "09/06/2023",
         "rate": "1,52000000000",
         "relatedTo": "MAIO/2023",
