@@ -10,5 +10,6 @@
   "cmake.configureOnOpen": false,
   "cSpell.enableFiletypes": [
     "github-actions-workflow"
-  ]
+  ],
+  "cSpell.language": "en,pt-BR",
 }
