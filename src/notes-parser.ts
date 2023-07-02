@@ -130,6 +130,8 @@ export class NoteParser {
     this.defineStock('MDIA4', 'M.DIASBRANCO PN', '07.206.816/0001-15');
     this.defineStock('BIDI3', 'BANCO INTER ON', '00.416.968/0001-01');
     this.defineStock('BIDI11', 'BANCO INTER UNT', '00.416.968/0001-01');
+    this.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
+    this.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
   }
 
   /**
@@ -186,8 +188,28 @@ export class NoteParser {
     const holderPattern = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
     const noteNumberPattern = /Nr\. nota\s+(\d+)/i;
     const datePattern = /data.*\s+(\d{2}\/\d{2}\/\d{4})/i;
-    const buysAndSellsPattern = /\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s*Resumo dos Negócios/;
-    const feesPattern: RegExp[] = [
+    // ?* Clear and Rico summary pattern
+    // ? Debentures
+    // ? Vendas a vista
+    // ? Compras a vista
+    // ? Opções - compras
+    // ? Opções - vendas
+    // ? Operações a termo
+    // ? Valor das oper/ c/títulos públ. (v. nom.)
+    // ? Valor das operações
+    const buysAndSellsClearRicoPattern = /\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\n\nResumo dos Negócios/;
+    // ?* Inter summary pattern
+    // ? Valor das oper/ c/títulos públ. (v. nom.)
+    // ? Valor das operações
+    // ? Opções - compras
+    // ? Debentures
+    // ? Operações a termo
+    // ? Opções - vendas
+    // ? Compras a vista
+    // ? Vendas a vista
+    const buysAndSellsInterPattern = /Debêntures\n\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)/;
+    // ?* Clear and Rico fees pattern
+    const feesClearRicoPattern = [
       /(\d[\d,.]*)\nTaxa de liquidação/,
       /(\d[\d,.]*)\nTaxa de Registro/,
       /(\d[\d,.]*)\nTaxa de termo\/opções/,
@@ -200,7 +222,35 @@ export class NoteParser {
       /(\d[\d,.]*)\nI\.R\.R\.F\. s\/ operações, base/,
       /(\d[\d,.]*)\nOutros/
     ];
-    const stockPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
+    // ?* Inter fees pattern
+    const feesInterPattern = [
+      // Taxa de Liquidação
+      /Taxa de Registro\s+\w+\s+\w+\s+\w+\s+Total\s+\d[\d,.]*\s+\w+\s+\d[\d,.]*\s+(\d[\d,.]*)\s+\d[\d,.]*/,
+      // Taxa de Registro
+      /Taxa de Registro\s+\w+\s+\w+\s+\w+\s+Total\s+\d[\d,.]*\s+\w+\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)/,
+      // Emolumentos
+      /Emolumentos\s+\w+\s+\w+\s+\w+\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*/,
+      // Taxa A.N.A.
+      /Emolumentos\s+\w+\s+\w+\s+\w+\s+\d[\d,.]*\s+(\d[\d,.]*)\s+\d[\d,.]*/,
+      // Taxa de opções/futuro
+      /Emolumentos\s+\w+\s+\w+\s+\w+\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)/,
+      // Clearing
+      /Clearing\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*/,
+      // Execução
+      /Clearing\s+\d[\d,.]*\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*/,
+      // Execução casa
+      /Clearing\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*/,
+      // Impostos
+      /Clearing\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)\s+\d[\d,.]*\s+\d[\d,.]*/,
+      // IRRF s/ operações
+      /Clearing\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)\s+\d[\d,.]*/,
+      // Outras
+      /Clearing\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)/,
+    ];
+    // ?* Clear and Rico stock pattern. This is also the default in case the holder isn't defined
+    const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
+    // ?* Inter stock pattern
+    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(\w+\s+)([ \t\w/.]+)/g;
     let match: RegExpMatchArray | null;
 
     // Iterate over the pages
@@ -214,7 +264,7 @@ export class NoteParser {
         const item = data.items[j];
         if ('str' in item) pageContent += `${item.str}\n`;
       }
-      if (pageContent.match(buysAndSellsPattern) && pageContent.match(noteNumberPattern)) {
+      if ((pageContent.match(buysAndSellsClearRicoPattern) || pageContent.match(buysAndSellsInterPattern)) && pageContent.match(noteNumberPattern)) {
 
         // Get note's number
         let noteNumber: string | undefined;
@@ -245,19 +295,32 @@ export class NoteParser {
         // Note total
         let buyTotal = 0;
         let sellTotal = 0;
-        if ((match = pageContent.match(buysAndSellsPattern)) !== null) {
+        if ((match = pageContent.match(buysAndSellsClearRicoPattern)) !== null) {
           sellTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
           buyTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
+        } else if ((match = pageContent.match(buysAndSellsInterPattern)) !== null) {
+          buyTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
+          sellTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
         } else throw new MissingBuyOrSellSums(`Error parsing note '${noteName}'. Couldn't get note buys and sells values`);
 
         // Get the fees
         let fees = 0;
-        feesPattern.forEach(fee => {
-          const match = pageContent.match(fee);
-          if (match && match[1]) {
-            fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
-          }
-        });
+        const _pageContent = pageContent;
+        if (parseResult.holder.toLowerCase() !== 'inter') {
+          feesClearRicoPattern.forEach(fee => {
+            const match = _pageContent.match(fee);
+            if (match && match[1]) {
+              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
+            }
+          });
+        } else {
+          feesInterPattern.forEach(fee => {
+            const match = _pageContent.match(fee);
+            if (match && match[1]) {
+              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
+            }
+          });
+        }
         if (fees) parseResult.fees = (parseFloat(parseResult.fees) + fees).toFixed(2);
 
         // Generate the Checkout for the value bought
@@ -266,13 +329,34 @@ export class NoteParser {
         // Generate the Check in for the value sold
         if (sellTotal) parseResult.sellTotal = sellTotal.toFixed(2);
 
-        while ((match = stockPattern.exec(pageContent)) != null) {
-          const op: string = match[1];
+        // Use the stock pattern based on the holder
+        const stockPattern = parseResult.holder.toLowerCase() !== 'inter'?stockClearRicoPattern:stockInterPattern;
+
+        while ((match = stockPattern.exec(pageContent)) !== null) {
+          let op: string;
           // let market: string = match[2];
-          const stock: Asset = this.assetCrawler.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
-          const quantity: number = parseInt(match[4]);
+          let stock: Asset;
+          let quantity: number;
           // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
-          const transactionValue: number = parseFloat(match[6].replace('.', '').replace(',', '.'));
+          let transactionValue: number;
+
+          if (parseResult.holder.toLowerCase() !== 'inter') {
+            op = match[1];
+            // market = match[2];
+            stock = this.assetCrawler.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
+            quantity = parseInt(match[4]);
+            // each = parseFloat(match[5].replace('.', '').replace(',', '.'));
+            transactionValue = parseFloat(match[6].replace('.', '').replace(',', '.'));
+          } else {
+            op = match[2] || '';
+            // market = match[1] || '';
+            // ? Inter gives ON AMBEV S/A instead of AMBEV S/A ON
+            const stockTitle = `${match[7].trim()} ${match[6].trim()}`;
+            stock = this.assetCrawler.getCodeFromTitle(stockTitle);
+            quantity = parseInt(match[3] || '');
+            // each = parseFloat(match[4].replace('.', '').replace(',', '.'));
+            transactionValue = parseFloat(match[5].replace('.', '').replace(',', '.'));
+          }
 
           if (!stock) throw new UnknownAsset(`Can't find ${match[3]}`);
 

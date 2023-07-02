@@ -296,7 +296,14 @@ export class AssetCrawler {
   getCodeFromTitle(name: string): Asset {
     // If the stock was manually set
     const customDefined: Asset | undefined = this.customAssets.find(c => name.includes(c.name));
-    if (customDefined) return customDefined
+    // ? Some pre-defined stocks can refer to multiple names
+    // ? KDIF11=KINEA INFRAF FIDC
+    // ? KDIF11_2=FDC KINEAINF FIDC
+    // ? In that case, consider the same stock by removing the _
+    if (customDefined) {
+      customDefined.code = customDefined.code.replace(/(.*)_.*/, "$1");
+      return customDefined;
+    }
 
     // If it's a FII, the code is in the name
     const match = name.match(/(FII\s.*?)\s([^\s]+?)\sCI/i);
@@ -314,12 +321,12 @@ export class AssetCrawler {
       // Else, parse it
       let type: '3'|'4'|'11'|'31'|'32'|'33' = '3';
       let indexOf: number;
-      if (name.indexOf(' ON') !== -1) { indexOf = name.indexOf(' ON'); type = '3' }
-      else if (name.indexOf(' PN') !== -1) { indexOf = name.indexOf(' PN'); type = '4' }
-      else if (name.indexOf(' UNT') !== -1) { indexOf = name.indexOf(' UNT'); type = '11' }
-      else if (name.indexOf(' DR1') !== -1) { indexOf = name.indexOf(' DR1'); type = '31' }
-      else if (name.indexOf(' DR2') !== -1) { indexOf = name.indexOf(' DR2'); type = '32' }
-      else if (name.indexOf(' DR3') !== -1) { indexOf = name.indexOf(' DR3'); type = '33' }
+      if (name.indexOf(' ON') !== -1) { indexOf = name.indexOf(' ON'); type = '3'; }
+      else if (name.indexOf(' PN') !== -1) { indexOf = name.indexOf(' PN'); type = '4'; }
+      else if (name.indexOf(' UNT') !== -1) { indexOf = name.indexOf(' UNT'); type = '11'; }
+      else if (name.indexOf(' DR1') !== -1) { indexOf = name.indexOf(' DR1'); type = '31'; }
+      else if (name.indexOf(' DR2') !== -1) { indexOf = name.indexOf(' DR2'); type = '32'; }
+      else if (name.indexOf(' DR3') !== -1) { indexOf = name.indexOf(' DR3'); type = '33'; }
       else indexOf = name.length;
       const justTheName = name.slice(0, indexOf);
       for (const stock of this.assets) {
