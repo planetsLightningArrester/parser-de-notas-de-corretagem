@@ -39,15 +39,15 @@ export class NegotiationNote {
   /** Negotiation note number */
   number = '';
   /** The total amount bought with fees applied */
-  buyTotal = '0';
+  buyTotal = '0.00';
   /** The total amount sold with fees applied */
-  sellTotal = '0';
+  sellTotal = '0.00';
   /** The total amount of buy fees */
-  buyFees = '0';
+  buyFees = '0.00';
   /** The total amount of sell fees */
-  sellFees = '0';
+  sellFees = '0.00';
   /** The total amount of fees */
-  fees = '0';
+  fees = '0.00';
   /** Negotiation note date in format yyyy-MM-dd */
   date = '';
   /** Negotiation note holder */
@@ -358,7 +358,7 @@ export class NoteParser {
                 type: 'buy',
                 code: stock.code,
                 quantity: quantity,
-                average: '0',
+                average: '0.00',
                 price: transactionValue.toFixed(2),
                 date: parseResult.date,
                 cnpj: stock.cnpj?stock.cnpj:'',
@@ -376,7 +376,7 @@ export class NoteParser {
                 type: 'sell',
                 code: stock.code,
                 quantity: quantity,
-                average: '0',
+                average: '0.00',
                 price: transactionValue.toFixed(2),
                 date: parseResult.date,
                 cnpj: stock.cnpj?stock.cnpj:'',
@@ -398,25 +398,23 @@ export class NoteParser {
     // Process the fees
     parseResults.forEach(note => {
       const fees: number = parseFloat(note.fees);
-      if (fees) {
-        const buyTotal: number = parseFloat(note.buyTotal);
-        const sellTotal: number = parseFloat(note.sellTotal);
-        const buyFees: number = fees*buyTotal/(buyTotal+sellTotal);
-        const sellFees: number = fees*sellTotal/(buyTotal+sellTotal);
-        note.deals.forEach(deal => {
-          const price: number = parseFloat(deal.price);
-          if (deal.type === 'buy') {
-            deal.price = (Math.fround(10*(price + buyFees*price/buyTotal))/10).toFixed(2);
-          } else {
-            deal.price = (Math.fround(10*(price - sellFees*price/sellTotal))/10).toFixed(2);
-          }
-          deal.average = (parseFloat(deal.price)/Math.abs(deal.quantity)).toFixed(2);
-        });
-        note.buyFees = buyFees.toFixed(2);
-        note.sellFees = sellFees.toFixed(2);
-        note.buyTotal = (buyTotal + buyFees).toFixed(2);
-        note.sellTotal = (sellTotal - sellFees).toFixed(2);
-      }
+      const buyTotal: number = parseFloat(note.buyTotal);
+      const sellTotal: number = parseFloat(note.sellTotal);
+      const buyFees: number = fees*buyTotal/(buyTotal+sellTotal);
+      const sellFees: number = fees*sellTotal/(buyTotal+sellTotal);
+      note.deals.forEach(deal => {
+        const price: number = parseFloat(deal.price);
+        if (deal.type === 'buy') {
+          deal.price = (Math.fround(10*(price + buyFees*price/buyTotal))/10).toFixed(2);
+        } else {
+          deal.price = (Math.fround(10*(price - sellFees*price/sellTotal))/10).toFixed(2);
+        }
+        deal.average = (parseFloat(deal.price)/Math.abs(deal.quantity)).toFixed(2);
+      });
+      note.buyFees = buyFees.toFixed(2);
+      note.sellFees = sellFees.toFixed(2);
+      note.buyTotal = (buyTotal + buyFees).toFixed(2);
+      note.sellTotal = (sellTotal - sellFees).toFixed(2);
     });
 
     // Format the CNPJs
