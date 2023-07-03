@@ -108518,6 +108518,17 @@
       },
       {
         "assetIssued": "BRMDIAACNOR7",
+        "paymentDate": "30/06/2022",
+        "rate": "0,05000000000",
+        "relatedTo": "2º Trimestre/2022",
+        "approvedOn": "04/02/2022",
+        "isinCode": "BRMDIAACNOR7",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "15/06/2022",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMDIAACNOR7",
         "paymentDate": "16/04/2010",
         "rate": "0,67257615000",
         "relatedTo": "2010",
