@@ -5,9 +5,10 @@
   "main": "notes-parser.js",
   "types": "notes-parser.d.ts",
   "scripts": {
-    "test": "jest --forceExit --runInBand --detectOpenHandles",
-    "build": "rm -rf out; tsc --declaration",
-    "pack": "rm -rf dist; webpack --mode production",
+    "lint": "eslint src --fix",
+    "test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles --watch",
+    "build": "npm run lint && rm -rf out; tsc --declaration",
+    "pack": "npm run lint && rm -rf dist; webpack --mode production",
     "pub": "npm publish ./dist --access=public",
     "update-assets": "npm run build && node out/src/scripts/update.js"
   },
