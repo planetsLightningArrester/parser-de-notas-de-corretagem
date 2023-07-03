@@ -7677,6 +7677,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRBEESACNOR9",
+        "paymentDate": "21/07/2023",
+        "rate": "0,10201438000",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRBEESACNOR9",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBEESACNPR6",
+        "paymentDate": "21/07/2023",
+        "rate": "0,10201438000",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRBEESACNPR6",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBEESACNOR9",
         "paymentDate": "01/08/2023",
         "rate": "0,02215800900",
         "relatedTo": "Mensal/2023",
@@ -12573,6 +12595,28 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRBBDCACNOR1",
+        "paymentDate": "01/08/2023",
+        "rate": "0,01724982600",
+        "relatedTo": "Mensal/2023",
+        "approvedOn": "26/12/2022",
+        "isinCode": "BRBBDCACNOR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBBDCACNPR8",
+        "paymentDate": "01/08/2023",
+        "rate": "0,01897480900",
+        "relatedTo": "Mensal/2023",
+        "approvedOn": "26/12/2022",
+        "isinCode": "BRBBDCACNPR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRBBDCACNOR1",
         "paymentDate": "06/07/2023",
@@ -21335,6 +21379,39 @@
     "cashDividends": [
       {
         "assetIssued": "BRCEEBACNOR3",
+        "paymentDate": "31/12/2023",
+        "rate": "0,43508873070",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCEEBACNOR3",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCEEBACNPA6",
+        "paymentDate": "31/12/2023",
+        "rate": "0,43508873070",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCEEBACNPA6",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCEEBACNPB4",
+        "paymentDate": "31/12/2023",
+        "rate": "0,47859760380",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCEEBACNPB4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCEEBACNOR3",
         "paymentDate": "04/05/2023",
         "rate": "0,80885666890",
         "relatedTo": "Anual/2022",
@@ -24193,6 +24270,39 @@
     "market": "",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRCSRNACNOR0",
+        "paymentDate": "31/12/2023",
+        "rate": "0,14535782590",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCSRNACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNPA3",
+        "paymentDate": "31/12/2023",
+        "rate": "0,15989360850",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCSRNACNPA3",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNPB1",
+        "paymentDate": "31/12/2023",
+        "rate": "0,15989360850",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCSRNACNPB1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCSRNACNOR0",
         "paymentDate": "31/12/2023",
@@ -28518,6 +28628,28 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BREKTRACNOR0",
+        "paymentDate": "31/12/2023",
+        "rate": "0,49888428340",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BREKTRACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREKTRACNPR7",
+        "paymentDate": "31/12/2023",
+        "rate": "0,54877271170",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BREKTRACNPR7",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BREKTRACNOR0",
         "paymentDate": "27/06/2023",
@@ -100109,6 +100241,17 @@
       {
         "assetIssued": "BRHYPEACNOR0",
         "paymentDate": "31/12/2024",
+        "rate": "0,30793000000",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "23/06/2023",
+        "isinCode": "BRHYPEACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHYPEACNOR0",
+        "paymentDate": "31/12/2024",
         "rate": "0,30791000000",
         "relatedTo": "1º Trimestre/2023",
         "approvedOn": "24/03/2023",
@@ -108371,17 +108514,6 @@
         "isinCode": "BRMDIAACNOR7",
         "label": "JRS CAP PROPRIO",
         "lastDatePrior": "16/09/2022",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRMDIAACNOR7",
-        "paymentDate": "30/06/2022",
-        "rate": "0,05000000000",
-        "relatedTo": "2º Trimestre/2022",
-        "approvedOn": "04/02/2022",
-        "isinCode": "BRMDIAACNOR7",
-        "label": "JRS CAP PROPRIO",
-        "lastDatePrior": "15/06/2022",
         "remarks": ""
       },
       {
