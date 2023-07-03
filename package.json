@@ -6,7 +6,7 @@
   "types": "notes-parser.d.ts",
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles --watch",
+    "test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles",
     "build": "npm run lint && rm -rf out; tsc --declaration",
     "pack": "npm run lint && rm -rf dist; webpack --mode production",
     "pub": "npm publish ./dist --access=public",
