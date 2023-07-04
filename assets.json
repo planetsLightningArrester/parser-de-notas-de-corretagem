@@ -72869,6 +72869,17 @@
     "cashDividends": [
       {
         "assetIssued": "BROPTMCTF002",
+        "paymentDate": "14/07/2023",
+        "rate": "1,55000000000",
+        "relatedTo": "Junho/23/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BROPTMCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BROPTMCTF002",
         "paymentDate": "15/06/2023",
         "rate": "0,38000000000",
         "relatedTo": "Maio/23/2023",
@@ -82634,6 +82645,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRJRDMCTF002",
+        "paymentDate": "10/07/2023",
+        "rate": "78,50000000000",
+        "relatedTo": "julho/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRJRDMCTF002",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "04/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRJRDMCTF002",
         "paymentDate": "14/07/2023",
@@ -102058,6 +102080,17 @@
         "isinCode": "BRINTBACNOR9",
         "label": "DIVIDENDO",
         "lastDatePrior": "01/08/2022",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRINTBACNOR9",
+        "paymentDate": "15/08/2022",
+        "rate": "0,06069354400",
+        "relatedTo": "1º Semestre/2022",
+        "approvedOn": "23/06/2022",
+        "isinCode": "BRINTBACNOR9",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "28/06/2022",
         "remarks": ""
       }
     ],
