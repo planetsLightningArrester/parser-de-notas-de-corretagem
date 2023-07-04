@@ -46792,6 +46792,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCRFFCTF006",
+        "paymentDate": "12/07/2023",
+        "rate": "0,63000000000",
+        "relatedTo": "06/2023/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRCRFFCTF006",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCRFFCTF006",
         "paymentDate": "13/06/2023",
         "rate": "0,61000000000",
         "relatedTo": "05/2023/2023",
@@ -46942,6 +46953,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRCXRICTF003",
+        "paymentDate": "12/07/2023",
+        "rate": "0,60000000000",
+        "relatedTo": "06/2023/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRCXRICTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCXRICTF003",
         "paymentDate": "13/06/2023",
@@ -48892,6 +48914,17 @@
     "cnpj": "13022994000199",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRELDOCTF002",
+        "paymentDate": "11/07/2023",
+        "rate": "0,44000000000",
+        "relatedTo": "Julho/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRELDOCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRELDOCTF002",
         "paymentDate": "05/07/2023",
@@ -51899,6 +51932,17 @@
     "cnpj": "26614291000100",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRGGRCCTF002",
+        "paymentDate": "10/07/2023",
+        "rate": "1,05000000000",
+        "relatedTo": "JUNHO/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRGGRCCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRGGRCCTF002",
         "paymentDate": "09/06/2023",
@@ -74530,6 +74574,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRQAGRCTF005",
+        "paymentDate": "10/07/2023",
+        "rate": "0,42000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRQAGRCTF005",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRQAGRCTF005",
         "paymentDate": "09/06/2023",
         "rate": "0,42000000000",
         "relatedTo": "Abril-2023/2023",
@@ -75611,6 +75666,17 @@
     "cnpj": "35652227000104",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRRBLGCTF004",
+        "paymentDate": "10/07/2023",
+        "rate": "0,88000000000",
+        "relatedTo": "Maio-2023/2023",
+        "approvedOn": "03/07/2023",
+        "isinCode": "BRRBLGCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRRBLGCTF004",
         "paymentDate": "09/06/2023",
@@ -81835,9 +81901,9 @@
     "subscriptions": []
   },
   {
-    "issuingCompany": "SDIL",
+    "issuingCompany": "TRBL",
     "tradingName": "FII SDI LOG",
-    "tradingCode": "SDIL11",
+    "tradingCode": "TRBL11",
     "cnpj": "16671412000193",
     "stockDividends": [],
     "cashDividends": [
@@ -101992,17 +102058,6 @@
         "isinCode": "BRINTBACNOR9",
         "label": "DIVIDENDO",
         "lastDatePrior": "01/08/2022",
-        "remarks": ""
-      },
-      {
-        "assetIssued": "BRINTBACNOR9",
-        "paymentDate": "15/08/2022",
-        "rate": "0,06069354400",
-        "relatedTo": "1º Semestre/2022",
-        "approvedOn": "23/06/2022",
-        "isinCode": "BRINTBACNOR9",
-        "label": "JRS CAP PROPRIO",
-        "lastDatePrior": "28/06/2022",
         "remarks": ""
       }
     ],
