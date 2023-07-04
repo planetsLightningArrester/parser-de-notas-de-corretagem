@@ -20,6 +20,8 @@ class UpdateListener {
 
 /** Unexpected Axios response when getting listed assets */
 class UnexpectedAxiosResponse extends Error {}
+/** Fewer corporative events when merging the current and the fetched data. */
+class FewerCorporativeEvents extends Error {}
 
 /** Types of asset verbosity */
 export type AssetVerbosity = 'off' | 'all' | 'minimal';
@@ -101,65 +103,110 @@ export class AssetCrawler {
   async fetchListedAssets(): Promise<void> {
 
     let fetchRetries = 0;
-    try {
-      // Get listed stocks
-      if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page 1`);
-      let getStockResult = await axios.get(new ListedStocksRequest(1).base64Url());
+    const stockPage =  { number: 1 };
+    let stocksFetched = false;
+    while (!stocksFetched) {
+      try {
+        await this.fetchStocks(stockPage);
+        stocksFetched = true;
+      } catch (error) {
+        if (error instanceof FewerCorporativeEvents && this.verbosity === 'all') console.log(error.message);
+        // Try again
+        if (error instanceof UnexpectedAxiosResponse || error instanceof FewerCorporativeEvents) {
+          fetchRetries++;
+          if (this.verbosity === 'all') console.log(`[AC] Retrying getting listed assets`);
+          if (fetchRetries === this.maxRetries) throw new Error(`[AC] Max retries reached for fetching data`);
+        } else throw error;
+      }
+    }
+
+    fetchRetries = 0;
+    const fiisPage = { number: 1 };
+    let fiisFetched = false;
+    while (!fiisFetched) {
+      try {
+        await this.fetchFIIs(fiisPage);
+        fiisFetched = true;
+      } catch (error) {
+        // Try again
+        if (error instanceof UnexpectedAxiosResponse) {
+          fetchRetries++;
+          if (this.verbosity === 'all') console.log(`[AC] Retrying getting listed assets`);
+          if (fetchRetries === this.maxRetries) throw new Error(`[AC] Max retries reached for fetching data`);
+        } else throw error;
+      }
+    }
+
+    // Push updates to listeners
+    this.listeners.forEach(sub => {
+      sub.callback(this.assets);
+    });
+    
+  }
+
+  private async fetchStocks(page = { number: 1 }): Promise<void> {
+    // Get listed stocks
+    if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page 1`);
+    let getStockResult = await axios.get(new ListedStocksRequest(page.number).base64Url());
+    if (!getStockResult || !('data' in getStockResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getStockResult}`);
+
+    let stockData: StockCrawlerRequestResult = getStockResult.data;
+
+    while (stockData.page.totalPages >= stockData.page.pageNumber) {
       if (!getStockResult || !('data' in getStockResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getStockResult}`);
-
-      let stockData: StockCrawlerRequestResult = getStockResult.data;
+      page.number = stockData.page.pageNumber;
+      stockData = getStockResult.data;
+      stockData.results.forEach(r => {
+        r.retry = 0;
+      });
       
-      while (stockData.page.totalPages >= stockData.page.pageNumber) {
-        if (!('data' in getStockResult)) throw new Error(`[AC] Unexpected response: ${getStockResult}`);
-        stockData = getStockResult.data;
-        stockData.results.forEach(r => {
-          r.retry = 0;
-        });
-        
-        // Get stock's corporative events
-        let _company: StockInfos | undefined;
-        while ((_company = stockData.results.shift()) !== undefined) {
-          const company = _company;
-          // ? Company types other than 1 do not have much info. Not sure what this is about tho
-          if (company.type === '1') {
-            if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${company.issuingCompany}`);
-            
-            // ? Not all companies have corporative events fields
-            try {
-              const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url());
-              if (!('status' in getCorporativeEventsResult) || getCorporativeEventsResult.status !== 200) throw new Error(`Error requesting ${company.issuingCompany}: code ${getCorporativeEventsResult.status ?? '[no code]'}`);
-              // ? Stocks return as an Array with a single result. Real estate are just the element
-              if (!('data' in getCorporativeEventsResult) || typeof getCorporativeEventsResult.data === 'undefined') throw new Error(`No data in response: ${getCorporativeEventsResult}`);
-              if (typeof getCorporativeEventsResult.data === 'string' && getCorporativeEventsResult.data === '') throw new Error(`Empty data from response: ${getCorporativeEventsResult.data}`);
-              const corporativeEvents: StockCorporativeEventResponse = getCorporativeEventsResult.data[0];
-              if (!corporativeEvents) {
-                company.stockDividends = [];
-                company.cashDividends = [];
-                company.subscriptions = [];
-                if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`);                
-              } else {
-                if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s);
-                else company.stockDividends = [];
-                if (corporativeEvents.cashDividends) company.cashDividends = corporativeEvents.cashDividends.map(c => c);
-                else company.cashDividends = [];
-                if (corporativeEvents.subscriptions) company.subscriptions = corporativeEvents.subscriptions.map(s => s);
-                else company.subscriptions = [];
-                if (this.verbosity === 'all') console.log(`[AC] ${company.issuingCompany} done`);
-              }
-
-            } catch (e) {
-              if (e instanceof Error) {
-                if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
-              } else if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
-              
-              // Try again
-              if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
-              company.retry = company.retry?company.retry+1:1;
-              if (company.retry !== this.maxRetries) stockData.results.unshift(company);
-              else throw new Error(`[AC] Max retries reached for ${company.issuingCompany}`);
+      // Get stock's corporative events
+      let _company: StockInfos | undefined;
+      while ((_company = stockData.results.shift()) !== undefined) {
+        const company = _company;
+        let dataFetched = false;
+        // ? Company types other than 1 do not have much info. Not sure what this is about tho
+        if (company.type === '1') {
+          if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${company.issuingCompany}`);
+          
+          // ? Not all companies have corporative events fields
+          try {
+            const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url());
+            if (!('status' in getCorporativeEventsResult) || getCorporativeEventsResult.status !== 200) throw new Error(`Error requesting ${company.issuingCompany}: code ${getCorporativeEventsResult.status ?? '[no code]'}`);
+            // ? Stocks return as an Array with a single result. Real estate are just the element
+            if (!('data' in getCorporativeEventsResult) || typeof getCorporativeEventsResult.data === 'undefined') throw new Error(`No data in response: ${getCorporativeEventsResult}`);
+            if (typeof getCorporativeEventsResult.data === 'string' && getCorporativeEventsResult.data === '') throw new Error(`Empty data from response: ${getCorporativeEventsResult.data}`);
+            const corporativeEvents: StockCorporativeEventResponse = getCorporativeEventsResult.data[0];
+            if (!corporativeEvents) {
+              company.stockDividends = [];
+              company.cashDividends = [];
+              company.subscriptions = [];
+              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`);                
+            } else {
+              if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s);
+              else company.stockDividends = [];
+              if (corporativeEvents.cashDividends) company.cashDividends = corporativeEvents.cashDividends.map(c => c);
+              else company.cashDividends = [];
+              if (corporativeEvents.subscriptions) company.subscriptions = corporativeEvents.subscriptions.map(s => s);
+              else company.subscriptions = [];
+              if (this.verbosity === 'all') console.log(`[AC] ${company.issuingCompany} done`);
             }
-          }
+            dataFetched = true;
 
+          } catch (e) {
+            if (e instanceof Error) {
+              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
+            } else if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
+            
+            // Try again
+            if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
+            company.retry = company.retry?company.retry+1:1;
+            if (company.retry !== this.maxRetries) stockData.results.unshift(company);
+            else throw new Error(`[AC] Max retries reached for ${company.issuingCompany}`);
+          }
+        } else dataFetched = true;
+
+        if (dataFetched) {
           // Remove the retry field from the JSON
           delete company.retry;
 
@@ -171,140 +218,155 @@ export class AssetCrawler {
           // Merge with previous results
           const index = this.assets.findIndex(a => a.tradingName === company.tradingName);
           if (index !== -1) {
+          const companyPreviousData = this.assets[index];
+          // Merge removing duplicates. It's required to create an object to remove duplicates
+          const stockDividends = uniqueCorporativeEvent([
+            ...company.stockDividends,
+            ...companyPreviousData.stockDividends.map(d => d)
+          ]);
+          if (companyPreviousData.stockDividends.length > stockDividends.length) {
+            throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.stockDividends.length} stock dividends, now it has '${company.stockDividends.length}'. Missing: \n${getDiff(companyPreviousData.stockDividends, stockDividends)}`);
+          } else company.stockDividends = stockDividends;
+
+          const cashDividends = uniqueCorporativeEvent([
+            ...company.cashDividends,
+            ...companyPreviousData.cashDividends.map(c => c)
+          ]);
+          if (companyPreviousData.cashDividends.length > cashDividends.length) {
+            throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.cashDividends.length} cash dividends, now it has '${company.cashDividends.length}'. Missing: \n${getDiff(companyPreviousData.cashDividends, cashDividends)}`);
+          } else company.cashDividends = cashDividends;
+
+          const subscriptions = uniqueCorporativeEvent([
+            ...company.subscriptions,
+            ...companyPreviousData.subscriptions.map(s => s)
+          ]);
+          if (companyPreviousData.subscriptions.length > subscriptions.length) {
+            throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.subscriptions.length} subscriptions, now it has '${company.subscriptions.length}'. Missing: \n${getDiff(companyPreviousData.subscriptions, subscriptions)}`);
+          } else company.subscriptions = subscriptions;
+
+          this.assets.splice(index, 1, company);
+          } else this.assets.push(company);
+
+        }
+        
+      }
+
+      if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
+      if (stockData.page.totalPages === stockData.page.pageNumber) break;
+      else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url());
+    }
+  }
+
+  private async fetchFIIs(page = { number: 1 }): Promise<void> {
+    // Get listed FIIs
+    if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page 1`);
+    let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url());
+    if (!('data' in getFiiResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getFiiResult}`);
+
+    let fiiData: FIICrawlerRequestResult = getFiiResult.data;
+
+    while (fiiData.page.totalPages >= fiiData.page.pageNumber) {
+      if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
+      page.number = fiiData.page.pageNumber;
+      fiiData = getFiiResult.data;
+      fiiData.results.forEach(r => {
+        r.retry = 0;
+      });
+
+      let _fii: FiiCrawlerInfos | undefined;
+      while ((_fii = fiiData.results.shift()) !== undefined) {
+        const fii = _fii;
+        if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${fii.acronym}`);
+        
+        try {
+          const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
+          if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
+          const fiiInfo: FiiRawInfos = getFiiResult.data;
+          let tradingCodes = fiiInfo.detailFund.tradingCode.trim();
+          // ? Some funds don't have the trading code
+          if (!tradingCodes) tradingCodes = `${fii.acronym}11`;
+
+          // Get real estate's corporative events
+          const fiiElement = new FiiInfos(
+            fiiInfo.detailFund.tradingName.trim(),
+            tradingCodes,
+            fiiInfo.detailFund.cnpj.trim(),
+            fii.acronym,
+          );
+
+          // Get stock's corporative events
+          // ? Not all companies have corporative events fields
+          const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, fii.acronym).base64Url());
+          if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
+          const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
+
+          if (!corporativeEvents.code) {
+            fiiElement.stockDividends = [];
+            fiiElement.cashDividends = [];
+            fiiElement.subscriptions = [];
+            if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym}`);
+          } else {
+            if (corporativeEvents.stockDividends) fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => s);
+            else fiiElement.stockDividends = [];
+            if (corporativeEvents.cashDividends) fiiElement.cashDividends = corporativeEvents.cashDividends.map(c => c);
+            else fiiElement.cashDividends = [];
+            if (corporativeEvents.subscriptions) fiiElement.subscriptions = corporativeEvents.subscriptions.map(s => s);
+            else fiiElement.subscriptions = [];
+            if (this.verbosity === 'all') console.log(`[AC] ${fii.acronym} done`);
+          }
+
+          // Merge with previous results
+          const index = this.assets.findIndex(a => a.tradingName === fiiElement.tradingName);
+          if (index !== -1) {
             const companyPreviousData = this.assets[index];
             // Merge removing duplicates. It's required to create an object to remove duplicates
-            company.stockDividends = uniqueCorporativeEvent([
-              ...company.stockDividends,
-              ...companyPreviousData.stockDividends.map(d => d)
+            const stockDividends = uniqueCorporativeEvent([
+              ...fiiElement.stockDividends,
+              ...companyPreviousData.stockDividends.map(d =>d)
             ]);
-            company.cashDividends = uniqueCorporativeEvent([
-              ...company.cashDividends,
-              ...companyPreviousData.cashDividends.map(c => c)
-            ]);
-            company.subscriptions = uniqueCorporativeEvent([
-              ...company.subscriptions,
-              ...companyPreviousData.subscriptions.map(s => s)
-            ]);
-            this.assets.splice(index, 1, company);
-          } else this.assets.push(company);
-          
-        }
+            if (companyPreviousData.stockDividends.length > stockDividends.length) {
+              throw new FewerCorporativeEvents(`[AC] '${fiiElement.issuingCompany}' had ${companyPreviousData.stockDividends.length} stock dividends, now it has '${fiiElement.stockDividends.length}'. Missing: \n${getDiff(companyPreviousData.stockDividends, stockDividends)}`);
+            } else fiiElement.stockDividends = stockDividends;
 
-        if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
-        if (stockData.page.totalPages === stockData.page.pageNumber) break;
-        else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url());
+            const cashDividends = uniqueCorporativeEvent([
+              ...fiiElement.cashDividends,
+              ...companyPreviousData.cashDividends.map(c =>c)
+            ]);
+            if (companyPreviousData.cashDividends.length > cashDividends.length) {
+              throw new FewerCorporativeEvents(`[AC] '${fiiElement.issuingCompany}' had ${companyPreviousData.cashDividends.length} cash dividends, now it has '${fiiElement.cashDividends.length}'. Missing: \n${getDiff(companyPreviousData.cashDividends, cashDividends)}`);
+            } else fiiElement.cashDividends = cashDividends;
+
+            const subscriptions = uniqueCorporativeEvent([
+              ...fiiElement.subscriptions,
+              ...companyPreviousData.subscriptions.map(s =>s)
+            ]);
+            if (companyPreviousData.subscriptions.length > subscriptions.length) {
+              throw new FewerCorporativeEvents(`[AC] '${fiiElement.issuingCompany}' had ${companyPreviousData.subscriptions.length} subscriptions, now it has '${fiiElement.subscriptions.length}'. Missing: \n${getDiff(companyPreviousData.subscriptions, subscriptions)}`);
+            } else fiiElement.subscriptions = subscriptions;
+
+            this.assets.splice(index, 1, fiiElement);
+          } else this.assets.push(fiiElement);
+
+        } catch (e) {
+          if (e instanceof FewerCorporativeEvents) {
+            if (this.verbosity === 'all') console.log(e.message);
+          } else if (e instanceof Error) {
+            if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
+          } else if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
+
+          // Try again
+          if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${fii.acronym}`);
+          fii.retry = fii.retry?fii.retry+1:1;
+          if (fii.retry !== this.maxRetries) fiiData.results.unshift(fii);
+          else throw new Error(`[AC] Max retries reached for ${fii.acronym}`);
+
+        }
       }
 
-      // Get listed FIIs
-      if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page 1`);
-      let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url());
-      if (!('data' in getFiiResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getFiiResult}`);
-
-      let fiiData: FIICrawlerRequestResult = getFiiResult.data;
-      
-      while (fiiData.page.totalPages >= fiiData.page.pageNumber) {
-        if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
-        fiiData = getFiiResult.data;
-        fiiData.results.forEach(r => {
-          r.retry = 0;
-        });
-
-        let _fii: FiiCrawlerInfos | undefined;
-        while ((_fii = fiiData.results.shift()) !== undefined) {
-          const fii = _fii;
-          if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${fii.acronym}`);
-          
-          try {
-            const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
-            if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
-            const fiiInfo: FiiRawInfos = getFiiResult.data;
-            let tradingCodes = fiiInfo.detailFund.tradingCode.trim();
-            // ? Some funds don't have the trading code
-            if (!tradingCodes) tradingCodes = `${fii.acronym}11`;
-
-            // Get real estate's corporative events
-            const fiiElement = new FiiInfos(
-              fiiInfo.detailFund.tradingName.trim(),
-              tradingCodes,
-              fiiInfo.detailFund.cnpj.trim(),
-              fii.acronym,
-            );
-
-            // Get stock's corporative events
-            // ? Not all companies have corporative events fields
-            const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, fii.acronym).base64Url());
-            if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
-            const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
-
-            if (!corporativeEvents.code) {
-              fiiElement.stockDividends = [];
-              fiiElement.cashDividends = [];
-              fiiElement.subscriptions = [];
-              if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym}`);
-            } else {
-              if (corporativeEvents.stockDividends) fiiElement.stockDividends = corporativeEvents.stockDividends.map(s => s);
-              else fiiElement.stockDividends = [];
-              if (corporativeEvents.cashDividends) fiiElement.cashDividends = corporativeEvents.cashDividends.map(c => c);
-              else fiiElement.cashDividends = [];
-              if (corporativeEvents.subscriptions) fiiElement.subscriptions = corporativeEvents.subscriptions.map(s => s);
-              else fiiElement.subscriptions = [];
-              if (this.verbosity === 'all') console.log(`[AC] ${fii.acronym} done`);
-            }
-
-            // Merge with previous results
-            const index = this.assets.findIndex(a => a.tradingName === fiiElement.tradingName);
-            if (index !== -1) {
-              const companyPreviousData = this.assets[index];
-              // Merge removing duplicates. It's required to create an object to remove duplicates
-              fiiElement.stockDividends = uniqueCorporativeEvent([
-                ...fiiElement.stockDividends,
-                ...companyPreviousData.stockDividends.map(d =>d)
-              ]);
-              fiiElement.cashDividends = uniqueCorporativeEvent([
-                ...fiiElement.cashDividends,
-                ...companyPreviousData.cashDividends.map(c =>c)
-              ]);
-              fiiElement.subscriptions = uniqueCorporativeEvent([
-                ...fiiElement.subscriptions,
-                ...companyPreviousData.subscriptions.map(s =>s)
-              ]);
-              this.assets.splice(index, 1, fiiElement);
-            } else this.assets.push(fiiElement);
-
-          } catch (e) {
-            if (e instanceof Error) {
-              if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
-            } else if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
-
-            // Try again
-            if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${fii.acronym}`);
-            fii.retry = fii.retry?fii.retry+1:1;
-            if (fii.retry !== this.maxRetries) fiiData.results.unshift(fii);
-            else throw new Error(`[AC] Max retries reached for ${fii.acronym}`);
-
-          }
-        }
-
-        if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
-        if (fiiData.page.totalPages === fiiData.page.pageNumber) break;
-        else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url());
-      }
-
-    } catch (error) {
-      // Try again
-      if (error instanceof UnexpectedAxiosResponse) {
-        fetchRetries++;
-        if (this.verbosity === 'all') console.log(`[AC] Retrying getting listed assets`);
-        if (fetchRetries === this.maxRetries) throw new Error(`[AC] Max retries reached for fetching data`);
-        else await this.fetchListedAssets();
-      } else throw error;
+      if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
+      if (fiiData.page.totalPages === fiiData.page.pageNumber) break;
+      else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url());
     }
-
-    // Push updates to listeners
-    this.listeners.forEach(sub => {
-      sub.callback(this.assets);
-    });
-    
   }
 
   /**
@@ -435,6 +497,29 @@ function uniqueCorporativeEvent<T extends CorporativeEvent>(dividends: T[]): T[]
       }
       if (!inserted) result.push(reference);
     }
+  }
+  return result;
+}
+
+/**
+ * Assumes `to.length > from.length` and get the elements present in `to`
+ * and not present in `from`
+ * @param from an `Array` of `CorporativeEvent`s with fewer elements than `to`
+ * @param to an `Array` of `CorporativeEvent`s with more elements than `from`
+ * @returns the elements present in `to` and not present in `from`
+ */
+function getDiff<T extends CorporativeEvent>(from: T[], to: T[]): T[] {
+  const result: T[] = [];
+  for (const income of to) {
+    let found = false;
+    for (const reference of from) {
+      let counter = 0;
+      for (const key of Object.keys(reference)) {
+        if (reference[key] === income[key]) counter++;
+      }
+      if (counter === Object.keys(reference).length) found = true;
+    }
+    if (!found) result.push(income);
   }
   return result;
 }
