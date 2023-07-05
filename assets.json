@@ -4005,6 +4005,39 @@
     "cashDividends": [
       {
         "assetIssued": "BRALUPACNOR8",
+        "paymentDate": "05/07/2023",
+        "rate": "0,04000000000",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "10/05/2023",
+        "isinCode": "BRALUPACNOR8",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "15/05/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRALUPACNPR5",
+        "paymentDate": "05/07/2023",
+        "rate": "0,04000000000",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "10/05/2023",
+        "isinCode": "BRALUPACNPR5",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "15/05/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRALUPCDAM15",
+        "paymentDate": "05/07/2023",
+        "rate": "0,12000000000",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "10/05/2023",
+        "isinCode": "BRALUPCDAM15",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "15/05/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRALUPACNOR8",
         "paymentDate": "07/07/2023",
         "rate": "0,04000000000",
         "relatedTo": "1º Trimestre/2023",
@@ -5226,6 +5259,17 @@
     "market": "NM",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRARMLACNOR1",
+        "paymentDate": "29/12/2023",
+        "rate": "0,08686892060",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRARMLACNOR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRARMLACNOR1",
         "paymentDate": "29/12/2023",
@@ -55860,6 +55904,17 @@
     "cnpj": "38456508000171",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRHGICCTF009",
+        "paymentDate": "12/07/2023",
+        "rate": "1,28000000000",
+        "relatedTo": "Junho/2023",
+        "approvedOn": "04/07/2023",
+        "isinCode": "BRHGICCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "04/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRHGICCTF009",
         "paymentDate": "13/06/2023",
@@ -112146,6 +112201,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRMOARACNOR5",
+        "paymentDate": "28/07/2023",
+        "rate": "0,57137162000",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRMOARACNOR5",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMOARACNOR5",
         "paymentDate": "31/05/2023",
         "rate": "1,22436775800",
         "relatedTo": "Anual/2023",
@@ -122503,6 +122569,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900046",
+    "issuingCompany": "QISE",
+    "companyName": "QI COMPANHIA SECURITIZADORA II",
+    "tradingName": "QI SECUTII",
+    "cnpj": "47805900000170",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "912089",
     "issuingCompany": "QMCT",
     "companyName": "QMC TELECOM DO BRASIL CESSAO DE INFRAESTRUTURA S/A",
@@ -122907,6 +122991,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRRADLACNOR0",
+        "paymentDate": "01/12/2023",
+        "rate": "0,05949664580",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRRADLACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRRADLACNOR0",
         "paymentDate": "31/05/2023",
@@ -125326,6 +125421,17 @@
     "market": "",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRRBNSCDAM14",
+        "paymentDate": "31/12/2023",
+        "rate": "0,02988030616",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRRBNSCDAM14",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRRBNSACNOR2",
         "paymentDate": "04/01/2023",
@@ -131070,18 +131176,18 @@
     "subscriptions": []
   },
   {
-    "codeCVM": "915272",
+    "codeCVM": "26735",
     "issuingCompany": "RISP",
-    "companyName": "SPE SANEAMENTO RIO 1 S.A.",
+    "companyName": "ÁGUAS DO RIO 1 SPE S.A.",
     "tradingName": "SPE SANEAMEN",
     "cnpj": "42310775000103",
-    "marketIndicator": "1",
+    "marketIndicator": "8",
     "typeBDR": "",
-    "dateListing": "31/12/9999",
+    "dateListing": "30/06/2023",
     "status": "A",
     "segment": "Não Classificados",
     "segmentEng": "Not Classified",
-    "type": "7",
+    "type": "1",
     "market": "",
     "stockDividends": [],
     "cashDividends": [],
@@ -131106,18 +131212,18 @@
     "subscriptions": []
   },
   {
-    "codeCVM": "915280",
+    "codeCVM": "26743",
     "issuingCompany": "RIS4",
-    "companyName": "SPE SANEAMENTO RIO 4 S.A.",
+    "companyName": "ÁGUAS DO RIO 4 SPE S.A.",
     "tradingName": "SPESANEAMENT",
     "cnpj": "42644220000106",
-    "marketIndicator": "1",
+    "marketIndicator": "8",
     "typeBDR": "",
-    "dateListing": "31/12/9999",
+    "dateListing": "30/06/2023",
     "status": "A",
     "segment": "Não Classificados",
     "segmentEng": "Not Classified",
-    "type": "7",
+    "type": "1",
     "market": "",
     "stockDividends": [],
     "cashDividends": [],
@@ -137529,6 +137635,17 @@
     "market": "MB",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRUPKPACNOR8",
+        "paymentDate": "31/12/9999",
+        "rate": "0,02860575300",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRUPKPACNOR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRUPKPACNOR8",
         "paymentDate": "31/12/2023",
