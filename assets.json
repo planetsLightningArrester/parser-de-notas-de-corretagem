@@ -86646,7 +86646,19 @@
     "tradingCode": "UMED11",
     "cnpj": "41114606000135",
     "stockDividends": [],
-    "cashDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRUMEDCTF007",
+        "paymentDate": "14/07/2023",
+        "rate": "2,85000000000",
+        "relatedTo": "Junho/2023",
+        "approvedOn": "05/07/2023",
+        "isinCode": "BRUMEDCTF007",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -89509,6 +89521,18 @@
       }
     ],
     "subscriptions": [
+      {
+        "assetIssued": "BRPVBICTF003",
+        "percentage": "28,21009160772",
+        "priceUnit": "102,20000000000",
+        "tradingPeriod": "31/12/9999 a 17/07/2023",
+        "subscriptionDate": "20/07/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRPVBICTF003",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRPVBICTF003",
         "percentage": "35,19668772118",
@@ -93946,6 +93970,18 @@
       }
     ],
     "subscriptions": [
+      {
+        "assetIssued": "BRXPMLCTF000",
+        "percentage": "0,18170292282",
+        "priceUnit": "102,02000000000",
+        "tradingPeriod": "10/07/2023 a 18/07/2023",
+        "subscriptionDate": "21/07/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRXPMLCTF000",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "06/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRXPMLCTF000",
         "percentage": "14,27504395000",
@@ -125422,6 +125458,28 @@
     "stockDividends": [],
     "cashDividends": [
       {
+        "assetIssued": "BRRBNSACNOR2",
+        "paymentDate": "31/12/2023",
+        "rate": "0,00996010205",
+        "relatedTo": "1° Semestre/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRRBNSACNOR2",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRRBNSACNPR9",
+        "paymentDate": "31/12/2023",
+        "rate": "0,00996010205",
+        "relatedTo": "1° Semestre/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRRBNSACNPR9",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
+      {
         "assetIssued": "BRRBNSCDAM14",
         "paymentDate": "31/12/2023",
         "rate": "0,02988030616",
@@ -142793,6 +142851,42 @@
     "segment": "Não Classificados",
     "segmentEng": "Not Classified",
     "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
+    "codeCVM": "26735",
+    "issuingCompany": "RISP",
+    "companyName": "ÁGUAS DO RIO 1 SPE S.A.",
+    "tradingName": "ÁGUAS RIO 1",
+    "cnpj": "42310775000103",
+    "marketIndicator": "8",
+    "typeBDR": "",
+    "dateListing": "30/06/2023",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "1",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
+    "codeCVM": "26743",
+    "issuingCompany": "RIS4",
+    "companyName": "ÁGUAS DO RIO 4 SPE S.A.",
+    "tradingName": "ÁGUAS RIO 4",
+    "cnpj": "42644220000106",
+    "marketIndicator": "8",
+    "typeBDR": "",
+    "dateListing": "30/06/2023",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "1",
     "market": "",
     "stockDividends": [],
     "cashDividends": [],
