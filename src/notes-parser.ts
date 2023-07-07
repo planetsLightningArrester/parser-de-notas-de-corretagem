@@ -438,7 +438,7 @@ export class NoteParser {
    */
   defineStock(code: string, name: string, cnpj?: string, isFII?: boolean): void {
     // Skip duplicates
-    if (!this.assetCrawler.customAssets.find(a => a.code === code)) {
+    if (!this.assetCrawler.customAssets.some(a => a.code === code)) {
       this.assetCrawler.customAssets.push({code, name, cnpj, isFII: !!isFII});
     }
   }
