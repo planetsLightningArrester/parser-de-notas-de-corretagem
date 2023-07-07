@@ -397,8 +397,7 @@ export class AssetCrawler {
           return {code: mainTradingCode, name, cnpj: fii.cnpj, isFII: true};
         }
       }
-    }
-    else {
+    } else {
       // Else, parse it
       let type: '3'|'4'|'11'|'31'|'32'|'33' = '3';
       let indexOf: number;
