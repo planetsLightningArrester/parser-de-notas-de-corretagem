@@ -66827,7 +66827,7 @@
   {
     "issuingCompany": "MXRF",
     "tradingName": "FII MAXI REN",
-    "tradingCode": "MXRF11 MXRF12",
+    "tradingCode": "MXRF11",
     "cnpj": "97521225000125",
     "stockDividends": [
       {
@@ -93973,7 +93973,7 @@
   {
     "issuingCompany": "XPML",
     "tradingName": "FII XP MALLS",
-    "tradingCode": "XPML11",
+    "tradingCode": "XPML11 XPML12",
     "cnpj": "28757546000100",
     "stockDividends": [],
     "cashDividends": [
