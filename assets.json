@@ -1,5 +1,23 @@
 [
   {
+    "codeCVM": "900049",
+    "issuingCompany": "UQMU",
+    "companyName": "1461 INVESTIMENTOS S.A",
+    "tradingName": "1461 INVEST",
+    "cnpj": "46639922000144",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "25291",
     "issuingCompany": "RRRP",
     "companyName": "3R PETROLEUM ÓLEO E GÁS S.A",
@@ -5270,6 +5288,17 @@
     "market": "NM",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRARMLACNOR1",
+        "paymentDate": "29/12/2023",
+        "rate": "0,08687361640",
+        "relatedTo": "1º SEMESTRE/2023",
+        "approvedOn": "30/06/2023",
+        "isinCode": "BRARMLACNOR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRARMLACNOR1",
         "paymentDate": "29/12/2023",
@@ -20372,7 +20401,7 @@
     "companyName": "COMPANHIA NACIONAL DE ALCOOL",
     "tradingName": "CIAALCOOL",
     "cnpj": "60881299000162",
-    "marketIndicator": "1",
+    "marketIndicator": "99",
     "typeBDR": "",
     "dateListing": "31/12/9999",
     "status": "A",
@@ -26003,6 +26032,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCSUDACNOR5",
+        "paymentDate": "17/07/2023",
+        "rate": "0,15763017000",
+        "relatedTo": "2º TRIMESTRE/2023",
+        "approvedOn": "20/06/2023",
+        "isinCode": "BRCSUDACNOR5",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "23/06/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSUDACNOR5",
         "paymentDate": "18/07/2023",
         "rate": "0,15763017000",
         "relatedTo": "2º Trimestre/2023",
@@ -30438,14 +30478,14 @@
     "companyName": "EDP - ENERGIAS DO BRASIL S.A.",
     "tradingName": "ENERGIAS BR",
     "cnpj": "3983431000103",
-    "marketIndicator": "18",
+    "marketIndicator": "1",
     "typeBDR": "",
     "dateListing": "05/07/2005",
     "status": "A",
     "segment": "Energia Elétrica",
     "segmentEng": "Electric Utilities",
     "type": "1",
-    "market": "NM",
+    "market": "",
     "stockDividends": [
       {
         "assetIssued": "BRENBRACNOR2",
@@ -49245,6 +49285,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRDOVLCTF006",
+        "paymentDate": "19/07/2023",
+        "rate": "10,12860141731",
+        "relatedTo": "JUNHO.23/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRDOVLCTF006",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRDOVLCTF006",
         "paymentDate": "19/06/2023",
         "rate": "9,47621002000",
         "relatedTo": "MAIO.23/2023",
@@ -66504,6 +66555,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRMCCICTF008",
+        "paymentDate": "19/07/2023",
+        "rate": "0,95000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRMCCICTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMCCICTF008",
         "paymentDate": "20/06/2023",
         "rate": "0,95000000000",
         "relatedTo": "Maio-2023/2023",
@@ -66679,6 +66741,28 @@
     "cnpj": "36642139000186",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRMCHFCTF003",
+        "paymentDate": "19/07/2023",
+        "rate": "0,10000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRMCHFCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMCHFR05M16",
+        "paymentDate": "19/07/2023",
+        "rate": "0,10000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRMCHFR05M16",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRMCHFR05M16",
         "paymentDate": "22/06/2023",
@@ -69332,6 +69416,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRMGHTCTF005",
+        "paymentDate": "19/07/2023",
+        "rate": "0,80000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRMGHTCTF005",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRMGHTCTF005",
         "paymentDate": "20/06/2023",
@@ -83328,6 +83423,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRSHDPCTF007",
+        "paymentDate": "20/07/2023",
+        "rate": "7,34774395900",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRSHDPCTF007",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRSHDPCTF007",
         "paymentDate": "20/06/2023",
         "rate": "7,41067155200",
         "relatedTo": "Maio-2023/2023",
@@ -89118,6 +89224,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRVGIPCTF002",
+        "paymentDate": "19/07/2023",
+        "rate": "1,00000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRVGIPCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRVGIPCTF002",
         "paymentDate": "20/06/2023",
         "rate": "1,09000000000",
         "relatedTo": "Maio-2023/2023",
@@ -89325,6 +89442,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRVGIRCTF008",
+        "paymentDate": "19/07/2023",
+        "rate": "0,13000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "12/07/2023",
+        "isinCode": "BRVGIRCTF008",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "12/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRVGIRCTF008",
         "paymentDate": "20/06/2023",
@@ -97278,6 +97406,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900048",
+    "issuingCompany": "GDPS",
+    "companyName": "GD PARTICIPACOES SA ",
+    "tradingName": "GD PART",
+    "cnpj": "34656852000153",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "911016",
     "issuingCompany": "GDMG",
     "companyName": "GDM GENETICA DO BRASIL S A",
@@ -98632,6 +98778,24 @@
     "companyName": "GRAAL PARTICIPACOES S.A.",
     "tradingName": "GRAAL PARTIC",
     "cnpj": "14826903000130",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
+    "codeCVM": "900047",
+    "issuingCompany": "GRAQ",
+    "companyName": "GRANEL QUÍMICA LTDA",
+    "tradingName": "GRANEL QUIM",
+    "cnpj": "44983435000179",
     "marketIndicator": "99",
     "typeBDR": "",
     "dateListing": "31/12/9999",
@@ -135767,7 +135931,7 @@
   {
     "codeCVM": "26000",
     "issuingCompany": "LAND",
-    "companyName": "Terra Santa Propriedades Agricolas S.A.",
+    "companyName": "TERRA SANTA PROPRIEDADES AGRICOLAS S.A.",
     "tradingName": "TERRASANTAPA",
     "cnpj": "40337136000106",
     "marketIndicator": "18",
