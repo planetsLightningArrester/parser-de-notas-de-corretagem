@@ -50211,6 +50211,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRERCRCTF004",
+        "paymentDate": "24/07/2023",
+        "rate": "1.407,21068372000",
+        "relatedTo": "JULHO/2023",
+        "approvedOn": "17/07/2023",
+        "isinCode": "BRERCRCTF004",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "17/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRERCRCTF004",
         "paymentDate": "26/06/2023",
         "rate": "3.079,35780465000",
         "relatedTo": "JUNHO/2023",
@@ -67222,6 +67233,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRMCHYCTF004",
+        "paymentDate": "24/07/2023",
+        "rate": "1,40000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "17/07/2023",
+        "isinCode": "BRMCHYCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "17/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMCHYCTF004",
         "paymentDate": "23/06/2023",
         "rate": "1,40000000000",
         "relatedTo": "Maio-2023/2023",
@@ -84218,6 +84240,17 @@
     "cnpj": "40011324000140",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRSIGRCTF004",
+        "paymentDate": "24/07/2023",
+        "rate": "1,06077502200",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "17/07/2023",
+        "isinCode": "BRSIGRCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "17/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRSIGRCTF004",
         "paymentDate": "23/06/2023",
@@ -110952,6 +110985,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900053",
+    "issuingCompany": "GATU",
+    "companyName": "MARANGATU HOLDING S.A",
+    "tradingName": "MARANGATU",
+    "cnpj": "44493502000177",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "900017",
     "issuingCompany": "MRPH",
     "companyName": "MARAPÉ HOLDING E PARTICIPAÇÕES S.A. ",
@@ -119687,6 +119738,24 @@
     "companyName": "PAMPA TRANSMISSAO DE ENERGIA S.A",
     "tradingName": "PAMPAENERGIA",
     "cnpj": "32184487000104",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
+    "codeCVM": "900054",
+    "issuingCompany": "PNAT",
+    "companyName": "PANATI HOLDING S.A.",
+    "tradingName": "PANATI HOLD",
+    "cnpj": "44507274000147",
     "marketIndicator": "99",
     "typeBDR": "",
     "dateListing": "31/12/9999",
