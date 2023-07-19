@@ -24426,6 +24426,39 @@
     "cashDividends": [
       {
         "assetIssued": "BRCSRNACNOR0",
+        "paymentDate": "21/07/2023",
+        "rate": "0,14535782590",
+        "relatedTo": "2º TRIMESTRE/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCSRNACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNPA3",
+        "paymentDate": "21/07/2023",
+        "rate": "0,15989360850",
+        "relatedTo": "2º TRIMESTRE/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCSRNACNPA3",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNPB1",
+        "paymentDate": "21/07/2023",
+        "rate": "0,15989360850",
+        "relatedTo": "2º TRIMESTRE/2023",
+        "approvedOn": "28/06/2023",
+        "isinCode": "BRCSRNACNPB1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "03/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNOR0",
         "paymentDate": "31/12/2023",
         "rate": "0,14535782590",
         "relatedTo": "2º Trimestre/2023",
@@ -24488,6 +24521,39 @@
         "isinCode": "BRCSRNACNPB1",
         "label": "DIVIDENDO",
         "lastDatePrior": "19/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNOR0",
+        "paymentDate": "21/07/2023",
+        "rate": "0,15046524430",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "07/03/2023",
+        "isinCode": "BRCSRNACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "10/03/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNPA3",
+        "paymentDate": "21/07/2023",
+        "rate": "0,16551176870",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "07/03/2023",
+        "isinCode": "BRCSRNACNPA3",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "10/03/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCSRNACNPB1",
+        "paymentDate": "21/07/2023",
+        "rate": "0,16551176870",
+        "relatedTo": "1º TRIMESTRE/2023",
+        "approvedOn": "07/03/2023",
+        "isinCode": "BRCSRNACNPB1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "10/03/2023",
         "remarks": ""
       },
       {
@@ -35344,6 +35410,39 @@
     "cashDividends": [
       {
         "assetIssued": "BRALZRCTF006",
+        "paymentDate": "25/07/2023",
+        "rate": "0,82500000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRALZRCTF006",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRALZRR16M10",
+        "paymentDate": "25/07/2023",
+        "rate": "0,92635612700",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRALZRR16M10",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRALZRR17M19",
+        "paymentDate": "25/07/2023",
+        "rate": "0,74913396200",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRALZRR17M19",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRALZRCTF006",
         "paymentDate": "23/06/2023",
         "rate": "0,81575500000",
         "relatedTo": "Maio-2023/2023",
@@ -36294,7 +36393,19 @@
     "tradingCode": "ASRF11",
     "cnpj": "45188033000145",
     "stockDividends": [],
-    "cashDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRASRFR01M14",
+        "paymentDate": "25/07/2023",
+        "rate": "256,32869916600",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRASRFR01M14",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -42305,6 +42416,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRBROFCTF000",
+        "paymentDate": "25/07/2023",
+        "rate": "0,71951181700",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRBROFCTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBROFCTF000",
         "paymentDate": "26/06/2023",
         "rate": "0,61000000000",
         "relatedTo": "Maio-2023/2023",
@@ -44234,6 +44356,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRFCFLCTF009",
+        "paymentDate": "25/07/2023",
+        "rate": "0,79000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRFCFLCTF009",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFCFLCTF009",
         "paymentDate": "23/06/2023",
         "rate": "0,80000000000",
         "relatedTo": "Maio-2023/2023",
@@ -45828,7 +45961,30 @@
     "tradingCode": "CPSH11",
     "cnpj": "47896665000199",
     "stockDividends": [],
-    "cashDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRCPSHCTF017",
+        "paymentDate": "25/07/2023",
+        "rate": "1,10000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRCPSHCTF017",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCPSHR01M12",
+        "paymentDate": "25/07/2023",
+        "rate": "0,03958161400",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRCPSHR01M12",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -57367,8 +57523,49 @@
     "tradingName": "FII HOUSI",
     "tradingCode": "HOSI11",
     "cnpj": "34081631000102",
-    "stockDividends": [],
+    "stockDividends": [
+      {
+        "assetIssued": "",
+        "factor": "100,00000000000",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRHOSIR02M16",
+        "label": "RESG TOTAL RV",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "",
+        "factor": "100,00000000000",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRHOSIR03M15",
+        "label": "RESG TOTAL RV",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      }
+    ],
     "cashDividends": [
+      {
+        "assetIssued": "BRHOSIR02M16",
+        "paymentDate": "31/12/9999",
+        "rate": "21,96000000000",
+        "relatedTo": "Julho/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRHOSIR02M16",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRHOSIR03M15",
+        "paymentDate": "31/12/9999",
+        "rate": "21,96000000000",
+        "relatedTo": "julho/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRHOSIR03M15",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRHOSICTF009",
         "paymentDate": "07/07/2023",
@@ -72439,6 +72636,15 @@
     "subscriptions": []
   },
   {
+    "issuingCompany": "OBAL",
+    "tradingName": "FII OPPBAL",
+    "tradingCode": "OBAL11",
+    "cnpj": "42273290000197",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "issuingCompany": "FTCE",
     "tradingName": "FII OPPORTUN",
     "tradingCode": "FTCE11B",
@@ -86726,6 +86932,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRTJKBCTF006",
+        "paymentDate": "26/07/2023",
+        "rate": "2,63000000000",
+        "relatedTo": "16/06/2023 A 15/07/2/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRTJKBCTF006",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRTJKBCTF006",
         "paymentDate": "27/06/2023",
         "rate": "1,60000000000",
         "relatedTo": "16/05/2023 A 15/06/2/2023",
@@ -89397,6 +89614,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRVVCRCTF000",
+        "paymentDate": "25/07/2023",
+        "rate": "0,78000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRVVCRCTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRVVCRCTF000",
         "paymentDate": "26/06/2023",
         "rate": "0,31000000000",
         "relatedTo": "Maio-2023/2023",
@@ -89416,6 +89644,17 @@
     "cnpj": "49184940000177",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRVVRICTF007",
+        "paymentDate": "25/07/2023",
+        "rate": "1,50000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRVVRICTF007",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRVVRICTF007",
         "paymentDate": "26/06/2023",
@@ -94774,6 +95013,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRXPINCTF004",
+        "paymentDate": "25/07/2023",
+        "rate": "0,65000000000",
+        "relatedTo": "06-2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRXPINCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRXPINCTF004",
         "paymentDate": "23/06/2023",
         "rate": "0,65000000000",
         "relatedTo": "05-2023/2023",
@@ -95263,10 +95513,54 @@
   {
     "issuingCompany": "XPML",
     "tradingName": "FII XP MALLS",
-    "tradingCode": "XPML11 XPML12",
+    "tradingCode": "XPML11",
     "cnpj": "28757546000100",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRXPMLCTF000",
+        "paymentDate": "25/07/2023",
+        "rate": "0,83000000000",
+        "relatedTo": "06/2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRXPMLCTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRXPMLR26M18",
+        "paymentDate": "25/07/2023",
+        "rate": "0,55192373000",
+        "relatedTo": "06/2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRXPMLR26M18",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRXPMLR27M17",
+        "paymentDate": "25/07/2023",
+        "rate": "0,34745520000",
+        "relatedTo": "06/2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRXPMLR27M17",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRXPMLR28M16",
+        "paymentDate": "25/07/2023",
+        "rate": "0,15036321000",
+        "relatedTo": "06/2023/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRXPMLR28M16",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "18/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRXPMLCTF000",
         "paymentDate": "23/06/2023",
