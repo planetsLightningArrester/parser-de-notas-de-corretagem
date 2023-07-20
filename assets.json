@@ -3353,6 +3353,60 @@
     "market": "MB",
     "stockDividends": [
       {
+        "assetIssued": "BRRAILACNOR9",
+        "factor": "12,42880000000",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRFRRNACNOR5",
+        "label": "CIS RED CAP",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFRRNACNOR5",
+        "factor": "100,00000000000",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRFRRNACNOR5",
+        "label": "CIS RED CAP",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRRAILACNOR9",
+        "factor": "12,42880000000",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRFRRNACNPA8",
+        "label": "CIS RED CAP",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFRRNACNPA8",
+        "factor": "100,00000000000",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRFRRNACNPA8",
+        "label": "CIS RED CAP",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRRAILACNOR9",
+        "factor": "12,42880000000",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRFRRNACNPB6",
+        "label": "CIS RED CAP",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRFRRNACNPB6",
+        "factor": "100,00000000000",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRFRRNACNPB6",
+        "label": "CIS RED CAP",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
         "assetIssued": "BRFRPSACNOR8",
         "factor": "100,00000000000",
         "approvedOn": "16/06/1998",
@@ -27966,6 +28020,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900055",
+    "issuingCompany": "EPIN",
+    "companyName": "E&P INFRAESTRUTURA S.A",
+    "tradingName": "E&PINFRAEST",
+    "cnpj": "44457285000160",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "914044",
     "issuingCompany": "ESB1",
     "companyName": "E1 SUBHOLDING S.A.",
@@ -36091,7 +36163,85 @@
     "tradingCode": "APXM11",
     "cnpj": "43010485000107",
     "stockDividends": [],
-    "cashDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRAPXMR01M10",
+        "paymentDate": "26/07/2023",
+        "rate": "5,81455914600",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR01M10",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAPXMR02M19",
+        "paymentDate": "26/07/2023",
+        "rate": "4,82636186100",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR02M19",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAPXMR03M18",
+        "paymentDate": "26/07/2023",
+        "rate": "4,00122170200",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR03M18",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAPXMR04M17",
+        "paymentDate": "26/07/2023",
+        "rate": "3,12924327000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR04M17",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAPXMR05M16",
+        "paymentDate": "26/07/2023",
+        "rate": "2,33952401100",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR05M16",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAPXMR06M15",
+        "paymentDate": "26/07/2023",
+        "rate": "1,35717477000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR06M15",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAPXMR07M14",
+        "paymentDate": "26/07/2023",
+        "rate": "0,63058880600",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRAPXMR07M14",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -42500,6 +42650,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRBTALCTF003",
+        "paymentDate": "26/07/2023",
+        "rate": "0,73000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRBTALCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBTALCTF003",
         "paymentDate": "27/06/2023",
         "rate": "0,76000000000",
         "relatedTo": "Maio-2023/2023",
@@ -45952,7 +46113,19 @@
     "tradingCode": "CSMC11",
     "cnpj": "41081336000103",
     "stockDividends": [],
-    "cashDividends": [],
+    "cashDividends": [
+      {
+        "assetIssued": "BRCSMCCTF007",
+        "paymentDate": "27/07/2023",
+        "rate": "20,66581213862",
+        "relatedTo": "1º Semestre/2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRCSMCCTF007",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      }
+    ],
     "subscriptions": []
   },
   {
@@ -47071,6 +47244,28 @@
     "cnpj": "38294329000185",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRCVPRCTF002",
+        "paymentDate": "26/07/2023",
+        "rate": "1,05000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRCVPRCTF002",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCVPRR02M14",
+        "paymentDate": "26/07/2023",
+        "rate": "1,05000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRCVPRR02M14",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCVPRCTF002",
         "paymentDate": "27/06/2023",
@@ -50214,6 +50409,17 @@
     "cashDividends": [
       {
         "assetIssued": "BREQIRCTF003",
+        "paymentDate": "26/07/2023",
+        "rate": "0,11000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BREQIRCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREQIRCTF003",
         "paymentDate": "27/06/2023",
         "rate": "0,11000000000",
         "relatedTo": "Maio-2023/2023",
@@ -51046,6 +51252,17 @@
     "cnpj": "41076851000103",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BREXESCTF006",
+        "paymentDate": "26/07/2023",
+        "rate": "1,04000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BREXESCTF006",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BREXESCTF006",
         "paymentDate": "27/06/2023",
@@ -67672,6 +67889,17 @@
     "stockDividends": [],
     "cashDividends": [
       {
+        "assetIssued": "BRMMPDCTF000",
+        "paymentDate": "26/07/2023",
+        "rate": "5,18017969800",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRMMPDCTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
         "assetIssued": "BRMMPDR02M19",
         "paymentDate": "26/07/2022",
         "rate": "2,06000000000",
@@ -69279,6 +69507,18 @@
     "subscriptions": [
       {
         "assetIssued": "BRMFAICTF005",
+        "percentage": "100,00000000000",
+        "priceUnit": "74,27000000000",
+        "tradingPeriod": "31/12/9999 a 01/08/2023",
+        "subscriptionDate": "04/08/2023",
+        "approvedOn": "14/07/2023",
+        "isinCode": "BRMFAICTF005",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRMFAICTF005",
         "percentage": "16,76822516246",
         "priceUnit": "57,15000000000",
         "tradingPeriod": "31/12/9999 a 22/03/2023",
@@ -70247,6 +70487,17 @@
     "cnpj": "40102474000169",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRMORCCTF004",
+        "paymentDate": "26/07/2023",
+        "rate": "1,10000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRMORCCTF004",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRMORCCTF004",
         "paymentDate": "27/06/2023",
@@ -75876,6 +76127,17 @@
     "cnpj": "31962875000106",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRPBLVCTF007",
+        "paymentDate": "27/07/2023",
+        "rate": "39,64537789874",
+        "relatedTo": "1º Semestre/2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRPBLVCTF007",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRPBLVCTF007",
         "paymentDate": "27/01/2023",
@@ -85485,7 +85747,20 @@
         "remarks": ""
       }
     ],
-    "subscriptions": []
+    "subscriptions": [
+      {
+        "assetIssued": "BRSPXSCTF002",
+        "percentage": "167,69106021987",
+        "priceUnit": "100,22000000000",
+        "tradingPeriod": "21/07/2023 a 31/07/2023",
+        "subscriptionDate": "03/08/2023",
+        "approvedOn": "14/07/2023",
+        "isinCode": "BRSPXSCTF002",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      }
+    ]
   },
   {
     "issuingCompany": "STRX",
@@ -125602,6 +125877,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRCCRFCTF003",
+        "paymentDate": "26/07/2023",
+        "rate": "1,65000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "19/07/2023",
+        "isinCode": "BRCCRFCTF003",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRCCRFCTF003",
         "paymentDate": "27/06/2023",
         "rate": "0,66739829500",
         "relatedTo": "Maio-2023/2023",
@@ -138774,6 +139060,24 @@
     "tradingName": "TSM S/A",
     "cnpj": "28008699000155",
     "marketIndicator": "1",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
+    "codeCVM": "900056",
+    "issuingCompany": "TTCH",
+    "companyName": "TTCH4 PARTICIPAÇÕES S.A",
+    "tradingName": "TTCH4PAR",
+    "cnpj": "42554669000175",
+    "marketIndicator": "99",
     "typeBDR": "",
     "dateListing": "31/12/9999",
     "status": "A",
