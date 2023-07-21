@@ -6516,6 +6516,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900057",
+    "issuingCompany": "AVGE",
+    "companyName": "AVG EMPREENDIMENTOS MINERÁRIOS S.A",
+    "tradingName": "AVGEMPREEND",
+    "cnpj": "16565897000130",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "917566",
     "issuingCompany": "AXSO",
     "companyName": "AXIS SOLAR IX EMPREENDIMENTOS E PARTICIPAÇÕES S.A.",
@@ -85621,7 +85639,7 @@
   {
     "issuingCompany": "SPXS",
     "tradingName": "FII SPX SYN",
-    "tradingCode": "SPXS11",
+    "tradingCode": "SPXS11 SPXS12",
     "cnpj": "43010543000100",
     "stockDividends": [],
     "cashDividends": [
@@ -97447,6 +97465,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRFRASACNOR0",
+        "paymentDate": "14/08/2023",
+        "rate": "0,24166900000",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "17/07/2023",
+        "isinCode": "BRFRASACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "20/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRFRASACNOR0",
         "paymentDate": "19/01/2023",
@@ -125613,6 +125642,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRRAPTACNOR7",
+        "paymentDate": "15/08/2023",
+        "rate": "0,22240000000",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRRAPTACNOR7",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRRAPTACNPR4",
+        "paymentDate": "15/08/2023",
+        "rate": "0,22240000000",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRRAPTACNPR4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRRAPTACNOR7",
         "paymentDate": "20/01/2023",
         "rate": "0,28932000000",
         "relatedTo": "2º Semestre/2022",
@@ -129673,6 +129724,39 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRSANBACNOR8",
+        "paymentDate": "16/08/2023",
+        "rate": "0,19206934435",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "13/07/2023",
+        "isinCode": "BRSANBACNOR8",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "20/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRSANBACNPR5",
+        "paymentDate": "16/08/2023",
+        "rate": "0,21127627878",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "13/07/2023",
+        "isinCode": "BRSANBACNPR5",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "20/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRSANBCDAM13",
+        "paymentDate": "16/08/2023",
+        "rate": "0,40334562313",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "13/07/2023",
+        "isinCode": "BRSANBCDAM13",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "20/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRSANBACNOR8",
         "paymentDate": "15/05/2023",
@@ -141234,6 +141318,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRVLIDACNOR5",
+        "paymentDate": "31/07/2023",
+        "rate": "0,20000000000",
+        "relatedTo": "2º Trimestre/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRVLIDACNOR5",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRVLIDACNOR5",
         "paymentDate": "22/05/2023",
         "rate": "0,18000000000",
         "relatedTo": "1º Trimestre/2023",
@@ -144003,6 +144098,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRWEGEACNOR0",
+        "paymentDate": "16/08/2023",
+        "rate": "0,14520229240",
+        "relatedTo": "1º Semestre/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRWEGEACNOR0",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRWEGEACNOR0",
         "paymentDate": "16/08/2023",
