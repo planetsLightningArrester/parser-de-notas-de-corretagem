@@ -9923,6 +9923,18 @@
     "subscriptions": [
       {
         "assetIssued": "BRBIOMACNOR2",
+        "percentage": "9,61091049000",
+        "priceUnit": "5,76000000000",
+        "tradingPeriod": "25/07/2023 a 22/08/2023",
+        "subscriptionDate": "25/08/2023",
+        "approvedOn": "17/07/2023",
+        "isinCode": "BRBIOMACNOR2",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBIOMACNOR2",
         "percentage": "14,05705108000",
         "priceUnit": "7,74000000000",
         "tradingPeriod": "01/09/2022 a 05/10/2022",
@@ -35337,6 +35349,18 @@
     "subscriptions": [
       {
         "assetIssued": "BRAFHICTF005",
+        "percentage": "20,66255046858",
+        "priceUnit": "96,17000000000",
+        "tradingPeriod": "31/12/9999 a 02/08/2023",
+        "subscriptionDate": "07/08/2023",
+        "approvedOn": "18/07/2023",
+        "isinCode": "BRAFHICTF005",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRAFHICTF005",
         "percentage": "15,00000000000",
         "priceUnit": "96,41000000000",
         "tradingPeriod": "31/12/9999 a 14/07/2022",
@@ -45676,6 +45700,17 @@
     "cnpj": "13551286000145",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRCNESCTF001",
+        "paymentDate": "28/07/2023",
+        "rate": "0,08677838200",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "21/07/2023",
+        "isinCode": "BRCNESCTF001",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "21/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRCNESCTF001",
         "paymentDate": "29/06/2023",
