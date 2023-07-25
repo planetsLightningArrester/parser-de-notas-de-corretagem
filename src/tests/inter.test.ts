@@ -179,3 +179,140 @@ test('4 KDIFs', async () => {
   const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
   expect<NegotiationNote[]>(parseResult).toEqual(expected);
 });
+
+test('Real estate', async () => {
+  const expected: NegotiationNote[] = [{
+    "buyFees": "7.74",
+    "buyTotal": "25819.58",
+    "date": "20/07/2023",
+    "deals": [{
+      "average": "40.43",
+      "cnpj": "02.558.157/0001-62",
+      "code": "VIVT3",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "4043.21",
+      "quantity": 100,
+      "type": "buy",
+    }, {
+      "average": "87.26",
+      "cnpj": "28.830.325/0001-10",
+      "code": "IRDM11",
+      "date": "20/07/2023",
+      "isFII": true,
+      "price": "959.82",
+      "quantity": 11,
+      "type": "buy",
+    }, {
+      "average": "142.41",
+      "cnpj": "09.072.017/0001-29",
+      "code": "HGRE11",
+      "date": "20/07/2023",
+      "isFII": true,
+      "price": "996.89",
+      "quantity": 7,
+      "type": "buy",
+    }, {
+      "average": "1050.12",
+      "cnpj": "32.317.313/0001-64",
+      "code": "KEVE11",
+      "date": "20/07/2023",
+      "isFII": true,
+      "price": "2100.23",
+      "quantity": 2,
+      "type": "buy",
+    }, {
+      "average": "12.05",
+      "cnpj": "07.859.971/0001-30",
+      "code": "TAEE3",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "2410.72",
+      "quantity": 200,
+      "type": "buy",
+    }, {
+      "average": "161.03",
+      "cnpj": "12.005.956/0001-65",
+      "code": "KNRI11",
+      "date": "20/07/2023",
+      "isFII": true,
+      "price": "1610.28",
+      "quantity": 10,
+      "type": "buy",
+    }, {
+      "average": "88.75",
+      "cnpj": "28.152.272/0001-26",
+      "code": "RECR11",
+      "date": "20/07/2023",
+      "isFII": true,
+      "price": "1508.69",
+      "quantity": 17,
+      "type": "buy",
+    }, {
+      "average": "222.59",
+      "cnpj": "08.431.747/0001-06",
+      "code": "HGBS11",
+      "date": "20/07/2023",
+      "isFII": true,
+      "price": "890.35",
+      "quantity": 4,
+      "type": "buy",
+    }, {
+      "average": "4.14",
+      "cnpj": "76.484.013/0001-45",
+      "code": "SAPR4",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "2070.62",
+      "quantity": 500,
+      "type": "buy",
+    }, {
+      "average": "11.71",
+      "cnpj": "37.663.076/0001-07",
+      "code": "AESB3",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "2342.70",
+      "quantity": 200,
+      "type": "buy",
+    }, {
+      "average": "28.47",
+      "cnpj": "53.113.791/0001-22",
+      "code": "TOTS3",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "2846.85",
+      "quantity": 100,
+      "type": "buy",
+    }, {
+      "average": "9.69",
+      "cnpj": "61.532.644/0001-15",
+      "code": "ITSA4",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "1938.58",
+      "quantity": 200,
+      "type": "buy",
+    }, {
+      "average": "4.20",
+      "cnpj": "89.637.490/0001-45",
+      "code": "KLBN4",
+      "date": "20/07/2023",
+      "isFII": false,
+      "price": "2100.63",
+      "quantity": 500,
+      "type": "buy",
+    }],
+    "fees": "7.74",
+    "holder": "inter",
+    "number": "21748806",
+    "sellFees": "0.00",
+    "sellTotal": "0.00",
+  }];
+
+  const filePath: string = path.join(__dirname, 'notes', 'inter_real_state.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
+  expect < NegotiationNote[] > (parseResult).toEqual(expected);
+});

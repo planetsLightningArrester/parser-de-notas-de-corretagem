@@ -387,11 +387,11 @@ export class AssetCrawler {
     }
 
     // If it's a FII, the code is in the name
-    const match = name.match(/(FII\s.*?)\s([^\s]+?)\sCI/i);
-    if (match && match[1]) {
-      const tradingName = match[1].trim();
+    const match = name.trim().match(/^FII(?:[ \t]+(?!\w*?11|CI ER|CI$)\w+)*/im);
+    if (match) {
+      const tradingName1 = match[0].trim();
       for (const fii of this.assets) {
-        if ('tradingCode' in fii && fii.tradingName === tradingName) {
+        if ('tradingCode' in fii && fii.tradingName === tradingName1) {
           const mainTradingCode = fii.tradingCode.split(/\s/).shift();
           if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
           return {code: mainTradingCode, name, cnpj: fii.cnpj, isFII: true};

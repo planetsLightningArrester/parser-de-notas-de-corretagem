@@ -230,7 +230,7 @@ export class NoteParser {
     // ?* Clear and Rico stock pattern. This is also the default in case the holder isn't defined
     const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
     // ?* Inter stock pattern
-    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(\w+\s+)([ \t\w/.]+)/g;
+    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(\w[\w \t]+\s+)([ \t\w/.]+)/g;
     let match: RegExpMatchArray | null;
 
     // Iterate over the pages
