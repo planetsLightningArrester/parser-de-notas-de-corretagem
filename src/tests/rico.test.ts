@@ -101,8 +101,8 @@ describe('single page', () => {
     });
     expect<NegotiationNote[]>(parseResult).toEqual(_expected);
   });
-
 });
+
 test('multi page', async () => {
   const filePath: string = path.join(__dirname, 'notes', 'rico_multi_page.pdf');
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
