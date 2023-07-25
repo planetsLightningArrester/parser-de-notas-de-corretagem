@@ -7045,6 +7045,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "26425",
+    "issuingCompany": "GUSA",
+    "companyName": "AÇO VERDE DO BRASIL S.A.",
+    "tradingName": "AÇO VERDE",
+    "cnpj": "7636657000199",
+    "marketIndicator": "8",
+    "typeBDR": "",
+    "dateListing": "19/07/2023",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "1",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "917634",
     "issuingCompany": "BAEP",
     "companyName": "B.A. -EMPREENDIMENTOS E PARTICIPACOES S/A",
@@ -27243,6 +27261,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900059",
+    "issuingCompany": "DGTL",
+    "companyName": "DIGITAL DC BRASIL LTDA",
+    "tradingName": "DIGITALDC",
+    "cnpj": "19291041000102",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "9342",
     "issuingCompany": "PNVL",
     "companyName": "DIMED S.A. DISTRIBUIDORA DE MEDICAMENTOS",
@@ -43051,6 +43087,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRBTRACTF000",
+        "paymentDate": "31/07/2023",
+        "rate": "0,56000000000",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "24/07/2023",
+        "isinCode": "BRBTRACTF000",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "24/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRBTRACTF000",
         "paymentDate": "30/06/2023",
         "rate": "0,80000000000",
         "relatedTo": "Maio-2023/2023",
@@ -43804,6 +43851,17 @@
     "cnpj": "36930464000144",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRBTSICTF001",
+        "paymentDate": "31/07/2023",
+        "rate": "0,72000000000",
+        "relatedTo": "Julho/2023",
+        "approvedOn": "24/07/2023",
+        "isinCode": "BRBTSICTF001",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "24/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRBTSICTF001",
         "paymentDate": "30/06/2023",
@@ -52561,6 +52619,17 @@
     "cnpj": "15333306000137",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BREDGACTF001",
+        "paymentDate": "31/07/2023",
+        "rate": "0,06839727600",
+        "relatedTo": "Junho-2023/2023",
+        "approvedOn": "24/07/2023",
+        "isinCode": "BREDGACTF001",
+        "label": "RENDIMENTO",
+        "lastDatePrior": "24/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BREDGACTF001",
         "paymentDate": "30/06/2023",
@@ -105718,6 +105787,28 @@
     "cashDividends": [
       {
         "assetIssued": "BRITSAACNOR0",
+        "paymentDate": "30/12/2024",
+        "rate": "0,05150000000",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "20/07/2023",
+        "isinCode": "BRITSAACNOR0",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "25/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRITSAACNPR7",
+        "paymentDate": "30/12/2024",
+        "rate": "0,05150000000",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "20/07/2023",
+        "isinCode": "BRITSAACNPR7",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "25/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRITSAACNOR0",
         "paymentDate": "25/08/2023",
         "rate": "0,11440000000",
         "relatedTo": "Anual/2023",
@@ -128652,6 +128743,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "900058",
+    "issuingCompany": "RRPM",
+    "companyName": "RRPM CURSOS PREPARATORIOS LTDA",
+    "tradingName": "RRPMCURSOS",
+    "cnpj": "3515918000161",
+    "marketIndicator": "99",
+    "typeBDR": "",
+    "dateListing": "31/12/9999",
+    "status": "A",
+    "segment": "Não Classificados",
+    "segmentEng": "Not Classified",
+    "type": "7",
+    "market": "",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "22071",
     "issuingCompany": "CRBD",
     "companyName": "CONC ROTA DAS BANDEIRAS S.A.",
@@ -132643,6 +132752,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRSQIAACNOR6",
+        "paymentDate": "31/07/2023",
+        "rate": "0,05540459400",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "27/04/2023",
+        "isinCode": "BRSQIAACNOR6",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "05/05/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRSQIAACNOR6",
         "paymentDate": "31/08/2023",
