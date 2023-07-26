@@ -575,7 +575,7 @@
     "cashDividends": [
       {
         "assetIssued": "BREALTACNOR4",
-        "paymentDate": "31/07/2023",
+        "paymentDate": "28/07/2023",
         "rate": "0,02125000000",
         "relatedTo": "ANUAL/2022",
         "approvedOn": "26/04/2023",
@@ -608,7 +608,7 @@
       },
       {
         "assetIssued": "BREALTACNOR4",
-        "paymentDate": "31/07/2023",
+        "paymentDate": "28/07/2023",
         "rate": "0,09317000000",
         "relatedTo": "ANUAL/2022",
         "approvedOn": "26/04/2023",
@@ -641,7 +641,7 @@
       },
       {
         "assetIssued": "BREALTACNPR1",
-        "paymentDate": "31/07/2023",
+        "paymentDate": "28/07/2023",
         "rate": "0,02338000000",
         "relatedTo": "ANUAL/2022",
         "approvedOn": "26/04/2023",
@@ -674,7 +674,7 @@
       },
       {
         "assetIssued": "BREALTACNPR1",
-        "paymentDate": "31/07/2023",
+        "paymentDate": "28/07/2023",
         "rate": "0,10249000000",
         "relatedTo": "ANUAL/2022",
         "approvedOn": "26/04/2023",
@@ -697,6 +697,50 @@
       {
         "assetIssued": "BREALTACNPR1",
         "paymentDate": "30/11/2023",
+        "rate": "0,10249000000",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "26/04/2023",
+        "isinCode": "BREALTACNPR1",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREALTACNOR4",
+        "paymentDate": "31/07/2023",
+        "rate": "0,02125000000",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "26/04/2023",
+        "isinCode": "BREALTACNOR4",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "26/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREALTACNOR4",
+        "paymentDate": "31/07/2023",
+        "rate": "0,09317000000",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "26/04/2023",
+        "isinCode": "BREALTACNOR4",
+        "label": "JRS CAP PROPRIO",
+        "lastDatePrior": "26/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREALTACNPR1",
+        "paymentDate": "31/07/2023",
+        "rate": "0,02338000000",
+        "relatedTo": "ANUAL/2022",
+        "approvedOn": "26/04/2023",
+        "isinCode": "BREALTACNPR1",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "26/04/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BREALTACNPR1",
+        "paymentDate": "31/07/2023",
         "rate": "0,10249000000",
         "relatedTo": "ANUAL/2022",
         "approvedOn": "26/04/2023",
@@ -74725,6 +74769,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRPATCCTF002",
+        "paymentDate": "24/08/2023",
+        "rate": "1,43862970224",
+        "relatedTo": "JULHO/2023",
+        "approvedOn": "25/07/2023",
+        "isinCode": "BRPATCCTF002",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "25/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRPATCCTF002",
         "paymentDate": "10/07/2023",
         "rate": "0,58000000000",
         "relatedTo": "Junho/2023",
@@ -90282,6 +90337,18 @@
       }
     ],
     "subscriptions": [
+      {
+        "assetIssued": "BRVGHFCTF005",
+        "percentage": "36,91992729736",
+        "priceUnit": "9,29000000000",
+        "tradingPeriod": "31/12/9999 a 08/08/2023",
+        "subscriptionDate": "11/08/2023",
+        "approvedOn": "07/07/2023",
+        "isinCode": "BRVGHFCTF005",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRVGHFCTF005",
         "percentage": "40,87017204700",
@@ -124476,7 +124543,7 @@
   {
     "codeCVM": "24546",
     "issuingCompany": "PTCA",
-    "companyName": "PRATICA KLIMAQUIP INDUSTRIA E COMERCIO SA",
+    "companyName": "PRATICA PRODUTOS S.A.",
     "tradingName": "PRATICA",
     "cnpj": "8574411000100",
     "marketIndicator": "25",
