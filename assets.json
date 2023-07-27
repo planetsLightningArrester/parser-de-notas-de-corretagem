@@ -32604,6 +32604,24 @@
     "subscriptions": []
   },
   {
+    "codeCVM": "59390",
+    "issuingCompany": "EFXB",
+    "companyName": "EQUIFAX INC.",
+    "tradingName": "EQUIFAXBRL",
+    "cnpj": "47321544000119",
+    "marketIndicator": "14",
+    "typeBDR": "DR1",
+    "dateListing": "26/05/2023",
+    "status": "A",
+    "segment": "Não Classificado",
+    "segmentEng": "E",
+    "type": "2",
+    "market": "DR1",
+    "stockDividends": [],
+    "cashDividends": [],
+    "subscriptions": []
+  },
+  {
     "codeCVM": "910612",
     "issuingCompany": "EREN",
     "companyName": "EREN DRACENA PARTICIPAÇÕES S.A.",
@@ -36033,7 +36051,20 @@
         "remarks": ""
       }
     ],
-    "subscriptions": []
+    "subscriptions": [
+      {
+        "assetIssued": "BRFAMBCTF018",
+        "percentage": "5,01335877863",
+        "priceUnit": "785,55000000000",
+        "tradingPeriod": "31/12/9999 a 07/08/2023",
+        "subscriptionDate": "10/08/2023",
+        "approvedOn": "20/07/2023",
+        "isinCode": "BRFAMBCTF018",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      }
+    ]
   },
   {
     "issuingCompany": "ANCR",
@@ -53659,6 +53690,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRGTLGCTF009",
+        "paymentDate": "15/08/2023",
+        "rate": "31,23000000000",
+        "relatedTo": "Julho/2023",
+        "approvedOn": "26/07/2023",
+        "isinCode": "BRGTLGCTF009",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRGTLGCTF009",
         "paymentDate": "14/07/2023",
         "rate": "0,84000000000",
         "relatedTo": "Junho/2023",
@@ -70073,7 +70115,17 @@
     "tradingName": "FII MOGNO HG",
     "tradingCode": "MGCR11",
     "cnpj": "35652204000191",
-    "stockDividends": [],
+    "stockDividends": [
+      {
+        "assetIssued": "BRMGCRCTF000",
+        "factor": "843,29380000000",
+        "approvedOn": "26/07/2023",
+        "isinCode": "BRMGCRCTF000",
+        "label": "DESDOBRAMENTO",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      }
+    ],
     "cashDividends": [
       {
         "assetIssued": "BRMGCRCTF000",
@@ -84668,6 +84720,15 @@
       {
         "assetIssued": "",
         "factor": "100,00000000000",
+        "approvedOn": "26/07/2023",
+        "isinCode": "BRJRDMCTF002",
+        "label": "RESG TOTAL RV",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "",
+        "factor": "100,00000000000",
         "approvedOn": "05/11/2018",
         "isinCode": "BRJRDMR13M19",
         "label": "RESG TOTAL RV",
@@ -85925,6 +85986,18 @@
       }
     ],
     "subscriptions": [
+      {
+        "assetIssued": "BRSPXSCTF002",
+        "percentage": "167,69106021987",
+        "priceUnit": "100,22000000000",
+        "tradingPeriod": "31/12/9999 a 31/12/9999",
+        "subscriptionDate": "31/12/9999",
+        "approvedOn": "14/07/2023",
+        "isinCode": "BRSPXSCTF002",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "19/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRSPXSCTF002",
         "percentage": "167,69106021987",
@@ -107103,6 +107176,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRJHSFACNOR2",
+        "paymentDate": "02/08/2023",
+        "rate": "0,04425297560",
+        "relatedTo": "Anual/2022",
+        "approvedOn": "21/07/2023",
+        "isinCode": "BRJHSFACNOR2",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRJHSFACNOR2",
         "paymentDate": "28/06/2023",
         "rate": "0,04794072360",
         "relatedTo": "Anual/2022",
@@ -108207,14 +108291,14 @@
     "companyName": "KEPLER WEBER S.A.",
     "tradingName": "KEPLER WEBER",
     "cnpj": "91983056000169",
-    "marketIndicator": "1",
+    "marketIndicator": "18",
     "typeBDR": "",
     "dateListing": "13/02/1981",
     "status": "A",
     "segment": "Máq. e Equip. Industriais",
     "segmentEng": "Machines and Industrial Equipments",
     "type": "1",
-    "market": "",
+    "market": "NM",
     "stockDividends": [
       {
         "assetIssued": "BRKEPLACNOR1",
@@ -125733,6 +125817,17 @@
     "market": "N2",
     "stockDividends": [],
     "cashDividends": [
+      {
+        "assetIssued": "BRRAIZACNPR6",
+        "paymentDate": "04/08/2023",
+        "rate": "0,02421061615",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "26/07/2023",
+        "isinCode": "BRRAIZACNPR6",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRRAIZACNPR6",
         "paymentDate": "27/03/2023",
@@ -143791,6 +143886,18 @@
     ],
     "cashDividends": [],
     "subscriptions": [
+      {
+        "assetIssued": "BRVIVRACNOR4",
+        "percentage": "44,81365440000",
+        "priceUnit": "198,00000000000",
+        "tradingPeriod": "27/07/2023 a 23/08/2023",
+        "subscriptionDate": "26/08/2023",
+        "approvedOn": "21/07/2023",
+        "isinCode": "BRVIVRACNOR4",
+        "label": "SUBSCRICAO",
+        "lastDatePrior": "26/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRVIVRACNOR4",
         "percentage": "51,94650620000",
