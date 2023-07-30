@@ -75348,6 +75348,17 @@
     "cashDividends": [
       {
         "assetIssued": "BRPRSNCTF005",
+        "paymentDate": "04/08/2023",
+        "rate": "0,15473902000",
+        "relatedTo": "JULHO/2023/2023",
+        "approvedOn": "28/07/2023",
+        "isinCode": "BRPRSNCTF005",
+        "label": "AMORTIZACAO RF",
+        "lastDatePrior": "28/07/2023",
+        "remarks": ""
+      },
+      {
+        "assetIssued": "BRPRSNCTF005",
         "paymentDate": "13/01/2023",
         "rate": "0,17167795000",
         "relatedTo": "DEZEMBRO/2022/2023",
@@ -131155,6 +131166,17 @@
       }
     ],
     "cashDividends": [
+      {
+        "assetIssued": "BRSMTOACNOR3",
+        "paymentDate": "15/08/2023",
+        "rate": "0,79393734481",
+        "relatedTo": "Anual/2023",
+        "approvedOn": "28/07/2023",
+        "isinCode": "BRSMTOACNOR3",
+        "label": "DIVIDENDO",
+        "lastDatePrior": "28/07/2023",
+        "remarks": ""
+      },
       {
         "assetIssued": "BRSMTOACNOR3",
         "paymentDate": "04/07/2023",
