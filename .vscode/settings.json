@@ -17,5 +17,9 @@
   "cSpell.enableFiletypes": [
     "github-actions-workflow"
   ],
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
   "cSpell.language": "en,pt-BR",
 }
