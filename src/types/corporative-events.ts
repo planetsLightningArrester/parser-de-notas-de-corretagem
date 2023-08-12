@@ -9,14 +9,14 @@ export class StockCorporativeEventRequest {
   /**
    * @param issuingCompany company code (letters only)
    */
-  constructor(private issuingCompany: string) {}
+  constructor(private issuingCompany: string) { }
 
   /**
    * Generate a URL page to get the information from
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.corporativeEvents}/${btoa(JSON.stringify({issuingCompany: this.issuingCompany, language: this.language}))}`;
+    return `${this.corporativeEvents}/${btoa(JSON.stringify({ issuingCompany: this.issuingCompany, language: this.language }))}`;
   }
 
 }
@@ -25,22 +25,22 @@ export class StockCorporativeEventRequest {
 export class RealEstateCorporativeEventRequest {
 
   private typeFund = 7;
-  
+
   //? Using deprecated `atob` because Buffer isn't supported out-of-the-box in browsers
   private corporativeEvents = atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9mdW5kc1Byb3h5L2Z1bmRzQ2FsbC9HZXRMaXN0ZWRTdXBwbGVtZW50RnVuZHM');
-  
+
   /**
    * @param cnpj company registration number
    * @param identifierFund company code (letters only)
    */
-  constructor(private cnpj: string, private identifierFund: string) {}
+  constructor(private cnpj: string, private identifierFund: string) { }
 
   /**
    * Generate a URL page to get the information from
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.corporativeEvents}/${btoa(JSON.stringify({cnpj:this.cnpj, identifierFund: this.identifierFund, typeFund: this.typeFund}))}`;
+    return `${this.corporativeEvents}/${btoa(JSON.stringify({ cnpj: this.cnpj, identifierFund: this.identifierFund, typeFund: this.typeFund }))}`;
   }
 
 }
@@ -184,30 +184,48 @@ export interface RealEstateCorporativeEventResponse {
   subscriptions?: Subscription[];
 }
 
+/** How StockDividends are stored */
+export interface StoredStockDividend {
+  /** assetIssued */
+  a: string;
+  /** factor */
+  b: string;
+  /** approvedOn */
+  c: string;
+  /** isinCode */
+  d: string;
+  /** label */
+  e: string;
+  /** lastDatePrior */
+  f: string;
+  /** remarks */
+  g: string;
+}
+
 /**
  * Represents a stock dividend paid out by a company to its shareholders.
  */
-export interface StockDividend {
+export class StockDividend {
   /**
    * The code of the asset issued for this dividend
    * @example "BRWEGEACNOR0"
    */
-  assetIssued: string;
+  assetIssued = '';
   /**
    * The factor by which the shares were split/multiplied, depending on `label`
    * @example "100,00000000000"
    */
-  factor: string;
+  factor = '';
   /**
    * The date on which the dividend was approved
    * @example "27/04/2021"
    */
-  approvedOn: string;
+  approvedOn = '';
   /**
    * The ISIN code of the asset issued for this dividend
    * @example "BRWEGEACNOR0"
    */
-  isinCode: string;
+  isinCode = '';
   /**
    * The label for this dividend
    * @example
@@ -215,121 +233,282 @@ export interface StockDividend {
    * "GRUPAMENTO"
    * "BONIFICACAO"
    */
-  label: string;
+  label = '';
   /**
    * The last date prior to which the shareholder must own the shares in order to receive the dividend
    * @example "27/04/2021"
    */
-  lastDatePrior: string;
+  lastDatePrior = '';
   /** Any additional remarks about the dividend */
-  remarks: string;
+  remarks = '';
   // Allow key mapping
   [key: string]: string;
+
+  /**
+   * Receives `StoredStockDividend` as the data stored and convert to an Object
+   * @param stockDividend `StoredStockDividend` to be converted
+   * @returns the converted `StockDividend`
+   */
+  static fromStoredStockDividend(stockDividend: StoredStockDividend): StockDividend {
+    const result = new StockDividend();
+    result.assetIssued = stockDividend.a;
+    result.factor = stockDividend.b;
+    result.approvedOn = stockDividend.c;
+    result.isinCode = stockDividend.d;
+    result.label = stockDividend.e;
+    result.lastDatePrior = stockDividend.f;
+    result.remarks = stockDividend.g;
+    return result;
+  }
+
+  /**
+   * Receives `StockDividend` as an Object and convert to a data to be stored
+   * @param stockDividend `StockDividend` to be converted
+   * @returns the converted `StoredStockDividend`
+   */
+  static toStoredStockDividend(stockDividend: StockDividend): StoredStockDividend {
+    return {
+      a: stockDividend.assetIssued,
+      b: stockDividend.factor,
+      c: stockDividend.approvedOn,
+      d: stockDividend.isinCode,
+      e: stockDividend.label,
+      f: stockDividend.lastDatePrior,
+      g: stockDividend.remarks,
+    };
+  }
+
+}
+
+/** How CashDividends are stored */
+export interface StoredCashDividend {
+  /** assetIssued */
+  a: string;
+  /** paymentDate */
+  b: string;
+  /** rate */
+  c: string;
+  /** relatedTo */
+  d: string;
+  /** approvedOn */
+  e: string;
+  /** isinCode */
+  f: string;
+  /** label */
+  g: string;
+  /** lastDatePrior */
+  h: string;
+  /** remarks */
+  i: string;
 }
 
 /**
  * Represents a cash dividend paid out by a company to its shareholders.
  */
-export interface CashDividend {
+export class CashDividend {
   /**
    * The code of the asset issued for this dividend
    * @example "BRWEGEACNOR0"
    */
-  assetIssued: string;
+  assetIssued = '';
   /**
    * The date on which the dividend was paid out
    * @example "16/08/2023"
    */
-  paymentDate: string;
+  paymentDate = '';
   /**
    * The rate of the dividend, as a decimal
    * @example "0,05323529400"
    */
-  rate: string;
+  rate = '';
   /**
    * The period to which the dividend relates
    * @example "1º Trimestre/2023"
    */
-  relatedTo: string;
+  relatedTo = '';
   /**
    * The date on which the dividend was approved
    * @example "14/03/2023"
    */
-  approvedOn: string;
+  approvedOn = '';
   /**
    * The ISIN code of the asset issued for this dividend
    * @example "BRWEGEACNOR0"
    */
-  isinCode: string;
+  isinCode = '';
   /**
    * The label for this dividend
    * @example
    * "JRS CAP PROPRIO"
    * "DIVIDENDO"
    */
-  label: string;
+  label = '';
   /**
    * The last date prior to which the shareholder must own the shares in order to receive the dividend
    * @example "17/03/2023"
    */
-  lastDatePrior: string;
+  lastDatePrior = '';
   /** Any additional remarks about the dividend */
-  remarks: string;
+  remarks = '';
   // Allow key mapping
   [key: string]: string;
+
+  /**
+   * Receives `StoredCashDividend` as the data stored and convert to an Object
+   * @param cashDividend `StoredCashDividend` to be converted
+   * @returns the converted `CashDividend`
+   */
+  static fromStoredCashDividend(cashDividend: StoredCashDividend): CashDividend {
+    const result = new CashDividend();
+    result.assetIssued = cashDividend.a;
+    result.paymentDate = cashDividend.b;
+    result.rate = cashDividend.c;
+    result.relatedTo = cashDividend.d;
+    result.approvedOn = cashDividend.e;
+    result.isinCode = cashDividend.f;
+    result.label = cashDividend.g;
+    result.lastDatePrior = cashDividend.h;
+    result.remarks = cashDividend.i;
+    return result;
+  }
+
+  /**
+   * Receives `CashDividend` as an Object and convert to a data to be stored
+   * @param cashDividend `CashDividend` to be converted
+   * @returns the converted `StoredCashDividend`
+   */
+  static toStoredCashDividend(cashDividend: CashDividend): StoredCashDividend {
+    return {
+      a: cashDividend.assetIssued,
+      b: cashDividend.paymentDate,
+      c: cashDividend.rate,
+      d: cashDividend.relatedTo,
+      e: cashDividend.approvedOn,
+      f: cashDividend.isinCode,
+      g: cashDividend.label,
+      h: cashDividend.lastDatePrior,
+      i: cashDividend.remarks,
+    };
+  }
+
+}
+
+/** How Subscriptions are stored */
+export interface StoredSubscription {
+  /** assetIssued */
+  a: string;
+  /** percentage */
+  b: string;
+  /** priceUnit */
+  c: string;
+  /** tradingPeriod */
+  d: string;
+  /** approvedOn */
+  e: string;
+  /** isinCode */
+  f: string;
+  /** label */
+  g: string;
+  /** lastDatePrior */
+  h: string;
+  /** remarks */
+  i: string;
+  /** subscriptionDate */
+  j: string;
 }
 
 /**
  * Represents a subscription to a stock.
  */
-export interface Subscription {
+export class Subscription {
   /**
    * The asset issued for the subscription.
    * @example "BRALZRCTF006"
    */
-  assetIssued: string;
+  assetIssued = '';
   /**
    * The percentage of the subscription.
    * @example "33,77231146600"
    */
-  percentage: string;
+  percentage = '';
   /**
    * The unit price of the subscription.
    * @example "108,80000000000"
    */
-  priceUnit: string;
+  priceUnit = '';
   /**
    * The trading period of the subscription.
    * @example "10/05/2023 a 18/05/2023"
    */
-  tradingPeriod: string;
+  tradingPeriod = '';
   /**
    * The date of the subscription.
    * @example "28/07/2022"
    */
-  subscriptionDate: string;
+  subscriptionDate = '';
   /**
    * The date when the subscription was approved.
    * @example "08/07/2022"
    */
-  approvedOn: string;
+  approvedOn = '';
   /**
    * The ISIN code for the subscription.
    * @example "BRALZRCTF006"
    */
-  isinCode: string;
+  isinCode = '';
   /**
    * The label for the subscription.
    * @example "SUBSCRICAO"
    */
-  label: string;
+  label = '';
   /**
    * The last date prior to the subscription.
    * @example "13/07/2022"
    */
-  lastDatePrior: string;
+  lastDatePrior = '';
   /** Any additional remarks for the subscription. */
-  remarks: string;
+  remarks = '';
   // Allow key mapping
   [key: string]: string;
+
+  /**
+   * Receives `StoredSubscription` as the data stored and convert to an Object
+   * @param subscription `StoredSubscription` to be converted
+   * @returns the converted `Subscription`
+   */
+  static fromStoredSubscription(subscription: StoredSubscription): Subscription {
+    const result = new Subscription();
+    result.assetIssued = subscription.a;
+    result.percentage = subscription.b;
+    result.priceUnit = subscription.c;
+    result.tradingPeriod = subscription.d;
+    result.approvedOn = subscription.e;
+    result.isinCode = subscription.f;
+    result.label = subscription.g;
+    result.lastDatePrior = subscription.h;
+    result.remarks = subscription.i;
+    result.subscriptionDate = subscription.j;
+    return result;
+  }
+
+  /**
+   * Receives `Subscription` as an Object and convert to a data to be stored
+   * @param subscription `Subscription` to be converted
+   * @returns the converted `StoredSubscription`
+   */
+  static toStoredSubscription(subscription: Subscription): StoredSubscription {
+    return {
+      a: subscription.assetIssued,
+      b: subscription.percentage,
+      c: subscription.priceUnit,
+      d: subscription.tradingPeriod,
+      e: subscription.approvedOn,
+      f: subscription.isinCode,
+      g: subscription.label,
+      h: subscription.lastDatePrior,
+      i: subscription.remarks,
+      j: subscription.subscriptionDate,
+    };
+  }
+
 }

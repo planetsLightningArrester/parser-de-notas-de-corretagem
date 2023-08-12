@@ -1,14 +1,14 @@
 import { PageInfo } from "./common";
-import { CashDividend, StockDividend, Subscription } from "./corporative-events";
+import { CashDividend, StockDividend, StoredCashDividend, StoredStockDividend, StoredSubscription, Subscription } from "./corporative-events";
 
 /** B3 request object constructor for FIIs */
 export class ListedFIIsRequest {
   typeFund = 7;
   pageNumber: number;
-  pageSize: 20|40|60 = 60;
+  pageSize: 20 | 40 | 60 = 60;
   //? Using deprecated `atob` because Buffer isn't supported out-of-the-box in browsers
   private listedFIIsUrl = atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9mdW5kc1Byb3h5L2Z1bmRzQ2FsbC9HZXRMaXN0ZWRGdW5kc1NJRw');
-  
+
   constructor(pageNumber: number) {
     this.pageNumber = pageNumber;
   }
@@ -19,7 +19,7 @@ export class ListedFIIsRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(page?: number): string {
-    return `${this.listedFIIsUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize}))}`;
+    return `${this.listedFIIsUrl}/${btoa(JSON.stringify({ typeFund: this.typeFund, pageNumber: page ?? this.pageNumber, pageSize: this.pageSize }))}`;
   }
 
 }
@@ -27,7 +27,7 @@ export class ListedFIIsRequest {
 /** B3 request object constructor for detailed info of FIIs */
 export class GetFIIsRequest {
   typeFund = 7;
-  identifierFund:string;
+  identifierFund: string;
   private getFiiUrl = atob('aHR0cHM6Ly9zaXN0ZW1hc3dlYmIzLWxpc3RhZG9zLmIzLmNvbS5ici9mdW5kc1Byb3h5L2Z1bmRzQ2FsbC9HZXREZXRhaWxGdW5kU0lH');
 
   constructor(code: string) {
@@ -39,7 +39,7 @@ export class GetFIIsRequest {
    * @returns the URL to retrieve the information
    */
   base64Url(): string {
-    return `${this.getFiiUrl}/${btoa(JSON.stringify({typeFund: this.typeFund, identifierFund: this.identifierFund}))}`;
+    return `${this.getFiiUrl}/${btoa(JSON.stringify({ typeFund: this.typeFund, identifierFund: this.identifierFund }))}`;
   }
 
 }
@@ -49,8 +49,8 @@ export interface FiiCrawlerInfos {
   segment: string;
   /** Fund code without numbers */
   acronym: string;
-  fundName:string;
-  companyName:string;
+  fundName: string;
+  companyName: string;
   /** Always null */
   cnpj: null
   /** Retries attempts to get the data */
@@ -58,7 +58,7 @@ export interface FiiCrawlerInfos {
 }
 
 export interface FiiRawInfos {
-  detailFund:{
+  detailFund: {
     /** Fund code without numbers */
     acronym: string;
     /** Fund name in the brokerage note */
@@ -84,10 +84,10 @@ export interface FiiRawInfos {
     companyName: string;
     quotaCount: string;
     quotaDateApproved: string;
-    typeFNET:null,
-    codes:null,
-    codesOther:null,
-    segment:null
+    typeFNET: null,
+    codes: null,
+    codesOther: null,
+    segment: null
   },
   shareHolder: {
     shareHolderName: string;
@@ -97,6 +97,24 @@ export interface FiiRawInfos {
     shareHolderFaxNumber: string;
     shareHolderEmail: string;
   }
+}
+
+/** How FiiInfos are stored */
+export interface StoredFiiInfos {
+  /** issuingCompany */
+  a: string;
+  /** tradingName */
+  d: string;
+  /** tradingCode */
+  c: string;
+  /** cnpj */
+  b: string;
+  /** stockDividends */
+  e: StoredStockDividend[];
+  /** cashDividends */
+  f: StoredCashDividend[];
+  /** subscriptions */
+  g: StoredSubscription[];
 }
 
 export class FiiInfos {
@@ -122,11 +140,41 @@ export class FiiInfos {
    * @param cnpj Registration number (numbers only)
    * @param issuingCompany Company (B3 Code - only letters)
    */
-  constructor (tradingName: string, tradingCodes: string, cnpj: string, issuingCompany: string) {
+  constructor(tradingName: string, tradingCodes: string, cnpj: string, issuingCompany: string) {
     this.tradingName = tradingName;
     this.tradingCode = tradingCodes;
     this.cnpj = cnpj;
     this.issuingCompany = issuingCompany;
+  }
+
+  /**
+   * Receives `StoredFiiInfos` as the data stored and convert to an Object
+   * @param fiiInfos `StoredFiiInfos` to be converted
+   * @returns the converted `FiiInfos`
+   */
+  static fromStoredFiiInfos(fiiInfos: StoredFiiInfos): FiiInfos {
+    const result = new FiiInfos(fiiInfos.d, fiiInfos.c, fiiInfos.b, fiiInfos.a);
+    result.stockDividends = fiiInfos.e.map(e => StockDividend.fromStoredStockDividend(e));
+    result.cashDividends = fiiInfos.f.map(e => CashDividend.fromStoredCashDividend(e));
+    result.subscriptions = fiiInfos.g.map(e => Subscription.fromStoredSubscription(e));
+    return result;
+  }
+
+  /**
+   * Receives `FiiInfos` as an Object and convert to a data to be stored
+   * @param fiiInfos `FiiInfos` to be converted
+   * @returns the converted `StoredFiiInfos`
+   */
+  static toStored(fiiInfos: FiiInfos): StoredFiiInfos {
+    return {
+      a: fiiInfos.issuingCompany,
+      d: fiiInfos.tradingName,
+      c: fiiInfos.tradingCode,
+      b: fiiInfos.cnpj,
+      e: fiiInfos.stockDividends.map(e => StockDividend.toStoredStockDividend(e)),
+      f: fiiInfos.cashDividends.map(e => CashDividend.toStoredCashDividend(e)),
+      g: fiiInfos.subscriptions.map(e => Subscription.toStoredSubscription(e)),
+    };
   }
 
 }

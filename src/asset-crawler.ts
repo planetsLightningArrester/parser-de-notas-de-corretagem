@@ -1,8 +1,8 @@
 import axios from "axios";
 import assets from '../assets.json';
 import { Asset } from "./types/common";
-import { ListedStocksRequest, StockCrawlerRequestResult, StockInfos } from "./types/listed-stocks";
-import { FIICrawlerRequestResult, FiiCrawlerInfos, FiiInfos, FiiRawInfos, GetFIIsRequest, ListedFIIsRequest } from "./types/listed-real-estates";
+import { ListedStocksRequest, StockCrawlerRequestResult, StockInfos, StoredStockInfos } from "./types/listed-stocks";
+import { FIICrawlerRequestResult, FiiCrawlerInfos, FiiInfos, FiiRawInfos, GetFIIsRequest, ListedFIIsRequest, StoredFiiInfos } from "./types/listed-real-estates";
 import { CashDividend, RealEstateCorporativeEventRequest, StockCorporativeEventRequest, StockCorporativeEventResponse, StockDividend, Subscription } from "./types/corporative-events";
 
 /** Holds info about a listener event */
@@ -11,7 +11,7 @@ class UpdateListener {
   key: number;
   /** The listener callback */
   callback: (assets: Array<StockInfos | FiiInfos>) => void;
-  
+
   constructor(key: number, callback: (assets: Array<StockInfos | FiiInfos>) => void) {
     this.key = key;
     this.callback = callback;
@@ -19,9 +19,9 @@ class UpdateListener {
 }
 
 /** Unexpected Axios response when getting listed assets */
-class UnexpectedAxiosResponse extends Error {}
+class UnexpectedAxiosResponse extends Error { }
 /** Fewer corporative events when merging the current and the fetched data. */
-class FewerCorporativeEvents extends Error {}
+class FewerCorporativeEvents extends Error { }
 
 /** Types of asset verbosity */
 export type AssetVerbosity = 'off' | 'all' | 'minimal';
@@ -37,7 +37,7 @@ export class AssetCrawler {
   private _autoUpdate = false;
 
   /** Auto-update flag */
-  public set autoUpdate(v : boolean) {
+  public set autoUpdate(v: boolean) {
     const previousValue = this._autoUpdate;
     this._autoUpdate = v;
 
@@ -48,12 +48,12 @@ export class AssetCrawler {
   public get autoUpdate(): boolean {
     return this._autoUpdate;
   }
-  
+
   private autoUpdateTimer: NodeJS.Timeout | undefined;
   /** Auto-update timeout */
-  private updaterTimeout = 7*24*3600*1000;
+  private updaterTimeout = 7 * 24 * 3600 * 1000;
   /** Auto-update timeout when any failure happens */
-  private updaterTimeoutIfFailed = 24*3600*1000;
+  private updaterTimeoutIfFailed = 24 * 3600 * 1000;
   /** Set the verbosity level */
   verbosity: AssetVerbosity;
   /** Max number of retries when fetching data. Default is 20 */
@@ -70,7 +70,7 @@ export class AssetCrawler {
    * @param verbose set the verbosity level. Default is `off`
    */
   constructor(autoUpdate?: boolean, verbose?: AssetVerbosity) {
-    this.assets = assets as Array<StockInfos | FiiInfos>;
+    this.assets = (assets as Array<StoredStockInfos | StoredFiiInfos>).map(e => 'p' in e ? StockInfos.fromStoredStockInfos(e) : FiiInfos.fromStoredFiiInfos(e));
     this.verbosity = verbose || 'off';
     this.autoUpdate = autoUpdate || false;
   }
@@ -83,15 +83,15 @@ export class AssetCrawler {
     this.autoUpdateTimer = setTimeout(() => {
       if (this.verbosity !== 'off') console.log(`[AC] Fetching asset data`);
       this.fetchListedAssets()
-      .catch(err => {
-        console.log(`[AC] Error getting listed assets. Trying again in 1 day`);
-        if (err instanceof Error) console.log(err.message);
-        if (this.autoUpdate) this.updater(this.updaterTimeoutIfFailed);
-      })
-      .then(() => {
-        if (this.verbosity !== 'off') console.log(`[AC] Asset data successfully fetched`);
-        if (this.autoUpdate) this.updater();
-      });
+        .catch(err => {
+          console.log(`[AC] Error getting listed assets. Trying again in 1 day`);
+          if (err instanceof Error) console.log(err.message);
+          if (this.autoUpdate) this.updater(this.updaterTimeoutIfFailed);
+        })
+        .then(() => {
+          if (this.verbosity !== 'off') console.log(`[AC] Asset data successfully fetched`);
+          if (this.autoUpdate) this.updater();
+        });
     }, timeout);
   }
 
@@ -103,7 +103,7 @@ export class AssetCrawler {
   async fetchListedAssets(): Promise<void> {
 
     let fetchRetries = 0;
-    const stockPage =  { number: 1 };
+    const stockPage = { number: 1 };
     let stocksFetched = false;
     while (!stocksFetched) {
       try {
@@ -141,7 +141,7 @@ export class AssetCrawler {
     this.listeners.forEach(sub => {
       sub.callback(this.assets);
     });
-    
+
   }
 
   private async fetchStocks(page = { number: 1 }): Promise<void> {
@@ -159,7 +159,7 @@ export class AssetCrawler {
       stockData.results.forEach(r => {
         r.retry = 0;
       });
-      
+
       // Get stock's corporative events
       let _company: StockInfos | undefined;
       while ((_company = stockData.results.shift()) !== undefined) {
@@ -168,7 +168,7 @@ export class AssetCrawler {
         // ? Company types other than 1 do not have much info. Not sure what this is about tho
         if (company.type === '1') {
           if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${company.issuingCompany}`);
-          
+
           // ? Not all companies have corporative events fields
           try {
             const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url());
@@ -181,7 +181,7 @@ export class AssetCrawler {
               company.stockDividends = [];
               company.cashDividends = [];
               company.subscriptions = [];
-              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`);                
+              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany}`);
             } else {
               if (corporativeEvents.stockDividends) company.stockDividends = corporativeEvents.stockDividends.map(s => s);
               else company.stockDividends = [];
@@ -197,10 +197,10 @@ export class AssetCrawler {
             if (e instanceof Error) {
               if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
             } else if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
-            
+
             // Try again
             if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${company.issuingCompany}`);
-            company.retry = company.retry?company.retry+1:1;
+            company.retry = company.retry ? company.retry + 1 : 1;
             if (company.retry !== this.maxRetries) stockData.results.unshift(company);
             else throw new Error(`[AC] Max retries reached for ${company.issuingCompany}`);
           }
@@ -218,37 +218,37 @@ export class AssetCrawler {
           // Merge with previous results
           const index = this.assets.findIndex(a => a.tradingName === company.tradingName);
           if (index !== -1) {
-          const companyPreviousData = this.assets[index];
-          // Merge removing duplicates. It's required to create an object to remove duplicates
-          const stockDividends = uniqueCorporativeEvent([
-            ...company.stockDividends,
-            ...companyPreviousData.stockDividends.map(d => d)
-          ]);
-          if (companyPreviousData.stockDividends.length > stockDividends.length) {
-            throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.stockDividends.length} stock dividends, now it has '${company.stockDividends.length}'. Missing: \n${getDiff(companyPreviousData.stockDividends, stockDividends)}`);
-          } else company.stockDividends = stockDividends;
+            const companyPreviousData = this.assets[index];
+            // Merge removing duplicates. It's required to create an object to remove duplicates
+            const stockDividends = uniqueCorporativeEvent([
+              ...company.stockDividends,
+              ...companyPreviousData.stockDividends.map(d => d)
+            ]);
+            if (companyPreviousData.stockDividends.length > stockDividends.length) {
+              throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.stockDividends.length} stock dividends, now it has '${company.stockDividends.length}'. Missing: \n${getDiff(companyPreviousData.stockDividends, stockDividends)}`);
+            } else company.stockDividends = stockDividends;
 
-          const cashDividends = uniqueCorporativeEvent([
-            ...company.cashDividends,
-            ...companyPreviousData.cashDividends.map(c => c)
-          ]);
-          if (companyPreviousData.cashDividends.length > cashDividends.length) {
-            throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.cashDividends.length} cash dividends, now it has '${company.cashDividends.length}'. Missing: \n${getDiff(companyPreviousData.cashDividends, cashDividends)}`);
-          } else company.cashDividends = cashDividends;
+            const cashDividends = uniqueCorporativeEvent([
+              ...company.cashDividends,
+              ...companyPreviousData.cashDividends.map(c => c)
+            ]);
+            if (companyPreviousData.cashDividends.length > cashDividends.length) {
+              throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.cashDividends.length} cash dividends, now it has '${company.cashDividends.length}'. Missing: \n${getDiff(companyPreviousData.cashDividends, cashDividends)}`);
+            } else company.cashDividends = cashDividends;
 
-          const subscriptions = uniqueCorporativeEvent([
-            ...company.subscriptions,
-            ...companyPreviousData.subscriptions.map(s => s)
-          ]);
-          if (companyPreviousData.subscriptions.length > subscriptions.length) {
-            throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.subscriptions.length} subscriptions, now it has '${company.subscriptions.length}'. Missing: \n${getDiff(companyPreviousData.subscriptions, subscriptions)}`);
-          } else company.subscriptions = subscriptions;
+            const subscriptions = uniqueCorporativeEvent([
+              ...company.subscriptions,
+              ...companyPreviousData.subscriptions.map(s => s)
+            ]);
+            if (companyPreviousData.subscriptions.length > subscriptions.length) {
+              throw new FewerCorporativeEvents(`[AC] '${company.issuingCompany}' had ${companyPreviousData.subscriptions.length} subscriptions, now it has '${company.subscriptions.length}'. Missing: \n${getDiff(companyPreviousData.subscriptions, subscriptions)}`);
+            } else company.subscriptions = subscriptions;
 
-          this.assets.splice(index, 1, company);
+            this.assets.splice(index, 1, company);
           } else this.assets.push(company);
 
         }
-        
+
       }
 
       if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
@@ -277,7 +277,7 @@ export class AssetCrawler {
       while ((_fii = fiiData.results.shift()) !== undefined) {
         const fii = _fii;
         if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${fii.acronym}`);
-        
+
         try {
           const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
           if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
@@ -298,7 +298,7 @@ export class AssetCrawler {
           // ? Not all companies have corporative events fields
           const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, fii.acronym).base64Url());
           if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
-          const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data)?getCorporativeEventsResult.data[0]:getCorporativeEventsResult.data;
+          const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data) ? getCorporativeEventsResult.data[0] : getCorporativeEventsResult.data;
 
           if (!corporativeEvents.code) {
             fiiElement.stockDividends = [];
@@ -322,7 +322,7 @@ export class AssetCrawler {
             // Merge removing duplicates. It's required to create an object to remove duplicates
             const stockDividends = uniqueCorporativeEvent([
               ...fiiElement.stockDividends,
-              ...companyPreviousData.stockDividends.map(d =>d)
+              ...companyPreviousData.stockDividends.map(d => d)
             ]);
             if (companyPreviousData.stockDividends.length > stockDividends.length) {
               throw new FewerCorporativeEvents(`[AC] '${fiiElement.issuingCompany}' had ${companyPreviousData.stockDividends.length} stock dividends, now it has '${fiiElement.stockDividends.length}'. Missing: \n${getDiff(companyPreviousData.stockDividends, stockDividends)}`);
@@ -330,7 +330,7 @@ export class AssetCrawler {
 
             const cashDividends = uniqueCorporativeEvent([
               ...fiiElement.cashDividends,
-              ...companyPreviousData.cashDividends.map(c =>c)
+              ...companyPreviousData.cashDividends.map(c => c)
             ]);
             if (companyPreviousData.cashDividends.length > cashDividends.length) {
               throw new FewerCorporativeEvents(`[AC] '${fiiElement.issuingCompany}' had ${companyPreviousData.cashDividends.length} cash dividends, now it has '${fiiElement.cashDividends.length}'. Missing: \n${getDiff(companyPreviousData.cashDividends, cashDividends)}`);
@@ -338,7 +338,7 @@ export class AssetCrawler {
 
             const subscriptions = uniqueCorporativeEvent([
               ...fiiElement.subscriptions,
-              ...companyPreviousData.subscriptions.map(s =>s)
+              ...companyPreviousData.subscriptions.map(s => s)
             ]);
             if (companyPreviousData.subscriptions.length > subscriptions.length) {
               throw new FewerCorporativeEvents(`[AC] '${fiiElement.issuingCompany}' had ${companyPreviousData.subscriptions.length} subscriptions, now it has '${fiiElement.subscriptions.length}'. Missing: \n${getDiff(companyPreviousData.subscriptions, subscriptions)}`);
@@ -356,7 +356,7 @@ export class AssetCrawler {
 
           // Try again
           if (this.verbosity === 'all') console.log(`[AC] Retrying request for company ${fii.acronym}`);
-          fii.retry = fii.retry?fii.retry+1:1;
+          fii.retry = fii.retry ? fii.retry + 1 : 1;
           if (fii.retry !== this.maxRetries) fiiData.results.unshift(fii);
           else throw new Error(`[AC] Max retries reached for ${fii.acronym}`);
 
@@ -394,12 +394,12 @@ export class AssetCrawler {
         if ('tradingCode' in fii && fii.tradingName === tradingName1) {
           const mainTradingCode = fii.tradingCode.split(/\s/).shift();
           if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
-          return {code: mainTradingCode, name, cnpj: fii.cnpj, isFII: true};
+          return { code: mainTradingCode, name, cnpj: fii.cnpj, isFII: true };
         }
       }
     } else {
       // Else, parse it
-      let type: '3'|'4'|'11'|'31'|'32'|'33' = '3';
+      let type: '3' | '4' | '11' | '31' | '32' | '33' = '3';
       let indexOf: number;
       if (name.indexOf(' ON') !== -1) { indexOf = name.indexOf(' ON'); type = '3'; }
       else if (name.indexOf(' PN') !== -1) { indexOf = name.indexOf(' PN'); type = '4'; }
@@ -411,11 +411,11 @@ export class AssetCrawler {
       const justTheName = name.slice(0, indexOf);
       for (const stock of this.assets) {
         if (!('tradingCode' in stock) && stock.tradingName === justTheName) {
-          return {code: stock.issuingCompany + type, name, cnpj: stock.cnpj, isFII: false};
+          return { code: stock.issuingCompany + type, name, cnpj: stock.cnpj, isFII: false };
         }
       }
     }
-    
+
     throw new Error(`[AC] No stock found for ${name}`);
 
   }
@@ -474,7 +474,7 @@ function uniqueCorporativeEvent<T extends CorporativeEvent>(dividends: T[]): T[]
       const element = result[j];
       let numberOfEqualKeys = 0;
       Object.keys(reference).forEach(key => {
-        if (reference[key] === element[key]) numberOfEqualKeys++; 
+        if (reference[key] === element[key]) numberOfEqualKeys++;
       });
       if (numberOfEqualKeys === Object.keys(reference).length) {
         elementExist = true;
