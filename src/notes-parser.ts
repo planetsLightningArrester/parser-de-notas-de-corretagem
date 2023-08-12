@@ -60,19 +60,19 @@ export class NegotiationNote {
 export type DateFormat = "dd/MM/yyyy" | "yyyy-MM-dd";
 
 /** Wrong password error */
-export class WrongPassword extends Error {}
+export class WrongPassword extends Error { }
 /** Empty document error */
-export class EmptyDocument extends Error {}
+export class EmptyDocument extends Error { }
 /** Document without note number error */
-export class MissingNoteNumber extends Error {}
+export class MissingNoteNumber extends Error { }
 /** Document without holder error */
-export class MissingHolder extends Error {}
+export class MissingHolder extends Error { }
 /** Document without date error */
-export class MissingDate extends Error {}
+export class MissingDate extends Error { }
 /** Missing Buy or Sell sums */
-export class MissingBuyOrSellSums extends Error {}
+export class MissingBuyOrSellSums extends Error { }
 /** Unknown Asset error error */
-export class UnknownAsset extends Error {}
+export class UnknownAsset extends Error { }
 
 /** Brokerage notes parser */
 export class NoteParser {
@@ -85,12 +85,12 @@ export class NoteParser {
   private _verbosity: AssetVerbosity;
 
   /** Set the verbosity level */
-  public set verbosity(v : AssetVerbosity) {
+  public set verbosity(v: AssetVerbosity) {
     this._verbosity = v;
     this.assetCrawler.verbosity = this._verbosity;
   }
 
-  public get verbosity() : AssetVerbosity {
+  public get verbosity(): AssetVerbosity {
     return this._verbosity;
   }
 
@@ -129,7 +129,7 @@ export class NoteParser {
    * @returns an `Array` of `NegotiationNote`
    */
   async parseNote(noteName: string, content: Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
-    
+
     // Prevent warning "Deprecated API usage: Please provide binary data as `Uint8Array`, rather than `Buffer`"
     if (typeof Buffer !== "undefined" && content instanceof Buffer) content = Uint8Array.from(content);
 
@@ -145,7 +145,7 @@ export class NoteParser {
           // ? pdf.js caches the data in the first attempt and tries to get from it
           // ? even passing different PDFs. So, creating a new array is required
           // ? to prevent "Unable to deserialize cloned data"
-          pdf = await openPDF({data: Uint8Array.from(content), password: pass, useSystemFonts: true}).promise;
+          pdf = await openPDF({ data: Uint8Array.from(content), password: pass, useSystemFonts: true }).promise;
           break;
         } catch (error: unknown) {
           /** Prevent the  failure and try again with another password */
@@ -290,14 +290,14 @@ export class NoteParser {
           feesClearRicoPattern.forEach(fee => {
             const match = _pageContent.match(fee);
             if (match && match[1]) {
-              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
+              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
             }
           });
         } else {
           feesInterPattern.forEach(fee => {
             const match = _pageContent.match(fee);
             if (match && match[1]) {
-              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.')); 
+              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
             }
           });
         }
@@ -305,12 +305,12 @@ export class NoteParser {
 
         // Generate the Checkout for the value bought
         if (buyTotal) parseResult.buyTotal = buyTotal.toFixed(2);
-        
+
         // Generate the Check in for the value sold
         if (sellTotal) parseResult.sellTotal = sellTotal.toFixed(2);
 
         // Use the stock pattern based on the holder
-        const stockPattern = parseResult.holder.toLowerCase() !== 'inter'?stockClearRicoPattern:stockInterPattern;
+        const stockPattern = parseResult.holder.toLowerCase() !== 'inter' ? stockClearRicoPattern : stockInterPattern;
 
         while ((match = stockPattern.exec(pageContent)) !== null) {
           let op: string;
@@ -341,7 +341,7 @@ export class NoteParser {
           if (!stock) throw new UnknownAsset(`Can't find ${match[3]}`);
 
           // if (market === 'FRACIONARIO') stock += 'F';
-          
+
           // Set 'buy' or 'sell'
           if (op === 'C') {
             let deal = parseResult.deals.find(el => el.code === stock.code && el.type === 'buy');
@@ -353,7 +353,7 @@ export class NoteParser {
                 average: '0.00',
                 price: transactionValue.toFixed(2),
                 date: parseResult.date,
-                cnpj: stock.cnpj?stock.cnpj:'',
+                cnpj: stock.cnpj ? stock.cnpj : '',
                 isFII: stock.isFII
               };
               parseResult.deals.push(deal);
@@ -371,7 +371,7 @@ export class NoteParser {
                 average: '0.00',
                 price: transactionValue.toFixed(2),
                 date: parseResult.date,
-                cnpj: stock.cnpj?stock.cnpj:'',
+                cnpj: stock.cnpj ? stock.cnpj : '',
                 isFII: stock.isFII
               };
               parseResult.deals.push(deal);
@@ -392,16 +392,16 @@ export class NoteParser {
       const fees: number = parseFloat(note.fees);
       const buyTotal: number = parseFloat(note.buyTotal);
       const sellTotal: number = parseFloat(note.sellTotal);
-      const buyFees: number = fees*buyTotal/(buyTotal+sellTotal);
-      const sellFees: number = fees*sellTotal/(buyTotal+sellTotal);
+      const buyFees: number = fees * buyTotal / (buyTotal + sellTotal);
+      const sellFees: number = fees * sellTotal / (buyTotal + sellTotal);
       note.deals.forEach(deal => {
         const price: number = parseFloat(deal.price);
         if (deal.type === 'buy') {
-          deal.price = (Math.fround(10*(price + buyFees*price/buyTotal))/10).toFixed(2);
+          deal.price = (Math.fround(10 * (price + buyFees * price / buyTotal)) / 10).toFixed(2);
         } else {
-          deal.price = (Math.fround(10*(price - sellFees*price/sellTotal))/10).toFixed(2);
+          deal.price = (Math.fround(10 * (price - sellFees * price / sellTotal)) / 10).toFixed(2);
         }
-        deal.average = (parseFloat(deal.price)/Math.abs(deal.quantity)).toFixed(2);
+        deal.average = (parseFloat(deal.price) / Math.abs(deal.quantity)).toFixed(2);
       });
       note.buyFees = buyFees.toFixed(2);
       note.sellFees = sellFees.toFixed(2);
@@ -431,7 +431,7 @@ export class NoteParser {
   defineStock(code: string, name: string, cnpj?: string, isFII?: boolean): void {
     // Skip duplicates
     if (!this.assetCrawler.customAssets.some(a => a.code === code)) {
-      this.assetCrawler.customAssets.push({code, name, cnpj, isFII: !!isFII});
+      this.assetCrawler.customAssets.push({ code, name, cnpj, isFII: !!isFII });
     }
   }
 
@@ -444,13 +444,13 @@ export class NoteParser {
   getDividends(code: string): [StockDividend[], CashDividend[]] {
     return this.assetCrawler.getDividends(code);
   }
-  
+
   /**
    * Convert a date according to `dateFormat`
    * @param date the date to be formatted
    * @returns the formatted date
    */
-  private formatDate (date: string) {
+  private formatDate(date: string) {
     if (date.match(/\d{4}-\d{2}-\d{2}/)) {
       if (this.dateFormat === 'yyyy-MM-dd') return date;
       else return date.split('-').reverse().join('/');
