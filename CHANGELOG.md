@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.9.0] - 2023-09-24
+### Changed
+- Add more fields to errors
+  - `file` to all custom errors
+  - `passwords` to `WrongPassword`: tested passwords before failing
+  - `asset` to `UnknownAsset`: the name of the unknown asset in the brokerage note
+
 ## [0.8.79] - 2023-09-24
 ### Changed
 - Update assets list

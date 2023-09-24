@@ -59,20 +59,61 @@ export class NegotiationNote {
 /** Possible date formats to be used */
 export type DateFormat = "dd/MM/yyyy" | "yyyy-MM-dd";
 
+/** Base custom error */
+class BaseError extends Error {
+  /** File that triggered the error */
+  file: string;
+  /**
+   * Create a custom error
+   * @param message error message
+   * @param file the file name that triggered the error
+   */
+  constructor(message: string, file: string) {
+    super(message);
+    this.file = file;
+  }
+}
+
 /** Wrong password error */
-export class WrongPassword extends Error { }
+export class WrongPassword extends BaseError {
+  /** Tested passwords */
+  passwords: string[];
+  /**
+   * Create a custom error
+   * @param message error message
+   * @param file the file name that triggered the error
+   * @param passwords tested passwords
+   */
+  constructor(message: string, file: string, passwords: string[]) {
+    super(message, file);
+    this.passwords = passwords;
+  }
+}
 /** Empty document error */
-export class EmptyDocument extends Error { }
+export class EmptyDocument extends BaseError { }
 /** Document without note number error */
-export class MissingNoteNumber extends Error { }
+export class MissingNoteNumber extends BaseError { }
 /** Document without holder error */
-export class MissingHolder extends Error { }
+export class MissingHolder extends BaseError { }
 /** Document without date error */
-export class MissingDate extends Error { }
+export class MissingDate extends BaseError { }
 /** Missing Buy or Sell sums */
-export class MissingBuyOrSellSums extends Error { }
+export class MissingBuyOrSellSums extends BaseError { }
 /** Unknown Asset error error */
-export class UnknownAsset extends Error { }
+export class UnknownAsset extends BaseError {
+  /** The unknown asset name in the note */
+  asset: string;
+  /**
+   * Create a custom error
+   * @param message error message
+   * @param file the file name that triggered the error
+   * @param asset the unknown asset name in the note
+   */
+  constructor(message: string, file: string, asset: string) {
+    super(message, file);
+    this.asset = asset;
+  }
+}
 
 /** Brokerage notes parser */
 export class NoteParser {
@@ -163,8 +204,8 @@ export class NoteParser {
     }
 
     // Check if the open result
-    if (!pdf && invalidPassword) throw new WrongPassword(`None of the provided passwords could open the note ${noteName}`);
-    else if (!pdf) throw new EmptyDocument(`Can't open note ${noteName}. The document returned no content`);
+    if (!pdf && invalidPassword) throw new WrongPassword(`None of the provided passwords could open the note ${noteName}`, noteName, possiblePasswords || []);
+    else if (!pdf) throw new EmptyDocument(`Can't open note ${noteName}. The document returned no content`, noteName);
 
     // Parse the PDF content
     const holderPattern = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
@@ -252,7 +293,7 @@ export class NoteParser {
         let noteNumber: string | undefined;
         match = pageContent.match(noteNumberPattern);
         if (match && match[1]) noteNumber = match[1];
-        else throw new MissingNoteNumber(`No note number found for the negotiation note '${noteName}'`);
+        else throw new MissingNoteNumber(`No note number found for the negotiation note '${noteName}'`, noteName);
         let parseResult = parseResults.find(el => el.number === noteNumber);
         if (!parseResult) {
           parseResult = new NegotiationNote();
@@ -264,14 +305,14 @@ export class NoteParser {
         let holder: string | undefined;
         match = pageContent.match(holderPattern);
         if (match && match[1]) holder = match[1][0].toUpperCase() + match[1].slice(1).toLowerCase();
-        else throw new MissingHolder(`No holder found for the negotiation note '${noteName}'`);
+        else throw new MissingHolder(`No holder found for the negotiation note '${noteName}'`, noteName);
         parseResult.holder = holder.toLocaleLowerCase();
 
         // Get the date
         let date: string | undefined;
         match = pageContent.match(datePattern);
         if (match && match[1]) date = this.formatDate(match[1]);
-        else throw new MissingDate(`No date found for the negotiation note '${noteName}'`);
+        else throw new MissingDate(`No date found for the negotiation note '${noteName}'`, noteName);
         parseResult.date = date;
 
         // Note total
@@ -283,7 +324,7 @@ export class NoteParser {
         } else if ((match = pageContent.match(buysAndSellsInterPattern)) !== null) {
           buyTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
           sellTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
-        } else throw new MissingBuyOrSellSums(`Error parsing note '${noteName}'. Couldn't get note buys and sells values`);
+        } else throw new MissingBuyOrSellSums(`Error parsing note '${noteName}'. Couldn't get note buys and sells values`, noteName);
 
         // Get the fees
         let fees = 0;
@@ -340,7 +381,7 @@ export class NoteParser {
             transactionValue = parseFloat(match[5].replace('.', '').replace(',', '.'));
           }
 
-          if (!stock) throw new UnknownAsset(`Can't find ${match[3]}`);
+          if (!stock) throw new UnknownAsset(`Can't find ${match[3]}`, noteName, match[3]);
 
           // if (market === 'FRACIONARIO') stock += 'F';
 
