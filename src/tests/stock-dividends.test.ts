@@ -10,7 +10,7 @@ describe('stock dividends', () => {
     assets.getDividends('BTCI11');
 
     // Get the dividends
-    const [events, ] = assets.getDividends('BTCI11');
+    const [events,] = assets.getDividends('BTCI11');
     expect(events.length).toBeGreaterThan(0);
 
   });
@@ -18,13 +18,13 @@ describe('stock dividends', () => {
   test('stock', async () => {
 
     // Both ways should work
-    assets.getDividends('B3SA3');
+    assets.getDividends('B3SA');
     assets.getDividends('B3SA3');
 
     // Get the dividends
-    const [events, ] = assets.getDividends('B3SA3');
+    const [events,] = assets.getDividends('B3SA3');
     expect(events.length).toBeGreaterThan(0);
 
   });
-  
+
 });

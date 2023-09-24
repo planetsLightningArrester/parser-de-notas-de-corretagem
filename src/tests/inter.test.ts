@@ -64,6 +64,44 @@ test('53 KDIFs', async () => {
   expect<NegotiationNote[]>(parseResult).toEqual(expected);
 });
 
+test('sell 250 KDIFs', async () => {
+  const expected: NegotiationNote[] = [{
+    "number": "22710914",
+    "buyTotal": "30309.08",
+    "sellTotal": "34176.02",
+    "buyFees": "9.09",
+    "sellFees": "10.25",
+    "fees": "19.34",
+    "date": "19/09/2023",
+    "holder": "inter",
+    "deals": [{
+      "type": "sell",
+      "code": "KDIF11",
+      "quantity": 250,
+      "average": "136.70",
+      "price": "34176.02",
+      "date": "19/09/2023",
+      "cnpj": "26.324.298/0001-89",
+      "isFII": false
+    }, {
+      "type": "buy",
+      "code": "CPTI11",
+      "quantity": 300,
+      "average": "101.03",
+      "price": "30309.08",
+      "date": "19/09/2023",
+      "cnpj": "38.065.012/0001-77",
+      "isFII": false
+    }]
+  }];
+
+  const filePath: string = path.join(__dirname, 'notes', 'inter_kdif_250.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
+  expect<NegotiationNote[]>(parseResult).toEqual(expected);
+});
+
 test('ABEV', async () => {
   const expected: NegotiationNote[] = [{
     "number": "16682230",
@@ -314,5 +352,5 @@ test('Real estate', async () => {
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
 
   const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
-  expect < NegotiationNote[] > (parseResult).toEqual(expected);
+  expect<NegotiationNote[]>(parseResult).toEqual(expected);
 });
