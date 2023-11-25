@@ -13739,7 +13739,7 @@
   {
     "a": "27022",
     "b": "BTEL",
-    "c": "BRASIL TELECOM COMUNICAÇÃO MULTIMÍDIA S.A.",
+    "c": "V. TAL  REDE NEUTRA DE TELECOMUNICAÇÕES S.A.",
     "d": "BR TELECMULT",
     "e": "2041460000193",
     "f": "8",
@@ -23461,6 +23461,24 @@
     "d": "CIMAR",
     "e": "15129010000107",
     "f": "1",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "900121",
+    "b": "CMED",
+    "c": "CIMED & CO. S.A",
+    "d": "CIMED",
+    "e": "16619378000108",
+    "f": "99",
     "g": "",
     "h": "31/12/9999",
     "i": "A",
@@ -69375,6 +69393,15 @@
     ]
   },
   {
+    "a": "IDUA",
+    "d": "FII IDUA",
+    "c": "IDUA11",
+    "b": "52324762000147",
+    "e": [],
+    "f": [],
+    "g": []
+  },
+  {
     "a": "INDE",
     "d": "FII INDE",
     "c": "INDE11",
@@ -112573,6 +112600,15 @@
     ]
   },
   {
+    "a": "VGII",
+    "d": "FII VGII",
+    "c": "VGII11",
+    "b": "52649680000172",
+    "e": [],
+    "f": [],
+    "g": []
+  },
+  {
     "a": "VIDS",
     "d": "FII VIC DES",
     "c": "VIDS11",
@@ -118073,6 +118109,15 @@
         "j": "06/11/2020"
       }
     ]
+  },
+  {
+    "a": "YEES",
+    "d": "FII YEES",
+    "c": "YEES11",
+    "b": "51385174000150",
+    "e": [],
+    "f": [],
+    "g": []
   },
   {
     "a": "YUFI",
@@ -169294,7 +169339,7 @@
   {
     "a": "26247",
     "b": "PORT",
-    "c": "WILSON SONS HOLDINGS BRASIL S.A.",
+    "c": "WILSON SONS S.A.",
     "d": "WILSON SONS",
     "e": "33130691000105",
     "f": "18",
