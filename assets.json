@@ -74045,7 +74045,7 @@
   {
     "a": "KNHF",
     "d": "FII KINEA HF",
-    "c": "KNHF11 KNHF12",
+    "c": "KNHF11",
     "b": "42754342000147",
     "e": [],
     "f": [
@@ -81279,7 +81279,7 @@
   {
     "a": "MXRF",
     "d": "FII MAXI REN",
-    "c": "MXRF11",
+    "c": "MXRF11 MXRF12",
     "b": "97521225000125",
     "e": [
       {
@@ -155454,6 +155454,24 @@
     "p": []
   },
   {
+    "a": "900123",
+    "b": "SAVC",
+    "c": "SAVANA COMÉRCIO DE VEÍCULOS LTDA",
+    "d": "SAVANA",
+    "e": "24706364000150",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "900034",
     "b": "SVXX",
     "c": "SAVIXX COMERCIO INTERNACIONAL S/A",
@@ -170595,6 +170613,17 @@
     "m": "NM",
     "n": [],
     "o": [
+      {
+        "a": "BRYDUQACNOR3",
+        "b": "05/12/2023",
+        "c": "0,27493019200",
+        "d": "ANUAL/2023",
+        "e": "09/08/2023",
+        "f": "BRYDUQACNOR3",
+        "g": "DIVIDENDO",
+        "h": "18/08/2023",
+        "i": ""
+      },
       {
         "a": "BRYDUQACNOR3",
         "b": "29/12/2023",
