@@ -4264,14 +4264,14 @@
     "c": "ALPER CONSULTORIA E CORRETORA DE SEGUROS S.A.",
     "d": "ALPER S.A.",
     "e": "11721921000160",
-    "f": "18",
+    "f": "1",
     "g": "",
     "h": "28/10/2010",
     "i": "A",
     "j": "Corretoras de Seguros e Resseguros",
     "k": "Insurance and Reinsurance Brokers",
     "l": "1",
-    "m": "NM",
+    "m": "",
     "n": [],
     "o": [
       {
@@ -73467,7 +73467,7 @@
   {
     "a": "HSML",
     "d": "FII HSI MALL",
-    "c": "HSML11",
+    "c": "HSML11 HSML12",
     "b": "32892018000131",
     "e": [],
     "f": [
@@ -95790,6 +95790,39 @@
     "b": "37899400000190",
     "e": [],
     "f": [
+      {
+        "a": "BRPNDLCTF000",
+        "b": "15/01/2024",
+        "c": "3,41000000000",
+        "d": "DEZEMBRO/2023",
+        "e": "04/01/2023",
+        "f": "BRPNDLCTF000",
+        "g": "RENDIMENTO",
+        "h": "28/12/2023",
+        "i": ""
+      },
+      {
+        "a": "BRPNDLR13M16",
+        "b": "15/01/2024",
+        "c": "3,41000000000",
+        "d": "DEZEMBRO/2023",
+        "e": "04/01/2023",
+        "f": "BRPNDLR13M16",
+        "g": "RENDIMENTO",
+        "h": "28/12/2023",
+        "i": ""
+      },
+      {
+        "a": "BRPNDLR14M15",
+        "b": "15/01/2024",
+        "c": "3,41000000000",
+        "d": "DEZEMBRO/2023",
+        "e": "04/01/2023",
+        "f": "BRPNDLR14M15",
+        "g": "RENDIMENTO",
+        "h": "28/12/2023",
+        "i": ""
+      },
       {
         "a": "BRPNDLCTF000",
         "b": "15/01/2024",
