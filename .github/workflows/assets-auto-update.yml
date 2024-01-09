@@ -1,6 +1,5 @@
 # Cron job to auto update listed assets
-
-name: Assets auto update
+name: 📡 Assets auto update
 
 # Controls when the workflow will run
 on:
@@ -18,23 +17,23 @@ jobs:
     outputs:
       RELEASE_VERSION: ${{ steps.push.outputs.RELEASE_VERSION }}
     steps:
-      - name: Checkout code 📥
+      - name: 📥 Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: NodeJS setup 🛠️
+      - name: 🛠️ NodeJS setup
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install dependencies and build 🔧
+      - name: 🔧 Install dependencies and build
         run: npm ci && npm run build
       
-      - name: Fetch assets updates 📡
+      - name: 📡 Fetch assets updates
         run: npm run update-assets
 
-      - name: Update remote with changes 🤖
+      - name: 🤖 Update remote with changes
         shell: bash
         id: push
         run: |
@@ -65,11 +64,26 @@ jobs:
             package_json_content=$(sed -r "s/$last_version/$new_version/" < package.json);
             echo "$package_json_content" > package.json;
             git diff package.json;
-            
+
             # Update CHANGELOG.md
             echo "[$(date +"%T")] [DEBUG] Updating CHANGELOG.md";
-            changelog_content=$(sed -r "s/## \[$last_version\](.*)/## \[$new_version\] - $(date '+%Y-%m-%d')\n### Changed\n- Update assets list\n\n## \[$last_version\]\1/" < CHANGELOG.md);
-            echo "$changelog_content" > CHANGELOG.md;
+            if grep -q "## \[$last_version\]" <CHANGELOG.md; then
+              last_but_one_release_line=$(grep -n -m 2 "## \[" <CHANGELOG.md | tail -n 1 | sed -r 's/([[:digit:]]*):.*/\1/g')
+              changelog_release_only_content=$(head -n $((last_but_one_release_line - 1)) CHANGELOG.md)
+              if [[ "${changelog_release_only_content}" =~ "### Changed" ]]; then
+                if [[ ! "${changelog_release_only_content}" =~ "- Update assets list" ]]; then
+                  changelog_release_only_content=$(echo "${changelog_release_only_content}" | sed ':a;N;$!ba;s/\n/爨/g' | sed -r "s/### Changed爨+/### Changed爨爨- Update assets list爨/" | sed 's/爨/\n/g')
+                fi
+              else
+                changelog_release_only_content="$(printf "%s\n\n%s\n\n%s" "${changelog_release_only_content}" "### Changed" "- Update assets list")"
+              fi
+              changelog_content="$(printf "%s\n%s" "${changelog_release_only_content}" "$(tail -n +"$((last_but_one_release_line - 1))" CHANGELOG.md)")"
+              changelog_content=$(echo "${changelog_content}" | sed -r "s/## \[$last_version\].*/## \[$last_version\] - \[$new_version\] - $(date '+%Y-%m-%d')/")
+              echo "$changelog_content" >CHANGELOG.md
+            elif grep -q "## .* - \[$last_version\]" <CHANGELOG.md; then
+              changelog_content=$(sed -r "s/(## .* - )\[$last_version\]/\1\[$new_version\]/" <CHANGELOG.md)
+              echo "$changelog_content" >CHANGELOG.md
+            fi
             git diff CHANGELOG.md;
 
             # Submit the changes creating a new tag
@@ -89,6 +103,7 @@ jobs:
 
   # Call CI, if a new release version was set
   ci-check:
+    name: 🔄 CI
     needs: assets_auto_update
     if: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
     uses: ./.github/workflows/ci.yml
@@ -99,6 +114,7 @@ jobs:
 
   # Create a release, if a new release version was set and the CI passed
   make_release:
+    name: 🎁 Make release
     needs: [ assets_auto_update, ci-check ]
     if: ${{ needs.assets_auto_update.outputs.RELEASE_VERSION }}
     uses: ./.github/workflows/release.yml
