@@ -1,930 +1,362 @@
+
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.9.84] - 2024-01-09
-### Changed
-- Update assets list
-
-## [0.9.83] - 2024-01-07
-### Changed
-- Update assets list
-
-## [0.9.82] - 2024-01-06
-### Changed
-- Update assets list
-
-## [0.9.81] - 2024-01-05
-### Changed
-- Update assets list
-
-## [0.9.80] - 2024-01-04
-### Changed
-- Update assets list
-
-## [0.9.79] - 2024-01-03
-### Changed
-- Update assets list
-
-## [0.9.78] - 2024-01-01
-### Changed
-- Update assets list
-
-## [0.9.77] - 2023-12-29
-### Changed
-- Update assets list
-
-## [0.9.76] - 2023-12-28
-### Changed
-- Update assets list
-
-## [0.9.75] - 2023-12-27
-### Changed
-- Update assets list
-
-## [0.9.74] - 2023-12-25
-### Changed
-- Update assets list
-
-## [0.9.73] - 2023-12-23
-### Changed
-- Update assets list
-
-## [0.9.72] - 2023-12-22
-### Changed
-- Update assets list
-
-## [0.9.71] - 2023-12-21
-### Changed
-- Update assets list
-
-## [0.9.70] - 2023-12-20
-### Changed
-- Update assets list
-
-## [0.9.69] - 2023-12-19
-### Changed
-- Update assets list
-
-## [0.9.68] - 2023-12-18
-### Changed
-- Update assets list
-
-## [0.9.67] - 2023-12-17
-### Changed
-- Update assets list
-
-## [0.9.66] - 2023-12-16
-### Changed
-- Update assets list
-
-## [0.9.65] - 2023-12-15
-### Changed
-- Update assets list
-
-## [0.9.64] - 2023-12-14
-### Changed
-- Update assets list
-
-## [0.9.63] - 2023-12-13
-### Changed
-- Update assets list
-
-## [0.9.62] - 2023-12-12
-### Changed
-- Update assets list
-
-## [0.9.61] - 2023-12-10
-### Changed
-- Update assets list
-
-## [0.9.60] - 2023-12-09
-### Changed
-- Update assets list
-
-## [0.9.59] - 2023-12-08
-### Changed
-- Update assets list
-
-## [0.9.58] - 2023-12-07
-### Changed
-- Update assets list
-
-## [0.9.57] - 2023-12-06
-### Changed
-- Update assets list
-
-## [0.9.56] - 2023-12-05
-### Changed
-- Update assets list
-
-## [0.9.55] - 2023-12-01
-### Changed
-- Update assets list
-
-## [0.9.54] - 2023-11-30
-### Changed
-- Update assets list
-
-## [0.9.53] - 2023-11-29
-### Changed
-- Update assets list
-
-## [0.9.52] - 2023-11-28
-### Changed
-- Update assets list
-
-## [0.9.51] - 2023-11-26
-### Changed
-- Update assets list
-
-## [0.9.50] - 2023-11-25
-### Changed
-- Update assets list
-
-## [0.9.49] - 2023-11-24
-### Changed
-- Update assets list
-
-## [0.9.48] - 2023-11-23
-### Changed
-- Update assets list
-
-## [0.9.47] - 2023-11-22
-### Changed
-- Update assets list
-
-## [0.9.46] - 2023-11-21
-### Changed
-- Update assets list
-
-## [0.9.45] - 2023-11-19
-### Changed
-- Update assets list
-
-## [0.9.44] - 2023-11-17
-### Changed
-- Update assets list
-
-## [0.9.43] - 2023-11-16
-### Changed
-- Update assets list
-
-## [0.9.42] - 2023-11-15
-### Changed
-- Update assets list
-
-## [0.9.41] - 2023-11-14
-### Changed
-- Update assets list
-
-## [0.9.40] - 2023-11-13
-### Changed
-- Update assets list
-
-## [0.9.39] - 2023-11-12
-### Changed
-- Update assets list
-
-## [0.9.38] - 2023-11-11
-### Changed
-- Update assets list
-
-## [0.9.37] - 2023-11-10
-### Changed
-- Update assets list
-
-## [0.9.36] - 2023-11-09
-### Changed
-- Update assets list
-
-## [0.9.35] - 2023-11-08
-### Changed
-- Update assets list
-
-## [0.9.34] - 2023-11-05
-### Changed
-- Update assets list
-
-## [0.9.33] - 2023-11-04
-### Changed
-- Update assets list
-
-## [0.9.32] - 2023-11-03
-### Changed
-- Update assets list
-
-## [0.9.31] - 2023-11-02
-### Changed
-- Update assets list
-
-## [0.9.30] - 2023-11-01
-### Changed
-- Update assets list
-
-## [0.9.29] - 2023-10-31
-### Changed
-- Update assets list
-
-## [0.9.28] - 2023-10-30
-### Changed
-- Update assets list
-
-## [0.9.27] - 2023-10-29
-### Changed
-- Update assets list
-
-## [0.9.26] - 2023-10-28
-### Changed
-- Update assets list
-
-## [0.9.25] - 2023-10-27
-### Changed
-- Update assets list
-
-## [0.9.24] - 2023-10-26
-### Changed
-- Update assets list
-
-## [0.9.23] - 2023-10-25
-### Changed
-- Update assets list
+## [0.9.1] - [0.9.84] - 2024-01-09
 
-## [0.9.22] - 2023-10-24
 ### Changed
-- Update assets list
 
-## [0.9.21] - 2023-10-23
-### Changed
-- Update assets list
-
-## [0.9.20] - 2023-10-22
-### Changed
-- Update assets list
-
-## [0.9.19] - 2023-10-21
-### Changed
-- Update assets list
-
-## [0.9.18] - 2023-10-20
-### Changed
-- Update assets list
-
-## [0.9.17] - 2023-10-19
-### Changed
-- Update assets list
-
-## [0.9.16] - 2023-10-18
-### Changed
-- Update assets list
-
-## [0.9.15] - 2023-10-17
-### Changed
-- Update assets list
-
-## [0.9.14] - 2023-10-16
-### Changed
-- Update assets list
-
-## [0.9.13] - 2023-10-15
-### Changed
-- Update assets list
-
-## [0.9.12] - 2023-10-13
-### Changed
-- Update assets list
-
-## [0.9.11] - 2023-10-12
-### Changed
-- Update assets list
-
-## [0.9.10] - 2023-10-11
-### Changed
-- Update assets list
-
-## [0.9.9] - 2023-10-10
-### Changed
-- Update assets list
-
-## [0.9.8] - 2023-10-09
-### Changed
-- Update assets list
-
-## [0.9.7] - 2023-10-08
-### Changed
-- Update assets list
-
-## [0.9.6] - 2023-10-07
-### Changed
-- Update assets list
-
-## [0.9.5] - 2023-10-06
-### Changed
-- Update assets list
-
-## [0.9.4] - 2023-10-06
-### Changed
-- Update assets list
-
-## [0.9.3] - 2023-10-05
-### Changed
-- Bump dependencies
-
-## [0.9.2] - 2023-09-27
-### Changed
-- Update assets list
-
-## [0.9.1] - 2023-09-26
-### Changed
 - Update assets list
 
 ## [0.9.0] - 2023-09-24
+
 ### Changed
+
 - Add more fields to errors
   - `file` to all custom errors
   - `passwords` to `WrongPassword`: tested passwords before failing
   - `asset` to `UnknownAsset`: the name of the unknown asset in the brokerage note
 
 ## [0.8.79] - 2023-09-24
+
 ### Changed
+
 - Update assets list
 
 ## [0.8.78] - 2023-09-23
+
 ### Fixed
+
 - Fix sells giving a negative number
 
-## [0.8.77] - 2023-09-23
-### Changed
-- Update assets list
+## [0.8.41] - [0.8.77] - 2023-09-23
 
-## [0.8.76] - 2023-09-22
 ### Changed
-- Update assets list
 
-## [0.8.75] - 2023-09-21
-### Changed
-- Update assets list
-
-## [0.8.74] - 2023-09-19
-### Changed
-- Update assets list
-
-## [0.8.73] - 2023-09-18
-### Changed
-- Update assets list
-
-## [0.8.72] - 2023-09-17
-### Changed
-- Update assets list
-
-## [0.8.71] - 2023-09-16
-### Changed
-- Update assets list
-
-## [0.8.70] - 2023-09-15
-### Changed
-- Update assets list
-
-## [0.8.69] - 2023-09-14
-### Changed
-- Update assets list
-
-## [0.8.68] - 2023-09-13
-### Changed
-- Update assets list
-
-## [0.8.67] - 2023-09-12
-### Changed
-- Update assets list
-
-## [0.8.66] - 2023-09-10
-### Changed
-- Update assets list
-
-## [0.8.65] - 2023-09-09
-### Changed
-- Update assets list
-
-## [0.8.64] - 2023-09-07
-### Changed
-- Update assets list
-
-## [0.8.63] - 2023-09-06
-### Changed
-- Update assets list
-
-## [0.8.62] - 2023-09-05
-### Changed
-- Update assets list
-
-## [0.8.61] - 2023-09-03
-### Changed
-- Update assets list
-
-## [0.8.60] - 2023-09-02
-### Changed
-- Update assets list
-
-## [0.8.59] - 2023-09-01
-### Changed
-- Update assets list
-
-## [0.8.58] - 2023-08-31
-### Changed
-- Update assets list
-
-## [0.8.57] - 2023-08-30
-### Changed
-- Update assets list
-
-## [0.8.56] - 2023-08-29
-### Changed
-- Update assets list
-
-## [0.8.55] - 2023-08-28
-### Changed
-- Update assets list
-
-## [0.8.54] - 2023-08-27
-### Changed
-- Update assets list
-
-## [0.8.53] - 2023-08-26
-### Changed
-- Update assets list
-
-## [0.8.52] - 2023-08-25
-### Changed
-- Update assets list
-
-## [0.8.51] - 2023-08-24
-### Changed
-- Update assets list
-
-## [0.8.50] - 2023-08-23
-### Changed
-- Update assets list
-
-## [0.8.49] - 2023-08-22
-### Changed
-- Update assets list
-
-## [0.8.48] - 2023-08-21
-### Changed
-- Update assets list
-
-## [0.8.47] - 2023-08-20
-### Changed
-- Update assets list
-
-## [0.8.46] - 2023-08-18
-### Changed
-- Update assets list
-
-## [0.8.45] - 2023-08-17
-### Changed
-- Update assets list
-
-## [0.8.44] - 2023-08-16
-### Changed
-- Update assets list
-
-## [0.8.43] - 2023-08-15
-### Changed
-- Update assets list
-
-## [0.8.42] - 2023-08-13
-### Changed
-- Update assets list
-
-## [0.8.41] - 2023-08-12
-### Changed
 - Update assets list
 
 ## [0.8.40] - 2023-08-12
+
 ### Changed
+
 - Minimized the stored data
 - Update dependencies
 
-## [0.8.39] - 2023-08-11
-### Changed
-- Update assets list
+## [0.8.25] - [0.8.39] - 2023-08-11
 
-## [0.8.38] - 2023-08-10
 ### Changed
-- Update assets list
 
-## [0.8.37] - 2023-08-09
-### Changed
-- Update assets list
-
-## [0.8.36] - 2023-08-08
-### Changed
-- Update assets list
-
-## [0.8.35] - 2023-08-06
-### Changed
-- Update assets list
-
-## [0.8.34] - 2023-08-04
-### Changed
-- Update assets list
-
-## [0.8.33] - 2023-08-03
-### Changed
-- Update assets list
-
-## [0.8.32] - 2023-08-02
-### Changed
-- Update assets list
-
-## [0.8.31] - 2023-08-01
-### Changed
-- Update assets list
-
-## [0.8.30] - 2023-07-30
-### Changed
-- Update assets list
-
-## [0.8.29] - 2023-07-29
-### Changed
-- Update assets list
-
-## [0.8.28] - 2023-07-28
-### Changed
-- Update assets list
-
-## [0.8.27] - 2023-07-27
-### Changed
-- Update assets list
-
-## [0.8.26] - 2023-07-26
-### Changed
-- Update assets list
-
-## [0.8.25] - 2023-07-25
-### Changed
 - Update assets list
 
 ## [0.8.24] - 2023-07-24
+
 ### Fixed
+
 - Fix real estate parser not working for inter notes
 
 ### Changed
+
 - Update dependencies
 
-## [0.8.23] - 2023-07-23
-### Changed
-- Update assets list
+## [0.8.9] - [0.8.23] - 2023-07-23
 
-## [0.8.22] - 2023-07-22
 ### Changed
-- Update assets list
 
-## [0.8.21] - 2023-07-21
-### Changed
-- Update assets list
-
-## [0.8.20] - 2023-07-20
-### Changed
-- Update assets list
-
-## [0.8.19] - 2023-07-19
-### Changed
-- Update assets list
-
-## [0.8.18] - 2023-07-18
-### Changed
-- Update assets list
-
-## [0.8.17] - 2023-07-16
-### Changed
-- Update assets list
-
-## [0.8.16] - 2023-07-15
-### Changed
-- Update assets list
-
-## [0.8.15] - 2023-07-14
-### Changed
-- Update assets list
-
-## [0.8.14] - 2023-07-13
-### Changed
-- Update assets list
-
-## [0.8.13] - 2023-07-12
-### Changed
-- Update assets list
-
-## [0.8.12] - 2023-07-11
-### Changed
-- Update assets list
-
-## [0.8.11] - 2023-07-09
-### Changed
-- Update assets list
-
-## [0.8.10] - 2023-07-08
-### Changed
-- Update assets list
-
-## [0.8.9] - 2023-07-07
-### Changed
 - Update assets list
 
 ## [0.8.8] - 2023-07-06
+
 ### Changed
+
 - Minor performance improvement
 - Remove stocks being defined both in `assets.json` and manually
 
 ### Fixed
+
 - Fix formatting
 
 ## [0.8.7] - 2023-07-06
+
 ### Changed
+
 - Update assets list
 
 ## [0.8.6] - 2023-07-05
+
 ### Changed
+
 - Update assets list
 
 ## [0.8.5] - 2023-07-04
+
 ### Fixed
+
 - Fix assets history overwriting previous corporative events
 
 ### Changed
+
 - Update assets list
 
 ## [0.8.4] - 2023-07-04
+
 ### Changed
+
 - Update assets list
 
 ## [0.8.3] - 2023-07-03
+
 ### Changed
+
 - Update assets list
 
 ## [0.8.2] - 2023-07-03
+
 ### Changed
+
 - Update assets list
 
 ## [0.8.1] - 2023-07-03
+
 ### Fixed
+
 - Fix assets without corporative events not included in `assets.json`
 - Fix sells without fixed numbers
 
 ### Changed
+
 - Update assets list
 
 ## [0.8.0] - 2023-07-02
+
 ### Added
+
 - Add support for Inter notes but requires more tests
 
 ### Changed
+
 - Update assets list
 
-## [0.7.23] - 2023-07-02
-### Changed
-- Update assets list
+## [0.7.1] - [0.7.23] - 2023-07-02
 
-## [0.7.22] - 2023-07-01
 ### Changed
-- Update assets list
 
-## [0.7.21] - 2023-06-30
-### Changed
-- Update assets list
-
-## [0.7.20] - 2023-06-29
-### Changed
-- Update assets list
-
-## [0.7.19] - 2023-06-28
-### Changed
-- Update assets list
-
-## [0.7.18] - 2023-06-27
-### Changed
-- Update assets list
-
-## [0.7.17] - 2023-06-25
-### Changed
-- Update assets list
-
-## [0.7.16] - 2023-06-23
-### Changed
-- Update assets list
-
-## [0.7.15] - 2023-06-22
-### Changed
-- Update assets list
-
-## [0.7.14] - 2023-06-21
-### Changed
-- Update assets list
-
-## [0.7.13] - 2023-06-20
-### Changed
-- Update assets list
-
-## [0.7.12] - 2023-06-19
-### Changed
-- Update assets list
-
-## [0.7.11] - 2023-06-18
-### Changed
-- Update assets list
-
-## [0.7.10] - 2023-06-16
-### Changed
-- Update assets list
-
-## [0.7.9] - 2023-06-15
-### Changed
-- Update assets list
-
-## [0.7.8] - 2023-06-14
-### Changed
-- Update assets list
-
-## [0.7.7] - 2023-06-13
-### Changed
-- Update assets list
-
-## [0.7.6] - 2023-06-11
-### Changed
-- Update assets list
-
-## [0.7.5] - 2023-06-09
-### Changed
-- Update assets list
-
-## [0.7.4] - 2023-06-08
-### Changed
-- Update assets list
-
-## [0.7.3] - 2023-06-07
-### Changed
-- Update assets list
-
-## [0.7.2] - 2023-06-06
-### Changed
-- Update assets list
-
-## [0.7.1] - 2023-06-05
-### Changed
 - Update assets list
 
 ## [0.7.0] - 2023-06-04
+
 ### Fixed
+
 - Fix `npm run update-assets` not updating the right file
 
 ### Removed
+
 - Change `StockDividendShortVersion` and `CashDividendShortVersion` to `StockDividend` and `CashDividend`
 
 ### Added
+
 - `Subscription`s fields to `StockDividend` and `CashDividend`
 
 ## [0.6.1] - 2023-05-01
+
 ### Fixed
+
 - Fix `npm run update-assets` file not found
 
 ## [0.6.0] - 2023-04-30
+
 ### Changed
+
 - Add field `approvedOn` to `StockDividendShortVersion` and `CashDividendShortVersion`. This forced the release to lost previous asset history (1 year+) 😢
 
 ### Fixed
+
 - Fix false duplicates were removed from `cashDividends` and `stockDividends`
 - Fix update script being taken from wrong build directory
 
 ## [0.5.4] - 2023-04-30
+
 ### Changed
+
 - Update assets list
 
 ## [0.5.3] - 2023-04-16
+
 ### Fixed
+
 - Handle multiple `tradingCode`s (#2)
 
 ### Changed
+
 - Arrange dividends by `lastDatePrior`
 - Update assets list
 - Update dependencies
 
 ## [0.5.2] - 2023-04-10
+
 ### Fixed
+
 - `AssetCrawler` type not being exported
 
 ## [0.5.1] - 2023-04-10
+
 ### Added
+
 - Expose `assetCrawler` field
 - Add subscription to assets update
 - Add verbosity level
 
 ## [0.5.0] - 2023-04-10
+
 ### Added
+
 - Add fields `stockDividends` and `cashDividends`. It delays a lot the assets update
 - Add `getDividends` to get dividends by asset
 
 ### Changed
+
 - Increase `npm run update-assets` verbosity
 
 ## [0.4.4] - 2023-04-04
+
 ### Fixed
+
 - Fix password not working if the first password is wrong
 
 ## [0.4.3] - 2023-04-04
+
 ### Changed
+
 - Update pdfjs to latest
 - Update dependencies
 
 ## [0.4.2] - 2023-04-04
+
 ### Fixed
+
 - Downgrade pdfjs to fix issues with not-well-formatted PDFs
 
 ## [0.4.1] - 2023-04-04
+
 ### Fixed
+
 - Accepted typing of `content` now can only be `Uint8Array` (`Buffer` doesn't exist in web)
 
 ### Changed
+
 - Update assets list
 
 ## [0.4.0] - 2023-04-02
+
 ### Added
+
 - Add field `isFII` into `Deal`
 
 ### Changed
+
 - Accepted typing of `string` for `content` now can only be `Buffer` or `Uint8Array`
 - Update assets list
 
 ## [0.3.1] - 2023-02-25
+
 ### Changed
+
 - Fix worker error when using with React
 
 ### Removed
+
 - Remove support for ARM
 
 ## [0.3.0] - 2023-02-25
+
 ### Changed
+
 - Fix worker error when using with `react-testing-library`
 
 ### Removed
+
 - Remove support for ARM
 
 ## [0.2.3] - 2023-02-22
+
 ### Changed
+
 - Add CNPJ to FIIs
 
 ## [0.2.2] - 2023-02-22
+
 ### Changed
+
 - Add CNPJ to some custom codes
 - Update dependencies
 
 ## [0.2.1] - 2023-02-20
+
 ### Fixed
+
 - `parseNote()` accepts both `string` and `Uint8Array`
 
 ## [0.2.0] - 2023-02-20
+
 ### Changed
+
 - Do not handle errors
 
 ## [0.1.0] - 2023-02-19
+
 ### Changed
+
 - `parseNote()` now accepts the note name and the note content instead of the path to the file.
 Browsers can be supported this way
 
 ### Added
+
 - It's now possible use it in the Browser (couldn't add tests though)
 
 ## [0.0.5] - 2023-02-19
+
 ### Changed
+
 - Update dependencies
 - Update assets list
 
 ## [0.0.4] - 2022-12-30
+
 ### Fixed
+
 - Fix `CHANGELOG.md` typos
 
 ### Changed
+
 - Update dependencies
 - Update assets list
 
 ## [0.0.3] - 2022-12-03
+
 ### Added
+
 - Add `setDateFormat` method to set dates either "dd/MM/yyyy" or "yyyy-MM-dd"
 
 ### Fixed
+
 - Fix var name in `README.md` example
 
 ### Changed
+
 - Update `README.md`
 - Update dependencies
 
 ## [0.0.2] - 2022-09-18
+
 ### Changed
+
 - Fix `homepage` link
 
 ## [0.0.1] - 2022-09-18
+
 ### Added
+
 - Parse `Rico` and `Clear` holders brokerage notes
