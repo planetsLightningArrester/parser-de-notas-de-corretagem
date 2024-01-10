@@ -1,6 +1,7 @@
 import { AssetCrawler } from '../asset-crawler';
 import fs from 'fs';
 import path from 'path';
+// eslint-disable-next-line @typescript-eslint/naming-convention
 import _ from 'lodash';
 import { StockInfos } from '../types/listed-stocks';
 import { FiiInfos } from '../types/listed-real-estates';
