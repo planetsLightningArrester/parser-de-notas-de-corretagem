@@ -123,14 +123,15 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies and build 🔧
+      - name: 🔧 Install dependencies and build
         run: npm ci && npm run build && npm run pack
       
       - name: 🧪 Run test
         run:  npm run test webpack
 
+  # Releases are generated when the commit has a tag associated with it
   check_if_release_is_required:
-    name: Check if release is required 
+    name: 🔎 Check if release is required
     runs-on: ubuntu-latest
     needs: [ dividends, rico-compliance, clear-compliance, crawler, webpack ]
     # Skip check if this CI was triggered by another workflow
@@ -142,13 +143,19 @@ jobs:
         id: result
         shell: bash
         run: |
-          last_commit_message="${{ github.event.head_commit.message }}"
-          if [[ -n "$last_commit_message" ]] && [[ "$last_commit_message" =~ v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+ ]]; then
-            echo "RELEASE_VERSION=$last_commit_message" >> $GITHUB_OUTPUT;
+          # Check if the commit has a tag matching `\d+\.\d+\.\d+\$`
+          tag="$(git describe --tags)"
+          echo "[$(date +"%T")] [DEBUG] Checking tag ${tag}";
+          if [[ -n "${tag}" ]] && [[ "${tag}" =~ v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$ ]]; then
+            RELEASE_VERSION=v$(echo "${tag}" | sed -r -n 's/v([[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+).*/\1/p');
+            [[ -n "${RELEASE_VERSION}" ]] && echo "RELEASE_VERSION=$RELEASE_VERSION" >> $GITHUB_OUTPUT;
+          else
+            echo "[$(date +"%T")] [DEBUG] Tag ${tag} isn't a release tag";
           fi
 
-  # Trigger the release if a version tag was submitted
+  # Trigger the release if a tag with a version was submitted
   make_release:
+    name: 🎁 Make release
     needs: check_if_release_is_required
     if: ${{ needs.check_if_release_is_required.outputs.RELEASE_VERSION }}
     uses: ./.github/workflows/release.yml
