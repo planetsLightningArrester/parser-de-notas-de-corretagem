@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Bump dependencies
 
-## [0.9.1] - [0.9.84] - 2024-01-09
+## [0.9.1] - [0.9.85] - 2024-01-09
 
 ### Changed
 
