@@ -152,8 +152,8 @@ export class NoteParser {
     this.defineStock('BIDI3', 'BANCO INTER ON', '00.416.968/0001-01');
     this.defineStock('BIDI11', 'BANCO INTER UNT', '00.416.968/0001-01');
     this.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
-    this.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
-    this.defineStock('KDIF11_3', 'KINEA INFRAF CI', '26.324.298/0001-89');
+    this.defineStock('KDIF11', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
+    this.defineStock('KDIF11', 'KINEA INFRAF CI', '26.324.298/0001-89');
     this.defineStock('CPTI11', 'FIC IE CAP CI ES', '38.065.012/0001-77');
   }
 
@@ -488,10 +488,7 @@ export class NoteParser {
    * @param cnpj stock CNPJ
    */
   defineStock(code: string, name: string, cnpj?: string, isFII?: boolean): void {
-    // Skip duplicates
-    if (!this.assetCrawler.customAssets.some(a => a.code === code)) {
-      this.assetCrawler.customAssets.push({ code, name, cnpj, isFII: !!isFII });
-    }
+    this.assetCrawler.customAssets.push({ code, name, cnpj, isFII: !!isFII });
   }
 
   /**

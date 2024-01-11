@@ -6,6 +6,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.10.2 - 2024-01-11
+
+### Changed
+
+- Allow duplicates to be added in `.defineStock`. This way, we can drop the `_2` in the example below (still backward compatible though)
+
+```js
+// Before
+assets.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
+assets.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
+// Now
+assets.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
+assets.defineStock('KDIF11', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
+```
+
+## 0.10.1 - 2024-01-11
+
+### Changed
+
+- Update assets list
+
 ## 0.10.0 - 2024-01-11
 
 ### Added
