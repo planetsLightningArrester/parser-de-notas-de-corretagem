@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { NoteParser, NegotiationNote } from '../notes-parser';
+import { NoteParser, NegotiationNote, UnknownAsset } from '../notes-parser';
 
 const assets = new NoteParser();
 const possiblePasswords: string[] = ['123', '456'];
@@ -33,6 +33,53 @@ describe('multiple KDIFs', () => {
     const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
+});
+
+test('throw error for unknown asset', async () => {
+  const filePath: string = path.join(__dirname, 'notes', 'inter_cpti_kdif.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  await expect(assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords)).rejects.toThrow(UnknownAsset);
+});
+
+test('suppress error for unkown asset', async () => {
+  const expected: NegotiationNote[] = [{
+    buyFees: "1.34",
+    buyTotal: "4491.01",
+    date: "04/01/2024",
+    deals: [
+      {
+        average: "99.80",
+        cnpj: "00.000.000/0000-00",
+        code: "UNDEF: FIC IE CAP CI ER",
+        date: "04/01/2024",
+        isFII: false,
+        price: "4491.01",
+        quantity: 45,
+        type: "buy",
+      },
+      {
+        average: "139.43",
+        cnpj: "26.324.298/0001-89",
+        code: "KDIF11",
+        date: "04/01/2024",
+        isFII: false,
+        price: "4461.86",
+        quantity: 32,
+        type: "sell",
+      },
+    ],
+    fees: "2.67",
+    holder: "inter",
+    number: "24402609",
+    sellFees: "1.33",
+    sellTotal: "4461.86",
+  }];
+  const filePath: string = path.join(__dirname, 'notes', 'inter_cpti_kdif.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords, true);
+  expect<NegotiationNote[]>(parseResult).toEqual(expected);
 });
 
 test('53 KDIFs', async () => {

@@ -6,6 +6,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.10.0 - 2024-01-11
+
+### Added
+
+- `parseNote` accepts `continueOnError` to proceed with the parse even if finding `UnknownAsset`. In such case, the `code` of the asset will be `UNDEF: <title>` whereas `<title>` is the title of the asset not found
+
+### Changed
+
+- `Asset` is now a class
+
+### Fixed
+
+- Fix methods docs reference
+
 ## [0.9.1] - [0.9.85] - 2024-01-09
 
 ### Changed

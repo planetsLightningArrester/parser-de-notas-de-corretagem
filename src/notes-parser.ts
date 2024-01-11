@@ -169,9 +169,13 @@ export class NoteParser {
    * Read and parse a given PDF negotiation note by its full path
    * @param name PDF name
    * @param content PDF content
+   * @param possiblePasswords all passwords that should be used to open the PDF
+   * @param continueOnError whether should continue parsing even if encountering
+   * unknown notes. In such cases, the `code` will be set to `UNDEF: <title>` whereas
+   * `<title>` is the unknown asset. Default is `false`
    * @returns an `Array` of `NegotiationNote`
    */
-  async parseNote(noteName: string, content: Uint8Array, possiblePasswords?: string[]): Promise<NegotiationNote[]> {
+  async parseNote(noteName: string, content: Uint8Array, possiblePasswords?: string[], continueOnError = false): Promise<NegotiationNote[]> {
 
     // Prevent warning "Deprecated API usage: Please provide binary data as `Uint8Array`, rather than `Buffer`"
     if (typeof Buffer !== "undefined" && content instanceof Buffer) content = Uint8Array.from(content);
@@ -358,15 +362,21 @@ export class NoteParser {
         while ((match = stockPattern.exec(pageContent)) !== null) {
           let op: string;
           // let market: string = match[2];
-          let stock: Asset;
+          let _stock: Asset | undefined;
           let quantity: number;
           // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
           let transactionValue: number;
+          let title = match[3];
 
           if (parseResult.holder.toLowerCase() !== 'inter') {
             op = match[1];
             // market = match[2];
-            stock = this.assetCrawler.getCodeFromTitle(match[3].replace(/\s+/g, ' '));
+            title = title.replace(/\s+/g, ' ');
+            try {
+              _stock = this.assetCrawler.getCodeFromTitle(title);
+            } catch (error) {
+              if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+            }
             quantity = parseInt(match[4]);
             // each = parseFloat(match[5].replace('.', '').replace(',', '.'));
             transactionValue = parseFloat(match[6].replace('.', '').replace(',', '.'));
@@ -374,16 +384,22 @@ export class NoteParser {
             op = match[2] || '';
             // market = match[1] || '';
             // ? Inter gives ON AMBEV S/A instead of AMBEV S/A ON
-            const stockTitle = `${match[7].trim()} ${match[6].trim()}`;
-            stock = this.assetCrawler.getCodeFromTitle(stockTitle);
+            title = `${match[7].trim()} ${match[6].trim()}`;
+            try {
+              _stock = this.assetCrawler.getCodeFromTitle(title);
+            } catch (error) {
+              if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+            }
             quantity = parseInt(match[3] || '');
             // each = parseFloat(match[4].replace('.', '').replace(',', '.'));
             transactionValue = parseFloat(match[5].replace('.', '').replace(',', '.'));
           }
 
-          if (!stock) throw new UnknownAsset(`Can't find ${match[3]}`, noteName, match[3]);
-
-          // if (market === 'FRACIONARIO') stock += 'F';
+          let stock: Asset;
+          if (!_stock) {
+            if (continueOnError) stock = new Asset(`UNDEF: ${title}`, title, false);
+            else throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+          } else stock = _stock;
 
           // Set 'buy' or 'sell'
           if (op === 'C') {

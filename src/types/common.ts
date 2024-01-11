@@ -11,7 +11,7 @@ export interface PageInfo {
 }
 
 /** Assets main infos */
-export interface Asset {
+export class Asset {
   /** Asset's code */
   code: string;
   /** Asset's name */
@@ -19,5 +19,12 @@ export interface Asset {
   /** Asset's cnpj (registration number) */
   cnpj?: string;
   /** Whether the asset is a FII (real estate) */
-  isFII: boolean
+  isFII: boolean;
+
+  constructor(code: string, name: string, isFII: boolean, cnpj?: string) {
+    this.code = code;
+    this.name = name;
+    this.cnpj = cnpj;
+    this.isFII = isFII;
+  }
 }
