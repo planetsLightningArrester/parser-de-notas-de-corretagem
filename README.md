@@ -2,16 +2,15 @@
 
 ![npm](https://img.shields.io/npm/v/parser-de-notas-de-corretagem) [![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml) [![Assets auto update](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml)
 
-Easing the PITA of making IRPF
+Easing the PITA of making IRPF. **Inter support only v0.8.0 onwards ❗**
 
 > Note: This is a JS/TS package. If you want the end-user solution, check the [Leitor de notas de corretagem](https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem)
-
-> Note: Inter support only v0.8.0 onwards
 
 ## Example result
 
 > The `price` and `average` fields already include the fees paid
-```JSON
+
+```json
 [
   {
     "number": "11111",    // Brokerage note number
@@ -76,31 +75,42 @@ Easing the PITA of making IRPF
     ]
   }
 ]
-``` 
+```
 
 ## Install
+
 > npm i parser-de-notas-de-corretagem
 
 ## Usage
 
 ### Full NodeJS example
-```Typescript
+
+```typescript
 import fs from 'fs';
 import path from 'path';
-import { Deal, NoteParser } from 'parser-de-notas-de-corretagem';
+import { Deal, NoteParser, type NegotiationNote } from 'parser-de-notas-de-corretagem';
 
 async function main() {
 
   console.log(`Leitor de Notas de Negociação - GNU GPLv3`);
-  
+
   const assets = new NoteParser();
   try {
 
     // Get all negotiation notes inside a PDF, even with password
     const possiblePDFpasswords: string[] = ['123', '456'];
     let pdfPath = path.join(__dirname, 'note.pdf');
-    let parseResult = await assets.parseNote(path.basename(pdfPath), fs.readFileSync(pdfPath), possiblePDFpasswords);
-    
+    let parseResult: NegotiationNote[]
+    try {
+      parseResult = await assets.parseNote(path.basename(pdfPath), fs.readFileSync(pdfPath), possiblePDFpasswords);
+    } catch (error: unknown) {
+      if (error instanceof UnknownAsset) {
+        console.log(`Unknown asset found: ${error.asset}`)
+        // Ignore unknown assets and parse again. Unknown assets will have `code` as `UNDEF: <name>`
+        parseResult = await assets.parseNote(path.basename(pdfPath), fs.readFileSync(pdfPath), possiblePDFpasswords, true);
+      } else throw error
+    }
+
     // Merge all negotiation notes
     let allDeals: Deal[][] = [];
     parseResult.forEach(note => {
@@ -113,7 +123,7 @@ async function main() {
         }
       })
     })
-    
+
     // Generate a .csv result
     let result: string = `Código\tCNPJ\tData\tC/V\tQuantidade\tPreço+custos\n`;
     allDeals.forEach(asset => {
@@ -122,9 +132,9 @@ async function main() {
       })
       result += `\n`;
     });
-    
+
     fs.writeFileSync(path.join(__dirname, '..', '..', 'Resultado.csv'), result);
-    
+
     console.log(`Todas as ${parseResult.length} notas foram processadas`);
     console.log(`O arquivo "Resultado.csv" foi gerado no diretório atual.`);
 
@@ -137,25 +147,53 @@ main();
 ```
 
 ### Browser
+
 Since only `Uint8Array` is accepted, use the following code to convert a string using the browser
-```JavaScript
+
+```javascript
 if (typeof fileContent === 'string') fileContent = Uint8Array.from(fileContent, x => x.charCodeAt(0));
-assetsParser.parseNote(filePath, fileContent, filePasswords);
+await assetsParser.parseNote(filePath, fileContent, filePasswords);
 ```
 
 ### Add a custom stock
-```Typescript
+
+There are many assets out there and some of them (like funds) are kind of hard to keep track. If some asset is not recognized, `parseNote` will throw the error `UnknownAsset`
+
+```typescript
+const assets = new NoteParser();
+try {
+  await assets.parseNote(filePath, fileContent, filePasswords)
+} catch (error) {
+  if (error instanceof UnknownAsset) {
+    console.log(`Unknown asset found: ${error.asset}`)
+  } else console.log(error)
+}
+```
+
+One can parse the note ignoring this error by passing `continueOnError` as `true`. Unknown assets will have the code `UNDEF: <name>` whereas the `<name>` is the name of the asset as in the note.
+
+```typescript
+const assets = new NoteParser();
+await assets.parseNote(filePath, fileContent, filePasswords, true)
+```
+
+For unknown assets to be properly parsed, one can add custom stocks with `.defineStock`
+
+```typescript
 const assets = new NoteParser();
 // Old stocks aren't available by default, but you can add them.
 // CNPJ as the third argument is optional
 assets.defineStock('BIDI3', 'BANCO INTER ON');
 assets.defineStock('BIDI11', 'BANCO INTER UNT');
-// If the same asset can have multiple codes, add a "_2", "_3", etc. with the names
-this.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
-this.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
+// Some codes can appear with multiple names. Add as many as needed
+assets.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
+assets.defineStock('KDIF11', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
+// Backward compatible with the below too
+assets.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
 ```
 
-## P.S.
+## P.S
+
 * Total values include fees
 * The values can deviate from cents. It's always a good call to double-check if the result is as expected. Check the [License](#license)
 * Inter broker has only a few tests, so please open [Issues](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/issues) if you find something wrong
@@ -163,13 +201,16 @@ this.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
 * Other brokers may work with the internal PDF architecture is the same as the supported brokers
 
 ## Contributors
+
 Thanks to whom sent the notes for the tests ❤️. Personal data is not stored neither used on tests, only the notes' content.
 
 ## Thanks? U welcome
+
 Consider thanking me: send a "Thanks!" 👋 by [PIX](https://www.bcb.gov.br/en/financialstability/pix_en) 😊
 > a09e5878-2355-45f7-9f36-6df4ccf383cf
 
 ## License
+
 As license, this software is provided as is, free of charge, **without any warranty whatsoever**. Its author is not responsible for its usage. Use it by your own risk.
 
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
