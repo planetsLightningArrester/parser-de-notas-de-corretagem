@@ -139,7 +139,12 @@ jobs:
     outputs:
       RELEASE_VERSION: ${{ steps.result.outputs.RELEASE_VERSION }}
     steps:
-      - name: Check if a new release has to be created
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🔎 Check if a new release has to be created
         id: result
         shell: bash
         run: |
