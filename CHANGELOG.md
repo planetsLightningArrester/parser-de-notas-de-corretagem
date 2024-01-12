@@ -6,10 +6,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.10.2] - 2024-01-11
+## [0.10.2] - [0.10.3] - 2024-01-12
 
 ### Changed
 
+- Update assets list
 - Allow duplicates to be added in `.defineStock`. This way, we can drop the `_2` in the example below (still backward compatible though)
 
 ```js
