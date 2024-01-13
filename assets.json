@@ -39308,6 +39308,42 @@
     "p": []
   },
   {
+    "a": "900156",
+    "b": "EOAP",
+    "c": "EÓLICA DO AGRESTE POTIGUAR I S.A.",
+    "d": "EÓLICA AG I",
+    "e": "33268331000166",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "900157",
+    "b": "EOAT",
+    "c": "EÓLICA DO AGRESTE POTIGUAR II S.A.",
+    "d": "EÓLICA AG II",
+    "e": "33268312000130",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "911750",
     "b": "FAMR",
     "c": "FABRIMAR S/A INDUSTRIA E COMERCIO",
@@ -42198,7 +42234,7 @@
   {
     "a": "ANCR",
     "d": "FII ANCAR IC",
-    "c": "ANCR11B",
+    "c": "ANCR11",
     "b": "07789135000127",
     "e": [],
     "f": [
@@ -119948,6 +119984,17 @@
     "b": "34197811000146",
     "e": [],
     "f": [
+      {
+        "a": "BRVGIPCTF002",
+        "b": "18/01/2024",
+        "c": "0,76000000000",
+        "d": "Dezembro-2023/2024",
+        "e": "11/01/2024",
+        "f": "BRVGIPCTF002",
+        "g": "RENDIMENTO",
+        "h": "11/01/2024",
+        "i": ""
+      },
       {
         "a": "BRVGIPCTF002",
         "b": "19/12/2023",
