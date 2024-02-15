@@ -11826,6 +11826,24 @@
     "p": []
   },
   {
+    "a": "50036",
+    "b": "IBIT",
+    "c": "ISHARES BITCOIN TRUST",
+    "d": "BKR BITCOIN",
+    "e": "0",
+    "f": "1",
+    "g": "DRE",
+    "h": "09/02/2024",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "4",
+    "m": "DRE",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "50838",
     "b": "BHEZ",
     "c": "ISHARES CURRENCY HEDGED MSCI EUROZONE ETF",
@@ -40416,6 +40434,24 @@
     "p": []
   },
   {
+    "a": "900171",
+    "b": "FCCL",
+    "c": "FERREIRA COSTA & CIA LTDA",
+    "d": "FERREIRA CIA",
+    "e": "10230480000130",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "21814",
     "b": "FENS",
     "c": "FERROVIA NORTE SUL S/A",
@@ -56283,6 +56319,17 @@
     "f": [
       {
         "a": "BRCPTSCTF004",
+        "b": "21/02/2024",
+        "c": "0,07000000000",
+        "d": "Janeiro-2024/2024",
+        "e": "14/02/2024",
+        "f": "BRCPTSCTF004",
+        "g": "RENDIMENTO",
+        "h": "14/02/2024",
+        "i": ""
+      },
+      {
+        "a": "BRCPTSCTF004",
         "b": "18/01/2024",
         "c": "0,06500000000",
         "d": "Dezembro-2023/2024",
@@ -71766,7 +71813,7 @@
   {
     "a": "SEED",
     "d": "FII HEDGE SD",
-    "c": "SEED11 SEED13",
+    "c": "SEED13 SEED11",
     "b": "35689497000181",
     "e": [],
     "f": [
@@ -94177,6 +94224,17 @@
       }
     ],
     "f": [
+      {
+        "a": "BRMGHTCTF005",
+        "b": "21/02/2024",
+        "c": "0,51000000000",
+        "d": "Janeiro-2024/2024",
+        "e": "14/02/2024",
+        "f": "BRMGHTCTF005",
+        "g": "RENDIMENTO",
+        "h": "14/02/2024",
+        "i": ""
+      },
       {
         "a": "BRMGHTCTF005",
         "b": "18/01/2024",
@@ -147303,6 +147361,39 @@
       {
         "a": "BRKLBNACNOR2",
         "b": "26/02/2024",
+        "c": "0,03480416981",
+        "d": "4º Trimestre/2023",
+        "e": "06/02/2024",
+        "f": "BRKLBNACNOR2",
+        "g": "DIVIDENDO",
+        "h": "15/02/2024",
+        "i": ""
+      },
+      {
+        "a": "BRKLBNACNPR9",
+        "b": "26/02/2024",
+        "c": "0,03480416981",
+        "d": "4º Trimestre/2023",
+        "e": "06/02/2024",
+        "f": "BRKLBNACNPR9",
+        "g": "DIVIDENDO",
+        "h": "15/02/2024",
+        "i": ""
+      },
+      {
+        "a": "BRKLBNCDAM18",
+        "b": "26/02/2024",
+        "c": "0,17402084905",
+        "d": "4º Trimestre/2023",
+        "e": "06/02/2024",
+        "f": "BRKLBNCDAM18",
+        "g": "DIVIDENDO",
+        "h": "15/02/2024",
+        "i": ""
+      },
+      {
+        "a": "BRKLBNACNOR2",
+        "b": "26/02/2024",
         "c": "0,03099714009",
         "d": "Complementar/2023",
         "e": "14/12/2023",
@@ -189407,18 +189498,18 @@
     "p": []
   },
   {
-    "a": "917520",
+    "a": "27359",
     "b": "ASER",
     "c": "ÁGUAS DO SERTÃO S.A.",
     "d": "ÁGUASDOSER",
     "e": "45456117000112",
-    "f": "99",
+    "f": "8",
     "g": "",
-    "h": "31/12/9999",
+    "h": "09/02/2024",
     "i": "A",
-    "j": "Não Classificados",
-    "k": "Not Classified",
-    "l": "7",
+    "j": "Água e Saneamento",
+    "k": "Water Utilities",
+    "l": "1",
     "m": "",
     "n": [],
     "o": [],
