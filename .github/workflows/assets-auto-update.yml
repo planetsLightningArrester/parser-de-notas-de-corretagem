@@ -89,7 +89,7 @@ jobs:
             # Submit the changes creating a new tag
             echo "[$(date +"%T")] [DEBUG] Submitting changes";
             git add package.json CHANGELOG.md;
-            git commit -m "Update assets list";
+            git commit -m "chore: update assets list";
             git tag "v$new_version";
             git push -u origin main --tags;
 
