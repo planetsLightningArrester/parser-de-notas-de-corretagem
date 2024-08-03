@@ -1,3 +1,4 @@
+import https from 'https';
 import axios from "axios";
 import assets from '../assets.json';
 import { Asset } from "./types/common";
@@ -33,6 +34,8 @@ export class AssetCrawler {
   protected assets: Array<StockInfos | FiiInfos>;
   /** Assets defined on runtime */
   customAssets: Asset[] = [];
+  /** Unprotected HTTPS agent for un-safe requests */
+  private unprotectedHttpsAgent = new https.Agent({ rejectUnauthorized: false });
   /** Auto-update flag */
   private _autoUpdate = false;
 
@@ -146,8 +149,8 @@ export class AssetCrawler {
 
   private async fetchStocks(page = { number: 1 }): Promise<void> {
     // Get listed stocks
-    if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page 1`);
-    let getStockResult = await axios.get(new ListedStocksRequest(page.number).base64Url());
+    if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page 1 (takes longer)`);
+    let getStockResult = await axios.get(new ListedStocksRequest(page.number).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
     if (!getStockResult || !('data' in getStockResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getStockResult}`);
 
     let stockData: StockCrawlerRequestResult = getStockResult.data;
@@ -171,7 +174,7 @@ export class AssetCrawler {
 
           // ? Not all companies have corporative events fields
           try {
-            const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url());
+            const getCorporativeEventsResult = await axios.get(new StockCorporativeEventRequest(company.issuingCompany).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
             if (!('status' in getCorporativeEventsResult) || getCorporativeEventsResult.status !== 200) throw new Error(`Error requesting ${company.issuingCompany}: code ${getCorporativeEventsResult.status ?? '[no code]'}`);
             // ? Stocks return as an Array with a single result. Real estate are just the element
             if (!('data' in getCorporativeEventsResult) || typeof getCorporativeEventsResult.data === 'undefined') throw new Error(`No data in response: ${getCorporativeEventsResult}`);
@@ -253,14 +256,14 @@ export class AssetCrawler {
 
       if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
       if (stockData.page.totalPages === stockData.page.pageNumber) break;
-      else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url());
+      else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
     }
   }
 
   private async fetchFIIs(page = { number: 1 }): Promise<void> {
     // Get listed FIIs
-    if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page 1`);
-    let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url());
+    if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page 1 (takes longer)`);
+    let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
     if (!('data' in getFiiResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getFiiResult}`);
 
     let fiiData: FIICrawlerRequestResult = getFiiResult.data;
@@ -279,7 +282,7 @@ export class AssetCrawler {
         if (this.verbosity === 'all') console.log(`[AC] Getting corporative events for ${fii.acronym}`);
 
         try {
-          const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url());
+          const getFiiResult = await axios.get(new GetFIIsRequest(fii.acronym).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
           if (!('data' in getFiiResult)) throw new Error(`[AC] Unexpected response: ${getFiiResult}`);
           const fiiInfo: FiiRawInfos = getFiiResult.data;
           let tradingCodes = fiiInfo.detailFund.tradingCode.trim();
@@ -296,7 +299,7 @@ export class AssetCrawler {
 
           // Get stock's corporative events
           // ? Not all companies have corporative events fields
-          const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, fii.acronym).base64Url());
+          const getCorporativeEventsResult = await axios.get(new RealEstateCorporativeEventRequest(fiiInfo.detailFund.cnpj, fii.acronym).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
           if (!('data' in getCorporativeEventsResult)) throw new Error(`Unexpected response: ${getCorporativeEventsResult}`);
           const corporativeEvents: StockCorporativeEventResponse = Array.isArray(getCorporativeEventsResult.data) ? getCorporativeEventsResult.data[0] : getCorporativeEventsResult.data;
 
@@ -365,7 +368,7 @@ export class AssetCrawler {
 
       if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
       if (fiiData.page.totalPages === fiiData.page.pageNumber) break;
-      else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url());
+      else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
     }
   }
 
