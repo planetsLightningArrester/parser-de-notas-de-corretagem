@@ -451,7 +451,6 @@ export class AssetCrawler {
           throw new Error(`[AC] Max retries reached for getting page ${fiiData.page.pageNumber + 1}`);
         }
       }
-      getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
     }
   }
 
