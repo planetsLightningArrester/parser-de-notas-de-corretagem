@@ -1,5 +1,5 @@
 import https from 'https';
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import assets from '../assets.json';
 import { Asset } from "./types/common";
 import { ListedStocksRequest, StockCrawlerRequestResult, StockInfos, StoredStockInfos } from "./types/listed-stocks";
@@ -198,7 +198,12 @@ export class AssetCrawler {
 
           } catch (e) {
             if (e instanceof Error) {
-              if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
+              if (this.verbosity === 'all') {
+                if (e.message.includes("code 429")) {
+                  console.log(`[AC] Too many requests. Waiting for a few seconds before retrying`);
+                  await new Promise<void>((resolve) => {setTimeout(() => {resolve();}, 5000 + Math.random() * 1000);});
+                } else console.log(`[AC] No data for ${company.issuingCompany} and error: ${e.message}`);
+              }
             } else if (this.verbosity === 'all') console.log(`[AC] No data for ${company.issuingCompany} and error: ${e}`);
 
             // Try again
@@ -256,14 +261,62 @@ export class AssetCrawler {
 
       if (this.verbosity === 'all') console.log(`[AC] Getting listed stocks: page ${stockData.page.pageNumber + 1}`);
       if (stockData.page.totalPages === stockData.page.pageNumber) break;
-      else getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
+      else {
+        let retries = 0;
+        while (this.maxRetries > retries) {
+          try {
+            getStockResult = await axios.get(new ListedStocksRequest(stockData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
+            break;
+          } catch (e) {
+            if (e instanceof Error) {
+              if (this.verbosity === 'all') {
+                if (e.message.includes("code 429")) {
+                  console.log(`[AC] Too many requests. Waiting for a few seconds before retrying`);
+                  await new Promise<void>((resolve) => {setTimeout(() => {resolve();}, 5000 + Math.random() * 1000);});
+                } else console.log(`[AC] No data for page ${stockData.page.pageNumber + 1} and error: ${e.message}`);
+              }
+            } else if (this.verbosity === 'all') console.log(`[AC] No data for page ${stockData.page.pageNumber + 1} and error: ${e}`);
+            retries++;
+  
+            // Try again
+            if (this.verbosity === 'all') console.log(`[AC] Retrying request for getting next page`);
+          }
+        }
+        if (retries >= this.maxRetries) {
+          throw new Error(`[AC] Max retries reached for getting page ${stockData.page.pageNumber + 1}`);
+        }
+      }
     }
   }
 
   private async fetchFIIs(page = { number: 1 }): Promise<void> {
     // Get listed FIIs
     if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page 1 (takes longer)`);
-    let getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
+    let retries = 0;
+    let _getFiiResult: AxiosResponse | undefined;
+    while (this.maxRetries > retries) {
+      try {
+        _getFiiResult = await axios.get(new ListedFIIsRequest(1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
+        break;
+      } catch (e) {
+        if (e instanceof Error) {
+          if (this.verbosity === 'all') {
+            if (e.message.includes("code 429")) {
+              console.log(`[AC] Too many requests. Waiting for a few seconds before retrying`);
+              await new Promise<void>((resolve) => {setTimeout(() => {resolve();}, 5000 + Math.random() * 1000);});
+            } else console.log(`[AC] No data for page 1 and error: ${e.message}`);
+          }
+        } else if (this.verbosity === 'all') console.log(`[AC] No data for page 1 and error: ${e}`);
+        retries++;
+
+        // Try again
+        if (this.verbosity === 'all') console.log(`[AC] Retrying request for getting next page`);
+      }
+    }
+    if (typeof _getFiiResult === 'undefined' || retries >= this.maxRetries) {
+      throw new Error(`[AC] Max retries reached for getting page 1`);
+    }
+    let getFiiResult = _getFiiResult;
     if (!('data' in getFiiResult)) throw new UnexpectedAxiosResponse(`[AC] Unexpected response: ${getFiiResult}`);
 
     let fiiData: FIICrawlerRequestResult = getFiiResult.data;
@@ -354,7 +407,12 @@ export class AssetCrawler {
           if (e instanceof FewerCorporativeEvents) {
             if (this.verbosity === 'all') console.log(e.message);
           } else if (e instanceof Error) {
-            if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
+            if (this.verbosity === 'all') {
+              if (e.message.includes("code 429")) {
+                console.log(`[AC] Too many requests. Waiting for a few seconds before retrying`);
+                await new Promise<void>((resolve) => {setTimeout(() => {resolve();}, 5000 + Math.random() * 1000);});
+              } else console.log(`[AC] No data for ${fii.acronym} and error: ${e.message}`);
+            }
           } else if (this.verbosity === 'all') console.log(`[AC] No data for ${fii.acronym} and error: ${e}`);
 
           // Try again
@@ -368,7 +426,32 @@ export class AssetCrawler {
 
       if (this.verbosity === 'all') console.log(`[AC] Getting listed real estates: page ${fiiData.page.pageNumber + 1}`);
       if (fiiData.page.totalPages === fiiData.page.pageNumber) break;
-      else getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
+      else {
+        let retries = 0;
+        while (this.maxRetries > retries) {
+          try {
+            getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
+            break;
+          } catch (e) {
+            if (e instanceof Error) {
+              if (this.verbosity === 'all') {
+                if (e.message.includes("code 429")) {
+                  console.log(`[AC] Too many requests. Waiting for a few seconds before retrying`);
+                  await new Promise<void>((resolve) => {setTimeout(() => {resolve();}, 5000 + Math.random() * 1000);});
+                } else console.log(`[AC] No data for page ${fiiData.page.pageNumber + 1} and error: ${e.message}`);
+              }
+            } else if (this.verbosity === 'all') console.log(`[AC] No data for page ${fiiData.page.pageNumber + 1} and error: ${e}`);
+            retries++;
+  
+            // Try again
+            if (this.verbosity === 'all') console.log(`[AC] Retrying request for getting next page`);
+          }
+        }
+        if (retries >= this.maxRetries) {
+          throw new Error(`[AC] Max retries reached for getting page ${fiiData.page.pageNumber + 1}`);
+        }
+      }
+      getFiiResult = await axios.get(new ListedFIIsRequest(fiiData.page.pageNumber + 1).base64Url(), { httpsAgent: this.unprotectedHttpsAgent });
     }
   }
 
