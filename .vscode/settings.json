@@ -3,6 +3,7 @@
     "ABEV",
     "AMBEV",
     "autoupdate",
+    "cnpj",
     "corretagem",
     "elif",
     "fiis",
@@ -14,13 +15,9 @@
     "notas",
     "pipefail"
   ],
-  "cmake.configureOnOpen": false,
-  "cSpell.enableFiletypes": [
-    "github-actions-workflow"
-  ],
-  "[typescript]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
-  },
   "cSpell.language": "en,pt-BR",
+  "eslint.format.enable": true,
+  "cSpell.enabledFileTypes": {
+    "github-actions-workflow": true
+  },
 }
