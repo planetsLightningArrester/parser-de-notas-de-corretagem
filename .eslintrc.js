@@ -16,5 +16,8 @@ module.exports = {
     "semi": 'error',
     "no-unused-vars": 'error',
     "no-loop-func": 'error',
-  }
+  },
+  ignorePatterns: [
+    'commitlint.config.js'
+  ]
 };
