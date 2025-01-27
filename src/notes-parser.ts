@@ -91,6 +91,8 @@ export class WrongPassword extends BaseError {
 }
 /** Empty document error */
 export class EmptyDocument extends BaseError { }
+/** Document that cannot be recognized */
+export class UnknownDocumentFormat extends BaseError { }
 /** Document without note number error */
 export class MissingNoteNumber extends BaseError { }
 /** Document without holder error */
@@ -212,8 +214,8 @@ export class NoteParser {
     else if (!pdf) throw new EmptyDocument(`Can't open note ${noteName}. The document returned no content`, noteName);
 
     // Parse the PDF content
-    const holderPattern = /data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+)/i;
-    const noteNumberPattern = /Nr\. nota\s+(\d+)/i;
+    const holderPattern = /(?:data.*\s+\d{2}\/\d{2}\/\d{4}\s+(\w+))|(nuinvest|nubank)/i;
+    const noteNumberPattern = /nota\s+(\d+)/i;
     const datePattern = /data.*\s+(\d{2}\/\d{2}\/\d{4})/i;
     // ?* Clear and Rico summary pattern
     // ? Debentures
@@ -235,6 +237,10 @@ export class NoteParser {
     // ? Compras a vista
     // ? Vendas a vista
     const buysAndSellsInterPattern = /Debêntures\n\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)\s+(\d[\d,.]*)/;
+    // ?* Nubank summary pattern
+    // ? Vendas a vista
+    // ? Compras a vista
+    const buysAndSellsNubankPattern = /Vendas à vista\s+(\d[\d,.]*)\s+Compras à vista\s+(\d[\d,.]*)/;
     // ?* Clear and Rico fees pattern
     const feesClearRicoPattern = [
       /(\d[\d,.]*)\nTaxa de liquidação/,
@@ -274,10 +280,33 @@ export class NoteParser {
       // Outras
       /Clearing\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+\d[\d,.]*\s+(\d[\d,.]*)/,
     ];
+    // ?* Nubank fees pattern
+    const feesNubankPattern = [
+      // Taxa de Liquidação
+      /Taxa de Liquidação\s+-?(\d[\d,.]*)/,
+      // Taxa de Registro
+      /Taxa de Registro\s+-?(\d[\d,.]*)/,
+      // Emolumentos
+      /Emolumentos\s+-?(\d[\d,.]*)/,
+      // Taxa A.N.A.
+      /Taxa A\.N\.A\.\s+-?(\d[\d,.]*)/,
+      // Taxa de opções/futuro
+      /Taxa de Termo \/ Opções\s+-?(\d[\d,.]*)/,
+      // Corretagem
+      /Corretagem\s+-?(\d[\d,.]*)/,
+      // ISS
+      /ISS \(SÃO PAULO\)\s+-?(\d[\d,.]*)/,
+      // IRRF
+      /I\.R\.R\.F. s\/ operações\. Base 0,00\s+-?(\d[\d,.]*)/,
+      // Outras
+      /Outras\s+-?(\d[\d,.]*)/,
+    ];
     // ?* Clear and Rico stock pattern. This is also the default in case the holder isn't defined
     const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
     // ?* Inter stock pattern
     const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(\w[\w \t]+\s+)([ \t\w/.]+)/g;
+    // ?* Nubank stock pattern
+    const stockNubankPattern = /BOVESPA\s+(\w+)\s+(\w+)\s+(\w+)\s+(?:\w+\s+)?\w+\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+/g;
     let match: RegExpMatchArray | null;
 
     // Iterate over the pages
@@ -291,7 +320,7 @@ export class NoteParser {
         const item = data.items[j];
         if ('str' in item) pageContent += `${item.str}\n`;
       }
-      if ((pageContent.match(buysAndSellsClearRicoPattern) || pageContent.match(buysAndSellsInterPattern)) && pageContent.match(noteNumberPattern)) {
+      if ((pageContent.match(buysAndSellsClearRicoPattern) || pageContent.match(buysAndSellsInterPattern) || pageContent.match(buysAndSellsNubankPattern)) && pageContent.match(noteNumberPattern)) {
 
         // Get note's number
         let noteNumber: string | undefined;
@@ -308,9 +337,11 @@ export class NoteParser {
         // Get the holder
         let holder: string | undefined;
         match = pageContent.match(holderPattern);
-        if (match && match[1]) holder = match[1][0].toUpperCase() + match[1].slice(1).toLowerCase();
-        else throw new MissingHolder(`No holder found for the negotiation note '${noteName}'`, noteName);
+        if (match && match[1]) holder = match[1];
+        else if (match && match[2]) holder = match[2];
+        if (!holder) throw new MissingHolder(`No holder found for the negotiation note '${noteName}'`, noteName);
         parseResult.holder = holder.toLocaleLowerCase();
+        parseResult.holder = parseResult.holder === 'nuinvest' ? 'nubank' : parseResult.holder;
 
         // Get the date
         let date: string | undefined;
@@ -322,7 +353,7 @@ export class NoteParser {
         // Note total
         let buyTotal = 0;
         let sellTotal = 0;
-        if ((match = pageContent.match(buysAndSellsClearRicoPattern)) !== null) {
+        if ((match = pageContent.match(buysAndSellsClearRicoPattern)) !== null || (match = pageContent.match(buysAndSellsNubankPattern)) !== null) {
           sellTotal = parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
           buyTotal = parseFloat(match[2].replace(/\./g, '').replace(',', '.'));
         } else if ((match = pageContent.match(buysAndSellsInterPattern)) !== null) {
@@ -333,21 +364,17 @@ export class NoteParser {
         // Get the fees
         let fees = 0;
         const _pageContent = pageContent;
-        if (parseResult.holder.toLowerCase() !== 'inter') {
-          feesClearRicoPattern.forEach(fee => {
-            const match = _pageContent.match(fee);
-            if (match && match[1]) {
-              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
-            }
-          });
-        } else {
-          feesInterPattern.forEach(fee => {
-            const match = _pageContent.match(fee);
-            if (match && match[1]) {
-              fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
-            }
-          });
-        }
+        let feePattern: RegExp[];
+        if (parseResult.holder.toLowerCase() === 'nubank') feePattern = feesNubankPattern;
+        else if (parseResult.holder.toLowerCase() !== 'inter') feePattern = feesClearRicoPattern;
+        else feePattern = feesInterPattern;
+
+        feePattern.forEach(fee => {
+          const match = _pageContent.match(fee);
+          if (match && match[1]) {
+            fees += parseFloat(match[1].replace(/\./g, '').replace(',', '.'));
+          }
+        });
         if (fees) parseResult.fees = (parseFloat(parseResult.fees) + fees).toFixed(2);
 
         // Generate the Checkout for the value bought
@@ -357,7 +384,11 @@ export class NoteParser {
         if (sellTotal) parseResult.sellTotal = sellTotal.toFixed(2);
 
         // Use the stock pattern based on the holder
-        const stockPattern = parseResult.holder.toLowerCase() !== 'inter' ? stockClearRicoPattern : stockInterPattern;
+        let _stockPattern: RegExp;
+        if (parseResult.holder === 'nubank') _stockPattern = stockNubankPattern;
+        else if (parseResult.holder !== 'inter') _stockPattern = stockClearRicoPattern;
+        else  _stockPattern = stockInterPattern;
+        const stockPattern = _stockPattern;
 
         while ((match = stockPattern.exec(pageContent)) !== null) {
           let op: string;
@@ -366,18 +397,30 @@ export class NoteParser {
           let quantity: number;
           // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
           let transactionValue: number;
-          let title = match[3];
+          let title: string;
 
-          if (parseResult.holder.toLowerCase() !== 'inter') {
+          if (parseResult.holder === 'nubank') {
             op = match[1];
             // market = match[2];
-            title = title.replace(/\s+/g, ' ');
+            title = match[3].replace(/\s+/g, ' ');
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title);
             } catch (error) {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
             }
-            quantity = parseInt(match[4]);
+            quantity = parseInt((match[4]).replace('.', ''));
+            // each = parseFloat(match[5].replace('.', '').replace(',', '.'));
+            transactionValue = parseFloat(match[6].replace('.', '').replace(',', '.'));
+          } else if (parseResult.holder !== 'inter') {
+            op = match[1];
+            // market = match[2];
+            title = match[3].replace(/\s+/g, ' ');
+            try {
+              _stock = this.assetCrawler.getCodeFromTitle(title);
+            } catch (error) {
+              if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+            }
+            quantity = parseInt((match[4]).replace('.', ''));
             // each = parseFloat(match[5].replace('.', '').replace(',', '.'));
             transactionValue = parseFloat(match[6].replace('.', '').replace(',', '.'));
           } else {
@@ -390,7 +433,7 @@ export class NoteParser {
             } catch (error) {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
             }
-            quantity = parseInt(match[3] || '');
+            quantity = parseInt((match[3] || '').replace('.', ''));
             // each = parseFloat(match[4].replace('.', '').replace(',', '.'));
             transactionValue = parseFloat(match[5].replace('.', '').replace(',', '.'));
           }
@@ -444,6 +487,10 @@ export class NoteParser {
 
         pageContent = '';
       }
+    }
+
+    if (parseResults.length === 0 && !continueOnError) {
+      throw new UnknownDocumentFormat(`No data could be extracted from ${noteName}`, noteName);
     }
 
     // Process the fees
