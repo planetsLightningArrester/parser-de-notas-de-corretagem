@@ -70,6 +70,7 @@
     "resolveJsonModule": true
   },
   "exclude": [
+    "commitlint.config.js",
     "src/tests",
     "dist",
     "out",

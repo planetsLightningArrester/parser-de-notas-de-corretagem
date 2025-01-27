@@ -5,16 +5,22 @@
   "main": "notes-parser.js",
   "types": "notes-parser.d.ts",
   "scripts": {
-    "lint": "eslint src --fix",
-    "test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles",
     "build": "npm run lint && rm -rf out; tsc --declaration",
+    "lint": "eslint src --fix",
     "pack": "npm run lint && rm -rf dist; webpack --mode production",
+    "postinstall": "npx husky",
+    "prepare": "husky",
     "pub": "npm publish ./dist --access=public",
     "update-assets": "npm run build && node out/src/scripts/update.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem.git"
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "npx eslint --fix"
+    ]
   },
   "keywords": [
     "parser",
@@ -48,6 +54,8 @@
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@types/jest": "^29.4.0",
     "@types/lodash": "^4.14.192",
     "@types/node": "^18.14.0",
@@ -60,7 +68,9 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^16.1.0",
     "eslint-plugin-promise": "^6.1.1",
-    "jest": "^29.4.3",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.4.3",
     "lodash": "^4.17.21",
     "ts-jest": "^29.0.5",
     "ts-loader": "^9.4.2",
