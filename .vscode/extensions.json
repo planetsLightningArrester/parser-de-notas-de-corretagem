@@ -2,6 +2,8 @@
   "recommendations": [
     "streetsidesoftware.code-spell-checker-portuguese-brazilian",
     "streetsidesoftware.code-spell-checker",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "bierner.github-markdown-preview",
+    "davidanson.vscode-markdownlint"
   ]
 }
