@@ -1,9 +1,11 @@
 {
   "cSpell.words": [
     "ABEV",
+    "ALZR",
     "AMBEV",
     "autoupdate",
     "cnpj",
+    "commitlint",
     "corretagem",
     "elif",
     "fiis",
@@ -13,7 +15,10 @@
     "kdif",
     "noreply",
     "notas",
-    "pipefail"
+    "nubank",
+    "nuinvest",
+    "pipefail",
+    "Sinacor"
   ],
   "cSpell.language": "en,pt-BR",
   "eslint.format.enable": true,
