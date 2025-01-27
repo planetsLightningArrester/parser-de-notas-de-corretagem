@@ -11,6 +11,8 @@
     "postinstall": "npx husky",
     "prepare": "husky",
     "pub": "npm publish ./dist --access=public",
+    "smoke-test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles --testPathIgnorePatterns crawler.test.ts",
+    "test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles",
     "update-assets": "npm run build && node out/src/scripts/update.js"
   },
   "repository": {
