@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+[ -n "$CI" ] && exit 0
+
+git hash-object --stdin </dev/null | tr '0-9a-f' '0' >/dev/null
+
+run_checks=false
+while read -r _ local_sha __ remote_sha; do
+	if [ "${remote_sha}" = "0000000000000000000000000000000000000000" ] || [ "${local_sha}" = "0000000000000000000000000000000000000000" ]; then
+		run_checks=true
+	else
+		# Get the files being pushed
+		files=$(git diff --name-only "${local_sha}" "${remote_sha}")
+		expr "${files}" : ".*\.ts" >/dev/null && run_checks=true && break
+	fi
+
+done
+
+if [ "${run_checks}" = true ]; then
+	echo '[INFO] Running build'
+	npm run build
+	npm run pack
+	echo '[INFO] Running tests'
+	npm run smoke-test
+	echo '[INFO] Running linters'
+	npm run lint
+	echo '[INFO] Running package'
+	npm run build && npm run pack
+fi
