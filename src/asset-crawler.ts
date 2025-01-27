@@ -461,12 +461,12 @@ export class AssetCrawler {
    */
   getCodeFromTitle(name: string): Asset {
     // If the stock was manually set
-    const customDefined: Asset | undefined = this.customAssets.find(c => name.includes(c.name));
     // ? Some pre-defined stocks can refer to multiple names
     // ? KDIF11=KINEA INFRAF FIDC
     // ? KDIF11_2=FDC KINEAINF FIDC
     // ? In that case, consider the same stock by removing the _
-    if (customDefined) {
+    let customDefined: Asset | undefined;
+    if (typeof (customDefined = this.customAssets.find(c => name.includes(c.name))) !== 'undefined' || typeof (customDefined = this.customAssets.find(c => name.includes(c.code))) !== 'undefined') {
       customDefined.code = customDefined.code.replace(/(.*)_.*/, "$1");
       return customDefined;
     }
@@ -494,9 +494,13 @@ export class AssetCrawler {
       else if (name.indexOf(' DR3') !== -1) { indexOf = name.indexOf(' DR3'); type = '33'; }
       else indexOf = name.length;
       const justTheName = name.slice(0, indexOf);
-      for (const stock of this.assets) {
-        if (!('tradingCode' in stock) && stock.tradingName === justTheName) {
-          return { code: stock.issuingCompany + type, name, cnpj: stock.cnpj, isFII: false };
+      for (const stockOrFii of this.assets) {
+        if (!('tradingCode' in stockOrFii) && stockOrFii.tradingName === justTheName) {
+          return { code: stockOrFii.issuingCompany + type, name, cnpj: stockOrFii.cnpj, isFII: false };
+        } else if ('tradingCode' in stockOrFii && (stockOrFii.tradingCode === justTheName || stockOrFii.tradingCode === justTheName)) {
+          const mainTradingCode = stockOrFii.tradingCode.split(/\s/).shift();
+          if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
+          return { code: mainTradingCode, name, cnpj: stockOrFii.cnpj, isFII: true };
         }
       }
     }
