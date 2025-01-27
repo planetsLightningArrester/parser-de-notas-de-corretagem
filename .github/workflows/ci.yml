@@ -44,6 +44,10 @@ jobs:
 
   dividends:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v3
@@ -51,7 +55,7 @@ jobs:
       - name: 🛠️ NodeJS setup
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node_version }}
 
       - name: 🔧 Install dependencies
         run:  npm ci
@@ -61,6 +65,10 @@ jobs:
 
   rico-compliance:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v3
@@ -68,7 +76,7 @@ jobs:
       - name: 🛠️ NodeJS setup
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node_version }}
 
       - name: 🔧 Install dependencies
         run:  npm ci
@@ -78,6 +86,10 @@ jobs:
 
   clear-compliance:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v3
@@ -85,7 +97,7 @@ jobs:
       - name: 🛠️ NodeJS setup
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node_version }}
 
       - name: 🔧 Install dependencies
         run:  npm ci
@@ -93,10 +105,56 @@ jobs:
       - name: 🧪 Run test
         run:  npm run test rico
 
+  inter-compliance:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🛠️ NodeJS setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: 🔧 Install dependencies
+        run:  npm ci
+      
+      - name: 🧪 Run test
+        run:  npm run test inter
+
+  nubank-compliance:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🛠️ NodeJS setup
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: 🔧 Install dependencies
+        run:  npm ci
+      
+      - name: 🧪 Run test
+        run:  npm run test nubank
+
   # crawler:
   #   # Skip check if this CI was triggered by another workflow
   #   if: ${{ ! inputs.skip_crawler_test }}
   #   runs-on: ubuntu-latest
+  #   strategy:
+  #       fail-fast: false
+  #       matrix:
+  #         node_version: [18, 20, 22]
   #   steps:
   #     - name: 📥 Checkout code
   #       uses: actions/checkout@v3
@@ -104,7 +162,7 @@ jobs:
   #     - name: 🛠️ NodeJS setup
   #       uses: actions/setup-node@v3
   #       with:
-  #         node-version: 18
+  #         node-version: ${{ matrix.node_version }}
   #
   #     - name: 🔧 Install dependencies
   #       run:  npm ci
@@ -114,6 +172,10 @@ jobs:
 
   webpack:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v3
@@ -121,7 +183,7 @@ jobs:
       - name: 🛠️ NodeJS setup
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node_version }}
 
       - name: 🔧 Install dependencies and build
         run: npm ci && npm run build && npm run pack
@@ -133,6 +195,10 @@ jobs:
   check_if_release_is_required:
     name: 🔎 Check if release is required
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [18, 20, 22]
     needs: [ dividends, rico-compliance, clear-compliance, webpack ]
     # Skip check if this CI was triggered by another workflow
     if: ${{ ! inputs.skip_crawler_test }}
