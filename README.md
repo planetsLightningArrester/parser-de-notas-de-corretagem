@@ -1,12 +1,49 @@
-# Parse Brazilian brokerage notes PDFs (Rico, Clear, and Inter holders available)
-
-![npm](https://img.shields.io/npm/v/parser-de-notas-de-corretagem) [![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml) [![Assets auto update](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml)
-
-Easing the PITA of making IRPF. **Inter support only v0.8.0 onwards ❗**
+# 🦜 Brazilian brokerage notes PDFs parser
 
 > Note: This is a JS/TS package. If you want the end-user solution, check the [Leitor de notas de corretagem](https://github.com/planetsLightningArrester/leitor-de-notas-de-corretagem)
 
-## Example result
+![npm](https://img.shields.io/npm/v/parser-de-notas-de-corretagem) [![CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml) [![Assets auto update](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/assets-auto-update.yml)
+
+Easing the PITA of making IRPF.
+
+> [!WARNING]
+> ❗ *Inter* is only supported from v0.8.0 onwards.
+>
+> ❗ *Nubank* in only supported from v0.12.0 onwards.
+
+## 📰 Contents
+
+- [🦜 Brazilian brokerage notes PDFs parser](#-brazilian-brokerage-notes-pdfs-parser)
+  - [📰 Contents](#-contents)
+  - [🚧 Support](#-support)
+  - [💡 Example result](#-example-result)
+  - [🛠️ Install](#️-install)
+  - [📚 Usage](#-usage)
+    - [🚀 Full NodeJS example](#-full-nodejs-example)
+    - [🌐 Browser](#-browser)
+    - [🎨 Add a custom stock](#-add-a-custom-stock)
+  - [🎭 Behavior](#-behavior)
+  - [❤️ Contributors](#️-contributors)
+  - [🙏🏻 Thanks? You're welcome](#-thanks-youre-welcome)
+  - [🏦 License](#-license)
+
+## 🚧 Support
+
+> [!TIP]
+> 🧪 Under test
+> ✅ Good support
+
+- [x] Rico ✅
+- [x] Clear ✅
+- [x] Inter ✅
+- [ ] Nubank 🧪
+  - [x] Default 🧪
+  - [ ] Sinacor ❓
+
+> [!TIP]
+> As of 2025, [Nubank provides non-Sinacor versions of brokerage notes by default](https://blog.nubank.com.br/nota-de-corretagem-nubank-nuinvest/). This parser is focused on parsing those non-Sinacor ones (for now).
+
+## 💡 Example result
 
 > The `price` and `average` fields already include the fees paid
 
@@ -77,13 +114,13 @@ Easing the PITA of making IRPF. **Inter support only v0.8.0 onwards ❗**
 ]
 ```
 
-## Install
+## 🛠️ Install
 
 > npm i parser-de-notas-de-corretagem
 
-## Usage
+## 📚 Usage
 
-### Full NodeJS example
+### 🚀 Full NodeJS example
 
 ```typescript
 import fs from 'fs';
@@ -146,7 +183,7 @@ async function main() {
 main();
 ```
 
-### Browser
+### 🌐 Browser
 
 Since only `Uint8Array` is accepted, use the following code to convert a string using the browser
 
@@ -155,7 +192,7 @@ if (typeof fileContent === 'string') fileContent = Uint8Array.from(fileContent, 
 await assetsParser.parseNote(filePath, fileContent, filePasswords);
 ```
 
-### Add a custom stock
+### 🎨 Add a custom stock
 
 There are many assets out there and some of them (like funds) are kind of hard to keep track. If some asset is not recognized, `parseNote` will throw the error `UnknownAsset`
 
@@ -192,24 +229,24 @@ assets.defineStock('KDIF11', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
 assets.defineStock('KDIF11_2', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
 ```
 
-## P.S
+## 🎭 Behavior
 
-* Total values include fees
-* The values can deviate from cents. It's always a good call to double-check if the result is as expected. Check the [License](#license)
-* Inter broker has only a few tests, so please open [Issues](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/issues) if you find something wrong
-* Local auto-update isn't persistent. New releases are done everyday with persistent updates
-* Other brokers may work with the internal PDF architecture is the same as the supported brokers
+- Total values include fees
+- The values can deviate from cents. It's always a good call to double-check if the result is as expected. Check the [🏦 License](#-license)
+- Inter broker has only a few tests, so please open [Issues](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/issues) if you find something wrong
+- Local auto-update isn't persistent. New releases are done everyday with persistent updates
+- Other brokers may work with the internal PDF architecture is the same as the supported brokers
 
-## Contributors
+## ❤️ Contributors
 
 Thanks to whom sent the notes for the tests ❤️. Personal data is not stored neither used on tests, only the notes' content.
 
-## Thanks? U welcome
+## 🙏🏻 Thanks? You're welcome
 
 Consider thanking me: send a "Thanks!" 👋 by [PIX](https://www.bcb.gov.br/en/financialstability/pix_en) 😊
 > a09e5878-2355-45f7-9f36-6df4ccf383cf
 
-## License
+## 🏦 License
 
 As license, this software is provided as is, free of charge, **without any warranty whatsoever**. Its author is not responsible for its usage. Use it by your own risk.
 
