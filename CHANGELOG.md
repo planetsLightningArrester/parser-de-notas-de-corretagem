@@ -6,6 +6,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0] - 2025-01-27
+
+### Added
+
+- Throw `UnknownDocumentFormat` error if the PDF doesn't match any expected format. Can be skipped if `NoteParser.parseNote()`'s `continueOnError` is `true`.
+- Add beta support for non-Sinacor NuBank brokerage notes. Note that [NuBank doesn't provide Sinacor compatible brokerage notes by default](https://blog.nubank.com.br/nota-de-corretagem-nubank-nuinvest/). This version may or may not work with NuBank Sinacor versions. The full support should be added in future releases.
+- Add [husky](https://typicode.github.io/husky/) and [commitlint](https://commitlint.js.org/)
+- Add GitHub Pull Request and Issues templates
+- Add VS Code recommended extensions
+- Add NuBank tests
+- Add `npm run test nubank` to [![🔄 CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml)
+- Add `npm run smoke-test` to run all tests but `crawler.test.ts`
+
+### Fixed
+
+- Add missing `npm run test inter` to [![🔄 CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml)
+
+### Changed
+
+- Run [![🔄 CI](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml/badge.svg)](https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem/actions/workflows/ci.yml) in multiple Node versions
+- Improve code length
+- Update docs
+
 ## [0.11.0] - [0.11.14] - 2025-01-14
 
 ### Fixed
