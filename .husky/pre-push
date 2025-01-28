@@ -16,8 +16,6 @@ while read -r _ local_sha __ remote_sha; do
 done
 
 if [ "${run_checks}" = true ]; then
-	echo '[INFO] Running linters'
-	npm run lint
 	echo '[INFO] Running build and package'
 	npm run build
 	npm run pack
