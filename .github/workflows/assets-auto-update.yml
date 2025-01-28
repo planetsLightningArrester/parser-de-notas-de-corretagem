@@ -13,7 +13,7 @@ on:
 # Jobs
 jobs:
   assets_auto_update:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       RELEASE_VERSION: ${{ steps.push.outputs.RELEASE_VERSION }}
     steps:

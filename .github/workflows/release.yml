@@ -18,7 +18,7 @@ jobs:
 
   calculate-release-version:
     name: 🧮 Calculate release version
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       RELEASE_VERSION: ${{ steps.result.outputs.RELEASE_VERSION }}
     steps:
@@ -42,7 +42,7 @@ jobs:
 
   create-release:
     name: 🎁 Create release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: calculate-release-version
     steps:
       - name: 📥 Checkout code
@@ -67,7 +67,7 @@ jobs:
 
   npm-release:
     name: 📦 NPM release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: create-release
     steps:
     - name: Checkout code 📥
