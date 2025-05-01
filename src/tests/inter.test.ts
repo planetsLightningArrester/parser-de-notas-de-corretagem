@@ -42,7 +42,7 @@ test('throw error for unknown asset', async () => {
   await expect(assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords)).rejects.toThrow(UnknownAsset);
 });
 
-test('suppress error for unkown asset', async () => {
+test('suppress error for unknown asset', async () => {
   const expected: NegotiationNote[] = [{
     buyFees: "1.34",
     buyTotal: "4491.01",
@@ -51,7 +51,7 @@ test('suppress error for unkown asset', async () => {
       {
         average: "99.80",
         cnpj: "00.000.000/0000-00",
-        code: "UNDEF: FIC IE CAP CI ER",
+        code: "UNDEF: FIC IE CAP",
         date: "04/01/2024",
         isFII: false,
         price: "4491.01",
@@ -145,6 +145,7 @@ test('sell 250 KDIFs', async () => {
   const filePath: string = path.join(__dirname, 'notes', 'inter_kdif_250.pdf');
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
 
+  assets.defineStock('CPTI11', 'FIC IE CAP', '38.065.012/0001-77');
   const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
   expect<NegotiationNote[]>(parseResult).toEqual(expected);
 });
@@ -172,6 +173,35 @@ test('ABEV', async () => {
   }];
 
   const filePath: string = path.join(__dirname, 'notes', 'inter_abev.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
+  expect<NegotiationNote[]>(parseResult).toEqual(expected);
+});
+
+test('AES', async () => {
+  const expected: NegotiationNote[] = [{
+    "buyFees": "0.00",
+    "buyTotal": "0.00",
+    "date": "21/05/2024",
+    "deals": [{
+      "average": "11.13",
+      "cnpj": "37.663.076/0001-07",
+      "code": "AESB3",
+      "date": "21/05/2024",
+      "isFII": false,
+      "price": "1357.41",
+      "quantity": 122,
+      "type": "sell",
+    }],
+    "fees": "0.45",
+    "holder": "inter",
+    "number": "26862093",
+    "sellFees": "0.45",
+    "sellTotal": "1357.41",
+  }];
+
+  const filePath: string = path.join(__dirname, 'notes', 'inter_aes.pdf');
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
 
   const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
