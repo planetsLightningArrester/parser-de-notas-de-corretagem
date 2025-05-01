@@ -6,6 +6,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.14.0] - 2025-05-01
+
+### Added
+
+- Add `JURO11` and `CPTI11` definitions
+
+### Changed
+
+- Add the asset type (`ON`, `PN`, etc.) to `UNDEF: <CODE> <TYPE>`
+- Add the asset type to the error message, when thrown
+
+### Removed
+
+- Remove `BIDI3` and `BIDI11` definitions
+
 ## [0.13.0] - 2025-04-30
 
 ### Fixed
