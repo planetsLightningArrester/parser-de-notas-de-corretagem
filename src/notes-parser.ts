@@ -153,10 +153,9 @@ export class NoteParser {
     this.defineStock('TIET11', 'AES TIETE E UNT', '37.663.076/0001-07');
     this.defineStock('BIDI3', 'BANCO INTER ON', '00.416.968/0001-01');
     this.defineStock('BIDI11', 'BANCO INTER UNT', '00.416.968/0001-01');
-    this.defineStock('KDIF11', 'KINEA INFRAF FIDC', '26.324.298/0001-89');
-    this.defineStock('KDIF11', 'FDC KINEAINF FIDC', '26.324.298/0001-89');
-    this.defineStock('KDIF11', 'KINEA INFRAF CI', '26.324.298/0001-89');
-    this.defineStock('CPTI11', 'FIC IE CAP CI ES', '38.065.012/0001-77');
+    this.defineStock('KDIF11', 'KINEA INFRAF', '26.324.298/0001-89');
+    this.defineStock('KDIF11', 'FDC KINEAINF', '26.324.298/0001-89');
+    this.defineStock('CDII11', 'SPARTA CDII', '48.973.783/0001-16');
   }
 
   /**
@@ -302,11 +301,11 @@ export class NoteParser {
       /Outras\s+-?(\d[\d,.]*)/,
     ];
     // ?* Clear and Rico stock pattern. This is also the default in case the holder isn't defined
-    const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\t \s+\w/.]+)\s+(?:#\w*\s+)?(\d+)\s+([\w,]+)\s+([\w,.]+)\s+/g;
+    const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\w\s./]+)\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?D?(?:[A-Z]|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?\s+(?:#\s+)?(\d+)\s+([\d.,]+)\s+([\d,.]+)/g;
     // ?* Inter stock pattern
-    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(\w[\w \t]+\s+)([ \t\w/.]+)/g;
+    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?D?(?:[A-Z]|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?[\n ]+(\w[^\n]+)/g;
     // ?* Nubank stock pattern
-    const stockNubankPattern = /BOVESPA\s+(\w+)\s+(\w+)\s+(\w+)\s+(?:\w+\s+)?\w+\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+/g;
+    const stockNubankPattern = /BOVESPA\s+(\w+)\s+(\w+)\s+(\w+)\s+(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?D?(?:[A-Z]|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?(?:\s+(\w|#))?\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+/g;
     let match: RegExpMatchArray | null;
 
     // Iterate over the pages
@@ -392,44 +391,63 @@ export class NoteParser {
 
         while ((match = stockPattern.exec(pageContent)) !== null) {
           let op: string;
-          // let market: string = match[2];
+          let market: string;
           let _stock: Asset | undefined;
           let quantity: number;
           // let each: number = parseFloat(match[5].replace('.', '').replace(',', '.'));
           let transactionValue: number;
           let title: string;
+          let kind: string;
+          // let event: string;
+          // let governanceLevel: string;
+          // let observation: string;
 
           if (parseResult.holder === 'nubank') {
             op = match[1];
-            // market = match[2];
+            market = match[2];
+
+            // Nubank adds `F` for fractional stocks
             title = match[3].replace(/\s+/g, ' ');
+            if (market === "FRACIONARIO" && title.endsWith('F')) title = title.slice(0,title.length - 1);
+            kind = match[4].trim();
+            // event = match[5].trim();
+            // governanceLevel = match[6].trim();
+            // observation = match[7].trim();
+
             try {
-              _stock = this.assetCrawler.getCodeFromTitle(title);
+              _stock = this.assetCrawler.getCodeFromTitle(title, kind);
             } catch (error) {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
             }
-            quantity = parseInt((match[4]).replace('.', ''));
-            // each = parseFloat(match[5].replace('.', '').replace(',', '.'));
-            transactionValue = parseFloat(match[6].replace('.', '').replace(',', '.'));
+            quantity = parseInt((match[8]).replace('.', ''));
+            // each = parseFloat(match[9].replace('.', '').replace(',', '.'));
+            transactionValue = parseFloat(match[10].replace('.', '').replace(',', '.'));
           } else if (parseResult.holder !== 'inter') {
             op = match[1];
             // market = match[2];
-            title = match[3].replace(/\s+/g, ' ');
+            // ? Inter gives ON AMBEV S/A instead of AMBEV S/A ON
+            
+            title = match[3].replace(/\s+/g, ' ').trim();
+            kind = match[4].trim();
+            // event = match[5].trim();
+            // governanceLevel = match[6].trim();
             try {
-              _stock = this.assetCrawler.getCodeFromTitle(title);
+              _stock = this.assetCrawler.getCodeFromTitle(title, kind);
             } catch (error) {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
             }
-            quantity = parseInt((match[4]).replace('.', ''));
-            // each = parseFloat(match[5].replace('.', '').replace(',', '.'));
-            transactionValue = parseFloat(match[6].replace('.', '').replace(',', '.'));
+            quantity = parseInt((match[7]).replace('.', ''));
+            // each = parseFloat(match[8].replace('.', '').replace(',', '.'));
+            transactionValue = parseFloat(match[9].replace('.', '').replace(',', '.'));
           } else {
             op = match[2] || '';
             // market = match[1] || '';
-            // ? Inter gives ON AMBEV S/A instead of AMBEV S/A ON
-            title = `${match[7].trim()} ${match[6].trim()}`;
+            kind = match[6].trim();
+            // event = match[7].trim();
+            // governanceLevel = match[8].trim();
+            title = match[9].trim();
             try {
-              _stock = this.assetCrawler.getCodeFromTitle(title);
+              _stock = this.assetCrawler.getCodeFromTitle(title, kind);
             } catch (error) {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
             }

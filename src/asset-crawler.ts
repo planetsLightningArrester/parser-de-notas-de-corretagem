@@ -27,6 +27,9 @@ class FewerCorporativeEvents extends Error { }
 /** Types of asset verbosity */
 export type AssetVerbosity = 'off' | 'all' | 'minimal';
 
+/** Asset type code number */
+type AssetType = '3' | '4' | '5' | '11' | '31' | '32' | '33' | '34' | '35' | '36' | '37' | '38' | '39';
+
 /** Assets crawler manager */
 export class AssetCrawler {
 
@@ -457,16 +460,17 @@ export class AssetCrawler {
   /**
    * Parse the stock name and returns the stock code
    * @param name title of the stock in the brokerage note
+   * @param kind asset kind (like ON, PN, DR2)
    * @returns the stock code
    */
-  getCodeFromTitle(name: string): Asset {
+  getCodeFromTitle(name: string, kind: string = ''): Asset {
     // If the stock was manually set
     // ? Some pre-defined stocks can refer to multiple names
     // ? KDIF11=KINEA INFRAF FIDC
     // ? KDIF11_2=FDC KINEAINF FIDC
     // ? In that case, consider the same stock by removing the _
     let customDefined: Asset | undefined;
-    if (typeof (customDefined = this.customAssets.find(c => name.includes(c.name))) !== 'undefined' || typeof (customDefined = this.customAssets.find(c => name.includes(c.code))) !== 'undefined') {
+    if (typeof (customDefined = this.customAssets.find(c => `${name} ${kind}`.startsWith(c.name))) !== 'undefined' || typeof (customDefined = this.customAssets.find(c => name === c.code)) !== 'undefined') {
       customDefined.code = customDefined.code.replace(/(.*)_.*/, "$1");
       return customDefined;
     }
@@ -484,26 +488,35 @@ export class AssetCrawler {
       }
     } else {
       // Else, parse it
-      let type: '3' | '4' | '11' | '31' | '32' | '33' = '3';
-      let indexOf: number;
-      if (name.indexOf(' ON') !== -1) { indexOf = name.indexOf(' ON'); type = '3'; }
-      else if (name.indexOf(' PN') !== -1) { indexOf = name.indexOf(' PN'); type = '4'; }
-      else if (name.indexOf(' UNT') !== -1) { indexOf = name.indexOf(' UNT'); type = '11'; }
-      else if (name.indexOf(' DR1') !== -1) { indexOf = name.indexOf(' DR1'); type = '31'; }
-      else if (name.indexOf(' DR2') !== -1) { indexOf = name.indexOf(' DR2'); type = '32'; }
-      else if (name.indexOf(' DR3') !== -1) { indexOf = name.indexOf(' DR3'); type = '33'; }
-      else indexOf = name.length;
-      const justTheName = name.slice(0, indexOf);
+      let type: AssetType | Array<AssetType> = '3';
+
+      if (kind.match(/\bON\b/)) { type = '3'; }
+      else if (kind.match(/\bPN\b/)) { type = '4'; }
+      else if (kind.match(/\bPNA\b/)) { type = '4'; }
+      else if (kind.match(/\bPNB\b/)) { type = '5'; }
+      else if (kind.match(/\bUNT\b/)) { type = '11'; }
+      else if (kind.match(/\bDR1\b/)) { type = '31'; }
+      else if (kind.match(/\bDR2\b/)) { type = '32'; }
+      else if (kind.match(/\bDR3\b/)) { type = '33'; }
+      else if (kind.match(/\bBDR\b/)) { type = ['34', '35', '36', '37', '38', '39']; }
+      else if (kind.match(/\bREIT\b/)) { type = ['35', '36']; }
+
+      const nameWithoutTrailingNumbers = name.trim().replace(/(.*)\d+$/m, "$1"); // Remove the last numbers
       for (const stockOrFii of this.assets) {
-        if (!('tradingCode' in stockOrFii) && stockOrFii.tradingName === justTheName) {
-          return { code: stockOrFii.issuingCompany + type, name, cnpj: stockOrFii.cnpj, isFII: false };
-        } else if ('tradingCode' in stockOrFii && (stockOrFii.tradingCode === justTheName || stockOrFii.tradingCode === justTheName)) {
+        if (!('tradingCode' in stockOrFii) && stockOrFii.tradingName === name) {
+          // WARN: We're setting BDRs and REITs codes as the first one available
+          return { code: stockOrFii.issuingCompany + (Array.isArray(type) ? type[0] : type), name, cnpj: stockOrFii.cnpj, isFII: false };
+        } else if ('tradingCode' in stockOrFii && (stockOrFii.tradingCode === name || stockOrFii.tradingCode === name)) {
           const mainTradingCode = stockOrFii.tradingCode.split(/\s/).shift();
           if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
           return { code: mainTradingCode, name, cnpj: stockOrFii.cnpj, isFII: true };
+        } else if ('issuingCompany' in stockOrFii && stockOrFii.issuingCompany === nameWithoutTrailingNumbers) {
+          const mainTradingCode = stockOrFii.issuingCompany.split(/\s/).shift();
+          if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
+          return { code: mainTradingCode, name: stockOrFii.tradingName, cnpj: stockOrFii.cnpj, isFII: false };
         }
       }
-    }
+    }   
 
     throw new Error(`[AC] No stock found for ${name}`);
 
