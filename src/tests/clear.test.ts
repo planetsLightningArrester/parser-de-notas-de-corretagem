@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
-import { NoteParser, NegotiationNote } from '../notes-parser';
+import { NoteParser, NegotiationNote, UnknownAsset } from '../notes-parser';
 
 const assets = new NoteParser();
 const possiblePasswords: string[] = ['123', '456'];
 
-describe('single page with buy and sell', () => {
+describe('single page with buy and sell and undef', () => {
 
   const expected: NegotiationNote[] = [
     {
@@ -30,12 +30,12 @@ describe('single page with buy and sell', () => {
         },
         {
           "type": "sell",
-          "code": "BIDI11",
+          "code": "UNDEF: BANCO INTER UNT",
           "quantity": 45,
           "average": "51.92",
           "price": "2336.53",
           "date": "29/09/2020",
-          "cnpj": "00.416.968/0001-01",
+          "cnpj": "00.000.000/0000-00",
           "isFII": false
         },
         {
@@ -62,24 +62,31 @@ describe('single page with buy and sell', () => {
     }
   ];
 
-  assets.defineStock('BIDI3', 'BANCO INTER ON');
-  assets.defineStock('BIDI11', 'BANCO INTER UNT');
+  assets.defineStock('BIDI3', 'BANCO INTER ON', '00.416.968/0001-01');
 
   test('with password', async () => {
     const filePath: string = path.join(__dirname, 'notes', 'clear_single_page_sell_pwd.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
 
-    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords, true);
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
   test('without password', async () => {
     const filePath: string = path.join(__dirname, 'notes', 'clear_single_page_sell.pdf');
     if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
 
-    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath));
+    const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), [], true);
     expect<NegotiationNote[]>(parseResult).toEqual(expected);
   });
 });
+
+test('throw error for unknown asset', async () => {
+  const filePath: string = path.join(__dirname, 'notes', 'clear_single_page_sell.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  await expect(assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords)).rejects.toThrow(UnknownAsset);
+});
+
 test('multi page', async () => {
   const filePath: string = path.join(__dirname, 'notes', 'clear_multi_page.pdf');
   if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);

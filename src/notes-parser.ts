@@ -150,12 +150,11 @@ export class NoteParser {
     this._verbosity = this.assetCrawler.verbosity;
 
     // Some manually defined stocks
-    this.defineStock('TIET11', 'AES TIETE E UNT', '37.663.076/0001-07');
-    this.defineStock('BIDI3', 'BANCO INTER ON', '00.416.968/0001-01');
-    this.defineStock('BIDI11', 'BANCO INTER UNT', '00.416.968/0001-01');
     this.defineStock('KDIF11', 'KINEA INFRAF', '26.324.298/0001-89');
     this.defineStock('KDIF11', 'FDC KINEAINF', '26.324.298/0001-89');
     this.defineStock('CDII11', 'SPARTA CDII', '48.973.783/0001-16');
+    this.defineStock('JURO11', 'SPARTA INFRA', '42.730.834/0001-00');
+    this.defineStock('CPTI11', 'FIC IE CAP', '38.065.012/0001-77');
   }
 
   /**
@@ -417,7 +416,7 @@ export class NoteParser {
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title, kind);
             } catch (error) {
-              if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+              if (!continueOnError) throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
             }
             quantity = parseInt((match[8]).replace('.', ''));
             // each = parseFloat(match[9].replace('.', '').replace(',', '.'));
@@ -434,7 +433,7 @@ export class NoteParser {
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title, kind);
             } catch (error) {
-              if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+              if (!continueOnError) throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
             }
             quantity = parseInt((match[7]).replace('.', ''));
             // each = parseFloat(match[8].replace('.', '').replace(',', '.'));
@@ -449,7 +448,7 @@ export class NoteParser {
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title, kind);
             } catch (error) {
-              if (!continueOnError) throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+              if (!continueOnError) throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
             }
             quantity = parseInt((match[3] || '').replace('.', ''));
             // each = parseFloat(match[4].replace('.', '').replace(',', '.'));
@@ -458,8 +457,8 @@ export class NoteParser {
 
           let stock: Asset;
           if (!_stock) {
-            if (continueOnError) stock = new Asset(`UNDEF: ${title}`, title, false);
-            else throw new UnknownAsset(`Can't find ${title}`, noteName, title);
+            if (continueOnError) stock = new Asset(`UNDEF: ${title} ${kind}`, title, false);
+            else throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
           } else stock = _stock;
 
           // Set 'buy' or 'sell'

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { NoteParser, NegotiationNote, UnknownAsset } from '../notes-parser';
+import { NoteParser, NegotiationNote } from '../notes-parser';
 
 const assets = new NoteParser();
 const possiblePasswords: string[] = ['123', '456'];
@@ -35,13 +35,6 @@ describe('multiple KDIFs', () => {
   });
 });
 
-test('throw error for unknown asset', async () => {
-  const filePath: string = path.join(__dirname, 'notes', 'inter_cpti_kdif.pdf');
-  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
-
-  await expect(assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords)).rejects.toThrow(UnknownAsset);
-});
-
 test('suppress error for unknown asset', async () => {
   const expected: NegotiationNote[] = [{
     buyFees: "1.34",
@@ -50,8 +43,8 @@ test('suppress error for unknown asset', async () => {
     deals: [
       {
         average: "99.80",
-        cnpj: "00.000.000/0000-00",
-        code: "UNDEF: FIC IE CAP",
+        cnpj: "38.065.012/0001-77",
+        code: "CPTI11",
         date: "04/01/2024",
         isFII: false,
         price: "4491.01",
