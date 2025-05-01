@@ -286,11 +286,11 @@ describe('asset crawler', () => {
     test('direct instance', () => {
       const assetCrawler = new AssetCrawler(false, 'all');
       expect(assetCrawler.getCodeFromTitle('FII CSHG URB HGRU11 CI ER').code).toBe('HGRU11');
-      expect(assetCrawler.getCodeFromTitle('ITAUSA PN N1').code).toBe('ITSA4');
+      expect(assetCrawler.getCodeFromTitle('ITAUSA', 'PN').code).toBe('ITSA4');
     });
     test('from note parser instance', () => {
       expect(assets.assetCrawler.getCodeFromTitle('FII CSHG URB HGRU11 CI ER').code).toBe('HGRU11');
-      expect(assets.assetCrawler.getCodeFromTitle('ITAUSA PN N1').code).toBe('ITSA4');
+      expect(assets.assetCrawler.getCodeFromTitle('ITAUSA', 'PN').code).toBe('ITSA4');
     });
   });
 });
