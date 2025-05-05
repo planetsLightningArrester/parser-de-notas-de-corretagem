@@ -511,7 +511,7 @@ export class AssetCrawler {
           if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
           return { code: mainTradingCode, name, cnpj: stockOrFii.cnpj, isFII: true };
         } else if ('issuingCompany' in stockOrFii && stockOrFii.issuingCompany === nameWithoutTrailingNumbers) {
-          const mainTradingCode = stockOrFii.issuingCompany.split(/\s/).shift();
+          const mainTradingCode = stockOrFii.issuingCompany.split(/\s/).shift() + (Array.isArray(type) ? type[0] : type);
           if (!mainTradingCode) throw new Error(`[AC] Couldn't get the trading code for ${name}`);
           return { code: mainTradingCode, name: stockOrFii.tradingName, cnpj: stockOrFii.cnpj, isFII: false };
         }

@@ -139,7 +139,7 @@ test('Fractional assets', async () => {
     "deals": [{
       "average": "10.82",
       "cnpj": "09.346.601/0001-25",
-      "code": "B3SA",
+      "code": "B3SA3",
       "date": "25/02/2025",
       "isFII": false,
       "price": "681.70",
@@ -149,7 +149,7 @@ test('Fractional assets', async () => {
     {
       "average": "7.22",
       "cnpj": "50.746.577/0001-15",
-      "code": "CSAN",
+      "code": "CSAN3",
       "date": "25/02/2025",
       "isFII": false,
       "price": "1798.32",
@@ -159,7 +159,7 @@ test('Fractional assets', async () => {
     {
       "average": "7.57",
       "cnpj": "15.141.799/0001-03",
-      "code": "FESA",
+      "code": "FESA4",
       "date": "25/02/2025",
       "isFII": false,
       "price": "946.72",
@@ -169,7 +169,7 @@ test('Fractional assets', async () => {
     {
       "average": "11.51",
       "cnpj": "60.840.055/0001-31",
-      "code": "FLRY",
+      "code": "FLRY3",
       "date": "25/02/2025",
       "isFII": false,
       "price": "552.62",
@@ -179,7 +179,7 @@ test('Fractional assets', async () => {
     {
       "average": "9.08",
       "cnpj": "61.532.644/0001-15",
-      "code": "ITSA",
+      "code": "ITSA4",
       "date": "25/02/2025",
       "isFII": false,
       "price": "672.07",
@@ -189,7 +189,7 @@ test('Fractional assets', async () => {
     {
       "average": "4.16",
       "cnpj": "89.637.490/0001-45",
-      "code": "KLBN",
+      "code": "KLBN4",
       "date": "25/02/2025",
       "isFII": false,
       "price": "766.15",
@@ -199,7 +199,7 @@ test('Fractional assets', async () => {
     {
       "average": "18.72",
       "cnpj": "61.585.865/0001-51",
-      "code": "RADL",
+      "code": "RADL3",
       "date": "25/02/2025",
       "isFII": false,
       "price": "2040.18",
@@ -209,7 +209,7 @@ test('Fractional assets', async () => {
     {
       "average": "5.36",
       "cnpj": "76.484.013/0001-45",
-      "code": "SAPR",
+      "code": "SAPR4",
       "date": "25/02/2025",
       "isFII": false,
       "price": "257.36",
@@ -219,7 +219,7 @@ test('Fractional assets', async () => {
     {
       "average": "22.05",
       "cnpj": "51.466.860/0001-56",
-      "code": "SMTO",
+      "code": "SMTO3",
       "date": "25/02/2025",
       "isFII": false,
       "price": "1124.46",
@@ -229,7 +229,7 @@ test('Fractional assets', async () => {
     {
       "average": "5.87",
       "cnpj": "84.693.183/0001-68",
-      "code": "SHUL",
+      "code": "SHUL4",
       "date": "25/02/2025",
       "isFII": false,
       "price": "751.58",
@@ -239,7 +239,7 @@ test('Fractional assets', async () => {
     {
       "average": "52.41",
       "cnpj": "84.429.695/0001-11",
-      "code": "WEGE",
+      "code": "WEGE3",
       "date": "25/02/2025",
       "isFII": false,
       "price": "471.73",
