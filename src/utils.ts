@@ -4,7 +4,6 @@
 // ? That causes an error saying that the "worker 'https://cndjs...' isn't available"
 // Copied from https://github.com/mozilla/pdf.js/blob/af64149885482cbbe577ef90abf06272f34327bb/src/shared/is_node.js#L21
 export const isNodeJS =
-  // @ts-expect-error: An expression of type 'void' cannot be tested for truthiness.
   (typeof PDFJSDev === "undefined" || PDFJSDev.test("GENERIC")) &&
   typeof process === "object" &&
   process + "" === "[object process]" &&
