@@ -424,3 +424,136 @@ test('Real estate', async () => {
   const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
   expect<NegotiationNote[]>(parseResult).toEqual(expected);
 });
+
+test('Note with event', async () => {
+  const expected: NegotiationNote[] = [
+    {
+      "buyFees": "3.82",
+      "buyTotal": "12787.91",
+      "date": "25/08/2023",
+      "deals": [
+        {
+          "average": "4.51",
+          "cnpj": "89.637.490/0001-45",
+          "code": "KLBN4",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "216.54",
+          "quantity": 48,
+          "type": "buy",
+        },
+        {
+          "average": "40.49",
+          "cnpj": "07.206.816/0001-15",
+          "code": "MDIA3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "2146.08",
+          "quantity": 53,
+          "type": "buy",
+        },
+        {
+          "average": "13.94",
+          "cnpj": "07.526.557/0001-00",
+          "code": "ABEV3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "1812.16",
+          "quantity": 130,
+          "type": "buy",
+        },
+        {
+          "average": "17.91",
+          "cnpj": "50.746.577/0001-15",
+          "code": "CSAN3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "1450.33",
+          "quantity": 81,
+          "type": "buy",
+        },
+        {
+          "average": "41.38",
+          "cnpj": "02.558.157/0001-62",
+          "code": "VIVT3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "1241.47",
+          "quantity": 30,
+          "type": "buy",
+        },
+        {
+          "average": "13.61",
+          "cnpj": "09.346.601/0001-25",
+          "code": "B3SA3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "1102.74",
+          "quantity": 81,
+          "type": "buy",
+        },
+        {
+          "average": "36.28",
+          "cnpj": "84.429.695/0001-11",
+          "code": "WEGE3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "1596.36",
+          "quantity": 44,
+          "type": "buy",
+        },
+        {
+          "average": "9.39",
+          "cnpj": "61.532.644/0001-15",
+          "code": "ITSA4",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "572.96",
+          "quantity": 61,
+          "type": "buy",
+        },
+        {
+          "average": "15.07",
+          "cnpj": "60.840.055/0001-31",
+          "code": "FLRY3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "874.32",
+          "quantity": 58,
+          "type": "buy",
+        },
+        {
+          "average": "27.18",
+          "cnpj": "61.585.865/0001-51",
+          "code": "RADL3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "978.41",
+          "quantity": 36,
+          "type": "buy",
+        },
+        {
+          "average": "41.92",
+          "cnpj": "02.474.103/0001-19",
+          "code": "EGIE3",
+          "date": "25/08/2023",
+          "isFII": false,
+          "price": "796.53",
+          "quantity": 19,
+          "type": "buy",
+        },
+      ],
+      "fees": "3.82",
+      "holder": "inter",
+      "number": "22328121",
+      "sellFees": "0.00",
+      "sellTotal": "0.00",
+    },
+  ];
+
+  const filePath: string = path.join(__dirname, 'notes', 'inter_events.pdf');
+  if (!fs.existsSync(filePath)) throw new Error(`Path ${filePath} doesn't exist`);
+
+  const parseResult = await assets.parseNote(filePath, fs.readFileSync(filePath), possiblePasswords);
+  expect<NegotiationNote[]>(parseResult).toEqual(expected);
+});

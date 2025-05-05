@@ -300,11 +300,11 @@ export class NoteParser {
       /Outras\s+-?(\d[\d,.]*)/,
     ];
     // ?* Clear and Rico stock pattern. This is also the default in case the holder isn't defined
-    const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\w\s./]+)\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?D?(?:[A-Z]|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?\s+(?:#\s+)?(\d+)\s+([\d.,]+)\s+([\d,.]+)/g;
+    const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\w\s./]+)\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?(?:[A-Z]{1,2}|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?\s+(?:#\s+)?(\d+)\s+([\d.,]+)\s+([\d,.]+)/g;
     // ?* Inter stock pattern
-    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?D?(?:[A-Z]|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?[\n ]+(\w[^\n]+)/g;
+    const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?(?:[A-Z]{1,2}|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?[\n ]+(\w[^\n]+)/g;
     // ?* Nubank stock pattern
-    const stockNubankPattern = /BOVESPA\s+(\w+)\s+(\w+)\s+(\w+)\s+(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?D?(?:[A-Z]|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?(?:\s+(\w|#))?\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+/g;
+    const stockNubankPattern = /BOVESPA\s+(\w+)\s+(\w+)\s+(\w+)\s+(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?(?:[A-Z]{1,2}|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?(?:\s+(\w|#))?\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+/g;
     let match: RegExpMatchArray | null;
 
     // Iterate over the pages
