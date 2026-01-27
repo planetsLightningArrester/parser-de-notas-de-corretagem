@@ -69,6 +69,9 @@ jobs:
     name: 📦 NPM release
     runs-on: ubuntu-22.04
     needs: create-release
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Checkout code 📥
       uses: actions/checkout@v3
@@ -79,7 +82,7 @@ jobs:
     - name: NodeJS setup 🛠️
       uses: actions/setup-node@v3
       with:
-        node-version: 18
+        node-version: 24
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install dependencies and build 🔧
@@ -87,7 +90,5 @@ jobs:
 
     - name: Publish package on NPM 🚀
       run: npm run pub
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 # EOF
