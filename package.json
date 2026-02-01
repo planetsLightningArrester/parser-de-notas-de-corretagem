@@ -10,14 +10,13 @@
     "pack": "npm run lint && rm -rf dist; webpack --mode production",
     "postinstall": "npx husky",
     "prepare": "husky",
-    "pub": "npm publish ./dist --access=public",
     "smoke-test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles --testPathIgnorePatterns crawler.test.ts",
     "test": "npm run lint && jest --forceExit --runInBand --detectOpenHandles",
     "update-assets": "npm run build && node out/src/scripts/update.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem.git"
+    "url": "https://github.com/planetsLightningArrester/parser-de-notas-de-corretagem.git"
   },
   "lint-staged": {
     "*.{ts,js}": [

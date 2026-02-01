@@ -20,10 +20,15 @@ on:
         type: boolean
         default: false
         description: Only create an NPM release
+
+permissions:
+  id-token: write
+
 jobs:
 
   calculate-release-version:
     name: 🧮 Calculate release version
+    if: github.event.inputs.npm_only != 'true'
     runs-on: ubuntu-22.04
     outputs:
       RELEASE_VERSION: ${{ steps.result.outputs.RELEASE_VERSION }}
@@ -48,6 +53,7 @@ jobs:
 
   create-release:
     name: 🎁 Create release
+    if: github.event.inputs.npm_only != 'true'
     runs-on: ubuntu-22.04
     needs: calculate-release-version
     steps:
@@ -74,10 +80,8 @@ jobs:
   npm-release:
     name: 📦 NPM release
     runs-on: ubuntu-22.04
+    if: always() && (github.event.inputs.npm_only == 'true' || needs.create-release.result == 'success')
     needs: create-release
-    permissions:
-      id-token: write
-      contents: read
     steps:
     - name: Checkout code 📥
       uses: actions/checkout@v4
@@ -89,12 +93,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 24
-        registry-url: 'https://registry.npmjs.org'
+        registry-url: https://registry.npmjs.org
 
     - name: Install dependencies and build 🔧
       run: npm ci && npm run build && npm run pack
 
     - name: Publish package on NPM 🚀
-      run: npm run pub
+      run: npm publish ./dist --access=public --provenance
 
 # EOF
