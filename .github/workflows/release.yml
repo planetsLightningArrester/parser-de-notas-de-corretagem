@@ -14,6 +14,13 @@ on:
         description: 'Release version formatted as "vMM.mm.pp"'
         required: true
 
+  workflow_dispatch:
+    inputs:
+      npm_only:
+        type: boolean
+        default: false
+        description: Only create an NPM release
+
 jobs:
 
   calculate-release-version:
