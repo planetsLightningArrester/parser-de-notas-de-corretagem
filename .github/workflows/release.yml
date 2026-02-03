@@ -21,9 +21,6 @@ on:
         default: false
         description: Only create an NPM release
 
-permissions:
-  id-token: write
-
 jobs:
 
   calculate-release-version:
@@ -82,6 +79,9 @@ jobs:
     runs-on: ubuntu-22.04
     if: always() && (github.event.inputs.npm_only == 'true' || needs.create-release.result == 'success')
     needs: create-release
+    permissions:
+      id-token: write
+      contents: read
     steps:
     - name: Checkout code 📥
       uses: actions/checkout@v4
@@ -99,6 +99,6 @@ jobs:
       run: npm ci && npm run build && npm run pack
 
     - name: Publish package on NPM 🚀
-      run: npm publish ./dist --access=public
+      run: npm run pub -- --provenance
 
 # EOF
