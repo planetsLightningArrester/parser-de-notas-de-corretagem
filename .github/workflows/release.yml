@@ -14,13 +14,6 @@ on:
         description: 'Release version formatted as "vMM.mm.pp"'
         required: true
 
-  workflow_dispatch:
-    inputs:
-      npm_only:
-        type: boolean
-        default: false
-        description: Only create an NPM release
-
 jobs:
 
   calculate-release-version:
@@ -90,12 +83,12 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 24
-        registry-url: 'https://registry.npmjs.org'
+        registry-url: https://registry.npmjs.org
 
     - name: Install dependencies and build 🔧
       run: npm ci && npm run build && npm run pack
 
     - name: Publish package on NPM 🚀
-      run: npm run pub
+      run: npm run pub -- --provenance
 
 # EOF
