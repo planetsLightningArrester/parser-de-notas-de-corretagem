@@ -3,7 +3,7 @@ name: 🎁 Create release
 
 defaults:
   run:
-    shell: bash -ieo pipefail {0}
+    shell: bash
 
 on:
   # Can be triggered only by other workflows
@@ -44,6 +44,8 @@ jobs:
     name: 🎁 Create release
     runs-on: ubuntu-22.04
     needs: calculate-release-version
+    permissions:
+      contents: write
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -71,7 +73,6 @@ jobs:
     needs: create-release
     permissions:
       id-token: write
-      contents: read
     steps:
     - name: Checkout code 📥
       uses: actions/checkout@v4
