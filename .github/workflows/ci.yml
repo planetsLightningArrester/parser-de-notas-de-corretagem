@@ -51,10 +51,10 @@ jobs:
         node_version: [24]
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🛠️ NodeJS setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -73,10 +73,10 @@ jobs:
         node_version: [24]
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🛠️ NodeJS setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -95,10 +95,10 @@ jobs:
         node_version: [24]
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🛠️ NodeJS setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -117,10 +117,10 @@ jobs:
         node_version: [24]
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🛠️ NodeJS setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -139,10 +139,10 @@ jobs:
         node_version: [24]
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🛠️ NodeJS setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -161,10 +161,10 @@ jobs:
         node_version: [24]
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: 🛠️ NodeJS setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node_version }}
 
@@ -185,7 +185,7 @@ jobs:
       RELEASE_VERSION: ${{ steps.result.outputs.RELEASE_VERSION }}
     steps:
       - name: 📥 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
