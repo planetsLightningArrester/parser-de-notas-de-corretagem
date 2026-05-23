@@ -1,8 +1,11 @@
+import { restoreConsole } from './polyfills';
 import { isNodeJS } from './utils';
 import { Asset } from './types/common';
 import { AssetCrawler, AssetVerbosity } from "./asset-crawler";
 import { CashDividend, StockDividend } from './types/corporative-events';
-import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist';
+
+import { getDocument as openPDF, PDFDocumentProxy as PDFDocument, GlobalWorkerOptions, version as pdfjsVersion } from 'pdfjs-dist/legacy/build/pdf.mjs';
+restoreConsole();
 
 export {
   AssetCrawler,
@@ -415,7 +418,7 @@ export class NoteParser {
 
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title, kind);
-            } catch (error) {
+            } catch {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
             }
             quantity = parseInt((match[8]).replace('.', ''));
@@ -432,7 +435,7 @@ export class NoteParser {
             // governanceLevel = match[6].trim();
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title, kind);
-            } catch (error) {
+            } catch {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
             }
             quantity = parseInt((match[7]).replace('.', ''));
@@ -447,7 +450,7 @@ export class NoteParser {
             title = match[9].trim();
             try {
               _stock = this.assetCrawler.getCodeFromTitle(title, kind);
-            } catch (error) {
+            } catch {
               if (!continueOnError) throw new UnknownAsset(`Can't find ${title} (${kind})`, noteName, title);
             }
             quantity = parseInt((match[3] || '').replace('.', ''));

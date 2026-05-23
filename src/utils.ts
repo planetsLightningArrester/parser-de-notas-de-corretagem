@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+ 
 // ? This is the same way as PDF JS knows if this is running in Web or Node
 // ? The whole check shouldn't be tricky if the react testing library wasn't recognized as NodeJS, but it's
 // ? That causes an error saying that the "worker 'https://cndjs...' isn't available"
