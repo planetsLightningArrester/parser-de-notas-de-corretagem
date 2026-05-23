@@ -7,6 +7,12 @@ defaults:
 
 on:
   # Can be triggered only by other workflows
+  workflow_dispatch:
+    inputs:
+      release_version:
+        type: string
+        description: 'Release version formatted as "vMM.mm.pp"'
+        required: true
   workflow_call:
     inputs:
       release_version:
