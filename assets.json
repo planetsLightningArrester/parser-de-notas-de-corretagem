@@ -300760,6 +300760,24 @@
     "p": []
   },
   {
+    "a": "917998",
+    "b": "RLXF",
+    "c": "RLX FLUOROCHEMICAL IMPORTADORA E EXPORTADORA LTDA",
+    "d": "RLX FLUORO",
+    "e": "07312248000137",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "907394",
     "b": "RNCV",
     "c": "RN  COMERCIO VAREJISTA S/A",
@@ -317285,6 +317303,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRVIVTACNOR0",
+        "b": "30/04/2027",
+        "c": "0,15646482856",
+        "d": "3º Trimestre/2026",
+        "e": "16/07/2026",
+        "f": "BRVIVTACNOR0",
+        "g": "JRS CAP PROPRIO",
+        "h": "27/07/2026",
+        "i": ""
+      },
       {
         "a": "BRVIVTACNOR0",
         "b": "30/04/2027",
