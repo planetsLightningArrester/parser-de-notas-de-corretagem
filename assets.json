@@ -46085,7 +46085,7 @@
     "c": "COLOMBO AGROINDÚSTRIA S/A",
     "d": "COLOMBO AGRO",
     "e": "44330975000153",
-    "f": "1",
+    "f": "99",
     "g": "",
     "h": "31/12/9999",
     "i": "A",
@@ -318415,6 +318415,24 @@
     "p": []
   },
   {
+    "a": "918001",
+    "b": "TFCV",
+    "c": "TERRA FORTE COMERCIO DE VEICULOS LTD",
+    "d": "TERRA FOR",
+    "e": "46401065000140",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "912370",
     "b": "TSTT",
     "c": "TERRA SANTTA ENERGIA SOLAR S.A.",
@@ -318547,6 +318565,24 @@
         "i": ""
       }
     ],
+    "p": []
+  },
+  {
+    "a": "918002",
+    "b": "TERR",
+    "c": "TERRENA AGRONEGOCIOS LTDA",
+    "d": "TERRENA AGR",
+    "e": "18104802000107",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
     "p": []
   },
   {
