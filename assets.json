@@ -11746,7 +11746,7 @@
     "b": "ASAI",
     "c": "SENDAS DISTRIBUIDORA S.A.",
     "d": "ASSAI",
-    "e": "6057223000171",
+    "e": "06057223000171",
     "f": "18",
     "g": "",
     "h": "10/02/2021",
@@ -63742,6 +63742,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BREGIEACNOR9",
+        "b": "31/12/9999",
+        "c": "0,54420747574",
+        "d": "1º Semestre/2026",
+        "e": "05/08/2026",
+        "f": "BREGIEACNOR9",
+        "g": "DIVIDENDO",
+        "h": "20/08/2026",
+        "i": ""
+      },
       {
         "a": "BREGIEACNOR9",
         "b": "20/05/2026",
@@ -312213,14 +312224,14 @@
     "c": "SONDOTECNICA ENGENHARIA SOLOS S.A.",
     "d": "SONDOTECNICA",
     "e": "33386210000119",
-    "f": "1",
+    "f": "32",
     "g": "",
     "h": "09/01/1971",
     "i": "A",
     "j": "Engenharia Consultiva",
     "k": "Consultive Engeneering",
     "l": "1",
-    "m": "",
+    "m": "CMP",
     "n": [
       {
         "a": "BRSONDACNOR5",
