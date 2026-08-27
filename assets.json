@@ -12395,6 +12395,24 @@
     "p": []
   },
   {
+    "a": "918010",
+    "b": "ATVV",
+    "c": "ATLAS SECURITIZADORA E PLATAFORMA DE INVESTIMENTO",
+    "d": "ATLAS SEC",
+    "e": "66442571000194",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "900408",
     "b": "ATMF",
     "c": "ATLETICO MINEIRO S.A.F. ",
@@ -35682,6 +35700,24 @@
     "p": []
   },
   {
+    "a": "918013",
+    "b": "CLUZ",
+    "c": "CARAGUA LUZ S/A SPE",
+    "d": "CARAGUA LUZ",
+    "e": "22581495000122",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "911156",
     "b": "CDAI",
     "c": "CARANDAÍ PARTICIPAÇÕES S.A.",
@@ -50861,7 +50897,7 @@
     "b": "CTEP",
     "c": "CORPOREOS SERVICOS TERAPEUTICOS SA",
     "d": "CORPOREOS",
-    "e": "8845676000198",
+    "e": "08845676000198",
     "f": "8",
     "g": "",
     "h": "03/10/2024",
@@ -299811,6 +299847,24 @@
     "p": []
   },
   {
+    "a": "918012",
+    "b": "RVCL",
+    "c": "RECREIO VEICULOS S.A.",
+    "d": "REC VEICULOS",
+    "e": "39531199000110",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "907188",
     "b": "RCIX",
     "c": "REC 2017 EMPREENDIMENTOS E PARTICIPACOES IX S.A.",
@@ -301697,6 +301751,24 @@
     "d": "RIO ENERGY P",
     "e": "38126888000186",
     "f": "1",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918011",
+    "b": "RRMC",
+    "c": "RECREIO RIO MOTOS COMERCIO E REPRESENTACOES LTDA",
+    "d": "RIO MOTOS",
+    "e": "09366418000191",
+    "f": "99",
     "g": "",
     "h": "31/12/9999",
     "i": "A",
@@ -318815,6 +318887,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRVIVTACNOR0",
+        "b": "30/04/2027",
+        "c": "0,10952537999",
+        "d": "3º Trimestre/2026",
+        "e": "14/08/2026",
+        "f": "BRVIVTACNOR0",
+        "g": "JRS CAP PROPRIO",
+        "h": "26/08/2026",
+        "i": ""
+      },
       {
         "a": "BRVIVTACNOR0",
         "b": "30/04/2027",
