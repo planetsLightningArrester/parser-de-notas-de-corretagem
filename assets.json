@@ -55485,6 +55485,28 @@
     "o": [
       {
         "a": "BRDESKACNOR2",
+        "b": "08/09/2026",
+        "c": "0,03945712980",
+        "d": "1º Semestre/2026",
+        "e": "24/08/2026",
+        "f": "BRDESKACNOR2",
+        "g": "DIVIDENDO",
+        "h": "27/08/2026",
+        "i": ""
+      },
+      {
+        "a": "BRDESKACNOR2",
+        "b": "08/09/2026",
+        "c": "0,04393062900",
+        "d": "Anual/2025",
+        "e": "29/04/2026",
+        "f": "BRDESKACNOR2",
+        "g": "DIVIDENDO",
+        "h": "29/04/2026",
+        "i": ""
+      },
+      {
+        "a": "BRDESKACNOR2",
         "b": "30/12/2026",
         "c": "0,04393062900",
         "d": "Anual/2025",
@@ -59224,6 +59246,28 @@
     "o": [
       {
         "a": "BREKTRACNOR0",
+        "b": "10/09/2026",
+        "c": "0,12577771740",
+        "d": "2º Trimestre/2026",
+        "e": "19/06/2026",
+        "f": "BREKTRACNOR0",
+        "g": "JRS CAP PROPRIO",
+        "h": "24/06/2026",
+        "i": ""
+      },
+      {
+        "a": "BREKTRACNPR7",
+        "b": "10/09/2026",
+        "c": "0,13835548910",
+        "d": "2º Trimestre/2026",
+        "e": "19/06/2026",
+        "f": "BREKTRACNPR7",
+        "g": "JRS CAP PROPRIO",
+        "h": "24/06/2026",
+        "i": ""
+      },
+      {
+        "a": "BREKTRACNOR0",
         "b": "31/12/2026",
         "c": "0,12577771740",
         "d": "2º Trimestre/2026",
@@ -59264,6 +59308,28 @@
         "f": "BREKTRACNPR7",
         "g": "DIVIDENDO",
         "h": "10/04/2026",
+        "i": ""
+      },
+      {
+        "a": "BREKTRACNOR0",
+        "b": "10/09/2026",
+        "c": "0,14863168360",
+        "d": "1º Trimestre/2026",
+        "e": "05/03/2026",
+        "f": "BREKTRACNOR0",
+        "g": "JRS CAP PROPRIO",
+        "h": "10/03/2026",
+        "i": ""
+      },
+      {
+        "a": "BREKTRACNPR7",
+        "b": "10/09/2026",
+        "c": "0,16349485200",
+        "d": "1º Trimestre/2026",
+        "e": "05/03/2026",
+        "f": "BREKTRACNPR7",
+        "g": "JRS CAP PROPRIO",
+        "h": "10/03/2026",
         "i": ""
       },
       {
@@ -69128,6 +69194,24 @@
     "j": "Não Classificados",
     "k": "Not Classified",
     "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "15423",
+    "b": "FASA",
+    "c": "FASA S.A.",
+    "d": "FASA",
+    "e": "00359742000108",
+    "f": "1",
+    "g": "",
+    "h": "28/02/1996",
+    "i": "A",
+    "j": "Carnes e Derivados",
+    "k": "Meat. Poultry and Others",
+    "l": "1",
     "m": "",
     "n": [],
     "o": [],
@@ -248555,6 +248639,15 @@
     "n": [
       {
         "a": "BRTOKYACNOR5",
+        "b": "0,05000000000",
+        "c": "27/07/2026",
+        "d": "BRTOKYACNOR5",
+        "e": "GRUPAMENTO",
+        "f": "27/08/2026",
+        "g": ""
+      },
+      {
+        "a": "BRTOKYACNOR5",
         "b": "0,25000000000",
         "c": "30/04/2026",
         "d": "BRTOKYACNOR5",
@@ -276728,6 +276821,24 @@
     "c": "MK BR S.A.",
     "d": "MK BR S.A.",
     "e": "7666567000140",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918015",
+    "b": "MMOV",
+    "c": "MERCADOMÓVEIS LTDA",
+    "d": "MMOVEIS",
+    "e": "77500049000138",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
@@ -315336,6 +315447,24 @@
     "c": "TRANSPORTADORA PRA FRENTE BRASIL LTDA",
     "d": "T PRA FRENTE",
     "e": "80174840000100",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918014",
+    "b": "TABP",
+    "c": "TABOCAS PARTICIPAÇÕES EMPREENDIMENTOS S.A.",
+    "d": "TABOCAS PART",
+    "e": "03130160000143",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
