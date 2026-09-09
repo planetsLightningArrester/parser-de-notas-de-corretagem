@@ -44408,6 +44408,24 @@
     "p": []
   },
   {
+    "a": "918033",
+    "b": "CLEM",
+    "c": "CLEAN MEDICAL COMERCIO E LOCACAO DE EQUIPAMENTOS H",
+    "d": "CLEAN MEDI",
+    "e": "11957593000103",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "26093",
     "b": "CLSA",
     "c": "CLEAR SALE S.A.",
@@ -256638,6 +256656,28 @@
     "o": [
       {
         "a": "BRFIGEACNOR6",
+        "b": "11/09/2026",
+        "c": "0,05756005000",
+        "d": "Anual/2025",
+        "e": "30/04/2026",
+        "f": "BRFIGEACNOR6",
+        "g": "DIVIDENDO",
+        "h": "30/04/2026",
+        "i": ""
+      },
+      {
+        "a": "BRFIGEACNPR3",
+        "b": "11/09/2026",
+        "c": "0,06331605000",
+        "d": "Anual/2025",
+        "e": "30/04/2026",
+        "f": "BRFIGEACNPR3",
+        "g": "DIVIDENDO",
+        "h": "30/04/2026",
+        "i": ""
+      },
+      {
+        "a": "BRFIGEACNOR6",
         "b": "31/12/2026",
         "c": "0,05756005000",
         "d": "Anual/2025",
@@ -276752,6 +276792,17 @@
     "m": "NM",
     "n": [],
     "o": [
+      {
+        "a": "BRMTREACNOR6",
+        "b": "18/09/2026",
+        "c": "0,02836213761",
+        "d": "Anual/2025",
+        "e": "06/07/2026",
+        "f": "BRMTREACNOR6",
+        "g": "DIVIDENDO",
+        "h": "08/09/2026",
+        "i": ""
+      },
       {
         "a": "BRMTREACNOR6",
         "b": "21/08/2026",
@@ -315882,6 +315933,24 @@
     ]
   },
   {
+    "a": "918035",
+    "b": "SXEP",
+    "c": "SX 085 EMPREENDIMENTOS E PARTICIPACOES S.A.",
+    "d": "SX  085",
+    "e": "61974081000115",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "918027",
     "b": "SXEE",
     "c": "SX 086 EMPREENDIMENTOS E PARTICIPACOES S.A.",
@@ -323231,6 +323300,24 @@
     "d": "TRASECFINANC",
     "e": "40004405000112",
     "f": "1",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918034",
+    "b": "TRAO",
+    "c": "TRATORCASE MAQUINAS AGRICOLAS S/A",
+    "d": "TRATORCASE",
+    "e": "08641686000101",
+    "f": "99",
     "g": "",
     "h": "31/12/9999",
     "i": "A",
