@@ -7062,6 +7062,17 @@
     "o": [
       {
         "a": "BRALOSACNOR5",
+        "b": "02/10/2026",
+        "c": "0,29191863800",
+        "d": "Mensal/2025",
+        "e": "15/09/2026",
+        "f": "BRALOSACNOR5",
+        "g": "DIVIDENDO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRALOSACNOR5",
         "b": "02/09/2026",
         "c": "0,29191761800",
         "d": "Mensal/2025",
@@ -14580,6 +14591,28 @@
       }
     ],
     "o": [
+      {
+        "a": "BRB3SAACNOR6",
+        "b": "07/10/2026",
+        "c": "0,15068791747",
+        "d": "Complementar/2026",
+        "e": "17/09/2026",
+        "f": "BRB3SAACNOR6",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRB3SAACNOR6",
+        "b": "07/10/2026",
+        "c": "0,07594671040",
+        "d": "3º Trimestre/2026",
+        "e": "17/09/2026",
+        "f": "BRB3SAACNOR6",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
       {
         "a": "BRB3SAACNOR6",
         "b": "07/07/2026",
@@ -23067,6 +23100,24 @@
     "c": "BLACK BOX DO BRASIL IND E COM LTDA.",
     "d": "BLACK BOX",
     "e": "00017332000189",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918043",
+    "b": "BBCK",
+    "c": "BLACKBELT PATRIMONIAL LTDA",
+    "d": "BLACKBELT",
+    "e": "55723132000133",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
@@ -41354,6 +41405,50 @@
       {
         "a": "BRCMIGACNOR6",
         "b": "30/06/2027",
+        "c": "0,03495670057",
+        "d": "Anual/2026",
+        "e": "17/09/2026",
+        "f": "BRCMIGACNOR6",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRCMIGACNOR6",
+        "b": "30/12/2027",
+        "c": "0,03495670057",
+        "d": "Anual/2026",
+        "e": "17/09/2026",
+        "f": "BRCMIGACNOR6",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRCMIGACNPR3",
+        "b": "30/06/2027",
+        "c": "0,03495670057",
+        "d": "Anual/2026",
+        "e": "17/09/2026",
+        "f": "BRCMIGACNPR3",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRCMIGACNPR3",
+        "b": "30/12/2027",
+        "c": "0,03495670057",
+        "d": "Anual/2026",
+        "e": "17/09/2026",
+        "f": "BRCMIGACNPR3",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRCMIGACNOR6",
+        "b": "30/06/2027",
         "c": "0,11020257159",
         "d": "Anual/2026",
         "e": "18/06/2026",
@@ -48581,6 +48676,42 @@
         "j": "07/10/2004"
       }
     ]
+  },
+  {
+    "a": "918047",
+    "b": "CONG",
+    "c": "CONCESSIONARIA DA RODOVIA BR 262 MG S.A.",
+    "d": "CONCE  MG",
+    "e": "58492120000133",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918046",
+    "b": "ACCO",
+    "c": "CONCESSIONARIA ACCIONA AGUA ES SPE S.A.",
+    "d": "CONCE ACCIO",
+    "e": "63029737000157",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
   },
   {
     "a": "917975",
@@ -266409,6 +266540,24 @@
     ]
   },
   {
+    "a": "918044",
+    "b": "KRCT",
+    "c": "KOFRE REPRESENTACAO E COMERCIO DE TELECOMUNICACOES",
+    "d": "KOFRE REP",
+    "e": "34303693000103",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "914408",
     "b": "KOMP",
     "c": "KOMPASS COMPANHIA SECURITIZADORA DE CRÉDITOS FINAN",
@@ -269491,6 +269640,17 @@
     "o": [
       {
         "a": "BRLRENACNOR1",
+        "b": "14/10/2026",
+        "c": "0,24066600000",
+        "d": "3º Trimestre/2026",
+        "e": "17/09/2026",
+        "f": "BRLRENACNOR1",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
+      {
+        "a": "BRLRENACNOR1",
         "b": "14/07/2026",
         "c": "0,22929900000",
         "d": "2º Trimestre/2026",
@@ -270595,6 +270755,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRMDIAACNOR7",
+        "b": "30/09/2026",
+        "c": "0,03000000000",
+        "d": "Mensal/2026",
+        "e": "12/12/2025",
+        "f": "BRMDIAACNOR7",
+        "g": "DIVIDENDO",
+        "h": "22/09/2026",
+        "i": ""
+      },
       {
         "a": "BRMDIAACNOR7",
         "b": "31/08/2026",
@@ -273170,6 +273341,24 @@
     "c": "EMPRESA DE MECANIZACAO RURAL PARTICIPACOES E EMP",
     "d": "MECA RURAL",
     "e": "17360322000144",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918045",
+    "b": "MSSE",
+    "c": "MED MAIS SOLUCOES EM SERVICOS ESPECIAIS LTDA",
+    "d": "MED MAIS",
+    "e": "09557452000143",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
@@ -287935,6 +288124,24 @@
     "d": "OUROPRETO",
     "e": "11916849000126",
     "f": "1",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918049",
+    "b": "OUTB",
+    "c": "OUTBACK STEAKHOUSE RESTAURANTES BRASIL SA",
+    "d": "OUTBACK",
+    "e": "17261661000173",
+    "f": "99",
     "g": "",
     "h": "31/12/9999",
     "i": "A",
@@ -319508,6 +319715,24 @@
     ]
   },
   {
+    "a": "918048",
+    "b": "TEAN",
+    "c": "TELEVISAO ANHANGUERA S/A",
+    "d": "TEL ANHAN",
+    "e": "01534510000101",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "11258",
     "b": "TELB",
     "c": "TELEC BRASILEIRAS S.A. TELEBRAS",
@@ -321720,6 +321945,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRTIMSACNOR5",
+        "b": "22/01/2027",
+        "c": "0,21668011480",
+        "d": "3º Trimestre/2026",
+        "e": "17/09/2026",
+        "f": "BRTIMSACNOR5",
+        "g": "JRS CAP PROPRIO",
+        "h": "22/09/2026",
+        "i": ""
+      },
       {
         "a": "BRTIMSACNOR5",
         "b": "22/07/2026",
