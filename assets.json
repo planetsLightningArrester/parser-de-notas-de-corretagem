@@ -65158,7 +65158,17 @@
     "k": "Software and Services",
     "l": "1",
     "m": "NM",
-    "n": [],
+    "n": [
+      {
+        "a": "BRENJUACNOR9",
+        "b": "0,10000000000",
+        "c": "08/09/2026",
+        "d": "BRENJUACNOR9",
+        "e": "GRUPAMENTO",
+        "f": "08/10/2026",
+        "g": ""
+      }
+    ],
     "o": [
       {
         "a": "BRENJUACNOR9",
@@ -258912,6 +258922,28 @@
     "o": [
       {
         "a": "BRISAEACNOR2",
+        "b": "07/12/2026",
+        "c": "0,18895900000",
+        "d": "1º Semestre/2026",
+        "e": "29/09/2026",
+        "f": "BRISAEACNOR2",
+        "g": "JRS CAP PROPRIO",
+        "h": "08/10/2026",
+        "i": ""
+      },
+      {
+        "a": "BRISAEACNPR9",
+        "b": "07/12/2026",
+        "c": "0,18895900000",
+        "d": "1º Semestre/2026",
+        "e": "29/09/2026",
+        "f": "BRISAEACNPR9",
+        "g": "JRS CAP PROPRIO",
+        "h": "08/10/2026",
+        "i": ""
+      },
+      {
+        "a": "BRISAEACNOR2",
         "b": "29/04/2026",
         "c": "0,14131100000",
         "d": "Anual/2025",
@@ -284185,6 +284217,24 @@
     "c": "NOVO CARACOL E TAINHAS S.A.",
     "d": "NOVO CARACOL",
     "e": "48255552000177",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918057",
+    "b": "NCSP",
+    "c": "NOVO CENTRO SP S.A",
+    "d": "NOVO CEN",
+    "e": "68133112000154",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
