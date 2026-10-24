@@ -2389,6 +2389,24 @@
     "p": []
   },
   {
+    "a": "918066",
+    "b": "AINR",
+    "c": "AEROPORTO INTERNACIONAL DO RIO S.A.",
+    "d": "AERO  RIO",
+    "e": "19726111000108",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "900297",
     "b": "CAPP",
     "c": "CONCESSIONARIA DO AEROPORTO DA PAMPULHA S.A. ",
@@ -49196,6 +49214,24 @@
     "p": []
   },
   {
+    "a": "918065",
+    "b": "PRRE",
+    "c": "CONCESSIONÁRIA PREVER ADMINISTRAÇÃO CEMITERIAL E S",
+    "d": "CONCEPREVER",
+    "e": "47863166000103",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "907212",
     "b": "RDOE",
     "c": "CONCESSIONARIA DO RODOANEL OESTE S/A",
@@ -68964,7 +69000,7 @@
       },
       {
         "a": "BREUFAACNOR4",
-        "b": "31/12/2026",
+        "b": "26/10/2026",
         "c": "0,08652851100",
         "d": "Anual/2025",
         "e": "30/04/2026",
@@ -68987,12 +69023,34 @@
       {
         "a": "BREUFAACNOR4",
         "b": "31/12/2026",
+        "c": "0,08652851100",
+        "d": "Anual/2025",
+        "e": "30/04/2026",
+        "f": "BREUFAACNOR4",
+        "g": "DIVIDENDO",
+        "h": "07/05/2026",
+        "i": ""
+      },
+      {
+        "a": "BREUFAACNOR4",
+        "b": "31/12/2026",
         "c": "0,06661800000",
         "d": "1º Trimestre/2026",
         "e": "31/03/2026",
         "f": "BREUFAACNOR4",
         "g": "JRS CAP PROPRIO",
         "h": "06/04/2026",
+        "i": ""
+      },
+      {
+        "a": "BREUFAACNOR4",
+        "b": "26/10/2026",
+        "c": "0,23161600000",
+        "d": "Mensal/2025",
+        "e": "30/12/2025",
+        "f": "BREUFAACNOR4",
+        "g": "JRS CAP PROPRIO",
+        "h": "07/01/2026",
         "i": ""
       },
       {
