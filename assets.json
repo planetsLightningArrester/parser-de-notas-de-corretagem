@@ -301387,6 +301387,24 @@
     "p": []
   },
   {
+    "a": "918068",
+    "b": "RBJL",
+    "c": "RBJL COMERCIO DE BICICLETAS LTDA",
+    "d": "RBJL COME",
+    "e": "22682168000167",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "CCRF",
     "d": "RBR CRI FII",
     "c": "CCRF11",
@@ -321536,6 +321554,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRVIVTACNOR0",
+        "b": "31/12/9999",
+        "c": "0,14081834570",
+        "d": "4º Trimestre/2026",
+        "e": "14/10/2026",
+        "f": "BRVIVTACNOR0",
+        "g": "JRS CAP PROPRIO",
+        "h": "26/10/2026",
+        "i": ""
+      },
       {
         "a": "BRVIVTACNOR0",
         "b": "30/04/2027",
