@@ -10906,14 +10906,14 @@
     "c": "ARANDU INVESTIMENTOS S.A.",
     "d": "ARANDU",
     "e": "14127813000151",
-    "f": "18",
+    "f": "1",
     "g": "",
     "h": "13/05/2021",
     "i": "A",
     "j": "Holdings Diversificadas",
     "k": "Holdings - Diversified",
     "l": "1",
-    "m": "NM",
+    "m": "",
     "n": [],
     "o": [],
     "p": []
@@ -13285,6 +13285,15 @@
     "l": "1",
     "m": "NM",
     "n": [
+      {
+        "a": "",
+        "b": "100,00000000000",
+        "c": "20/10/2026",
+        "d": "BRAXIAA12PC7",
+        "e": "RESG TOTAL RV",
+        "f": "29/10/2026",
+        "g": ""
+      },
       {
         "a": "",
         "b": "100,00000000000",
@@ -292223,7 +292232,7 @@
   {
     "a": "50347",
     "b": "BHYS",
-    "c": "PIMCO 0-5 YEAR HIGH YIELD CORP BOND INDEX EXCH-TF",
+    "c": "PIMCO 0-5 YEAR HIGH YIELD CORP BOND  EXCH-TF",
     "d": "PCOM 0T5 HY",
     "e": "0",
     "f": "1",
@@ -296911,7 +296920,7 @@
   {
     "a": "50346",
     "b": "BCRP",
-    "c": "PIMCO INVESTMENT GRADE CORP BOND INDEX EXCH-TF",
+    "c": "PIMCO INVESTMENT GRADE CORP BOND  EXCH-TF",
     "d": "PMCO IGR CPI",
     "e": "0",
     "f": "1",
