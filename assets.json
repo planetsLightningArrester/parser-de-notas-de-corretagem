@@ -53316,6 +53316,24 @@
     "p": []
   },
   {
+    "a": "918076",
+    "b": "COXT",
+    "c": "COX TRANSMISSORA 1 S.A.",
+    "d": "COX TRAN",
+    "e": "55082801000135",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "917917",
     "b": "COXM",
     "c": "COXIM ENERGIA S/A",
@@ -246203,6 +246221,28 @@
     "o": [
       {
         "a": "BRGGBRACNOR1",
+        "b": "15/12/2026",
+        "c": "0,34000000000",
+        "d": "3º Trimestre/2026",
+        "e": "26/10/2026",
+        "f": "BRGGBRACNOR1",
+        "g": "DIVIDENDO",
+        "h": "10/11/2026",
+        "i": ""
+      },
+      {
+        "a": "BRGGBRACNPR8",
+        "b": "15/12/2026",
+        "c": "0,34000000000",
+        "d": "3º Trimestre/2026",
+        "e": "26/10/2026",
+        "f": "BRGGBRACNPR8",
+        "g": "DIVIDENDO",
+        "h": "10/11/2026",
+        "i": ""
+      },
+      {
+        "a": "BRGGBRACNOR1",
         "b": "11/09/2026",
         "c": "0,23000000000",
         "d": "2º Trimestre/2026",
@@ -246689,6 +246729,28 @@
       }
     ],
     "o": [
+      {
+        "a": "BRGOAUACNOR1",
+        "b": "16/12/2026",
+        "c": "0,16000000000",
+        "d": "3º Trimestre/2026",
+        "e": "26/10/2026",
+        "f": "BRGOAUACNOR1",
+        "g": "DIVIDENDO",
+        "h": "10/11/2026",
+        "i": ""
+      },
+      {
+        "a": "BRGOAUACNPR8",
+        "b": "16/12/2026",
+        "c": "0,16000000000",
+        "d": "3º Trimestre/2026",
+        "e": "26/10/2026",
+        "f": "BRGOAUACNPR8",
+        "g": "DIVIDENDO",
+        "h": "10/11/2026",
+        "i": ""
+      },
       {
         "a": "BRGOAUACNOR1",
         "b": "14/09/2026",
@@ -307449,6 +307511,17 @@
     "o": [
       {
         "a": "BRSBSPACNOR5",
+        "b": "30/04/2027",
+        "c": "0,74986562544",
+        "d": "Anual/2026",
+        "e": "05/11/2026",
+        "f": "BRSBSPACNOR5",
+        "g": "JRS CAP PROPRIO",
+        "h": "10/11/2026",
+        "i": ""
+      },
+      {
+        "a": "BRSBSPACNOR5",
         "b": "30/04/2026",
         "c": "0,83342453884",
         "d": "Anual/2025",
@@ -327080,6 +327153,24 @@
     "c": "TRV XLII SECURITIZADORA DE CREDITOS FINANCEIROS S",
     "d": "TRV XLII",
     "e": "65199364000198",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918074",
+    "b": "TUMM",
+    "c": "TRV XLVII SECURITIZADORA DE CREDITOS MERCANTIS S A",
+    "d": "TRV XLVII",
+    "e": "69290053000190",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
