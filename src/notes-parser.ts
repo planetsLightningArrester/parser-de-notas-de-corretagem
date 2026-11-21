@@ -253,9 +253,11 @@ export class NoteParser {
       /(\d[\d,.]*)\nExecução/,
       /(\d[\d,.]*)\nTaxa de Custódia/,
       /(\d[\d,.]*)\nImpostos/,
-      /(\d[\d,.]*)\nI\.R\.R\.F\. s\/ operações, base/,
+      /(\d[\d,.]*)\nTaxa de Transf\. de Ativos/,
       /(\d[\d,.]*)\nOutros/
     ];
+    // ?* Clear and Rico IRRF pattern. Withheld from sell proceeds, so only counted when the note has sells
+    const irrfClearRicoPattern = /(\d[\d,.]*)\nI\.R\.R\.F\. s\/ operações, base/;
     // ?* Inter fees pattern
     const feesInterPattern = [
       // Taxa de Liquidação
@@ -303,7 +305,8 @@ export class NoteParser {
       /Outras\s+-?(\d[\d,.]*)/,
     ];
     // ?* Clear and Rico stock pattern. This is also the default in case the holder isn't defined
-    const stockClearRicoPattern = /1-BOVESPA\s+(\w)\s+(\w+)\s+([\w\s./]+)\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?(?:[A-Z]{1,2}|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?\s+(?:#\s+)?(\d+)\s+([\d.,]+)\s+([\d,.]+)/g;
+    // ? Market code can be `1-BOVESPA` (stocks) or `7-BOVESPA` (fund quotas). Observation can be `#`, `@` or `@#`
+    const stockClearRicoPattern = /\d-BOVESPA\s+(\w)\s+(\w+)\s+([\w\s./]+)\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?(?:[A-Z]{1,2}|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?\s+(?:[#@]+\s+)?(\d+)\s+([\d.,]+)\s+([\d,.]+)/g;
     // ?* Inter stock pattern
     const stockInterPattern = /Bovespa\s+(\w+)\s+(\w+)\s+(\d+)\s+(\d+[\d,.]*)\s+(\d+[\d,.]*)\s+\w+\s(ON|PN|PNA|PNB|UNT|DR1|DR2|DR3|BDR|CI|FIDC|ETF|BDR|REIT|CRI|CRA|CRI\/CRA|FII)(?:\s+(E?(?:[A-Z]{1,2}|ATZ)))?(?:\s+(N1|N2|NM|MA|M2))?[\n ]+(\w[^\n]+)/g;
     // ?* Nubank stock pattern
@@ -367,7 +370,7 @@ export class NoteParser {
         const _pageContent = pageContent;
         let feePattern: RegExp[];
         if (parseResult.holder.toLowerCase() === 'nubank') feePattern = feesNubankPattern;
-        else if (parseResult.holder.toLowerCase() !== 'inter') feePattern = feesClearRicoPattern;
+        else if (parseResult.holder.toLowerCase() !== 'inter') feePattern = sellTotal ? [...feesClearRicoPattern, irrfClearRicoPattern] : feesClearRicoPattern;
         else feePattern = feesInterPattern;
 
         feePattern.forEach(fee => {
