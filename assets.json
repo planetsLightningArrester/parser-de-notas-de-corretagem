@@ -9975,7 +9975,7 @@
     "b": "ABEV",
     "c": "AMBEV S.A.",
     "d": "AMBEV S/A",
-    "e": "7526557000100",
+    "e": "07526557000100",
     "f": "1",
     "g": "",
     "h": "31/10/2013",
@@ -15584,6 +15584,28 @@
         "f": "BRBMGBACNOR3",
         "g": "JRS CAP PROPRIO",
         "h": "31/12/9999",
+        "i": ""
+      },
+      {
+        "a": "BRBMGBACNOR3",
+        "b": "04/12/2026",
+        "c": "0,10000000000",
+        "d": "3 trimestre/2026",
+        "e": "23/11/2026",
+        "f": "BRBMGBACNOR3",
+        "g": "JRS CAP PROPRIO",
+        "h": "23/11/2026",
+        "i": ""
+      },
+      {
+        "a": "BRBMGBACNPR0",
+        "b": "04/12/2026",
+        "c": "0,10000000000",
+        "d": "3º Trimestre/2026",
+        "e": "05/11/2026",
+        "f": "BRBMGBACNPR0",
+        "g": "JRS CAP PROPRIO",
+        "h": "23/11/2026",
         "i": ""
       },
       {
@@ -28524,6 +28546,24 @@
     "p": []
   },
   {
+    "a": "918086",
+    "b": "BRDC",
+    "c": "BRASDIESEL SA COMERCIAL E IMPORTADORA",
+    "d": "BRASDIESEL",
+    "e": "88616511000183",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "901280",
     "b": "BRSH",
     "c": "BRASHOP S/A",
@@ -35584,6 +35624,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRCAMBACNOR4",
+        "b": "07/12/2026",
+        "c": "0,10000000000",
+        "d": "3º Trimestre/2026",
+        "e": "16/11/2026",
+        "f": "BRCAMBACNOR4",
+        "g": "DIVIDENDO",
+        "h": "23/11/2026",
+        "i": ""
+      },
       {
         "a": "BRCAMBACNOR4",
         "b": "30/09/2026",
@@ -244176,6 +244227,24 @@
     "p": []
   },
   {
+    "a": "918082",
+    "b": "FSCA",
+    "c": "FRÍSIA COOPERATIVA AGROINDUSTRIAL",
+    "d": "FRSIA COO",
+    "e": "76107770000108",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "900526",
     "b": "FSIR",
     "c": "FS INFRAESTRUTURA S.A.",
@@ -248589,6 +248658,24 @@
     "d": "GRANINV",
     "e": "14191441000122",
     "f": "1",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918088",
+    "b": "GBAG",
+    "c": "GRANJA BRASILIA AGROINDUSTRIAL AVICOLA LTDA",
+    "d": "GRANJA BR",
+    "e": "07150233000110",
+    "f": "99",
     "g": "",
     "h": "31/12/9999",
     "i": "A",
@@ -292474,6 +292561,24 @@
     "p": []
   },
   {
+    "a": "918087",
+    "b": "PARU",
+    "c": "PARU PARTICIPACOES LTDA",
+    "d": "PARU PA",
+    "e": "58001535000167",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "900698",
     "b": "PAOP",
     "c": "PASA PARANA OPERACOES PORTUARIAS S.A.",
@@ -292515,6 +292620,24 @@
     "c": "EMPRESA DE ONIBUS PASSARO MARRON S/A",
     "d": "PASSARO MARR",
     "e": "61563557000125",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918085",
+    "b": "PASW",
+    "c": "PASSAWA PARTICIPACOES S.A",
+    "d": "PASSAWA",
+    "e": "67564477000170",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
@@ -298231,6 +298354,17 @@
         "f": "BRPSSAACNOR7",
         "g": "JRS CAP PROPRIO",
         "h": "22/06/2026",
+        "i": ""
+      },
+      {
+        "a": "BRPSSAACNOR7",
+        "b": "27/11/2026",
+        "c": "0,88610135766",
+        "d": "2025",
+        "e": "31/03/2026",
+        "f": "BRPSSAACNOR7",
+        "g": "DIVIDENDO",
+        "h": "31/03/2026",
         "i": ""
       },
       {
@@ -307503,6 +307637,24 @@
     "p": []
   },
   {
+    "a": "918084",
+    "b": "ROTV",
+    "c": "ROTA VERDE GOIAS SPE S.A",
+    "d": "ROTA VERDE",
+    "e": "59354202000184",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
     "a": "916551",
     "b": "RGRA",
     "c": "CONCESSIONÁRIA DE RODOVIAS ROTA DOS GRÃOS S.A",
@@ -315065,6 +315217,24 @@
     "c": "SLC PARTICIPAÇÕES S.A.",
     "d": "SLC PARTICIP",
     "e": "90522921000107",
+    "f": "99",
+    "g": "",
+    "h": "31/12/9999",
+    "i": "A",
+    "j": "Não Classificados",
+    "k": "Not Classified",
+    "l": "7",
+    "m": "",
+    "n": [],
+    "o": [],
+    "p": []
+  },
+  {
+    "a": "918081",
+    "b": "SMRT",
+    "c": "SMART CENTER COMERCIO DE MATERIAIS DE CONSTRUCAO L",
+    "d": "SMART CEN",
+    "e": "19051774000170",
     "f": "99",
     "g": "",
     "h": "31/12/9999",
@@ -328522,6 +328692,17 @@
       }
     ],
     "o": [
+      {
+        "a": "BRUGPAACNOR8",
+        "b": "03/12/2026",
+        "c": "1,00000000000",
+        "d": "2º Semestre/2026",
+        "e": "11/11/2026",
+        "f": "BRUGPAACNOR8",
+        "g": "DIVIDENDO",
+        "h": "23/11/2026",
+        "i": ""
+      },
       {
         "a": "BRUGPAACNOR8",
         "b": "03/09/2026",
